@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jeroen De Dauw",
+			"Karsten Hoffmeyer"
+		]
+	},
+	"network-name": "Network",
+	"network-desc": "Allows adding interactive network visualizations in your wiki pages"
+}

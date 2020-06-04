@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jeroen De Dauw",
+			"Karsten Hoffmeyer"
+		]
+	},
+	"modern-timeline-name": "{{Name}}",
+	"modern-timeline-desc": "{{Desc|name=Network|url=https://github.com/ProfessionalWiki/Network}}"
+}

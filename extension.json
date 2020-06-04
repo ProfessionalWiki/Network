@@ -1,0 +1,42 @@
+{
+	"name": "Network",
+
+	"version": "0.1.0",
+
+	"author": [
+		"[https://professional.wiki/ Professional.Wiki]",
+		"[https://www.entropywins.wtf/mediawiki Jeroen De Dauw]"
+	],
+
+	"url": "https://github.com/ProfessionalWiki/Network#network-extension",
+
+	"descriptionmsg": "network-desc",
+
+	"license-name": "GPL-2.0-or-later",
+
+	"type": "parserhook",
+
+	"requires": {
+		"MediaWiki": ">= 1.31.0"
+	},
+
+	"MessagesDirs": {
+		"Network": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"NetworkParserFunction": "i18n/magic/MagicWords.php"
+	},
+
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "Network/resources"
+	},
+
+	"ResourceModules": {
+
+	},
+
+	"manifest_version": 2
+}
