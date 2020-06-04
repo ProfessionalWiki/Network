@@ -25,8 +25,17 @@
 			"i18n"
 		]
 	},
+
 	"ExtensionMessagesFiles": {
-		"NetworkParserFunction": "i18n/magic/MagicWords.php"
+		"NetworkParserFunction": "i18n/_MagicWords.php"
+	},
+
+	"AutoloadClasses": {
+		"MediaWiki\\Network\\NetworkExtension": "NetworkExtension.php"
+	},
+
+	"Hooks": {
+		"ParserFirstCallInit": "MediaWiki\\Network\\NetworkExtension::onParserFirstCallInit"
 	},
 
 	"ResourceFileModulePaths": {
