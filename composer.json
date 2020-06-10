@@ -35,7 +35,7 @@
 		"source": "https://github.com/ProfessionalWiki/Network/issues"
 	},
 	"require": {
-		"php": ">=7.2",
+		"php": ">=7.3",
 		"composer/installers": "^1.0.1"
 	},
 	"autoload": {

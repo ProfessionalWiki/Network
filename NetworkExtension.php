@@ -13,7 +13,13 @@ class NetworkExtension {
 		$parser->setFunctionHook(
 			'network',
 			function( Parser $parser, PPFrame $frame, array $arguments ) {
-				return var_export( $arguments, true );
+				$parser->getOutput()->addModules( 'ext.network' );
+
+				return [
+					'<div id="NetworkCanvas" style="width: 1000px; height: 600px; border: 1px solid blue"></div>',
+					'noparse' => true,
+					'isHTML' => true,
+				];
 			},
 			Parser::SFH_OBJECT_ARGS
 		);

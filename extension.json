@@ -44,7 +44,16 @@
 	},
 
 	"ResourceModules": {
-
+		"ext.network": {
+			"scripts": [
+				"lib/d3.js",
+				"DataSource.js",
+				"Graph.js",
+				"Network.js",
+				"index.js"
+			],
+			"targets": [ "desktop", "mobile" ]
+		}
 	},
 
 	"manifest_version": 2
