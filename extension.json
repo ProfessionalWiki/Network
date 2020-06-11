@@ -47,10 +47,11 @@
 		"ext.network": {
 			"scripts": [
 				"lib/d3.js",
-				"DataSource.js",
-				"Graph.js",
-				"Network.js",
-				"index.js"
+				"js/ApiPageConnectionRepo.js",
+				"js/StubPageConnectionRepo.js",
+				"js/Graph.js",
+				"js/Network.js",
+				"js/index.js"
 			],
 			"targets": [ "desktop", "mobile" ]
 		}

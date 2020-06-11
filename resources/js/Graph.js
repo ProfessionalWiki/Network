@@ -3,17 +3,17 @@ module.Graph = ( function (d3) {
 	let Graph = function() {
 	};
 
-	Graph.prototype.createSimulation = function(container, graph) {
+	Graph.prototype.createSimulation = function(container, connections) {
 		let simulation = d3.forceSimulation()
-			.force("link", d3.forceLink().id(function(d) { return d.id; }))
+			.force("link", d3.forceLink().id(function(page) { return page.title; }))
 			.force("charge", d3.forceManyBody())
 			.force("center", d3.forceCenter(500, 300));
 
-		let linkGroup = createLinkGroup(container, graph.links);
-		let nodeGroup = createNodeGroup(container, graph.nodes);
-		let nodeLabels = createNodeLabels(container, graph.nodes);
+		let linkGroup = createLinkGroup(container, connections.links);
+		let nodeGroup = createNodeGroup(container, connections.pages);
+		let nodeLabels = createNodeLabels(container, connections.pages);
 
-		simulation.nodes(graph.nodes).on(
+		simulation.nodes(connections.pages).on(
 			"tick",
 			function ticked() {
 				updateNodeGroup(nodeGroup);
@@ -23,7 +23,7 @@ module.Graph = ( function (d3) {
 			}
 		);
 
-		simulation.force("link").links(graph.links);
+		simulation.force("link").links(connections.links);
 	};
 
 	function createLinkGroup(container, links) {
@@ -45,9 +45,9 @@ module.Graph = ( function (d3) {
 			.enter()
 			.append("circle")
 			.attr("r", 5)
-			.attr("fill", function(d) { return color(d.group); });
+			.attr("fill", function(page) { return color(page.ns); });
 
-		nodeGroup.append("title").text(function(d) { return d.id; });
+		nodeGroup.append("title").text(function(page) { return page.title; });
 
 		return nodeGroup;
 	}
@@ -58,7 +58,7 @@ module.Graph = ( function (d3) {
 			.data(nodes)
 			.enter()
 			.append("text")
-			.text(function(d, i) { return d.id; })
+			.text(function(page, i) { return page.title; })
 			.style("fill", "#555")
 			.style("font-family", "Arial")
 			.style("font-size", 12)

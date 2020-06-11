@@ -1,12 +1,12 @@
 module.Network = ( function (d3, mw, Graph ) {
 
-	let Network = function(dataSource, divId) {
-		this._dataSource = dataSource;
+	let Network = function(pageConnectionRepo, divId) {
+		this._pageConnectionRepo = pageConnectionRepo;
 		this._divId = divId;
 	};
 
 	Network.prototype.show = function() {
-		let div = d3.select(this._divId);
+		let div = d3.select('#' + this._divId);
 		let svg = div.append("svg");
 
 		svg.attr("width", div.style("width"));
@@ -23,13 +23,15 @@ module.Network = ( function (d3, mw, Graph ) {
 		);
 	};
 
-	Network.prototype._getGraph = function() {
-		return this._dataSource.getGraph();
+	Network.prototype._getConnections = function() {
+		return this._pageConnectionRepo.getConnections();
 	};
 
 	Network.prototype._createSimulation = function(container) {
-		let g = new Graph();
-		g.createSimulation(container, this._getGraph());
+		this._getConnections().done(function(connections) {
+			let g = new Graph();
+			g.createSimulation(container, connections);
+		});
 	};
 
 	return Network;
