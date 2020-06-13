@@ -9,14 +9,9 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 		let deferred = $.Deferred();
 		let self = this;
 
-		new mw.Api().get({
-			action: 'query',
-			list: 'backlinks',
-			bltitle: this._pageName,
-			bllimit: 'max',
-			format: 'json',
-			redirects: 'true'
-		}).done(function(response) {
+		let queries = $.when(this._queryBackLinks());
+
+		queries.done(function(response) {
 			console.log(response);
 
 			let r = {
@@ -27,9 +22,20 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 			console.log(r);
 
 			deferred.resolve(r);
-		});
+		})
 
 		return deferred.promise();
+	};
+
+	ApiPageConnectionRepo.prototype._queryBackLinks = function() {
+		return new mw.Api().get({
+			action: 'query',
+			list: 'backlinks',
+			bltitle: this._pageName,
+			bllimit: 'max',
+			format: 'json',
+			redirects: 'true'
+		});
 	};
 
 	ApiPageConnectionRepo.prototype._getPagesFromResponse = function(response) {
