@@ -84,7 +84,7 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 			link => {
 				return {
 					"source": this._pageName,
-					"target":  link.title
+					"target": link.title
 				};
 			}
 		);

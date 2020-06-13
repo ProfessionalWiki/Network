@@ -20,9 +20,7 @@ module.InteractiveGraph = ( function (d3) {
 	};
 
 	InteractiveGraph.prototype._newSimulation = function() {
-		let simulation = d3.forceSimulation();
-
-		simulation.nodes(this._connections.pages);
+		let simulation = d3.forceSimulation(this._connections.pages);
 
 		simulation.force("charge", d3.forceManyBody())
 		simulation.force("center", d3.forceCenter(500, 300));
