@@ -9,19 +9,16 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 		let deferred = $.Deferred();
 		let self = this;
 
-		let queries = $.when(this._queryBackLinks());
-
-		queries.done(function(response) {
-			console.log(response);
-
-			let r = {
-				"pages": self._getPagesFromResponse(response),
-				"links": self._getLinksFromResponse(response)
-			};
-
-			console.log(r);
-
-			deferred.resolve(r);
+		$.when(
+			this._queryBackLinks(),
+			this._queryOutgoingLinks()
+		).done(function(backLinkResult, outgoingLinkResult) {
+			deferred.resolve(
+				{
+					"pages": self._getPagesFromResponse(backLinkResult[0], outgoingLinkResult[0]),
+					"links": self._buildBackLinks(backLinkResult[0]).concat(self._buildOutgoingLinks(outgoingLinkResult[0]))
+				}
+			);
 		})
 
 		return deferred.promise();
@@ -38,13 +35,31 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 		});
 	};
 
-	ApiPageConnectionRepo.prototype._getPagesFromResponse = function(response) {
+	ApiPageConnectionRepo.prototype._queryOutgoingLinks = function() {
+		return new mw.Api().get({
+			action: 'query',
+			prop: 'links',
+			titles: this._pageName,
+			pllimit: 'max',
+			format: 'json',
+			redirects: 'true'
+		});
+	};
+
+	ApiPageConnectionRepo.prototype._getPagesFromResponse = function(backLinks, outgoingLinks) {
 		let pages = [
 			{ "title": this._pageName, "ns": -1 }
 		];
 
 		$.each(
-			response.query.backlinks,
+			backLinks.query.backlinks,
+			function(_, page) {
+				pages.push(page);
+			}
+		);
+
+		$.each(
+			outgoingLinks.query.pages[1].links,
 			function(_, page) {
 				pages.push(page);
 			}
@@ -53,12 +68,23 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 		return pages;
 	};
 
-	ApiPageConnectionRepo.prototype._getLinksFromResponse = function(response) {
+	ApiPageConnectionRepo.prototype._buildBackLinks = function(response) {
 		return response.query.backlinks.map(
 			link => {
 				return {
 					"source": link.title,
 					"target": this._pageName
+				};
+			}
+		);
+	};
+
+	ApiPageConnectionRepo.prototype._buildOutgoingLinks = function(response) {
+		return response.query.pages[1].links.map(
+			link => {
+				return {
+					"source": this._pageName,
+					"target":  link.title
 				};
 			}
 		);
