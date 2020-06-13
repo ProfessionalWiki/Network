@@ -10,7 +10,6 @@ module.GraphElements = ( function (d3) {
 		this._createArrowHeads();
 		this.linkGroup = this._createLinkGroup();
 		this.nodeGroup = this._createNodeGroup();
-		this.labelGroup = this._createNodeLabels();
 	};
 
 	GraphElements.prototype._createArrowHeads = function() {
@@ -29,7 +28,6 @@ module.GraphElements = ( function (d3) {
 			.style('stroke','none');
 	};
 
-
 	GraphElements.prototype._createLinkGroup = function () {
 		return this._container.append("g")
 			.attr("class", "links")
@@ -45,32 +43,23 @@ module.GraphElements = ( function (d3) {
 	GraphElements.prototype._createNodeGroup = function() {
 		let color = d3.scaleOrdinal(d3.schemeCategory10);
 
-		let nodeGroup = this._container.append("g").attr("class", "nodes")
+		let nodeGroup = this._container
+			.append("g")
+			.attr("class", "nodes")
 			.selectAll("g")
 			.data(this._connections.pages)
 			.enter()
-			.append("circle")
-			.attr("r", 5)
-			.attr("fill", function(page) { return color(page.ns); });
-
-		nodeGroup.append("title").text(function(page) { return page.title; });
-
-		return nodeGroup;
-	}
-
-	GraphElements.prototype._createNodeLabels = function() {
-		return this._container.append("g").attr("class", "labelNodes")
-			.selectAll("text")
-			.data(this._connections.pages)
-			.enter()
 			.append("text")
+			.attr("text-anchor", "middle")
 			.text(function(page, i) { return page.title; })
 			.style("fill", "#555")
 			.style("font-family", "Arial")
 			.style("font-size", 12)
-			.style("pointer-events", "none")
-			.attr('x', 9)
-			.attr('y', 4);
+			.style("pointer-events", "none");
+
+		nodeGroup.append("title").text(function(page) { return page.title; });
+
+		return nodeGroup;
 	}
 
 	return GraphElements;

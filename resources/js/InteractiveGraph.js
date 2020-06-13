@@ -14,7 +14,6 @@ module.InteractiveGraph = ( function (d3) {
 			function ticked() {
 				updateNodeGroup(self._graphElements.nodeGroup);
 				updateLinkGroup(self._graphElements.linkGroup);
-				updateNodeGroup(self._graphElements.labelGroup);
 			}
 		);
 	};
@@ -22,18 +21,26 @@ module.InteractiveGraph = ( function (d3) {
 	InteractiveGraph.prototype._newSimulation = function() {
 		let simulation = d3.forceSimulation(this._connections.pages);
 
-		simulation.force("charge", d3.forceManyBody())
+		simulation.force("charge", this._newChargeForce())
 		simulation.force("center", d3.forceCenter(500, 300));
 		simulation.force("link", this._newLinkForce());
 
 		return simulation;
 	};
 
+	InteractiveGraph.prototype._newChargeForce = function() {
+		let chargeForce = d3.forceManyBody();
+
+		chargeForce.strength(-7500);
+
+		return chargeForce;
+	};
+
 	InteractiveGraph.prototype._newLinkForce = function() {
 		let linkForce = d3.forceLink(this._connections.links);
 
 		linkForce.id(function(page) { return page.title; });
-		linkForce.distance(200);
+		linkForce.distance(150);
 
 		return linkForce;
 	};
