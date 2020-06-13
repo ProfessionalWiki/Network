@@ -47,6 +47,7 @@
 		"ext.network": {
 			"scripts": [
 				"lib/d3.js",
+				"js/Page.js",
 				"js/ApiPageConnectionRepo.js",
 				"js/StubPageConnectionRepo.js",
 				"js/GraphElements.js",

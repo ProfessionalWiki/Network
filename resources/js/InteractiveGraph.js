@@ -33,7 +33,7 @@ module.InteractiveGraph = ( function (d3) {
 		let linkForce = d3.forceLink(this._connections.links);
 
 		linkForce.id(function(page) { return page.title; });
-		linkForce.distance(42);
+		linkForce.distance(200);
 
 		return linkForce;
 	};

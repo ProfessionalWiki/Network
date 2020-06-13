@@ -1,4 +1,4 @@
-module.ApiPageConnectionRepo = ( function ( $, mw ) {
+module.ApiPageConnectionRepo = ( function ( $, mw, Page ) {
 	"use strict"
 
 	let ApiPageConnectionRepo = function(pageName) {
@@ -47,25 +47,30 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 	};
 
 	ApiPageConnectionRepo.prototype._getPagesFromResponse = function(backLinks, outgoingLinks) {
-		let pages = [
-			{ "title": this._pageName, "ns": -1 }
-		];
+		let pages = {};
+		pages[this._pageName] = {};
 
 		$.each(
 			backLinks.query.backlinks,
 			function(_, page) {
-				pages.push(page);
+				pages[page.title] = {};
 			}
 		);
 
 		$.each(
 			outgoingLinks.query.pages[1].links,
 			function(_, page) {
-				pages.push(page);
+				pages[page.title] = {};
 			}
 		);
 
-		return pages;
+		return Object.entries(pages).map(function([pageName, page]) {
+			return new Page(pageName);
+		});
+	};
+
+	ApiPageConnectionRepo.prototype._newPage = function(apiPage) {
+		return new Page(apiPage.title);
 	};
 
 	ApiPageConnectionRepo.prototype._buildBackLinks = function(response) {
@@ -92,4 +97,4 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 
 	return ApiPageConnectionRepo;
 
-}( window.jQuery, window.mediaWiki ) );
+}( window.jQuery, window.mediaWiki, module.Page ) );
