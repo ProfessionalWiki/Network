@@ -1,4 +1,5 @@
 module.ApiPageConnectionRepo = ( function ( $, mw ) {
+	"use strict"
 
 	let ApiPageConnectionRepo = function(pageName) {
 		this._pageName = pageName;

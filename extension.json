@@ -49,7 +49,8 @@
 				"lib/d3.js",
 				"js/ApiPageConnectionRepo.js",
 				"js/StubPageConnectionRepo.js",
-				"js/Graph.js",
+				"js/GraphElements.js",
+				"js/InteractiveGraph.js",
 				"js/Network.js",
 				"js/index.js"
 			],

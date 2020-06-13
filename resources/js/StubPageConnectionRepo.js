@@ -1,4 +1,5 @@
 module.StubPageConnectionRepo = ( function () {
+	"use strict"
 
 	let StubPageConnectionRepo = function() {
 	};
@@ -16,6 +17,7 @@ module.StubPageConnectionRepo = ( function () {
 			],
 			"links": [
 				{ "source": "foo", "target": "bar" },
+				{ "source": "bar", "target": "foo" },
 				{ "source": "bar", "target": "baz" },
 				{ "source": "bar", "target": "pew1" },
 				{ "source": "pew2", "target": "pew1" },

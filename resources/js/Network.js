@@ -1,4 +1,5 @@
-module.Network = ( function (d3, mw, Graph ) {
+module.Network = ( function (d3, mw, GraphElements, InteractiveGraph ) {
+	"use strict"
 
 	let Network = function(pageConnectionRepo, divId) {
 		this._pageConnectionRepo = pageConnectionRepo;
@@ -14,26 +15,24 @@ module.Network = ( function (d3, mw, Graph ) {
 
 		let container = svg.append("g");
 
-		this._createSimulation(container);
-
 		svg.call(
 			d3.zoom()
 				.scaleExtent([.1, 4])
 				.on("zoom", function() { container.attr("transform", d3.event.transform); })
 		);
+
+		this._createGraph(container);
 	};
 
-	Network.prototype._getConnections = function() {
-		return this._pageConnectionRepo.getConnections();
-	};
+	Network.prototype._createGraph = function(container) {
+		this._pageConnectionRepo.getConnections().done(function(connections) {
+			let graphElements = new GraphElements(container, connections)
+			graphElements.createElements();
 
-	Network.prototype._createSimulation = function(container) {
-		this._getConnections().done(function(connections) {
-			let g = new Graph();
-			g.createSimulation(container, connections);
+			(new InteractiveGraph(graphElements, connections)).runSimulation();
 		});
 	};
 
 	return Network;
 
-}( window.d3, window.mediaWiki, module.Graph ) );
+}( window.d3, window.mediaWiki, module.GraphElements, module.InteractiveGraph ) );
