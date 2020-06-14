@@ -22,7 +22,7 @@ class NetworkExtension {
 						'div',
 						[
 							'class' => 'network-visualization',
-							'style' => 'width: 1000px; height: 600px; border: 1px solid blue',
+							'style' => 'width: 100%; height: 600px; border: 1px solid blue',
 							'id' => 'network-viz-' . (string)$idCounter++
 						]
 					),

@@ -1,4 +1,4 @@
-module.ApiPageConnectionRepo = ( function ( $, mw, Page ) {
+module.ApiPageConnectionRepo = ( function ( $, mw ) {
 	"use strict"
 
 	let ApiPageConnectionRepo = function(pageName) {
@@ -15,8 +15,8 @@ module.ApiPageConnectionRepo = ( function ( $, mw, Page ) {
 		).done(function(backLinkResult, outgoingLinkResult) {
 			deferred.resolve(
 				{
-					"pages": self._getPagesFromResponse(backLinkResult[0], outgoingLinkResult[0]),
-					"links": self._buildBackLinks(backLinkResult[0]).concat(self._buildOutgoingLinks(outgoingLinkResult[0]))
+					"nodes": self._getNodesFromResponse(backLinkResult[0], outgoingLinkResult[0]),
+					"edges": self._buildBackLinks(backLinkResult[0]).concat(self._buildOutgoingLinks(outgoingLinkResult[0]))
 				}
 			);
 		})
@@ -46,7 +46,7 @@ module.ApiPageConnectionRepo = ( function ( $, mw, Page ) {
 		});
 	};
 
-	ApiPageConnectionRepo.prototype._getPagesFromResponse = function(backLinks, outgoingLinks) {
+	ApiPageConnectionRepo.prototype._getNodesFromResponse = function( backLinks, outgoingLinks) {
 		let pages = {};
 		pages[this._pageName] = {};
 
@@ -65,7 +65,10 @@ module.ApiPageConnectionRepo = ( function ( $, mw, Page ) {
 		);
 
 		return Object.entries(pages).map(function([pageName, page]) {
-			return new Page(pageName);
+			return {
+				id: pageName,
+				label: pageName,
+			};
 		});
 	};
 
@@ -77,8 +80,9 @@ module.ApiPageConnectionRepo = ( function ( $, mw, Page ) {
 		return response.query.backlinks.map(
 			link => {
 				return {
-					"source": link.title,
-					"target": this._pageName
+					from: link.title,
+					to: this._pageName,
+					arrows: 'to'
 				};
 			}
 		);
@@ -88,8 +92,9 @@ module.ApiPageConnectionRepo = ( function ( $, mw, Page ) {
 		return response.query.pages[1].links.map(
 			link => {
 				return {
-					"source": this._pageName,
-					"target": link.title
+					from: this._pageName,
+					to: link.title,
+					arrows: 'to'
 				};
 			}
 		);
@@ -97,4 +102,4 @@ module.ApiPageConnectionRepo = ( function ( $, mw, Page ) {
 
 	return ApiPageConnectionRepo;
 
-}( window.jQuery, window.mediaWiki, module.Page ) );
+}( window.jQuery, window.mediaWiki ) );

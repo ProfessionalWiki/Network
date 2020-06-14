@@ -46,11 +46,9 @@
 	"ResourceModules": {
 		"ext.network": {
 			"scripts": [
-				"lib/d3.js",
-				"js/Page.js",
+				"lib/vis-network.min.js",
+
 				"js/ApiPageConnectionRepo.js",
-				"js/GraphElements.js",
-				"js/InteractiveGraph.js",
 				"js/Network.js",
 				"js/index.js"
 			],

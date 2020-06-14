@@ -4,12 +4,10 @@
 
 	mw.hook( 'wikipage.content' ).add( function( $content ) {
 		$content.find( 'div.network-visualization' ).each( function() {
-			let pageName = mw.config.get( 'wgPageName' );
-
-			//let dataSource = new module.StubPageConnectionRepo();
-			let dataSource = new module.ApiPageConnectionRepo(pageName);
-
-			let network = new module.Network(dataSource, $( this ).attr('id'));
+			let network = new module.Network(
+				$( this ).attr('id'),
+				new module.ApiPageConnectionRepo(mw.config.get( 'wgPageName' ))
+			);
 
 			network.show();
 		} );
