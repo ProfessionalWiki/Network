@@ -22,7 +22,6 @@ class NetworkExtension {
 						'div',
 						[
 							'class' => 'network-visualization',
-							'style' => 'width: 100%; height: 600px; border: 1px solid blue',
 							'id' => 'network-viz-' . (string)$idCounter++
 						]
 					),

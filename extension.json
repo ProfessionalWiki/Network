@@ -52,6 +52,9 @@
 				"js/Network.js",
 				"js/index.js"
 			],
+			"styles": [
+				"network.css"
+			],
 			"targets": [ "desktop", "mobile" ]
 		}
 	},
