@@ -5,7 +5,7 @@ declare( strict_types = 1 );
 namespace MediaWiki\Extension\Network\EntryPoints;
 
 use MediaWiki\Extension\Network\Extension;
-use MediaWiki\Extension\Network\NetworkFunction\NetworkArguments;
+use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
 use Parser;
 
 class NetworkFunction {
@@ -20,7 +20,7 @@ class NetworkFunction {
 	}
 
 	public function handleParserFunctionCall( Parser $parser, ...$arguments ) {
-		$args = new NetworkArguments();
+		$args = new RequestModel();
 		$args->functionArguments = $arguments;
 		$args->renderingPageName = $parser->getTitle()->getFullText();
 

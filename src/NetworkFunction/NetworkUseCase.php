@@ -9,13 +9,13 @@ class NetworkUseCase {
 	public function __construct() {
 	}
 
-	public function run( NetworkArguments $arguments ): NetworkResponse {
-		$response = new NetworkResponse();
+	public function run( RequestModel $arguments ): ResponseModel {
+		$response = new ResponseModel();
 
 		$functionArguments = $this->parserArgumentsToKeyValuePairs( $arguments->functionArguments );
 
 		$response->pageName = $functionArguments['page'] ?? $arguments->renderingPageName;
-		$response->cssClass = 'network-visualization ' . ( $functionArguments['class'] ?? '' );
+		$response->cssClass = trim( 'network-visualization ' . ( trim( $functionArguments['class'] ?? '' ) ) );
 
 		return $response;
 	}
@@ -26,7 +26,7 @@ class NetworkUseCase {
 		foreach ( $arguments as $argument ) {
 			if ( false !== strpos( $argument, '=' ) ) {
 				[$key, $value] = explode( '=', $argument );
-				$pairs[$key] = $value;
+				$pairs[trim( $key )] = trim( $value );
 			}
 		}
 

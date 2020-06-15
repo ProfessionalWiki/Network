@@ -16,7 +16,7 @@ class NetworkPresenter {
 		$this->parser = $parser;
 	}
 
-	public function render( NetworkResponse $viewModel ): array {
+	public function render( ResponseModel $viewModel ): array {
 		$this->parser->getOutput()->addModules( 'ext.network' );
 
 		return [
