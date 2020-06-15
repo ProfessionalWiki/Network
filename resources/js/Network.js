@@ -7,19 +7,45 @@ module.Network = ( function (vis, mw, GraphElements, InteractiveGraph ) {
 	};
 
 	Network.prototype.show = function() {
-		let container = document.getElementById(this._divId);
-		let options = {};
+		this._pageConnectionRepo.getConnections().done(this._initialize.bind(this));
+	};
 
-		this._pageConnectionRepo.getConnections().done(function(pageConnections) {
-			let network = new vis.Network(
-				container,
-				{
-					nodes: new vis.DataSet(pageConnections.nodes),
-					edges: new vis.DataSet(pageConnections.edges),
-				},
-				options
-			);
-		});
+	Network.prototype._initialize = function(pageConnections) {
+		let nodes = new vis.DataSet(pageConnections.nodes);
+		let network = this._newNetwork(nodes, pageConnections);
+
+		this._bindEvents(network, nodes);
+	};
+
+	Network.prototype._newNetwork = function(nodes, pageConnections) {
+		return new vis.Network(
+			document.getElementById(this._divId),
+			{
+				nodes: nodes,
+				edges: new vis.DataSet(pageConnections.edges),
+			},
+			this._getOptions()
+		);
+	};
+
+	Network.prototype._getOptions = function() {
+		return {};
+	};
+
+	Network.prototype._bindEvents = function(network, nodes) {
+		network.on(
+			'doubleClick',
+			function(event) {
+				if (event.nodes.length === 1) {
+					let node = nodes.get(event.nodes[0]);
+
+					window.open(
+						mw.Title.newFromText(node.pageName, node.pageNs).getUrl(),
+						"_self"
+					);
+				}
+			}
+		);
 	};
 
 	return Network;

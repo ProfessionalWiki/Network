@@ -1,4 +1,4 @@
-module.ApiPageConnectionRepo = ( function ( $, mw ) {
+module.ApiPageConnectionRepo = ( function ( $, mw, PageNode ) {
 	"use strict"
 
 	let ApiPageConnectionRepo = function(pageName) {
@@ -15,8 +15,8 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 		).done(function(backLinkResult, outgoingLinkResult) {
 			deferred.resolve(
 				{
-					"nodes": self._getNodesFromResponse(backLinkResult[0], outgoingLinkResult[0]),
-					"edges": self._buildBackLinks(backLinkResult[0]).concat(self._buildOutgoingLinks(outgoingLinkResult[0]))
+					nodes: self._getNodesFromResponse(backLinkResult[0], outgoingLinkResult[0]),
+					edges: self._buildBackLinks(backLinkResult[0]).concat(self._buildOutgoingLinks(outgoingLinkResult[0]))
 				}
 			);
 		})
@@ -48,32 +48,33 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 
 	ApiPageConnectionRepo.prototype._getNodesFromResponse = function( backLinks, outgoingLinks) {
 		let pages = {};
-		pages[this._pageName] = {};
+		pages[this._pageName] = {
+			title: this._pageName,
+			ns: 0,
+		};
 
 		$.each(
 			backLinks.query.backlinks,
 			function(_, page) {
-				pages[page.title] = {};
+				pages[page.title] = page;
 			}
 		);
 
 		$.each(
 			outgoingLinks.query.pages[1].links,
 			function(_, page) {
-				pages[page.title] = {};
+				pages[page.title] = page;
 			}
 		);
 
-		return Object.entries(pages).map(function([pageName, page]) {
+		return Object.entries(pages).map(function([_, page]) {
 			return {
-				id: pageName,
-				label: pageName,
+				id: page.title,
+				label: page.title,
+				pageName: page.title,
+				pageNs: page.ns,
 			};
 		});
-	};
-
-	ApiPageConnectionRepo.prototype._newPage = function(apiPage) {
-		return new Page(apiPage.title);
 	};
 
 	ApiPageConnectionRepo.prototype._buildBackLinks = function(response) {
@@ -102,4 +103,4 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 
 	return ApiPageConnectionRepo;
 
-}( window.jQuery, window.mediaWiki ) );
+}( window.jQuery, window.mediaWiki, module.PageNode ) );
