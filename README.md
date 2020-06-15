@@ -9,7 +9,7 @@ The **Network** extension allows visualizing connections between wiki pages via 
 It was created by [Professional.Wiki](https://professional.wiki/) and funded by
 [KDZ - Centre for Public Administration Research](https://www.kdz.eu/).
 
-Example timeline
+Example network
 
 TODO
 
