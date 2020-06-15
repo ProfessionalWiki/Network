@@ -30,12 +30,13 @@
 		"NetworkParserFunction": "i18n/_MagicWords.php"
 	},
 
-	"AutoloadClasses": {
-		"MediaWiki\\Network\\NetworkExtension": "NetworkExtension.php"
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\Network\\": "src",
+		"MediaWiki\\Extension\\Network\\Tests\\": "tests"
 	},
 
 	"Hooks": {
-		"ParserFirstCallInit": "MediaWiki\\Network\\NetworkExtension::onParserFirstCallInit"
+		"ParserFirstCallInit": "MediaWiki\\Extension\\Network\\Extension::onParserFirstCallInit"
 	},
 
 	"ResourceFileModulePaths": {
