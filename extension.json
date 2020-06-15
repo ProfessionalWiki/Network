@@ -36,7 +36,7 @@
 	},
 
 	"Hooks": {
-		"ParserFirstCallInit": "MediaWiki\\Extension\\Network\\Extension::onParserFirstCallInit"
+		"ParserFirstCallInit": "MediaWiki\\Extension\\Network\\EntryPoints\\NetworkFunction::onParserFirstCallInit"
 	},
 
 	"ResourceFileModulePaths": {

@@ -6,6 +6,7 @@ namespace MediaWiki\Extension\Network\NetworkFunction;
 
 class NetworkResponse {
 
-
+	public /* string */ $pageName;
+	public /* string */ $cssClass;
 
 }

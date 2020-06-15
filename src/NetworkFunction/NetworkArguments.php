@@ -6,4 +6,7 @@ namespace MediaWiki\Extension\Network\NetworkFunction;
 
 class NetworkArguments {
 
+	public /* string */ $pageName;
+	public /* string */ $cssClass;
+
 }
