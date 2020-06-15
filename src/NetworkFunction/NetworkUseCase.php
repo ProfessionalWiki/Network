@@ -12,10 +12,25 @@ class NetworkUseCase {
 	public function run( NetworkArguments $arguments ): NetworkResponse {
 		$response = new NetworkResponse();
 
-		$response->pageName = $arguments->pageName;
-		$response->cssClass = 'network-visualization ' . trim( $arguments->cssClass );
+		$functionArguments = $this->parserArgumentsToKeyValuePairs( $arguments->functionArguments );
+
+		$response->pageName = $functionArguments['page'] ?? $arguments->renderingPageName;
+		$response->cssClass = 'network-visualization ' . ( $functionArguments['class'] ?? '' );
 
 		return $response;
+	}
+
+	private function parserArgumentsToKeyValuePairs( array $arguments ): array {
+		$pairs = [];
+
+		foreach ( $arguments as $argument ) {
+			if ( false !== strpos( $argument, '=' ) ) {
+				[$key, $value] = explode( '=', $argument );
+				$pairs[$key] = $value;
+			}
+		}
+
+		return $pairs;
 	}
 
 }

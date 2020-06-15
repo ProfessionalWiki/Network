@@ -20,32 +20,13 @@ class NetworkFunction {
 	}
 
 	public function handleParserFunctionCall( Parser $parser, ...$arguments ) {
-		return Extension::getFactory()->newNetworkPresenter( $parser )->render(
-			Extension::getFactory()->newNetworkFunction()->run(
-				$this->parserToNetworkArguments( $arguments )
-			)
-		);
-	}
-
-	private function parserToNetworkArguments( array $parserArguments ): NetworkArguments {
 		$args = new NetworkArguments();
+		$args->functionArguments = $arguments;
+		$args->renderingPageName = $parser->getTitle()->getFullText();
 
-		$arguments = $this->parserArgumentsToKeyValuePairs( $parserArguments );
-		$args->pageName = $arguments['page'] ?? '';
-		$args->cssClass = $arguments['class'] ?? '';
-
-		return $args;
-	}
-
-	private function parserArgumentsToKeyValuePairs( array $arguments ): array {
-		$pairs = [];
-
-		foreach ( $arguments as $argument ) {
-			[$key, $value] = explode( '=', $argument );
-			$pairs[$key] = $value;
-		}
-
-		return $pairs;
+		return Extension::getFactory()->newNetworkPresenter( $parser )->render(
+			Extension::getFactory()->newNetworkFunction()->run( $args )
+		);
 	}
 
 }
