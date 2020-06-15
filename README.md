@@ -27,11 +27,32 @@ The recommended way to install Network is using [Composer](https://getcomposer.o
 
 ## Usage
 
-
+```
+{{#network:}}
+```
 
 ### Parameters
 
-
+<table>
+	<tr>
+		<th></th>
+		<th>Default</th>
+		<th>Example value</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+	    <th>page</th>
+	    <td><i>The current page</i></td>
+	    <td>MyPage</td>
+	    <td>The name of the page to show connections for</td>
+	</tr>
+	<tr>
+        <th>class</th>
+        <td></td>
+        <td>col-lg-3 mt-0</td>
+        <td>Extra css class(es) to add to the network graph</td>
+    </tr>
+</table>
 
 ### Configuration
 
