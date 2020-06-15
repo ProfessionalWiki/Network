@@ -1,5 +1,5 @@
 {
-	"name": "mediawiki/network",
+	"name": "professional-wiki/network",
 	"type": "mediawiki-extension",
 	"description": "MediaWiki extension for adding interactive network visualizations to your wiki pages",
 	"keywords": [
@@ -7,12 +7,16 @@
 		"Network",
 		"Visualization",
 		"Chart",
-		"D3",
-		"d3js",
+		"visjs",
 		"interactive",
 		"dynamic",
 		"graph",
-		"force-directed graph"
+		"force-directed graph",
+		"pages",
+		"links",
+		"outgoing links",
+		"incoming links",
+		"what links here"
 	],
 	"homepage": "https://github.com/ProfessionalWiki/Network",
 	"license": "GPL-2.0-or-later",
