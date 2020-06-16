@@ -9,12 +9,12 @@ class NetworkUseCase {
 	public function __construct() {
 	}
 
-	public function run( RequestModel $arguments ): ResponseModel {
+	public function run( RequestModel $request ): ResponseModel {
 		$response = new ResponseModel();
 
-		$functionArguments = $this->parserArgumentsToKeyValuePairs( $arguments->functionArguments );
+		$functionArguments = $this->parserArgumentsToKeyValuePairs( $request->functionArguments );
 
-		$response->pageName = $functionArguments['page'] ?? $arguments->renderingPageName;
+		$response->pageName = $functionArguments['page'] ?? $request->renderingPageName;
 		$response->cssClass = trim( 'network-visualization ' . ( trim( $functionArguments['class'] ?? '' ) ) );
 
 		return $response;
@@ -32,5 +32,6 @@ class NetworkUseCase {
 
 		return $pairs;
 	}
+
 
 }

@@ -61,7 +61,7 @@ module.ApiPageConnectionRepo = ( function ( $, mw, PageNode ) {
 		);
 
 		$.each(
-			outgoingLinks.query.pages[1].links,
+			outgoingLinks.query.pages[Object.keys(outgoingLinks.query.pages)[0]].links,
 			function(_, page) {
 				pages[page.title] = page;
 			}
@@ -90,7 +90,7 @@ module.ApiPageConnectionRepo = ( function ( $, mw, PageNode ) {
 	};
 
 	ApiPageConnectionRepo.prototype._buildOutgoingLinks = function(response) {
-		return response.query.pages[1].links.map(
+		return response.query.pages[Object.keys(response.query.pages)[0]].links.map(
 			link => {
 				return {
 					from: this._pageName,
