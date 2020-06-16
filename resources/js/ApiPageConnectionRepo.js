@@ -30,7 +30,7 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 		return new mw.Api().get({
 			action: 'query',
 			list: 'backlinks',
-			bltitle: this._pageNames[0],
+			bltitle: this._pageNames[0], // TODO
 			bllimit: 'max',
 			format: 'json',
 			redirects: 'true'
@@ -41,7 +41,7 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 		return new mw.Api().get({
 			action: 'query',
 			prop: 'links',
-			titles: this._pageNames[0],
+			titles: this._pageNames,
 			pllimit: 'max',
 			format: 'json',
 			redirects: 'true'

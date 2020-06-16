@@ -6,12 +6,16 @@ module.ApiConnectionsBuilder = ( function ( $, mw, PageNode ) {
 	};
 
 	ApiConnectionsBuilder.prototype.connectionsFromApiResponses = function(responses) {
-		// console.log(JSON.stringify(responses, null, 4));
+		//console.log(JSON.stringify(responses, null, 4));
 
-		return {
+		let connections = {
 			nodes: this._getNodesFromResponse(responses.backLinks[0], responses.outgoingLinks[0]),
 			edges: this._buildBackLinks(responses.backLinks[0]).concat(this._buildOutgoingLinks(responses.outgoingLinks[0]))
 		}
+
+		// console.log(connections);
+
+		return connections;
 	}
 
 	ApiConnectionsBuilder.prototype._getNodesFromResponse = function(backLinks, outgoingLinks) {
