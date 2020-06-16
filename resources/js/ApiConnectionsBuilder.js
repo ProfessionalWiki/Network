@@ -5,10 +5,12 @@ module.ApiConnectionsBuilder = ( function ( $, mw, PageNode ) {
 		this._pageName = pageName;
 	};
 
-	ApiConnectionsBuilder.prototype.connectionsFromApiResponses = function(backLinks, outgoingLinks) {
+	ApiConnectionsBuilder.prototype.connectionsFromApiResponses = function(responses) {
+		// console.log(JSON.stringify(responses, null, 4));
+
 		return {
-			nodes: this._getNodesFromResponse(backLinks[0], outgoingLinks[0]),
-			edges: this._buildBackLinks(backLinks[0]).concat(this._buildOutgoingLinks(outgoingLinks[0]))
+			nodes: this._getNodesFromResponse(responses.backLinks[0], responses.outgoingLinks[0]),
+			edges: this._buildBackLinks(responses.backLinks[0]).concat(this._buildOutgoingLinks(responses.outgoingLinks[0]))
 		}
 	}
 

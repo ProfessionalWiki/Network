@@ -16,3 +16,5 @@
 	} );
 
 }( window.mediaWiki ) );
+
+window.NetworkExtension = module;

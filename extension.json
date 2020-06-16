@@ -65,6 +65,9 @@
 		"localBasePath": "tests/js",
 		"remoteExtPath": "Network/tests/js",
 		"scripts": [
+			"stub/index.js",
+			"stub/Cats.js",
+
 			"ApiConnectionsBuilderTest.js"
 		],
 		"dependencies": [

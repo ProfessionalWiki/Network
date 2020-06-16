@@ -16,10 +16,10 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 			let connectionsBuilder = new ApiConnectionsBuilder(self._pageName);
 
 			deferred.resolve(
-				connectionsBuilder.connectionsFromApiResponses(
-					backLinkResult,
-					outgoingLinkResult
-				)
+				connectionsBuilder.connectionsFromApiResponses({
+					backLinks: backLinkResult,
+					outgoingLinks: outgoingLinkResult
+				})
 			);
 		})
 
@@ -47,7 +47,6 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 			redirects: 'true'
 		});
 	};
-
 
 	return ApiPageConnectionRepo;
 
