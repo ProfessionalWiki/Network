@@ -25,7 +25,7 @@ class NetworkPresenter {
 				[
 					'id' => 'network-viz-' . (string)self::$idCounter++,
 					'class' => $viewModel->cssClass,
-					'data-page' => $viewModel->pageName,
+					'data-pages' => json_encode( $viewModel->pageNames ),
 				]
 			),
 			'noparse' => true,

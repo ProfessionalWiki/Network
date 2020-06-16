@@ -1,8 +1,8 @@
 module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 	"use strict"
 
-	let ApiPageConnectionRepo = function(pageName) {
-		this._pageName = pageName;
+	let ApiPageConnectionRepo = function(pageNames) {
+		this._pageNames = pageNames;
 	};
 
 	ApiPageConnectionRepo.prototype.getConnections = function() {
@@ -13,7 +13,7 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 			this._queryBackLinks(),
 			this._queryOutgoingLinks()
 		).done(function(backLinkResult, outgoingLinkResult) {
-			let connectionsBuilder = new ApiConnectionsBuilder(self._pageName);
+			let connectionsBuilder = new ApiConnectionsBuilder(self._pageNames);
 
 			deferred.resolve(
 				connectionsBuilder.connectionsFromApiResponses({
@@ -30,7 +30,7 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 		return new mw.Api().get({
 			action: 'query',
 			list: 'backlinks',
-			bltitle: this._pageName,
+			bltitle: this._pageNames[0],
 			bllimit: 'max',
 			format: 'json',
 			redirects: 'true'
@@ -41,7 +41,7 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 		return new mw.Api().get({
 			action: 'query',
 			prop: 'links',
-			titles: this._pageName,
+			titles: this._pageNames[0],
 			pllimit: 'max',
 			format: 'json',
 			redirects: 'true'

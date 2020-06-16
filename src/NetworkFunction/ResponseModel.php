@@ -6,7 +6,7 @@ namespace MediaWiki\Extension\Network\NetworkFunction;
 
 class ResponseModel {
 
-	public /* string */ $pageName;
+	public /* string[] */ $pageNames;
 	public /* string */ $cssClass;
 
 }

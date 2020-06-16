@@ -14,8 +14,8 @@ class NetworkUseCase {
 
 		$functionArguments = $this->parserArgumentsToKeyValuePairs( $request->functionArguments );
 
-		$response->pageName = $functionArguments['page'] ?? $request->renderingPageName;
-		$response->cssClass = trim( 'network-visualization ' . ( trim( $functionArguments['class'] ?? '' ) ) );
+		$response->pageNames = $this->getPageNames( $request, $functionArguments );
+		$response->cssClass = $this->getCssClass( $functionArguments );
 
 		return $response;
 	}
@@ -33,5 +33,16 @@ class NetworkUseCase {
 		return $pairs;
 	}
 
+	private function getPageNames( RequestModel $request, array $arguments ): array {
+		if ( !array_key_exists( 'page', $arguments ) ) {
+			return [ $request->renderingPageName ];
+		}
+
+		return explode( ';', $arguments['page'] );
+	}
+
+	private function getCssClass( array $arguments ): string {
+		return trim( 'network-visualization ' . ( trim( $arguments['class'] ?? '' ) ) );
+	}
 
 }

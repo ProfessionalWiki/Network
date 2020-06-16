@@ -17,8 +17,8 @@ class NetworkUseCaseTest extends TestCase {
 
 	public function testDefaultPageName() {
 		$this->assertSame(
-			self::RENDERING_PAGE_NAME,
-			( new NetworkUseCase() )->run( $this->newBasicRequestModel() )->pageName
+			[ self::RENDERING_PAGE_NAME ],
+			( new NetworkUseCase() )->run( $this->newBasicRequestModel() )->pageNames
 		);
 	}
 
@@ -36,8 +36,8 @@ class NetworkUseCaseTest extends TestCase {
 		$request->functionArguments = [ 'page = Kittens' ];
 
 		$this->assertSame(
-			'Kittens',
-			( new NetworkUseCase() )->run( $request )->pageName
+			[ 'Kittens' ],
+			( new NetworkUseCase() )->run( $request )->pageNames
 		);
 	}
 

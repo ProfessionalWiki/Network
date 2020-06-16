@@ -1,8 +1,8 @@
 module.ApiConnectionsBuilder = ( function ( $, mw, PageNode ) {
 	"use strict"
 
-	let ApiConnectionsBuilder = function(pageName) {
-		this._pageName = pageName;
+	let ApiConnectionsBuilder = function(pageNames) {
+		this._pageNames = pageNames;
 	};
 
 	ApiConnectionsBuilder.prototype.connectionsFromApiResponses = function(responses) {
@@ -16,8 +16,8 @@ module.ApiConnectionsBuilder = ( function ( $, mw, PageNode ) {
 
 	ApiConnectionsBuilder.prototype._getNodesFromResponse = function(backLinks, outgoingLinks) {
 		let pages = {};
-		pages[this._pageName] = {
-			title: this._pageName,
+		pages[this._pageNames] = {
+			title: this._pageNames[0],
 			ns: 0,
 		};
 
@@ -50,7 +50,7 @@ module.ApiConnectionsBuilder = ( function ( $, mw, PageNode ) {
 			link => {
 				return {
 					from: link.title,
-					to: this._pageName,
+					to: this._pageNames[0],
 					arrows: 'to'
 				};
 			}
@@ -61,7 +61,7 @@ module.ApiConnectionsBuilder = ( function ( $, mw, PageNode ) {
 		return response.query.pages[Object.keys(response.query.pages)[0]].links.map(
 			link => {
 				return {
-					from: this._pageName,
+					from: this._pageNames[0],
 					to: link.title,
 					arrows: 'to'
 				};
