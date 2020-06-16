@@ -31,6 +31,12 @@ The recommended way to install Network is using [Composer](https://getcomposer.o
 {{#network:}}
 ```
 
+```
+{{#network:Page1 | Page2 | Page3
+ | class = col-lg-3 mt-0
+}}
+```
+
 ### Parameters
 
 <table>
@@ -41,10 +47,10 @@ The recommended way to install Network is using [Composer](https://getcomposer.o
 		<th>Description</th>
 	</tr>
 	<tr>
-	    <th>page</th>
+	    <th>(page)</th>
 	    <td><i>The current page</i></td>
 	    <td>MyPage</td>
-	    <td>The name of the page to show connections for</td>
+	    <td>The name of the page to show connections for. Can be specified multiple times. The parameter name is optional.</td>
 	</tr>
 	<tr>
         <th>class</th>

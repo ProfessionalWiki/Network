@@ -60,4 +60,14 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
+	public function testMultiplePageNames() {
+		$request = $this->newBasicRequestModel();
+		$request->functionArguments = [ 'Kittens', 'Cats', 'page = Tigers', 'page=Bobcats ' ];
+
+		$this->assertSame(
+			[ 'Kittens', 'Cats', 'Tigers', 'Bobcats' ],
+			( new NetworkUseCase() )->run( $request )->pageNames
+		);
+	}
+
 }

@@ -12,10 +12,10 @@ class NetworkUseCase {
 	public function run( RequestModel $request ): ResponseModel {
 		$response = new ResponseModel();
 
-		$functionArguments = $this->parserArgumentsToKeyValuePairs( $request->functionArguments );
+		$keyValuePairs = $this->parserArgumentsToKeyValuePairs( $request->functionArguments );
 
-		$response->pageNames = $this->getPageNames( $request, $functionArguments );
-		$response->cssClass = $this->getCssClass( $functionArguments );
+		$response->pageNames = $this->getPageNames( $request );
+		$response->cssClass = $this->getCssClass( $keyValuePairs );
 
 		return $response;
 	}
@@ -24,21 +24,41 @@ class NetworkUseCase {
 		$pairs = [];
 
 		foreach ( $arguments as $argument ) {
-			if ( false !== strpos( $argument, '=' ) ) {
-				[$key, $value] = explode( '=', $argument );
-				$pairs[trim( $key )] = trim( $value );
+			[$key, $value] = $this->argumentStringToKeyValue( $argument );
+
+			if ( !is_null( $key ) ) {
+				$pairs[$key] = $value;
 			}
 		}
 
 		return $pairs;
 	}
 
-	private function getPageNames( RequestModel $request, array $arguments ): array {
-		if ( !array_key_exists( 'page', $arguments ) ) {
-			return [ $request->renderingPageName ];
+	private function argumentStringToKeyValue( string $argument ): array {
+		if ( false === strpos( $argument, '=' ) ) {
+			return [null, $argument];
 		}
 
-		return explode( ';', $arguments['page'] );
+		[$key, $value] = explode( '=', $argument );
+		return [trim($key), trim($value)];
+	}
+
+	private function getPageNames( RequestModel $request ): array {
+		$pageNames = [];
+
+		foreach ( $request->functionArguments as $argument ) {
+			[$key, $value] = $this->argumentStringToKeyValue( $argument );
+
+			if ( $value !== '' && ( is_null( $key ) || $key === 'page' ) ) {
+				$pageNames[] = $value;
+			}
+		}
+
+		if ( $pageNames === [] ) {
+			$pageNames[] = $request->renderingPageName;
+		}
+
+		return $pageNames;
 	}
 
 	private function getCssClass( array $arguments ): string {
