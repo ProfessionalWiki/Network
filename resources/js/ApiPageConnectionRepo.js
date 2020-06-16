@@ -1,4 +1,4 @@
-module.ApiPageConnectionRepo = ( function ( $, mw, PageNode ) {
+module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 	"use strict"
 
 	let ApiPageConnectionRepo = function(pageName) {
@@ -13,11 +13,13 @@ module.ApiPageConnectionRepo = ( function ( $, mw, PageNode ) {
 			this._queryBackLinks(),
 			this._queryOutgoingLinks()
 		).done(function(backLinkResult, outgoingLinkResult) {
+			let connectionsBuilder = new ApiConnectionsBuilder(self._pageName);
+
 			deferred.resolve(
-				{
-					nodes: self._getNodesFromResponse(backLinkResult[0], outgoingLinkResult[0]),
-					edges: self._buildBackLinks(backLinkResult[0]).concat(self._buildOutgoingLinks(outgoingLinkResult[0]))
-				}
+				connectionsBuilder.connectionsFromApiResponses(
+					backLinkResult,
+					outgoingLinkResult
+				)
 			);
 		})
 
@@ -46,61 +48,7 @@ module.ApiPageConnectionRepo = ( function ( $, mw, PageNode ) {
 		});
 	};
 
-	ApiPageConnectionRepo.prototype._getNodesFromResponse = function( backLinks, outgoingLinks) {
-		let pages = {};
-		pages[this._pageName] = {
-			title: this._pageName,
-			ns: 0,
-		};
-
-		$.each(
-			backLinks.query.backlinks,
-			function(_, page) {
-				pages[page.title] = page;
-			}
-		);
-
-		$.each(
-			outgoingLinks.query.pages[Object.keys(outgoingLinks.query.pages)[0]].links,
-			function(_, page) {
-				pages[page.title] = page;
-			}
-		);
-
-		return Object.entries(pages).map(function([_, page]) {
-			return {
-				id: page.title,
-				label: page.title,
-				pageName: page.title,
-				pageNs: page.ns,
-			};
-		});
-	};
-
-	ApiPageConnectionRepo.prototype._buildBackLinks = function(response) {
-		return response.query.backlinks.map(
-			link => {
-				return {
-					from: link.title,
-					to: this._pageName,
-					arrows: 'to'
-				};
-			}
-		);
-	};
-
-	ApiPageConnectionRepo.prototype._buildOutgoingLinks = function(response) {
-		return response.query.pages[Object.keys(response.query.pages)[0]].links.map(
-			link => {
-				return {
-					from: this._pageName,
-					to: link.title,
-					arrows: 'to'
-				};
-			}
-		);
-	};
 
 	return ApiPageConnectionRepo;
 
-}( window.jQuery, window.mediaWiki, module.PageNode ) );
+}( window.jQuery, window.mediaWiki, module.ApiConnectionsBuilder ) );

@@ -49,6 +49,7 @@
 			"scripts": [
 				"lib/vis-network.min.js",
 
+				"js/ApiConnectionsBuilder.js",
 				"js/ApiPageConnectionRepo.js",
 				"js/Network.js",
 				"js/index.js"
@@ -58,6 +59,17 @@
 			],
 			"targets": [ "desktop", "mobile" ]
 		}
+	},
+
+	"QUnitTestModule": {
+		"localBasePath": "tests/js",
+		"remoteExtPath": "Network/tests/js",
+		"scripts": [
+			"ApiConnectionsBuilderTest.js"
+		],
+		"dependencies": [
+			"ext.network"
+		]
 	},
 
 	"manifest_version": 2
