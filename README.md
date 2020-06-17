@@ -25,6 +25,17 @@ See the [release notes](#release-notes) for more information on the different ve
 The recommended way to install Network is using [Composer](https://getcomposer.org) with
 [MediaWiki's built-in support for Composer](https://professional.wiki/en/articles/installing-mediawiki-extensions-with-composer).
 
+On the commandline, go to your wikis root directory. Then run these two commands:
+
+    COMPOSER=composer.local.json composer require --no-update professional-wiki/network:dev-master
+    composer update professional-wiki/network --no-dev -o
+
+Then enable the extension by adding the following to the bottom of your wikis `LocalSettings.php` file:
+
+    wfLoadExtension( 'Network' );
+
+You can verify the extension was enabled successfully by opening your wikis Special:Version page in your browser.
+
 ## Usage
 
 ```
