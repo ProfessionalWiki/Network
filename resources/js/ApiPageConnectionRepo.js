@@ -2,6 +2,7 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 	"use strict"
 
 	let ApiPageConnectionRepo = function() {
+		this._addedPages = [];
 	};
 
 	/**
@@ -10,8 +11,18 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 	 */
 	ApiPageConnectionRepo.prototype.addConnections = function(networkData, pageName) {
 		let deferred = $.Deferred();
-		let self = this;
 
+		if ( this._addedPages.includes(pageName) ) {
+			deferred.resolve();
+		} else {
+			this._addedPages.push(pageName);
+			this._runQueries(networkData, pageName, deferred);
+		}
+
+		return deferred.promise();
+	};
+
+	ApiPageConnectionRepo.prototype._runQueries = function(networkData, pageName, deferred) {
 		$.when(
 			this._queryBackLinks(pageName),
 			this._queryOutgoingLinks(pageName)
@@ -27,9 +38,7 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 			networkData.addEdges(connections.edges);
 
 			deferred.resolve();
-		})
-
-		return deferred.promise();
+		});
 	};
 
 	ApiPageConnectionRepo.prototype._queryBackLinks = function(pageName) {

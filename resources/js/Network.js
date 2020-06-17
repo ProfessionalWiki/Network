@@ -57,6 +57,17 @@ module.Network = ( function (vis, mw ) {
 				}
 			}
 		);
+
+		network.on(
+			'hold',
+			function(event) {
+				if (event.nodes.length === 1) {
+					let node = self._data.nodes.get(event.nodes[0]);
+
+					self._addPage(node.label);
+				}
+			}
+		);
 	};
 
 	return Network;
