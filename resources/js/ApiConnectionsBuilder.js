@@ -58,7 +58,9 @@ module.ApiConnectionsBuilder = ( function ( $, mw ) {
 	};
 
 	ApiConnectionsBuilder.prototype._buildOutgoingLinks = function(response) {
-		return response.query.pages[Object.keys(response.query.pages)[0]].links.map(
+		let page = response.query.pages[Object.keys(response.query.pages)[0]];
+
+		return (page.links || []).map(
 			link => {
 				return {
 					from: this._pageName,
