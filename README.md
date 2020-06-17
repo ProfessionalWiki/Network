@@ -60,6 +60,19 @@ The recommended way to install Network is using [Composer](https://getcomposer.o
     </tr>
 </table>
 
+### Layout CSS
+
+The network graphs are located in a div with class `network-visualization`. The default css for this class is
+
+```css
+.network-visualization {
+	width: 100%;
+	height: 600px;
+}
+```
+
+You can add extra CSS in [MediaWiki:Common.css]. You can also add extra classes to the div via the `class` parameter.
+
 ### Configuration
 
 The default value of all parameters can be changed by placing configuration in "LocalSettings.php".
@@ -109,3 +122,5 @@ Initial release
 ## Examples
 
 TODO
+
+[MediaWiki:Common.css]: https://www.mediawiki.org/wiki/Manual:Interface/Stylesheets
