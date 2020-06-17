@@ -27,7 +27,7 @@ The recommended way to install Network is using [Composer](https://getcomposer.o
 
 On the commandline, go to your wikis root directory. Then run these two commands:
 
-```bash
+```shell script
 COMPOSER=composer.local.json composer require --no-update professional-wiki/network:dev-master
 composer update professional-wiki/network --no-dev -o
 ```
