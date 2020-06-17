@@ -8,7 +8,8 @@
 
 			let network = new module.Network(
 				$this.attr('id'),
-				new module.ApiPageConnectionRepo($this.data('pages'))
+				new module.ApiPageConnectionRepo(),
+				$this.data('pages')
 			);
 
 			network.show();

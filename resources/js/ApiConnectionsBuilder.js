@@ -1,27 +1,23 @@
-module.ApiConnectionsBuilder = ( function ( $, mw, PageNode ) {
+module.ApiConnectionsBuilder = ( function ( $, mw ) {
 	"use strict"
 
-	let ApiConnectionsBuilder = function(pageNames) {
-		this._pageNames = pageNames;
+	let ApiConnectionsBuilder = function(pageName) {
+		this._pageName = pageName;
 	};
 
 	ApiConnectionsBuilder.prototype.connectionsFromApiResponses = function(responses) {
 		//console.log(JSON.stringify(responses, null, 4));
 
-		let connections = {
+		return {
 			nodes: this._getNodesFromResponse(responses.backLinks[0], responses.outgoingLinks[0]),
 			edges: this._buildBackLinks(responses.backLinks[0]).concat(this._buildOutgoingLinks(responses.outgoingLinks[0]))
-		}
-
-		// console.log(connections);
-
-		return connections;
+		};
 	}
 
 	ApiConnectionsBuilder.prototype._getNodesFromResponse = function(backLinks, outgoingLinks) {
 		let pages = {};
-		pages[this._pageNames] = {
-			title: this._pageNames[0],
+		pages[this._pageName] = {
+			title: this._pageName,
 			ns: 0,
 		};
 
@@ -54,7 +50,7 @@ module.ApiConnectionsBuilder = ( function ( $, mw, PageNode ) {
 			link => {
 				return {
 					from: link.title,
-					to: this._pageNames[0],
+					to: this._pageName,
 					arrows: 'to'
 				};
 			}
@@ -65,7 +61,7 @@ module.ApiConnectionsBuilder = ( function ( $, mw, PageNode ) {
 		return response.query.pages[Object.keys(response.query.pages)[0]].links.map(
 			link => {
 				return {
-					from: this._pageNames[0],
+					from: this._pageName,
 					to: link.title,
 					arrows: 'to'
 				};

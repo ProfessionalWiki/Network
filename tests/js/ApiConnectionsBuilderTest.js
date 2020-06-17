@@ -3,7 +3,7 @@
 
 
 	QUnit.test( 'nodes integration test', function ( assert ) {
-		let builder = new ApiConnectionsBuilder(['Cats']);
+		let builder = new ApiConnectionsBuilder('Cats');
 		let connections = builder.connectionsFromApiResponses(module.stub.Cats);
 
 		// console.log(JSON.stringify(connections.nodes, null, 4));
@@ -46,7 +46,7 @@
 	} );
 
 	QUnit.test( 'edges integration test', function ( assert ) {
-		let builder = new ApiConnectionsBuilder(['Cats']);
+		let builder = new ApiConnectionsBuilder('Cats');
 		let connections = builder.connectionsFromApiResponses(module.stub.Cats);
 
 		// console.log(JSON.stringify(connections.edges, null, 4));

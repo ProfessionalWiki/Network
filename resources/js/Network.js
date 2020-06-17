@@ -1,28 +1,37 @@
-module.Network = ( function (vis, mw, GraphElements, InteractiveGraph ) {
+module.Network = ( function (vis, mw ) {
 	"use strict"
 
-	let Network = function(divId, pageConnectionRepo) {
+	/**
+	 * @param {string} divId
+	 * @param pageConnectionRepo
+	 * @param {string[]} pageNames
+	 */
+	let Network = function(divId, pageConnectionRepo, pageNames) {
 		this._divId = divId;
 		this._pageConnectionRepo = pageConnectionRepo;
+		this._initialPageNames = pageNames;
+
+		this._data = new module.NetworkData();
 	};
 
 	Network.prototype.show = function() {
-		this._pageConnectionRepo.getConnections().done(this._initialize.bind(this));
+		let network = this._newNetwork();
+
+		this._bindEvents(network);
+
+		this._initialPageNames.forEach(Network.prototype._addPage.bind(this));
 	};
 
-	Network.prototype._initialize = function(pageConnections) {
-		let nodes = new vis.DataSet(pageConnections.nodes);
-		let network = this._newNetwork(nodes, pageConnections);
-
-		this._bindEvents(network, nodes);
+	Network.prototype._addPage = function(pageName) {
+		this._pageConnectionRepo.addConnections(this._data, pageName);
 	};
 
-	Network.prototype._newNetwork = function(nodes, pageConnections) {
+	Network.prototype._newNetwork = function() {
 		return new vis.Network(
 			document.getElementById(this._divId),
 			{
-				nodes: nodes,
-				edges: new vis.DataSet(pageConnections.edges),
+				nodes: this._data.nodes,
+				edges: this._data.edges,
 			},
 			this._getOptions()
 		);
@@ -32,12 +41,14 @@ module.Network = ( function (vis, mw, GraphElements, InteractiveGraph ) {
 		return {};
 	};
 
-	Network.prototype._bindEvents = function(network, nodes) {
+	Network.prototype._bindEvents = function(network) {
+		let self = this;
+
 		network.on(
 			'doubleClick',
 			function(event) {
 				if (event.nodes.length === 1) {
-					let node = nodes.get(event.nodes[0]);
+					let node = self._data.nodes.get(event.nodes[0]);
 
 					window.open(
 						mw.Title.newFromText(node.pageName, node.pageNs).getUrl(),

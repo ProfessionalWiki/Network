@@ -49,6 +49,7 @@
 			"scripts": [
 				"lib/vis-network.min.js",
 
+				"js/NetworkData.js",
 				"js/ApiConnectionsBuilder.js",
 				"js/ApiPageConnectionRepo.js",
 				"js/Network.js",
