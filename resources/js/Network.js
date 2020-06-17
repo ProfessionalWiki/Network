@@ -38,7 +38,11 @@ module.Network = ( function (vis, mw ) {
 	};
 
 	Network.prototype._getOptions = function() {
-		return {};
+		return {
+			layout: {
+				randomSeed: 42
+			}
+		};
 	};
 
 	Network.prototype._bindEvents = function(network) {
