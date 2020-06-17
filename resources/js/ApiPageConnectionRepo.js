@@ -23,13 +23,8 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 				outgoingLinks: outgoingLinkResult
 			})
 
-			connections.nodes.forEach(function(node) {
-				if ( networkData.nodes.get(node.id) === null ) {
-					networkData.nodes.add([node]);
-				}
-			});
-
-			networkData.edges.add(connections.edges);
+			networkData.addNodes(connections.nodes);
+			networkData.addEdges(connections.edges);
 
 			deferred.resolve();
 		})
