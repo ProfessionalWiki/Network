@@ -1,4 +1,4 @@
-module.ApiConnectionsBuilder = ( function ( $, mw ) {
+module.ApiConnectionsBuilder = ( function () {
 	"use strict"
 
 	let ApiConnectionsBuilder = function(pageName) {
@@ -8,31 +8,32 @@ module.ApiConnectionsBuilder = ( function ( $, mw ) {
 	ApiConnectionsBuilder.prototype.connectionsFromApiResponses = function(responses) {
 		//console.log(JSON.stringify(responses, null, 4));
 
+		let outgoingLinks = this._getOutgoingLinksFromResponse(responses);
+
 		return {
-			nodes: this._getNodesFromResponse(responses.backLinks[0], responses.outgoingLinks[0]),
-			edges: this._buildBackLinks(responses.backLinks[0]).concat(this._buildOutgoingLinks(responses.outgoingLinks[0]))
+			nodes: this._buildNodeList(responses.backLinks[0], outgoingLinks),
+			edges: this._buildBackLinks(responses.backLinks[0]).concat(this._buildOutgoingLinks(outgoingLinks))
 		};
 	}
 
-	ApiConnectionsBuilder.prototype._getNodesFromResponse = function(backLinks, outgoingLinks) {
+	ApiConnectionsBuilder.prototype._getOutgoingLinksFromResponse = function(responses) {
+		let response = responses.outgoingLinks[0];
+		return response.query.pages[Object.keys(response.query.pages)[0]].links || [];
+	}
+
+	ApiConnectionsBuilder.prototype._buildNodeList = function(backLinks, outgoingLinks) {
 		let pages = {};
 		pages[this._pageName] = {
 			title: this._pageName,
 			ns: 0,
 		};
 
-		$.each(
-			backLinks.query.backlinks,
-			function(_, page) {
-				pages[page.title] = page;
-			}
+		backLinks.query.backlinks.forEach(
+			page => { pages[page.title] = page; }
 		);
 
-		$.each(
-			outgoingLinks.query.pages[Object.keys(outgoingLinks.query.pages)[0]].links,
-			function(_, page) {
-				pages[page.title] = page;
-			}
+		outgoingLinks.forEach(
+			page => { pages[page.title] = page; }
 		);
 
 		return Object.entries(pages).map(function([_, page]) {
@@ -57,10 +58,8 @@ module.ApiConnectionsBuilder = ( function ( $, mw ) {
 		);
 	};
 
-	ApiConnectionsBuilder.prototype._buildOutgoingLinks = function(response) {
-		let page = response.query.pages[Object.keys(response.query.pages)[0]];
-
-		return (page.links || []).map(
+	ApiConnectionsBuilder.prototype._buildOutgoingLinks = function(outgoingLinks) {
+		return outgoingLinks.map(
 			link => {
 				return {
 					from: this._pageName,
@@ -73,4 +72,4 @@ module.ApiConnectionsBuilder = ( function ( $, mw ) {
 
 	return ApiConnectionsBuilder;
 
-}( window.jQuery, window.mediaWiki ) );
+}() );
