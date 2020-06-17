@@ -68,6 +68,16 @@ module.Network = ( function (vis, mw ) {
 				}
 			}
 		);
+
+		network.on(
+			'selectEdge',
+			function(event) {
+				if (event.nodes.length === 0 && event.edges.length === 1) {
+					let targetNodeId = event.edges[0].split('|')[1];
+					network.selectNodes([targetNodeId]);
+				}
+			}
+		);
 	};
 
 	return Network;
