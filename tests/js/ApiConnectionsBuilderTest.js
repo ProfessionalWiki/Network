@@ -12,31 +12,26 @@
 			connections.nodes,
 			[
 				{
-					"id": "Cats",
 					"label": "Cats",
 					"pageName": "Cats",
 					"pageNs": 0
 				},
 				{
-					"id": "Main Page",
 					"label": "Main Page",
 					"pageName": "Main Page",
 					"pageNs": 0
 				},
 				{
-					"id": "Kittens",
 					"label": "Kittens",
 					"pageName": "Kittens",
 					"pageNs": 0
 				},
 				{
-					"id": "Looong Cat",
 					"label": "Looong Cat",
 					"pageName": "Looong Cat",
 					"pageNs": 0
 				},
 				{
-					"id": "Nyan Cat",
 					"label": "Nyan Cat",
 					"pageName": "Nyan Cat",
 					"pageNs": 0
