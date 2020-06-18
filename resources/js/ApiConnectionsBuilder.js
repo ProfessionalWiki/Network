@@ -30,10 +30,19 @@ module.ApiConnectionsBuilder = ( function () {
 	}
 
 	ApiConnectionsBuilder.prototype._buildPageList = function(backLinks, outgoingLinks) {
+		return Object.entries(this._buildPageMap(backLinks, outgoingLinks))
+			.map(function([_, page]) {
+				return {
+					title: page.title,
+				};
+			})
+			.filter(page => !this._excludedPages.includes(page.title));
+	};
+
+	ApiConnectionsBuilder.prototype._buildPageMap = function(backLinks, outgoingLinks) {
 		let pages = {};
 		pages[this._pageName] = {
-			title: this._pageName,
-			ns: 0, // TODO
+			title: this._pageName
 		};
 
 		backLinks.query.backlinks.forEach(
@@ -44,15 +53,8 @@ module.ApiConnectionsBuilder = ( function () {
 			page => { pages[page.title] = page; }
 		);
 
-		return Object.entries(pages)
-			.map(function([_, page]) {
-				return {
-					title: page.title,
-					ns: page.ns,
-				};
-			})
-			.filter(page => !this._excludedPages.includes(page.title));
-	};
+		return pages;
+	}
 
 	ApiConnectionsBuilder.prototype._buildLinksList = function(responses, outgoingLinks) {
 		let links = this._buildBackLinks(responses.backLinks[0]).concat(this._buildOutgoingLinks(outgoingLinks));
