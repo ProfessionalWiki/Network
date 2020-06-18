@@ -76,8 +76,8 @@ You can verify the extension was enabled successfully by opening your wikis Spec
 	<tr>
         <th>exclude</th>
         <td></td>
-        <td>Sitemap</td>
-        <td>Pages to exclude from the network graph</td>
+        <td>Sitemap; Main Page</td>
+        <td>Pages to exclude from the network graph, separated by semicolon</td>
     </tr>
 </table>
 
