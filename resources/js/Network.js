@@ -72,7 +72,7 @@ module.Network = ( function (vis, mw ) {
 
 	Network.prototype._onSelectEdge = function(event) {
 		if (event.nodes.length === 0 && event.edges.length === 1) {
-			let targetNodeId = event.edges[0].split('|')[1];
+			let targetNodeId = this._data.edges.get(event.edges[0]).to;
 			this._network.selectNodes([targetNodeId]);
 		}
 	};
