@@ -4,6 +4,8 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Network\NetworkFunction;
 
+use Html;
+
 class NetworkPresenter {
 
 	private static $idCounter = 1;
@@ -22,7 +24,7 @@ class NetworkPresenter {
 		$this->resourceModules = [ 'ext.network' ];
 
 		$this->parserFunctionReturnValue = [
-			\Html::element(
+			Html::element(
 				'div',
 				[
 					'id' => 'network-viz-' . (string)self::$idCounter++,

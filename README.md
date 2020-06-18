@@ -147,7 +147,7 @@ To run the tests with MediaWiki, open your command line and go to the root direc
 
     php tests/phpunit/phpunit.php --wiki WikiName -c extensions/Network/phpunit.xml.dist
 
-To run static analysis and style checks, run `make ci` in the `extensions/Network` directory.
+To run static analysis and style checks, run `composer install` and `make ci` in the `extensions/Network` directory.
 
 ## License
 
