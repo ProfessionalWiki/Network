@@ -73,6 +73,12 @@ You can verify the extension was enabled successfully by opening your wikis Spec
         <td>col-lg-3 mt-0</td>
         <td>Extra css class(es) to add to the network graph</td>
     </tr>
+	<tr>
+        <th>exclude</th>
+        <td></td>
+        <td>Sitemap</td>
+        <td>Pages to exclude from the network graph</td>
+    </tr>
 </table>
 
 ### Layout CSS
