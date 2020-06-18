@@ -15,7 +15,7 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 	ApiPageConnectionRepo.prototype.addConnections = function(networkData, pageName) {
 		let deferred = $.Deferred();
 
-		if ( this._addedPages.includes(pageName) ) {
+		if (this._addedPages.includes(pageName)) {
 			deferred.resolve();
 		} else {
 			this._addedPages.push(pageName);
@@ -26,8 +26,6 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 	};
 
 	ApiPageConnectionRepo.prototype._runQueries = function(networkData, pageName, deferred) {
-		let self = this;
-
 		$.when(
 			this._queryBackLinks(pageName),
 			this._queryOutgoingLinks(pageName)
