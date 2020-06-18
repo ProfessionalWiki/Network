@@ -2,9 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Jeroen De Dauw",
-			"Karsten Hoffmeyer"
+			"Karsten Hoffmeyer",
+			"Kghbln"
 		]
 	},
-	"modern-timeline-name": "{{Name}}",
-	"modern-timeline-desc": "{{Desc|name=Network|url=https://github.com/ProfessionalWiki/Network}}"
+	"network-desc": "{{Desc|name=Network|url=https://github.com/ProfessionalWiki/Network}}"
 }
