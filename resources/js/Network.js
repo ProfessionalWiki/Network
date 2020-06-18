@@ -51,12 +51,9 @@ module.Network = ( function (vis, mw ) {
 
 	Network.prototype._onDoubleClick = function(event) {
 		if (event.nodes.length === 1) {
-			let node = this._data.nodes.get(event.nodes[0]);
+			let url = this._data.nodes.get(event.nodes[0]).getUrl();
 
-			window.open(
-				mw.Title.newFromText(node.pageTitle, node.pageNs).getUrl(),
-				"_self"
-			);
+			window.open( url, "_self" );
 		}
 	};
 

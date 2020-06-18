@@ -16,8 +16,9 @@ module.NetworkData = ( function ( vis ) {
 					id: page.title,
 					label: page.title,
 
-					pageTitle: page.title,
-					pageNs: page.ns
+					getUrl: function() {
+						return window.mediaWiki.Title.newFromText(page.title, page.ns).getUrl();
+					}
 				}
 			}
 		));
