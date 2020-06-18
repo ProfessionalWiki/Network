@@ -34,8 +34,8 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 				outgoingLinks: outgoingLinkResult
 			})
 
-			networkData.addNodes(connections.nodes);
-			networkData.addEdges(connections.edges);
+			networkData.addPages(connections.pages);
+			networkData.addLinks(connections.links);
 
 			deferred.resolve();
 		});

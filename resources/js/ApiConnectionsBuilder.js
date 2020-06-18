@@ -11,8 +11,8 @@ module.ApiConnectionsBuilder = ( function () {
 		let outgoingLinks = this._getOutgoingLinksFromResponse(responses);
 
 		return {
-			nodes: this._buildNodeList(responses.backLinks[0], outgoingLinks),
-			edges: this._buildBackLinks(responses.backLinks[0]).concat(this._buildOutgoingLinks(outgoingLinks))
+			pages: this._buildNodeList(responses.backLinks[0], outgoingLinks),
+			links: this._buildBackLinks(responses.backLinks[0]).concat(this._buildOutgoingLinks(outgoingLinks))
 		};
 	}
 
@@ -38,10 +38,8 @@ module.ApiConnectionsBuilder = ( function () {
 
 		return Object.entries(pages).map(function([_, page]) {
 			return {
-				id: page.title,
-				label: page.title,
-				pageName: page.title,
-				pageNs: page.ns,
+				title: page.title,
+				ns: page.ns,
 			};
 		});
 	};
@@ -51,8 +49,7 @@ module.ApiConnectionsBuilder = ( function () {
 			link => {
 				return {
 					from: link.title,
-					to: this._pageName,
-					arrows: 'to'
+					to: this._pageName
 				};
 			}
 		);
@@ -63,8 +60,7 @@ module.ApiConnectionsBuilder = ( function () {
 			link => {
 				return {
 					from: this._pageName,
-					to: link.title,
-					arrows: 'to'
+					to: link.title
 				};
 			}
 		);

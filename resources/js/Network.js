@@ -55,7 +55,7 @@ module.Network = ( function (vis, mw ) {
 					let node = self._data.nodes.get(event.nodes[0]);
 
 					window.open(
-						mw.Title.newFromText(node.pageName, node.pageNs).getUrl(),
+						mw.Title.newFromText(node.pageTitle, node.pageNs).getUrl(),
 						"_self"
 					);
 				}

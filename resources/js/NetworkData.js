@@ -6,15 +6,28 @@ module.NetworkData = ( function ( viz, mw ) {
 		this.edges = new vis.DataSet();
 	};
 
-	NetworkData.prototype.addNodes = function(nodes) {
-		this.nodes.update(nodes.map(
-			node => Object.assign(node, {id: node.label})
+	NetworkData.prototype.addPages = function(pages) {
+		this.nodes.update(pages.map(
+			page => {
+				return {
+					id: page.title,
+					label: page.title,
+
+					pageTitle: page.title
+				}
+			}
 		));
 	}
 
-	NetworkData.prototype.addEdges = function(edges) {
-		this.edges.update(edges.map(
-			edge => Object.assign(edge, {id: edge.from + '|' + edge.to})
+	NetworkData.prototype.addLinks = function(links) {
+		this.edges.update(links.map(
+			link => Object.assign(
+				link,
+				{
+					id: link.from + '|' + link.to,
+					arrows: 'to'
+				}
+			)
 		));
 	}
 
