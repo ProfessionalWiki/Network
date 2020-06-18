@@ -24,13 +24,15 @@ module.NetworkData = ( function ( viz, mw ) {
 
 	NetworkData.prototype.addLinks = function(links) {
 		this.edges.update(links.map(
-			link => Object.assign(
-				link,
-				{
+			link => {
+				return {
 					id: link.from + '|' + link.to,
+					from: link.from,
+					to: link.to,
+
 					arrows: 'to'
 				}
-			)
+			}
 		));
 	}
 
