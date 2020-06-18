@@ -70,4 +70,21 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
+	public function testNothingExcludedByDefault() {
+		$this->assertSame(
+			[],
+			( new NetworkUseCase() )->run( $this->newBasicRequestModel() )->excludedPages
+		);
+	}
+
+	public function testExclude() {
+		$request = $this->newBasicRequestModel();
+		$request->functionArguments = [ 'Kittens', 'exclude = Foo ; Bar ; Baz:bah' ];
+
+		$this->assertSame(
+			[ 'Foo', 'Bar', 'Baz:bah' ],
+			( new NetworkUseCase() )->run( $request )->excludedPages
+		);
+	}
+
 }

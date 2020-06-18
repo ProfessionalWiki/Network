@@ -16,10 +16,15 @@ class NetworkUseCase {
 
 		$response->pageNames = $this->getPageNames( $request );
 		$response->cssClass = $this->getCssClass( $keyValuePairs );
+		$response->excludedPages = $this->getExcludedPages( $keyValuePairs );
 
 		return $response;
 	}
 
+	/**
+	 * @param string[] $arguments
+	 * @return string[]
+	 */
 	private function parserArgumentsToKeyValuePairs( array $arguments ): array {
 		$pairs = [];
 
@@ -43,6 +48,10 @@ class NetworkUseCase {
 		return [trim($key), trim($value)];
 	}
 
+	/**
+	 * @param RequestModel $request
+	 * @return string[]
+	 */
 	private function getPageNames( RequestModel $request ): array {
 		$pageNames = [];
 
@@ -63,6 +72,22 @@ class NetworkUseCase {
 
 	private function getCssClass( array $arguments ): string {
 		return trim( 'network-visualization ' . ( trim( $arguments['class'] ?? '' ) ) );
+	}
+
+	/**
+	 * @param string[] $arguments
+	 * @return string[]
+	 */
+	private function getExcludedPages( array $arguments ): array {
+		return array_filter(
+			array_map(
+				'trim',
+				explode( ';', $arguments['exclude'] ?? '' )
+			),
+			function( string $pageName ) {
+				return $pageName !== '';
+			}
+		);
 	}
 
 }

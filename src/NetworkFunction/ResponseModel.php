@@ -8,5 +8,6 @@ class ResponseModel {
 
 	public /* string[] */ $pageNames;
 	public /* string */ $cssClass;
+	public /* string[] */ $excludedPages;
 
 }
