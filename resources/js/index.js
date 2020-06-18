@@ -8,11 +8,10 @@
 
 			let network = new module.Network(
 				$this.attr('id'),
-				new module.ApiPageConnectionRepo(),
-				$this.data('pages')
+				new module.ApiPageConnectionRepo()
 			);
 
-			network.show();
+			network.showPages($this.data('pages'));
 		} );
 	} );
 

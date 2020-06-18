@@ -4,31 +4,29 @@ module.Network = ( function (vis, mw ) {
 	/**
 	 * @param {string} divId
 	 * @param pageConnectionRepo
-	 * @param {string[]} pageNames
 	 */
-	let Network = function(divId, pageConnectionRepo, pageNames) {
-		this._divId = divId;
+	let Network = function(divId, pageConnectionRepo) {
 		this._pageConnectionRepo = pageConnectionRepo;
-		this._initialPageNames = pageNames;
 
 		this._data = new module.NetworkData();
+		this._network = this._newNetwork(divId);
+		this._bindEvents();
 	};
 
-	Network.prototype.show = function() {
-		this._network = this._newNetwork();
-
-		this._bindEvents();
-
-		this._initialPageNames.forEach(Network.prototype._addPage.bind(this));
+	/**
+	 * @param {string[]} pageNames
+	 */
+	Network.prototype.showPages = function(pageNames) {
+		pageNames.forEach(Network.prototype._addPage.bind(this));
 	};
 
 	Network.prototype._addPage = function(pageName) {
 		this._pageConnectionRepo.addConnections(this._data, pageName);
 	};
 
-	Network.prototype._newNetwork = function() {
+	Network.prototype._newNetwork = function(divId) {
 		return new vis.Network(
-			document.getElementById(this._divId),
+			document.getElementById(divId),
 			{
 				nodes: this._data.nodes,
 				edges: this._data.edges,
