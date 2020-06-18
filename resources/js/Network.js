@@ -47,7 +47,7 @@ module.Network = ( function (vis, mw ) {
 	Network.prototype._bindEvents = function() {
 		this._network.on('doubleClick', this._onDoubleClick.bind(this));
 		this._network.on('hold', this._onHold.bind(this));
-		this._network.on('selectEdge', this._onSelectEdge.bind(this));
+		this._network.on('select', this._onSelect.bind(this));
 	};
 
 	Network.prototype._onDoubleClick = function(event) {
@@ -66,7 +66,7 @@ module.Network = ( function (vis, mw ) {
 		}
 	};
 
-	Network.prototype._onSelectEdge = function(event) {
+	Network.prototype._onSelect = function(event) {
 		if (event.nodes.length === 0 && event.edges.length === 1) {
 			let targetNodeId = this._data.edges.get(event.edges[0]).to;
 			this._network.selectNodes([targetNodeId]);
