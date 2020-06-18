@@ -3,12 +3,13 @@ module.Network = ( function (vis, mw ) {
 
 	/**
 	 * @param {string} divId
-	 * @param pageConnectionRepo
+	 * @param {module.ApiPageConnectionRepo} pageConnectionRepo
+	 * @param {module.PageBlacklist} pageBlacklist
 	 */
-	let Network = function(divId, pageConnectionRepo) {
+	let Network = function(divId, pageConnectionRepo, pageBlacklist) {
 		this._pageConnectionRepo = pageConnectionRepo;
 
-		this._data = new module.NetworkData();
+		this._data = new module.NetworkData(pageBlacklist);
 		this._network = this._newNetwork(divId);
 		this._bindEvents();
 	};

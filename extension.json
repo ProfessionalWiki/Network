@@ -49,6 +49,7 @@
 			"scripts": [
 				"lib/vis-network.min.js",
 
+				"js/PageBlacklist.js",
 				"js/NetworkData.js",
 				"js/ApiConnectionsBuilder.js",
 				"js/ApiPageConnectionRepo.js",
@@ -69,7 +70,8 @@
 			"stub/index.js",
 			"stub/Cats.js",
 
-			"ApiConnectionsBuilderTest.js"
+			"ApiConnectionsBuilderTest.js",
+			"PageBlacklistTest.js"
 		],
 		"dependencies": [
 			"ext.network"

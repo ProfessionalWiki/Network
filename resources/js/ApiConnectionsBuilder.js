@@ -6,11 +6,9 @@ module.ApiConnectionsBuilder = ( function () {
 
 	/**
 	 * @param {string} pageName
-	 * @param {string[]} excludedPages
 	 */
-	let ApiConnectionsBuilder = function(pageName, excludedPages) {
+	let ApiConnectionsBuilder = function(pageName) {
 		this._pageName = pageName;
-		this._excludedPages = excludedPages;
 	};
 
 	ApiConnectionsBuilder.prototype.connectionsFromApiResponses = function(responses) {
@@ -35,8 +33,7 @@ module.ApiConnectionsBuilder = ( function () {
 				return {
 					title: page.title,
 				};
-			})
-			.filter(page => !this._excludedPages.includes(page.title));
+			});
 	};
 
 	ApiConnectionsBuilder.prototype._buildPageMap = function(backLinks, outgoingLinks) {
@@ -57,14 +54,7 @@ module.ApiConnectionsBuilder = ( function () {
 	}
 
 	ApiConnectionsBuilder.prototype._buildLinksList = function(responses, outgoingLinks) {
-		let links = this._buildBackLinks(responses.backLinks[0]).concat(this._buildOutgoingLinks(outgoingLinks));
-
-		let self = this;
-
-		return links.filter(function(link) {
-			return !self._excludedPages.includes(link.from)
-				&& !self._excludedPages.includes(link.to);
-		});
+		return this._buildBackLinks(responses.backLinks[0]).concat(this._buildOutgoingLinks(outgoingLinks));
 	}
 
 	ApiConnectionsBuilder.prototype._buildBackLinks = function(response) {

@@ -8,7 +8,8 @@
 
 			let network = new module.Network(
 				$this.attr('id'),
-				new module.ApiPageConnectionRepo($this.data('exclude'))
+				new module.ApiPageConnectionRepo(),
+				new module.PageBlacklist($this.data('exclude'))
 			);
 
 			network.showPages($this.data('pages'));
