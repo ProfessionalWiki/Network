@@ -19,6 +19,8 @@ module.NetworkData = ( function ( vis ) {
 						id: page.title,
 						label: page.title,
 
+						// shape: page.title === 'Main Page' ? 'box': 'ellipse',
+
 						getUrl: function() {
 							return window.mediaWiki.Title.newFromText(page.title, page.ns).getUrl();
 						}

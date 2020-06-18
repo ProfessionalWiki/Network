@@ -22,7 +22,7 @@ module.Network = ( function (vis, mw ) {
 	};
 
 	Network.prototype._addPage = function(pageName) {
-		this._pageConnectionRepo.addConnections(this._data, pageName);
+		return this._pageConnectionRepo.addConnections(this._data, pageName);
 	};
 
 	Network.prototype._newNetwork = function(divId) {
@@ -62,7 +62,7 @@ module.Network = ( function (vis, mw ) {
 		if (event.nodes.length === 1) {
 			let node = this._data.nodes.get(event.nodes[0]);
 
-			this._addPage(node.label);
+			this._addPage(node.label).done(() => this._network.selectNodes([event.nodes[0]]));
 		}
 	};
 
