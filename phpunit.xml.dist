@@ -11,11 +11,8 @@
          stopOnIncomplete="false"
          stopOnSkipped="false">
     <testsuites>
-        <testsuite name="NetworkUnitTests">
-            <directory>tests/Unit</directory>
-        </testsuite>
-        <testsuite name="NetworkIntegrationTests">
-            <directory>tests/Integration</directory>
+        <testsuite name="NetworkTests">
+            <directory>tests/php</directory>
         </testsuite>
     </testsuites>
     <filter>

@@ -6,19 +6,22 @@ namespace MediaWiki\Extension\Network\NetworkFunction;
 
 class NetworkUseCase {
 
-	public function __construct() {
+	private $presenter;
+
+	public function __construct( NetworkPresenter $presenter ) {
+		$this->presenter = $presenter;
 	}
 
-	public function run( RequestModel $request ): ResponseModel {
-		$response = new ResponseModel();
-
+	public function run( RequestModel $request ): void {
 		$keyValuePairs = $this->parserArgumentsToKeyValuePairs( $request->functionArguments );
+
+		$response = new ResponseModel();
 
 		$response->pageNames = $this->getPageNames( $request );
 		$response->cssClass = $this->getCssClass( $keyValuePairs );
 		$response->excludedPages = $this->getExcludedPages( $keyValuePairs );
 
-		return $response;
+		$this->presenter->showGraph( $response );
 	}
 
 	/**

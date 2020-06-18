@@ -32,7 +32,7 @@
 
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\Network\\": "src",
-		"MediaWiki\\Extension\\Network\\Tests\\": "tests"
+		"MediaWiki\\Extension\\Network\\Tests\\": "tests/php"
 	},
 
 	"Hooks": {

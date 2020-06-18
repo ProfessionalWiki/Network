@@ -20,13 +20,15 @@ class NetworkFunction {
 	}
 
 	public function handleParserFunctionCall( Parser $parser, ...$arguments ) {
-		$args = new RequestModel();
-		$args->functionArguments = $arguments;
-		$args->renderingPageName = $parser->getTitle()->getFullText();
+		$requestModel = new RequestModel();
+		$requestModel->functionArguments = $arguments;
+		$requestModel->renderingPageName = $parser->getTitle()->getFullText();
 
-		return Extension::getFactory()->newNetworkPresenter( $parser )->render(
-			Extension::getFactory()->newNetworkFunction()->run( $args )
-		);
+		$presenter = Extension::getFactory()->newNetworkPresenter();
+		Extension::getFactory()->newNetworkFunction( $presenter )->run( $requestModel );
+
+		$parser->getOutput()->addModules( $presenter->getResourceModules() );
+		return $presenter->getParserFunctionReturnValue();
 	}
 
 }

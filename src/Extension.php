@@ -14,12 +14,12 @@ class Extension {
 		return new self();
 	}
 
-	public function newNetworkFunction(): NetworkUseCase {
-		return new NetworkUseCase();
+	public function newNetworkFunction( NetworkPresenter $presenter ): NetworkUseCase {
+		return new NetworkUseCase( $presenter );
 	}
 
-	public function newNetworkPresenter( Parser $parser ): NetworkPresenter {
-		return new NetworkPresenter( $parser );
+	public function newNetworkPresenter(): NetworkPresenter {
+		return new NetworkPresenter();
 	}
 
 }

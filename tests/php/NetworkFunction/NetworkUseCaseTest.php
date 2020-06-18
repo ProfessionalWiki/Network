@@ -2,10 +2,11 @@
 
 declare( strict_types = 1 );
 
-namespace MediaWiki\Extension\Network\Tests\Unit\NetworkFunction;
+namespace MediaWiki\Extension\Network\Tests\NetworkFunction;
 
 use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
+use MediaWiki\Extension\Network\NetworkFunction\ResponseModel;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,8 +19,16 @@ class NetworkUseCaseTest extends TestCase {
 	public function testDefaultPageName() {
 		$this->assertSame(
 			[ self::RENDERING_PAGE_NAME ],
-			( new NetworkUseCase() )->run( $this->newBasicRequestModel() )->pageNames
+			$this->runAndReturnPresenter( $this->newBasicRequestModel() )->getResponseModel()->pageNames
 		);
+	}
+
+	private function runAndReturnPresenter( RequestModel $requestModel ): SpyNetworkPresenter {
+		$presenter = new SpyNetworkPresenter();
+
+		( new NetworkUseCase( $presenter ) )->run( $requestModel );
+
+		return $presenter;
 	}
 
 	private function newBasicRequestModel(): RequestModel {
@@ -37,7 +46,7 @@ class NetworkUseCaseTest extends TestCase {
 
 		$this->assertSame(
 			[ 'Kittens' ],
-			( new NetworkUseCase() )->run( $request )->pageNames
+			$this->runAndReturnPresenter( $request )->getResponseModel()->pageNames
 		);
 	}
 
@@ -46,7 +55,7 @@ class NetworkUseCaseTest extends TestCase {
 
 		$this->assertSame(
 			'network-visualization',
-			( new NetworkUseCase() )->run( $request )->cssClass
+			$this->runAndReturnPresenter( $request )->getResponseModel()->cssClass
 		);
 	}
 
@@ -56,7 +65,7 @@ class NetworkUseCaseTest extends TestCase {
 
 		$this->assertSame(
 			'network-visualization col-lg-3 mt-2',
-			( new NetworkUseCase() )->run( $request )->cssClass
+			$this->runAndReturnPresenter( $request )->getResponseModel()->cssClass
 		);
 	}
 
@@ -66,14 +75,14 @@ class NetworkUseCaseTest extends TestCase {
 
 		$this->assertSame(
 			[ 'Kittens', 'Cats', 'Tigers', 'Bobcats' ],
-			( new NetworkUseCase() )->run( $request )->pageNames
+			$this->runAndReturnPresenter( $request )->getResponseModel()->pageNames
 		);
 	}
 
 	public function testNothingExcludedByDefault() {
 		$this->assertSame(
 			[],
-			( new NetworkUseCase() )->run( $this->newBasicRequestModel() )->excludedPages
+			$this->runAndReturnPresenter( $this->newBasicRequestModel() )->getResponseModel()->excludedPages
 		);
 	}
 
@@ -83,7 +92,7 @@ class NetworkUseCaseTest extends TestCase {
 
 		$this->assertSame(
 			[ 'Foo', 'Bar', 'Baz:bah' ],
-			( new NetworkUseCase() )->run( $request )->excludedPages
+			$this->runAndReturnPresenter( $request )->getResponseModel()->excludedPages
 		);
 	}
 

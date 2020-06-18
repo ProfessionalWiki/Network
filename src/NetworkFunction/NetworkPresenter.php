@@ -4,22 +4,17 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Network\NetworkFunction;
 
-use Parser;
-
 class NetworkPresenter {
 
 	private static $idCounter = 1;
 
-	private $parser;
+	private $resourceModules;
+	private $parserFunctionReturnValue;
 
-	public function __construct( Parser $parser ) {
-		$this->parser = $parser;
-	}
+	public function showGraph( ResponseModel $viewModel ) {
+		$this->resourceModules = [ 'ext.network' ];
 
-	public function render( ResponseModel $viewModel ): array {
-		$this->parser->getOutput()->addModules( 'ext.network' );
-
-		return [
+		$this->parserFunctionReturnValue = [
 			\Html::element(
 				'div',
 				[
@@ -32,6 +27,14 @@ class NetworkPresenter {
 			'noparse' => true,
 			'isHTML' => true,
 		];
+	}
+
+	public function getResourceModules(): array {
+		return $this->resourceModules;
+	}
+
+	public function getParserFunctionReturnValue(): array {
+		return $this->parserFunctionReturnValue;
 	}
 
 }
