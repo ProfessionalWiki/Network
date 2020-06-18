@@ -19,6 +19,11 @@ class NetworkFunction {
 		);
 	}
 
+	/**
+	 * @param Parser $parser
+	 * @param string[] ...$arguments
+	 * @return array|string
+	 */
 	public function handleParserFunctionCall( Parser $parser, ...$arguments ) {
 		$requestModel = new RequestModel();
 		$requestModel->functionArguments = $arguments;

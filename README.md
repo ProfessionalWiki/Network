@@ -141,6 +141,12 @@ have a look at the contribution guideline.
 [Professional MediaWiki support](https://professional.wiki/en/support) is available via
 [Professional.Wiki](https://professional.wiki/).
 
+## Development
+
+To run the tests with MediaWiki, open your command line and go to the root directory of MediaWiki. Then run:
+
+    php tests/phpunit/phpunit.php --wiki WikiName -c extensions/Network/phpunit.xml.dist
+
 ## License
 
 [GNU General Public License v2.0 or later (GPL-2.0-or-later)](/COPYING).

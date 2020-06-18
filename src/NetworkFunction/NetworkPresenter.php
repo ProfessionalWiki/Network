@@ -8,8 +8,15 @@ class NetworkPresenter {
 
 	private static $idCounter = 1;
 
+	/**
+	 * @var string[]
+	 */
 	private $resourceModules = [];
-	private $parserFunctionReturnValue;
+
+	/**
+	 * @var mixed[]|string
+	 */
+	private $parserFunctionReturnValue = '';
 
 	public function showGraph( ResponseModel $viewModel ): void {
 		$this->resourceModules = [ 'ext.network' ];
@@ -29,12 +36,15 @@ class NetworkPresenter {
 		];
 	}
 
+	/**
+	 * @return string[]
+	 */
 	public function getResourceModules(): array {
 		return $this->resourceModules;
 	}
 
 	/**
-	 * @return array|string
+	 * @return mixed[]|string
 	 */
 	public function getParserFunctionReturnValue() {
 		return $this->parserFunctionReturnValue;
