@@ -11,8 +11,9 @@ class SpyNetworkPresenter extends NetworkPresenter {
 
 	private $viewModel;
 
-	public function showGraph( ResponseModel $viewModel ) {
+	public function showGraph( ResponseModel $viewModel ): void {
 		$this->viewModel = $viewModel;
+		parent::showGraph( $viewModel );
 	}
 
 	public function getResponseModel(): ?ResponseModel {

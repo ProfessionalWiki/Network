@@ -16,8 +16,13 @@ class NetworkUseCase {
 		$keyValuePairs = $this->parserArgumentsToKeyValuePairs( $request->functionArguments );
 
 		$response = new ResponseModel();
-
 		$response->pageNames = $this->getPageNames( $request );
+
+		if ( count( $response->pageNames ) > 100 ) {
+			$this->presenter->showTooManyPagesError();
+			return;
+		}
+
 		$response->cssClass = $this->getCssClass( $keyValuePairs );
 		$response->excludedPages = $this->getExcludedPages( $keyValuePairs );
 

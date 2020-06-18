@@ -8,10 +8,10 @@ class NetworkPresenter {
 
 	private static $idCounter = 1;
 
-	private $resourceModules;
+	private $resourceModules = [];
 	private $parserFunctionReturnValue;
 
-	public function showGraph( ResponseModel $viewModel ) {
+	public function showGraph( ResponseModel $viewModel ): void {
 		$this->resourceModules = [ 'ext.network' ];
 
 		$this->parserFunctionReturnValue = [
@@ -33,8 +33,16 @@ class NetworkPresenter {
 		return $this->resourceModules;
 	}
 
-	public function getParserFunctionReturnValue(): array {
+	/**
+	 * @return array|string
+	 */
+	public function getParserFunctionReturnValue() {
 		return $this->parserFunctionReturnValue;
+	}
+
+	public function showTooManyPagesError(): void {
+		// TODO: i18n
+		$this->parserFunctionReturnValue = 'Too many pages. Can only show connections for up to 100 pages.';
 	}
 
 }

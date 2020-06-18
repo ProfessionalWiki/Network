@@ -96,4 +96,46 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
+	public function testResourceModule() {
+		$this->assertSame(
+			[ 'ext.network' ],
+			$this->runAndReturnPresenter( $this->newBasicRequestModel() )->getResourceModules()
+		);
+	}
+
+	public function testCanUseMaxPages() {
+		$request = $this->newBasicRequestModel();
+		$request->functionArguments = $this->getPageNames( 100 );
+
+		$this->assertSame(
+			$this->getPageNames( 100 ),
+			$this->runAndReturnPresenter( $request )->getResponseModel()->pageNames
+		);
+	}
+
+	private function getPageNames( int $count ): array {
+		$pageNames = [];
+
+		for ( $i = 0 ; $i < $count ; $i++ ) {
+			$pageNames[] = 'Page' . (string)$i;
+		}
+
+		return $pageNames;
+	}
+
+	public function testMoreThanMaxPagesResultsInError() {
+		$request = $this->newBasicRequestModel();
+		$request->functionArguments = $this->getPageNames( 101 );
+
+		$this->assertSame(
+			'Too many pages. Can only show connections for up to 100 pages.',
+			$this->runAndReturnPresenter( $request )->getParserFunctionReturnValue()
+		);
+
+		$this->assertSame(
+			[],
+			$this->runAndReturnPresenter( $request )->getResourceModules()
+		);
+	}
+
 }
