@@ -1,3 +1,6 @@
+/**
+ * Visjs specific
+ */
 module.NetworkData = ( function ( viz, mw ) {
 	"use strict"
 

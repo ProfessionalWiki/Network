@@ -1,3 +1,6 @@
+/**
+ * MediaWiki API specific, visjs agnostic
+ */
 module.ApiPageConnectionRepo = ( function ( $, mw ) {
 	"use strict"
 
