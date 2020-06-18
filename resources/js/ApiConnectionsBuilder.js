@@ -4,8 +4,13 @@
 module.ApiConnectionsBuilder = ( function () {
 	"use strict"
 
-	let ApiConnectionsBuilder = function(pageName) {
+	/**
+	 * @param {string} pageName
+	 * @param {string[]} excludedPages
+	 */
+	let ApiConnectionsBuilder = function(pageName, excludedPages) {
 		this._pageName = pageName;
+		this._excludedPages = excludedPages;
 	};
 
 	ApiConnectionsBuilder.prototype.connectionsFromApiResponses = function(responses) {
@@ -14,8 +19,8 @@ module.ApiConnectionsBuilder = ( function () {
 		let outgoingLinks = this._getOutgoingLinksFromResponse(responses);
 
 		return {
-			pages: this._buildNodeList(responses.backLinks[0], outgoingLinks),
-			links: this._buildBackLinks(responses.backLinks[0]).concat(this._buildOutgoingLinks(outgoingLinks))
+			pages: this._buildPageList(responses.backLinks[0], outgoingLinks),
+			links: this._buildLinksList(responses, outgoingLinks)
 		};
 	}
 
@@ -24,11 +29,11 @@ module.ApiConnectionsBuilder = ( function () {
 		return response.query.pages[Object.keys(response.query.pages)[0]].links || [];
 	}
 
-	ApiConnectionsBuilder.prototype._buildNodeList = function(backLinks, outgoingLinks) {
+	ApiConnectionsBuilder.prototype._buildPageList = function(backLinks, outgoingLinks) {
 		let pages = {};
 		pages[this._pageName] = {
 			title: this._pageName,
-			ns: 0,
+			ns: 0, // TODO
 		};
 
 		backLinks.query.backlinks.forEach(
@@ -39,13 +44,26 @@ module.ApiConnectionsBuilder = ( function () {
 			page => { pages[page.title] = page; }
 		);
 
-		return Object.entries(pages).map(function([_, page]) {
-			return {
-				title: page.title,
-				ns: page.ns,
-			};
-		});
+		return Object.entries(pages)
+			.map(function([_, page]) {
+				return {
+					title: page.title,
+					ns: page.ns,
+				};
+			})
+			.filter(page => !this._excludedPages.includes(page.title));
 	};
+
+	ApiConnectionsBuilder.prototype._buildLinksList = function(responses, outgoingLinks) {
+		let links = this._buildBackLinks(responses.backLinks[0]).concat(this._buildOutgoingLinks(outgoingLinks));
+
+		let self = this;
+
+		return links.filter(function(link) {
+			return !self._excludedPages.includes(link.from)
+				&& !self._excludedPages.includes(link.to);
+		});
+	}
 
 	ApiConnectionsBuilder.prototype._buildBackLinks = function(response) {
 		return response.query.backlinks.map(

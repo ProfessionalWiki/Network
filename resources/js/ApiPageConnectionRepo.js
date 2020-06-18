@@ -4,7 +4,11 @@
 module.ApiPageConnectionRepo = ( function ( $, mw ) {
 	"use strict"
 
-	let ApiPageConnectionRepo = function() {
+	/**
+	 * @param {string[]} excludedPages
+	 */
+	let ApiPageConnectionRepo = function(excludedPages) {
+		this._excludedPages = excludedPages;
 		this._addedPages = [];
 	};
 
@@ -26,11 +30,13 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 	};
 
 	ApiPageConnectionRepo.prototype._runQueries = function(networkData, pageName, deferred) {
+		let self = this;
+
 		$.when(
 			this._queryBackLinks(pageName),
 			this._queryOutgoingLinks(pageName)
 		).done(function(backLinkResult, outgoingLinkResult) {
-			let connectionsBuilder = new module.ApiConnectionsBuilder(pageName);
+			let connectionsBuilder = new module.ApiConnectionsBuilder(pageName, self._excludedPages);
 
 			let connections = connectionsBuilder.connectionsFromApiResponses({
 				backLinks: backLinkResult,
