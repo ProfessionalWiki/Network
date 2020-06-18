@@ -1,7 +1,7 @@
 /**
  * Visjs specific
  */
-module.NetworkData = ( function ( viz, mw ) {
+module.NetworkData = ( function ( vis ) {
 	"use strict"
 
 	let NetworkData = function() {
@@ -16,7 +16,8 @@ module.NetworkData = ( function ( viz, mw ) {
 					id: page.title,
 					label: page.title,
 
-					pageTitle: page.title
+					pageTitle: page.title,
+					pageNs: page.ns
 				}
 			}
 		));
@@ -38,4 +39,4 @@ module.NetworkData = ( function ( viz, mw ) {
 
 	return NetworkData;
 
-}( window.vis, window.mediaWiki ) );
+}( window.vis ) );

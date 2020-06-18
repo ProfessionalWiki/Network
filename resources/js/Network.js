@@ -15,9 +15,9 @@ module.Network = ( function (vis, mw ) {
 	};
 
 	Network.prototype.show = function() {
-		let network = this._newNetwork();
+		this._network = this._newNetwork();
 
-		this._bindEvents(network);
+		this._bindEvents();
 
 		this._initialPageNames.forEach(Network.prototype._addPage.bind(this));
 	};
@@ -45,43 +45,36 @@ module.Network = ( function (vis, mw ) {
 		};
 	};
 
-	Network.prototype._bindEvents = function(network) {
-		let self = this;
+	Network.prototype._bindEvents = function() {
+		this._network.on('doubleClick', this._onDoubleClick.bind(this));
+		this._network.on('hold', this._onHold.bind(this));
+		this._network.on('selectEdge', this._onSelectEdge.bind(this));
+	};
 
-		network.on(
-			'doubleClick',
-			function(event) {
-				if (event.nodes.length === 1) {
-					let node = self._data.nodes.get(event.nodes[0]);
+	Network.prototype._onDoubleClick = function(event) {
+		if (event.nodes.length === 1) {
+			let node = this._data.nodes.get(event.nodes[0]);
 
-					window.open(
-						mw.Title.newFromText(node.pageTitle, node.pageNs).getUrl(),
-						"_self"
-					);
-				}
-			}
-		);
+			window.open(
+				mw.Title.newFromText(node.pageTitle, node.pageNs).getUrl(),
+				"_self"
+			);
+		}
+	};
 
-		network.on(
-			'hold',
-			function(event) {
-				if (event.nodes.length === 1) {
-					let node = self._data.nodes.get(event.nodes[0]);
+	Network.prototype._onHold = function(event) {
+		if (event.nodes.length === 1) {
+			let node = this._data.nodes.get(event.nodes[0]);
 
-					self._addPage(node.label);
-				}
-			}
-		);
+			this._addPage(node.label);
+		}
+	};
 
-		network.on(
-			'selectEdge',
-			function(event) {
-				if (event.nodes.length === 0 && event.edges.length === 1) {
-					let targetNodeId = event.edges[0].split('|')[1];
-					network.selectNodes([targetNodeId]);
-				}
-			}
-		);
+	Network.prototype._onSelectEdge = function(event) {
+		if (event.nodes.length === 0 && event.edges.length === 1) {
+			let targetNodeId = event.edges[0].split('|')[1];
+			this._network.selectNodes([targetNodeId]);
+		}
 	};
 
 	return Network;
