@@ -1,7 +1,7 @@
 /**
  * MediaWiki API specific, visjs agnostic
  */
-module.ApiPageConnectionRepo = ( function ( $, mw ) {
+module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 	"use strict"
 
 	let ApiPageConnectionRepo = function() {
@@ -30,7 +30,7 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 			this._queryBackLinks(pageName),
 			this._queryOutgoingLinks(pageName)
 		).done(function(backLinkResult, outgoingLinkResult) {
-			let connectionsBuilder = new module.ApiConnectionsBuilder(pageName);
+			let connectionsBuilder = new ApiConnectionsBuilder(pageName);
 
 			let connections = connectionsBuilder.connectionsFromApiResponses({
 				backLinks: backLinkResult,
@@ -68,4 +68,4 @@ module.ApiPageConnectionRepo = ( function ( $, mw ) {
 
 	return ApiPageConnectionRepo;
 
-}( window.jQuery, window.mediaWiki ) );
+}( window.jQuery, window.mediaWiki, module.ApiConnectionsBuilder ) );

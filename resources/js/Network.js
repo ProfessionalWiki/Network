@@ -1,4 +1,4 @@
-module.Network = ( function (vis, mw ) {
+module.Network = ( function (vis, mw, NetworkData ) {
 	"use strict"
 
 	/**
@@ -9,7 +9,7 @@ module.Network = ( function (vis, mw ) {
 	let Network = function(divId, pageConnectionRepo, pageBlacklist) {
 		this._pageConnectionRepo = pageConnectionRepo;
 
-		this._data = new module.NetworkData(pageBlacklist);
+		this._data = new NetworkData(pageBlacklist);
 		this._network = this._newNetwork(divId);
 		this._bindEvents();
 	};
@@ -75,4 +75,4 @@ module.Network = ( function (vis, mw ) {
 
 	return Network;
 
-}( window.vis, window.mediaWiki ) );
+}( window.vis, window.mediaWiki, module.NetworkData ) );
