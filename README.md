@@ -143,11 +143,16 @@ have a look at the contribution guideline.
 
 ## Development
 
-To run the tests with MediaWiki, open your command line and go to the root directory of MediaWiki. Then run:
+Tests, style checks and static analysis can be run via Make. You can execute these commands on the command line
+in the `extensions/Network` directory:
 
-    php tests/phpunit/phpunit.php --wiki WikiName -c extensions/Network/phpunit.xml.dist
+* `make ci` - run everything
+* `make cs` - run style checks
+* `make test` - run the tests 
 
-To run static analysis and style checks, run `composer install` and `make ci` in the `extensions/Network` directory.
+For more details see the `Makefile`.
+
+The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` page][JS tests].
 
 ## License
 
@@ -166,3 +171,4 @@ Initial release
 TODO
 
 [MediaWiki:Common.css]: https://www.mediawiki.org/wiki/Manual:Interface/Stylesheets
+[JS tests]: https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing

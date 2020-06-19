@@ -1,7 +1,14 @@
-.PHONY: ci cs
+.PHONY: ci cs test phpunit psalm phpstan
 
-cs:
-	./vendor/bin/phpstan analyse -c phpstan.neon --no-progress
+ci: phpstan phpunit psalm
+cs: phpstan psalm
+test: phpunit
+
+phpunit:
+	php ../../tests/phpunit/phpunit.php -c phpunit.xml.dist
+
+psalm:
 	./vendor/bin/psalm
 
-ci: cs
+phpstan:
+	./vendor/bin/phpstan analyse -c phpstan.neon --no-progress
