@@ -19,7 +19,9 @@ install:
   - travis_retry composer self-update
   - bash .travis.install.sh
 
-script: ../phase3/tests/phpunit/phpunit.php -c ../phase3/extensions/Network/phpunit.xml.dist
+script:
+  - ../phase3/tests/phpunit/phpunit.php -c ../phase3/extensions/Network/phpunit.xml.dist
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.4" ]] ; then cd ../phase3/extensions/Network/ && make ci ; fi
 
 after_success:
   - if [[ "$TYPE" != "coverage" ]]; then exit 0; fi

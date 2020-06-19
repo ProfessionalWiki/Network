@@ -27,6 +27,10 @@ class NetworkFunction {
 	public function handleParserFunctionCall( Parser $parser, ...$arguments ) {
 		$requestModel = new RequestModel();
 		$requestModel->functionArguments = $arguments;
+
+		/**
+		 * @psalm-suppress PossiblyNullReference
+		 */
 		$requestModel->renderingPageName = $parser->getTitle()->getFullText();
 
 		$presenter = Extension::getFactory()->newNetworkPresenter();

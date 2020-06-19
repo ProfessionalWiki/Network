@@ -1,7 +1,7 @@
 .PHONY: ci cs
 
 cs:
-	./vendor/bin/psalm
 	./vendor/bin/phpstan analyse -c phpstan.neon --no-progress
+	./vendor/bin/psalm
 
 ci: cs

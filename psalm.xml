@@ -12,8 +12,10 @@
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
+	<extraFiles>
+		<directory name="../../includes" />
+	</extraFiles>
 	<issueHandlers>
-		<UndefinedClass errorLevel="suppress" />
 		<MissingPropertyType errorLevel="suppress" />
 		<MissingClosureReturnType errorLevel="suppress" />
 	</issueHandlers>
