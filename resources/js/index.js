@@ -1,21 +1,21 @@
 
-( function ( mw ) {
+( function ( mw, netw ) {
 	"use strict"
 
 	mw.hook( 'wikipage.content' ).add( function( $content ) {
 		$content.find( 'div.network-visualization' ).each( function() {
 			let $this = $( this );
 
-			let network = new module.Network(
+			let network = new netw.Network(
 				$this.attr('id'),
-				new module.ApiPageConnectionRepo(),
-				new module.PageBlacklist($this.data('exclude'))
+				new netw.ApiPageConnectionRepo(),
+				new netw.PageBlacklist($this.data('exclude'))
 			);
 
 			network.showPages($this.data('pages'));
 		} );
 	} );
 
-}( window.mediaWiki ) );
+}( window.mediaWiki, module ) );
 
 window.NetworkExtension = module;
