@@ -18,7 +18,16 @@ module.Network = ( function (vis, mw, NetworkData ) {
 	 * @param {string[]} pageNames
 	 */
 	Network.prototype.showPages = function(pageNames) {
-		return this._pageConnectionRepo.addConnections(this._data, pageNames);
+		let promise = this._pageConnectionRepo.addConnections(pageNames);
+
+		promise.done(
+			connections => {
+				this._data.addPages(connections.pages);
+				this._data.addLinks(connections.links);
+			}
+		);
+
+		return promise;
 	};
 
 	Network.prototype._addPage = function(pageName) {

@@ -9,49 +9,47 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 	};
 
 	/**
-	 * @param {NetworkData} networkData
 	 * @param {string[]} pageNames
 	 */
-	ApiPageConnectionRepo.prototype.addConnections = function(networkData, pageNames) {
+	ApiPageConnectionRepo.prototype.addConnections = function(pageNames) {
 		let deferred = $.Deferred();
 
 		let pagesToAdd =  pageNames.filter(p => !this._addedPages.includes(p));
 
 		if (pagesToAdd.length === 0) {
-			deferred.resolve();
+			deferred.resolve({pages: [], links: []});
 		} else {
 			this._addedPages.concat(pagesToAdd);
-			this._runQueries(networkData, pagesToAdd, deferred);
+
+			this._queryLinks(pagesToAdd).done(
+				apiResponse => this._apiResponseToPagesAndLinks(apiResponse)
+					.done(connections => deferred.resolve(connections))
+			);
 		}
 
 		return deferred.promise();
 	};
 
-	ApiPageConnectionRepo.prototype._runQueries = function(networkData, pageNames, deferred) {
-		let self = this;
+	ApiPageConnectionRepo.prototype._apiResponseToPagesAndLinks = function(linkQueryResponse) {
+		let deferred = $.Deferred();
 
-		this._queryLinks(pageNames).done(function(apiResponse) {
-			let connectionsBuilder = new ApiConnectionsBuilder();
+		let connections = (new ApiConnectionsBuilder()).connectionsFromApiResponses(linkQueryResponse)
 
-			let connections = connectionsBuilder.connectionsFromApiResponses(apiResponse)
+		this._queryPageNodeInfo(connections.pages).done(function(pageInfoResponse) {
+			let missingPages = Object.values(pageInfoResponse.query.pages)
+				.filter(p => p.missing === '')
+				.map(p => p.title);
 
-			self._queryPageNodeInfo(connections.pages).done(function(apiResponse) {
-				let missingPages = Object.values(apiResponse.query.pages)
-					.filter(p => p.missing === '')
-					.map(p => p.title);
-
-				connections.pages.forEach(function(page) {
-					if(missingPages.includes(page.title)) {
-						page.isMissing = true;
-					}
-				});
-
-				networkData.addPages(connections.pages);
-				networkData.addLinks(connections.links);
-
-				deferred.resolve();
+			connections.pages.forEach(function(page) {
+				if(missingPages.includes(page.title)) {
+					page.isMissing = true;
+				}
 			});
+
+			deferred.resolve(connections);
 		});
+
+		return deferred;
 	};
 
 	ApiPageConnectionRepo.prototype._queryLinks = function(pageNames) {
