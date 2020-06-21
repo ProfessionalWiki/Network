@@ -1,7 +1,7 @@
 /**
  * MediaWiki API specific, visjs agnostic
  */
-module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
+module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 	"use strict"
 
 	let ApiPageConnectionRepo = function() {
@@ -10,46 +10,48 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 
 	/**
 	 * @param {string[]} pageNames
+	 * @return {Promise}
 	 */
 	ApiPageConnectionRepo.prototype.addConnections = function(pageNames) {
-		let deferred = $.Deferred();
+		return new Promise(
+			function(resolve) {
+				let pagesToAdd =  pageNames.filter(p => !this._addedPages.includes(p));
 
-		let pagesToAdd =  pageNames.filter(p => !this._addedPages.includes(p));
+				if (pagesToAdd.length === 0) {
+					resolve({pages: [], links: []});
+				} else {
+					this._addedPages.concat(pagesToAdd);
 
-		if (pagesToAdd.length === 0) {
-			deferred.resolve({pages: [], links: []});
-		} else {
-			this._addedPages.concat(pagesToAdd);
-
-			this._queryLinks(pagesToAdd).done(
-				apiResponse => this._apiResponseToPagesAndLinks(apiResponse)
-					.done(connections => deferred.resolve(connections))
-			);
-		}
-
-		return deferred.promise();
+					this._queryLinks(pagesToAdd).done(
+						function(apiResponse) {
+							this._apiResponseToPagesAndLinks(apiResponse).then(connections => resolve(connections))
+						}.bind(this)
+					);
+				}
+			}.bind(this)
+		);
 	};
 
 	ApiPageConnectionRepo.prototype._apiResponseToPagesAndLinks = function(linkQueryResponse) {
-		let deferred = $.Deferred();
+		return new Promise(
+			function(resolve) {
+				let connections = (new ApiConnectionsBuilder()).connectionsFromApiResponses(linkQueryResponse)
 
-		let connections = (new ApiConnectionsBuilder()).connectionsFromApiResponses(linkQueryResponse)
+				this._queryPageNodeInfo(connections.pages).done(function(pageInfoResponse) {
+					let missingPages = Object.values(pageInfoResponse.query.pages)
+						.filter(p => p.missing === '')
+						.map(p => p.title);
 
-		this._queryPageNodeInfo(connections.pages).done(function(pageInfoResponse) {
-			let missingPages = Object.values(pageInfoResponse.query.pages)
-				.filter(p => p.missing === '')
-				.map(p => p.title);
+					connections.pages.forEach(function(page) {
+						if(missingPages.includes(page.title)) {
+							page.isMissing = true;
+						}
+					});
 
-			connections.pages.forEach(function(page) {
-				if(missingPages.includes(page.title)) {
-					page.isMissing = true;
-				}
-			});
-
-			deferred.resolve(connections);
-		});
-
-		return deferred;
+					resolve(connections);
+				});
+			}.bind(this)
+		);
 	};
 
 	ApiPageConnectionRepo.prototype._queryLinks = function(pageNames) {
@@ -79,4 +81,4 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 
 	return ApiPageConnectionRepo;
 
-}( window.jQuery, window.mediaWiki, module.ApiConnectionsBuilder ) );
+}( window.mediaWiki, module.ApiConnectionsBuilder ) );

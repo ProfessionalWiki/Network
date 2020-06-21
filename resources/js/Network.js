@@ -16,11 +16,12 @@ module.Network = ( function (vis, mw, NetworkData ) {
 
 	/**
 	 * @param {string[]} pageNames
+	 * @return {Promise}
 	 */
 	Network.prototype.showPages = function(pageNames) {
 		let promise = this._pageConnectionRepo.addConnections(pageNames);
 
-		promise.done(
+		promise.then(
 			connections => {
 				this._data.addPages(connections.pages);
 				this._data.addLinks(connections.links);
@@ -71,7 +72,7 @@ module.Network = ( function (vis, mw, NetworkData ) {
 		if (event.nodes.length === 1) {
 			let node = this._data.nodes.get(event.nodes[0]);
 
-			this._addPage(node.label).done(() => this._network.selectNodes([event.nodes[0]]));
+			this._addPage(node.label).then(() => this._network.selectNodes([event.nodes[0]]));
 		}
 	};
 
