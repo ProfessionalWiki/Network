@@ -120,8 +120,10 @@ without needing to purge the page cache.
 * Node labels cannot be changed. They are always the full page name
 * Styling or grouping per category or namespace is not supported
 
-Pull requests to remove those limitations are welcome. You can also contact
-[Professional.Wiki](https://professional.wiki/) for [Professional MediaWiki development](https://professional.wiki/en/services#development) services.
+Pull requests to remove those limitations are welcome.
+
+You can also contact [Professional.Wiki](https://professional.wiki/)
+for [Professional MediaWiki development](https://professional.wiki/en/services#development) services.
 
 ## Contribution and support
 
