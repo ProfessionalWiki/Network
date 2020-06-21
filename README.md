@@ -117,9 +117,11 @@ without needing to purge the page cache.
 ## Limitations
 
 * External links are not shown
+* Node labels cannot be changed. They are always the full page name
+* Styling or grouping per category or namespace is not supported
 
-[Professional MediaWiki development](https://professional.wiki/en/services#development) is available via
-[Professional.Wiki](https://professional.wiki/).
+Pull requests to remove those limitations are welcome. You can also contact
+[Professional.Wiki](https://professional.wiki/) for [Professional MediaWiki development](https://professional.wiki/en/services#development) services.
 
 ## Contribution and support
 
