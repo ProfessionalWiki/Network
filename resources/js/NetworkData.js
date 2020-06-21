@@ -26,7 +26,12 @@ module.NetworkData = ( function ( vis ) {
 
 					if (page.isMissing) {
 						node.color = {
-							background: 'lightgrey'
+							background: 'lightgrey',
+							border: 'grey',
+							highlight: {
+								background: 'lightgrey',
+								border: 'grey',
+							}
 						};
 						node.font = {
 							color: '#ba0000'
@@ -52,7 +57,10 @@ module.NetworkData = ( function ( vis ) {
 						from: link.from,
 						to: link.to,
 
-						arrows: 'to'
+						arrows: 'to',
+						color: {
+							inherit: 'to'
+						}
 					}
 				})
 		);
