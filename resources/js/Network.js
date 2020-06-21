@@ -18,11 +18,11 @@ module.Network = ( function (vis, mw, NetworkData ) {
 	 * @param {string[]} pageNames
 	 */
 	Network.prototype.showPages = function(pageNames) {
-		pageNames.forEach(Network.prototype._addPage.bind(this));
+		return this._pageConnectionRepo.addConnections(this._data, pageNames);
 	};
 
 	Network.prototype._addPage = function(pageName) {
-		return this._pageConnectionRepo.addConnections(this._data, pageName);
+		return this.showPages([pageName]);
 	};
 
 	Network.prototype._newNetwork = function(divId) {

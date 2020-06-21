@@ -4,37 +4,34 @@
 module.ApiConnectionsBuilder = ( function () {
 	"use strict"
 
-	/**
-	 * @param {string} pageName
-	 */
-	let ApiConnectionsBuilder = function(pageName) {
-		this._pageName = pageName;
+	let ApiConnectionsBuilder = function() {
 	};
 
 	ApiConnectionsBuilder.prototype.connectionsFromApiResponses = function(apiResponse) {
 		// console.log(JSON.stringify(apiResponse, null, 4));
 
-		let centralPage = this._centralPageFromApiResponse(apiResponse);
+		let centralPages = this._centralPagesFromApiResponse(apiResponse);
 
 		return {
-			pages: this._buildPageList(centralPage),
-			links: this._buildLinksList(centralPage)
+			pages: this._buildPageList(centralPages),
+			links: this._buildLinksList(centralPages)
 		};
 	}
 
-	ApiConnectionsBuilder.prototype._centralPageFromApiResponse = function(apiResponse) {
-		let page = apiResponse.query.pages[Object.keys(apiResponse.query.pages)[0]];
-
-		return {
-			outgoingLinks: page.links || [],
-			incomingLinks: page.linkshere || [],
-			externalLinks: page.extlinks || [],
-			title: page.title,
-		};
+	ApiConnectionsBuilder.prototype._centralPagesFromApiResponse = function( apiResponse) {
+		return Object.entries(apiResponse.query.pages)
+			.map(function([_, page]) {
+				return {
+					outgoingLinks: page.links || [],
+					incomingLinks: page.linkshere || [],
+					externalLinks: page.extlinks || [],
+					title: page.title,
+				};
+			});
 	};
 
-	ApiConnectionsBuilder.prototype._buildPageList = function(centralPage) {
-		return Object.entries(this._buildPageMap(centralPage))
+	ApiConnectionsBuilder.prototype._buildPageList = function(centralPages) {
+		return Object.entries(this._buildPageMap(centralPages))
 			.map(function([_, page]) {
 				return {
 					title: page.title,
@@ -42,26 +39,35 @@ module.ApiConnectionsBuilder = ( function () {
 			});
 	};
 
-	ApiConnectionsBuilder.prototype._buildPageMap = function(centralPage) {
+	ApiConnectionsBuilder.prototype._buildPageMap = function(centralPages) {
 		let pages = {};
-		pages[centralPage.title] = {
-			title: centralPage.title
-		};
 
-		centralPage.outgoingLinks.forEach(
-			page => { pages[page.title] = page; }
-		);
+		centralPages.forEach(function(centralPage) {
+			pages[centralPage.title] = {
+				title: centralPage.title
+			};
 
-		centralPage.incomingLinks.forEach(
-			page => { pages[page.title] = page; }
-		);
+			centralPage.outgoingLinks.forEach(
+				page => { pages[page.title] = page; }
+			);
+
+			centralPage.incomingLinks.forEach(
+				page => { pages[page.title] = page; }
+			);
+		});
 
 		return pages;
 	}
 
-	ApiConnectionsBuilder.prototype._buildLinksList = function(centralPage) {
-		return this._buildOutgoingLinks(centralPage.title, centralPage.outgoingLinks)
-			.concat(this._buildIncomingLinks(centralPage.title, centralPage.incomingLinks));
+	ApiConnectionsBuilder.prototype._buildLinksList = function(centralPages) {
+		let a = centralPages.map(
+			centralPage => {
+				return this._buildOutgoingLinks(centralPage.title, centralPage.outgoingLinks)
+					.concat(this._buildIncomingLinks(centralPage.title, centralPage.incomingLinks));
+			}
+		);
+
+		return a.flat();
 	}
 
 	ApiConnectionsBuilder.prototype._buildOutgoingLinks = function(sourceTitle, targetPages) {

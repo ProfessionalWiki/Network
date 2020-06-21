@@ -69,9 +69,11 @@
 		"scripts": [
 			"stub/index.js",
 			"stub/Cats.js",
+			"stub/MultiPage.js",
 
-			"ApiConnectionsBuilderTest.js",
-			"PageBlacklistTest.js"
+			"MultiPageConnectionsTest.js",
+			"PageBlacklistTest.js",
+			"SinglePageConnectionsTest.js"
 		],
 		"dependencies": [
 			"ext.network"

@@ -10,24 +10,26 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 
 	/**
 	 * @param {NetworkData} networkData
-	 * @param {string} pageName
+	 * @param {string[]} pageNames
 	 */
-	ApiPageConnectionRepo.prototype.addConnections = function(networkData, pageName) {
+	ApiPageConnectionRepo.prototype.addConnections = function(networkData, pageNames) {
 		let deferred = $.Deferred();
 
-		if (this._addedPages.includes(pageName)) {
+		let pagesToAdd =  pageNames.filter(p => !this._addedPages.includes(p));
+
+		if (pagesToAdd.length === 0) {
 			deferred.resolve();
 		} else {
-			this._addedPages.push(pageName);
-			this._runQueries(networkData, pageName, deferred);
+			this._addedPages.concat(pagesToAdd);
+			this._runQueries(networkData, pagesToAdd, deferred);
 		}
 
 		return deferred.promise();
 	};
 
-	ApiPageConnectionRepo.prototype._runQueries = function(networkData, pageName, deferred) {
-		this._queryLinks(pageName).done(function(apiResponse) {
-			let connectionsBuilder = new ApiConnectionsBuilder(pageName);
+	ApiPageConnectionRepo.prototype._runQueries = function(networkData, pageNames, deferred) {
+		this._queryLinks(pageNames).done(function(apiResponse) {
+			let connectionsBuilder = new ApiConnectionsBuilder();
 
 			let connections = connectionsBuilder.connectionsFromApiResponses(apiResponse)
 
@@ -38,10 +40,10 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 		});
 	};
 
-	ApiPageConnectionRepo.prototype._queryLinks = function(pageName) {
+	ApiPageConnectionRepo.prototype._queryLinks = function(pageNames) {
 		return new mw.Api().get({
 			action: 'query',
-			titles: pageName,
+			titles: pageNames,
 
 			prop: ['links', 'linkshere', 'extlinks'],
 			pllimit: 'max',
