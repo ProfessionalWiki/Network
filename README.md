@@ -109,25 +109,21 @@ Example of changing one of the configuration settings:
 $wgTODO = '500px';
 ```
 
-## Performance
+## Performance / caching
 
 This extension bypasses the MediaWiki page cache. This means that your network graphs will always be up to date,
 without needing to purge the page cache.
 
-This comes at the cost of increased load on your server. For most wikis this does not matter, though it is something
-to keep in mind when putting a network graph on a page getting 1000s of views per minute.
-
-Showing many connections for a page does not increase the server load much. There is little difference between
-showing connections for a page that links to 2 other page and one that links to 1000 other pages. Showing connections
-for many pages does increase load, roughly linearly with page count. Showing connections for 1000 pages causes ~1000
-times the load of showing connections for one page. 
-
 ## Limitations
 
 * External links are not shown
+* Node labels cannot be changed. They are always the full page name
+* Styling or grouping per category or namespace is not supported
 
-[Professional MediaWiki development](https://professional.wiki/en/services#development) is available via
-[Professional.Wiki](https://professional.wiki/).
+Pull requests to remove those limitations are welcome.
+
+You can also contact [Professional.Wiki](https://professional.wiki/)
+for [Professional MediaWiki development](https://professional.wiki/en/services#development) services.
 
 ## Contribution and support
 
