@@ -6,25 +6,28 @@
 		let builder = new ApiConnectionsBuilder('Cats');
 		let connections = builder.connectionsFromApiResponses(module.stub.Cats);
 
-		// console.log(JSON.stringify(connections.nodes, null, 4));
+		// console.log(JSON.stringify(connections.pages, null, 4));
 
 		assert.deepEqual(
 			connections.pages,
 			[
 				{
-					"title": "Cats",
+					"title": "404",
 				},
 				{
-					"title": "Main Page",
+					"title": "Cats",
 				},
 				{
 					"title": "Kittens",
 				},
 				{
-					"title": "Looong Cat",
+					"title": "Main Page",
 				},
 				{
 					"title": "Nyan Cat",
+				},
+				{
+					"title": "Talk:Main Page",
 				}
 			]
 		);
@@ -34,30 +37,34 @@
 		let builder = new ApiConnectionsBuilder('Cats');
 		let connections = builder.connectionsFromApiResponses(module.stub.Cats);
 
-		// console.log(JSON.stringify(connections.edges, null, 4));
+		// console.log(JSON.stringify(connections.links, null, 4));
 
 		assert.deepEqual(
 			connections.links,
 			[
 				{
+					"from": "Cats",
+					"to": "404"
+				},
+				{
+					"from": "Cats",
+					"to": "Kittens"
+				},
+				{
+					"from": "Cats",
+					"to": "Main Page"
+				},
+				{
+					"from": "Cats",
+					"to": "Nyan Cat"
+				},
+				{
 					"from": "Main Page",
-					"to": "Cats",
+					"to": "Cats"
 				},
 				{
-					"from": "Cats",
-					"to": "Kittens",
-				},
-				{
-					"from": "Cats",
-					"to": "Looong Cat",
-				},
-				{
-					"from": "Cats",
-					"to": "Main Page",
-				},
-				{
-					"from": "Cats",
-					"to": "Nyan Cat",
+					"from": "Talk:Main Page",
+					"to": "Cats"
 				}
 			]
 		);

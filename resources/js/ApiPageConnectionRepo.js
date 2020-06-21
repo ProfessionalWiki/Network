@@ -26,16 +26,10 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 	};
 
 	ApiPageConnectionRepo.prototype._runQueries = function(networkData, pageName, deferred) {
-		$.when(
-			this._queryBackLinks(pageName),
-			this._queryOutgoingLinks(pageName)
-		).done(function(backLinkResult, outgoingLinkResult) {
+		this._queryLinks(pageName).done(function(apiResponse) {
 			let connectionsBuilder = new ApiConnectionsBuilder(pageName);
 
-			let connections = connectionsBuilder.connectionsFromApiResponses({
-				backLinks: backLinkResult,
-				outgoingLinks: outgoingLinkResult
-			})
+			let connections = connectionsBuilder.connectionsFromApiResponses(apiResponse)
 
 			networkData.addPages(connections.pages);
 			networkData.addLinks(connections.links);
@@ -44,23 +38,16 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 		});
 	};
 
-	ApiPageConnectionRepo.prototype._queryBackLinks = function(pageName) {
+	ApiPageConnectionRepo.prototype._queryLinks = function(pageName) {
 		return new mw.Api().get({
 			action: 'query',
-			list: 'backlinks',
-			bltitle: pageName,
-			bllimit: 'max',
-			format: 'json',
-			redirects: 'true'
-		});
-	};
-
-	ApiPageConnectionRepo.prototype._queryOutgoingLinks = function(pageName) {
-		return new mw.Api().get({
-			action: 'query',
-			prop: 'links',
 			titles: pageName,
+
+			prop: ['links', 'linkshere', 'extlinks'],
 			pllimit: 'max',
+			lhlimit: 'max',
+			ellimit: 'max',
+
 			format: 'json',
 			redirects: 'true'
 		});
