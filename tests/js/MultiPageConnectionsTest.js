@@ -46,7 +46,7 @@
 		let builder = new ApiConnectionsBuilder();
 		let connections = builder.connectionsFromApiResponses(module.stub.MultiPage);
 
-		console.log(JSON.stringify(connections.links, null, 4));
+		// console.log(JSON.stringify(connections.links, null, 4));
 
 		assert.deepEqual(
 			connections.links,

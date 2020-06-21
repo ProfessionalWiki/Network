@@ -28,15 +28,29 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 	};
 
 	ApiPageConnectionRepo.prototype._runQueries = function(networkData, pageNames, deferred) {
+		let self = this;
+
 		this._queryLinks(pageNames).done(function(apiResponse) {
 			let connectionsBuilder = new ApiConnectionsBuilder();
 
 			let connections = connectionsBuilder.connectionsFromApiResponses(apiResponse)
 
-			networkData.addPages(connections.pages);
-			networkData.addLinks(connections.links);
+			self._queryPageNodeInfo(connections.pages).done(function(apiResponse) {
+				let missingPages = Object.values(apiResponse.query.pages)
+					.filter(p => p.missing === '')
+					.map(p => p.title);
 
-			deferred.resolve();
+				connections.pages.forEach(function(page) {
+					if(missingPages.includes(page.title)) {
+						page.isMissing = true;
+					}
+				});
+
+				networkData.addPages(connections.pages);
+				networkData.addLinks(connections.links);
+
+				deferred.resolve();
+			});
 		});
 	};
 
@@ -49,6 +63,16 @@ module.ApiPageConnectionRepo = ( function ( $, mw, ApiConnectionsBuilder ) {
 			pllimit: 'max',
 			lhlimit: 'max',
 			ellimit: 'max',
+
+			format: 'json',
+			redirects: 'true'
+		});
+	};
+
+	ApiPageConnectionRepo.prototype._queryPageNodeInfo = function(pageNodes) {
+		return new mw.Api().get({
+			action: 'query',
+			titles: pageNodes.map(page => page.title),
 
 			format: 'json',
 			redirects: 'true'

@@ -19,8 +19,8 @@ module.ApiConnectionsBuilder = ( function () {
 	}
 
 	ApiConnectionsBuilder.prototype._centralPagesFromApiResponse = function( apiResponse) {
-		return Object.entries(apiResponse.query.pages)
-			.map(function([_, page]) {
+		return Object.values(apiResponse.query.pages)
+			.map(function(page) {
 				return {
 					outgoingLinks: page.links || [],
 					incomingLinks: page.linkshere || [],
@@ -31,8 +31,8 @@ module.ApiConnectionsBuilder = ( function () {
 	};
 
 	ApiConnectionsBuilder.prototype._buildPageList = function(centralPages) {
-		return Object.entries(this._buildPageMap(centralPages))
-			.map(function([_, page]) {
+		return Object.values(this._buildPageMap(centralPages))
+			.map(function(page) {
 				return {
 					title: page.title,
 				};
@@ -60,14 +60,12 @@ module.ApiConnectionsBuilder = ( function () {
 	}
 
 	ApiConnectionsBuilder.prototype._buildLinksList = function(centralPages) {
-		let a = centralPages.map(
+		return centralPages.map(
 			centralPage => {
 				return this._buildOutgoingLinks(centralPage.title, centralPage.outgoingLinks)
 					.concat(this._buildIncomingLinks(centralPage.title, centralPage.incomingLinks));
 			}
-		);
-
-		return a.flat();
+		).flat();
 	}
 
 	ApiConnectionsBuilder.prototype._buildOutgoingLinks = function(sourceTitle, targetPages) {

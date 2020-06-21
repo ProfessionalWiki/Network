@@ -15,16 +15,25 @@ module.NetworkData = ( function ( vis ) {
 			pages
 				.filter(page => this._pageTitleIsAllowed(page.title))
 				.map(function(page) {
-					return {
+					let node = {
 						id: page.title,
 						label: page.title,
-
-						// shape: page.title === 'Main Page' ? 'box': 'ellipse',
 
 						getUrl: function() {
 							return window.mediaWiki.Title.newFromText(page.title, page.ns).getUrl();
 						}
 					}
+
+					if (page.isMissing) {
+						node.color = {
+							background: 'lightgrey'
+						};
+						node.font = {
+							color: '#ba0000'
+						};
+					}
+
+					return node;
 				})
 		);
 	}
