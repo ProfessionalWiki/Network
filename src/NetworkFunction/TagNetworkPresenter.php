@@ -20,7 +20,10 @@ class TagNetworkPresenter implements NetworkPresenter {
 	 */
 	private $parserFunctionReturnValue = '';
 
-	public function __construct() {
+	private $visJsOptions;
+
+	public function __construct( array $visJsOptions ) {
+		$this->visJsOptions = $visJsOptions;
 	}
 
 	public function showGraph( ResponseModel $viewModel ): void {
@@ -44,12 +47,12 @@ class TagNetworkPresenter implements NetworkPresenter {
 
 	private function getVisJsOptions(): array {
 		return array_merge_recursive(
-			$GLOBALS['wgPageNetworkConfig'],
 			[
 				'layout' => [
 					'randomSeed' => 42
 				]
-			]
+			],
+			$this->visJsOptions
 		);
 	}
 
