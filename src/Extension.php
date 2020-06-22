@@ -4,8 +4,9 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Network;
 
-use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
+use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
+use MediaWiki\Extension\Network\NetworkFunction\TagNetworkPresenter;
 use Parser;
 
 class Extension {
@@ -19,7 +20,7 @@ class Extension {
 	}
 
 	public function newNetworkPresenter(): NetworkPresenter {
-		return new NetworkPresenter();
+		return new TagNetworkPresenter();
 	}
 
 }

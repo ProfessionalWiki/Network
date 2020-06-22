@@ -4,9 +4,8 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Network\Tests\NetworkFunction;
 
-use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
-use MediaWiki\Extension\Network\NetworkFunction\ResponseModel;
+use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -96,13 +95,6 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testResourceModule() {
-		$this->assertSame(
-			[ 'ext.network' ],
-			$this->runAndReturnPresenter( $this->newBasicRequestModel() )->getResourceModules()
-		);
-	}
-
 	public function testCanUseMaxPages() {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = $this->getPageNames( 100 );
@@ -128,8 +120,8 @@ class NetworkUseCaseTest extends TestCase {
 		$request->functionArguments = $this->getPageNames( 101 );
 
 		$this->assertSame(
-			'Too many pages. Can only show connections for up to 100 pages.',
-			$this->runAndReturnPresenter( $request )->getParserFunctionReturnValue()
+			[ 'too many pages' ],
+			$this->runAndReturnPresenter( $request )->getErrors()
 		);
 
 		$this->assertSame(
