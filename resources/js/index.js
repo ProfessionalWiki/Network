@@ -9,7 +9,8 @@
 			let network = new netw.Network(
 				$this.attr('id'),
 				new netw.ApiPageConnectionRepo(),
-				new netw.PageBlacklist($this.data('exclude'))
+				new netw.PageBlacklist($this.data('exclude')),
+				$this.data('options')
 			);
 
 			network.showPages($this.data('pages'));

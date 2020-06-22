@@ -99,14 +99,21 @@ You can add extra CSS in [MediaWiki:Common.css]. You can also add extra classes 
 The default value of all parameters can be changed by placing configuration in "LocalSettings.php".
 These configuration settings are available:
 
-* `$wgTODO` – 
+* `$wgPageNetworkConfig` – an array of [vis.js options](https://visjs.github.io/vis-network/docs/network/#options)
 
 Default values of these configuration settings can be found in "extension.json". Do not change "extension.json".
 
 Example of changing one of the configuration settings:
 
 ```php
-$wgTODO = '500px';
+$wgPageNetworkConfig = [
+	'width' => '50%',
+    'nodes' => [
+        'borderWidth' => 1,
+        'borderWidthSelected' => 2,
+        'shape' => 'box',
+    ],
+];
 ```
 
 ## Performance / caching

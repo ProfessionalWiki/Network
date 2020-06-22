@@ -20,6 +20,9 @@ class NetworkPresenter {
 	 */
 	private $parserFunctionReturnValue = '';
 
+	public function __construct() {
+	}
+
 	public function showGraph( ResponseModel $viewModel ): void {
 		$this->resourceModules = [ 'ext.network' ];
 
@@ -31,11 +34,23 @@ class NetworkPresenter {
 					'class' => $viewModel->cssClass,
 					'data-pages' => json_encode( $viewModel->pageNames ),
 					'data-exclude' => json_encode( $viewModel->excludedPages ),
+					'data-options' => json_encode( $this->getVisJsOptions() ),
 				]
 			),
 			'noparse' => true,
 			'isHTML' => true,
 		];
+	}
+
+	private function getVisJsOptions(): array {
+		return array_merge_recursive(
+			$GLOBALS['wgPageNetworkConfig'],
+			[
+				'layout' => [
+					'randomSeed' => 42
+				]
+			]
+		);
 	}
 
 	/**

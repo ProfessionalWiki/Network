@@ -45,5 +45,10 @@
 	"require-dev": {
 		"vimeo/psalm": "dev-master",
 		"phpstan/phpstan": "^0.12.29"
+	},
+	"config": {
+		"PageNetworkConfig": {
+			"value": {}
+		}
 	}
 }

@@ -5,12 +5,15 @@ module.Network = ( function (vis, mw, NetworkData ) {
 	 * @param {string} divId
 	 * @param {module.ApiPageConnectionRepo} pageConnectionRepo
 	 * @param {module.PageBlacklist} pageBlacklist
+	 * @param {object} options
 	 */
-	let Network = function(divId, pageConnectionRepo, pageBlacklist) {
+	let Network = function(divId, pageConnectionRepo, pageBlacklist, options) {
 		this._pageConnectionRepo = pageConnectionRepo;
 
+		this._options = options;
 		this._data = new NetworkData(pageBlacklist);
 		this._network = this._newNetwork(divId);
+
 		this._bindEvents();
 	};
 
@@ -42,16 +45,8 @@ module.Network = ( function (vis, mw, NetworkData ) {
 				nodes: this._data.nodes,
 				edges: this._data.edges,
 			},
-			this._getOptions()
+			this._options
 		);
-	};
-
-	Network.prototype._getOptions = function() {
-		return {
-			layout: {
-				randomSeed: 42
-			}
-		};
 	};
 
 	Network.prototype._bindEvents = function() {
