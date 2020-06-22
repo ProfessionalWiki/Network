@@ -18,8 +18,11 @@ class Extension {
 		return new NetworkUseCase( $presenter );
 	}
 
-	public function newNetworkPresenter(): NetworkPresenter {
-		return new TagNetworkPresenter( $GLOBALS['wgPageNetworkOptions'] );
+	public function newNetworkPresenter( array $options ): NetworkPresenter {
+		return new TagNetworkPresenter( array_replace_recursive(
+			$GLOBALS['wgPageNetworkOptions'],
+			$options
+		) );
 	}
 
 }

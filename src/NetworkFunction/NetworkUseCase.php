@@ -13,8 +13,6 @@ class NetworkUseCase {
 	}
 
 	public function run( RequestModel $request ): void {
-		$keyValuePairs = $this->parserArgumentsToKeyValuePairs( $request->functionArguments );
-
 		$response = new ResponseModel();
 		$response->pageNames = $this->getPageNames( $request );
 
@@ -23,37 +21,10 @@ class NetworkUseCase {
 			return;
 		}
 
-		$response->cssClass = $this->getCssClass( $keyValuePairs );
-		$response->excludedPages = $this->getExcludedPages( $keyValuePairs );
+		$response->cssClass = $this->getCssClass( $request->functionArguments );
+		$response->excludedPages = $this->getExcludedPages( $request->functionArguments );
 
 		$this->presenter->showGraph( $response );
-	}
-
-	/**
-	 * @param string[] $arguments
-	 * @return string[]
-	 */
-	private function parserArgumentsToKeyValuePairs( array $arguments ): array {
-		$pairs = [];
-
-		foreach ( $arguments as $argument ) {
-			[$key, $value] = $this->argumentStringToKeyValue( $argument );
-
-			if ( !is_null( $key ) ) {
-				$pairs[$key] = $value;
-			}
-		}
-
-		return $pairs;
-	}
-
-	private function argumentStringToKeyValue( string $argument ): array {
-		if ( false === strpos( $argument, '=' ) ) {
-			return [null, $argument];
-		}
-
-		[$key, $value] = explode( '=', $argument );
-		return [trim($key), trim($value)];
 	}
 
 	/**
@@ -61,21 +32,27 @@ class NetworkUseCase {
 	 * @return string[]
 	 */
 	private function getPageNames( RequestModel $request ): array {
-		$pageNames = [];
+		return $this->pagesStringToArray(
+			$request->functionArguments['pages'] ?? $request->functionArguments['page'] ?? $request->renderingPageName
+		);
+	}
 
-		foreach ( $request->functionArguments as $argument ) {
-			[$key, $value] = $this->argumentStringToKeyValue( $argument );
-
-			if ( $value !== '' && ( is_null( $key ) || $key === 'page' ) ) {
-				$pageNames[] = $value;
-			}
-		}
-
-		if ( $pageNames === [] ) {
-			$pageNames[] = $request->renderingPageName;
-		}
-
-		return $pageNames;
+	/**
+	 * @param string $pages
+	 * @return string[]
+	 */
+	private function pagesStringToArray( string $pages ): array {
+		return array_values(
+			array_filter(
+				array_map(
+					'trim',
+					explode( '|', $pages )
+				),
+				function( string $pageName ): bool {
+					return $pageName !== '';
+				}
+			)
+		);
 	}
 
 	private function getCssClass( array $arguments ): string {
@@ -87,15 +64,7 @@ class NetworkUseCase {
 	 * @return string[]
 	 */
 	private function getExcludedPages( array $arguments ): array {
-		return array_filter(
-			array_map(
-				'trim',
-				explode( ';', $arguments['exclude'] ?? '' )
-			),
-			function( string $pageName ) {
-				return $pageName !== '';
-			}
-		);
+		return $this->pagesStringToArray( $arguments['exclude'] ?? '' );
 	}
 
 }

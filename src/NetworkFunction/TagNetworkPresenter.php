@@ -46,7 +46,7 @@ class TagNetworkPresenter implements NetworkPresenter {
 	}
 
 	private function getVisJsOptions(): array {
-		return array_merge_recursive(
+		return array_replace_recursive(
 			[
 				'layout' => [
 					'randomSeed' => 42
