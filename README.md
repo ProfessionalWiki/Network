@@ -43,13 +43,20 @@ You can verify the extension was enabled successfully by opening your wikis Spec
 ## Usage
 
 ```
-{{#network:}}
+<network></network>
 ```
 
 ```
-{{#network:Page1 | Page2 | Page3
- | class = col-lg-3 mt-0
-}}
+<network pages="Cats|Kittens|Bunnies" exclude="Main Page|Sitemap" class="col-lg-3 mt-0">
+{
+    "autoResize": true,
+    "width": "50%",
+    "nodes": {
+        "borderWidth" => 1,
+        "shape": "box"
+    }
+}
+</network>
 ```
 
 ### Parameters
@@ -76,7 +83,7 @@ You can verify the extension was enabled successfully by opening your wikis Spec
 	<tr>
         <th>exclude</th>
         <td></td>
-        <td>Sitemap; Main Page</td>
+        <td>Sitemap| Main Page</td>
         <td>Pages to exclude from the network graph, separated by semicolon</td>
     </tr>
 </table>
