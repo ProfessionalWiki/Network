@@ -105,7 +105,7 @@ You can verify the extension was enabled successfully by opening your wikis Spec
         <th>options</th>
         <td></td>
         <td>{"nodes": {"shape": "box"}}</td>
-        <td>[vis.js options](https://visjs.github.io/vis-network/docs/network/#options) in JSON</td>
+        <td><a href="https://visjs.github.io/vis-network/docs/network/#options">vis.js options</a> in JSON</td>
     </tr>
 </table>
 
