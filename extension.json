@@ -47,7 +47,6 @@
 	"ResourceModules": {
 		"ext.network": {
 			"dependencies": [
-				"jquery",
 				"mediawiki.api"
 			],
 			"scripts": [
