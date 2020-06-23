@@ -7,9 +7,11 @@ namespace MediaWiki\Extension\Network\NetworkFunction;
 class NetworkUseCase {
 
 	private $presenter;
+	private $visJsOptions;
 
-	public function __construct( NetworkPresenter $presenter ) {
+	public function __construct( NetworkPresenter $presenter, array $visJsOptions ) {
 		$this->presenter = $presenter;
+		$this->visJsOptions = $visJsOptions;
 	}
 
 	public function run( RequestModel $request ): void {
@@ -21,10 +23,53 @@ class NetworkUseCase {
 			return;
 		}
 
-		$response->cssClass = $this->getCssClass( $request->functionArguments );
-		$response->excludedPages = $this->getExcludedPages( $request->functionArguments );
+		$keyValuePairs = $this->parserArgumentsToKeyValuePairs( $request->functionArguments );
+
+		$response->cssClass = $this->getCssClass( $keyValuePairs );
+		$response->excludedPages = $this->getExcludedPages( $keyValuePairs );
+		$response->visJsOptions = $this->getVisJsOptions( $keyValuePairs );
 
 		$this->presenter->showGraph( $response );
+	}
+
+
+	/**
+	 * @param string[] $arguments
+	 * @return string[]
+	 */
+	private function parserArgumentsToKeyValuePairs( array $arguments ): array {
+		$pairs = [];
+
+		foreach ( $arguments as $argument ) {
+			[$key, $value] = $this->argumentStringToKeyValue( $argument );
+
+			if ( !is_null( $key ) ) {
+				$pairs[$key] = $value;
+			}
+		}
+
+		return $pairs;
+	}
+
+	private function argumentStringToKeyValue( string $argument ): array {
+		if ( false === strpos( $argument, '=' ) ) {
+			return [null, $argument];
+		}
+
+		[$key, $value] = explode( '=', $argument );
+		return [trim($key), trim($value)];
+	}
+
+	private function getVisJsOptions( array $arguments ): array {
+		return array_replace_recursive(
+			[
+				'layout' => [
+					'randomSeed' => 42
+				]
+			],
+			$this->visJsOptions,
+			json_decode( $arguments['options'] ?? '{}', true ) ?? []
+		);
 	}
 
 	/**
@@ -32,9 +77,21 @@ class NetworkUseCase {
 	 * @return string[]
 	 */
 	private function getPageNames( RequestModel $request ): array {
-		return $this->pagesStringToArray(
-			$request->functionArguments['pages'] ?? $request->functionArguments['page'] ?? $request->renderingPageName
-		);
+		$pageNames = [];
+
+		foreach ( $request->functionArguments as $argument ) {
+			[$key, $value] = $this->argumentStringToKeyValue( $argument );
+
+			if ( $value !== '' && ( is_null( $key ) || $key === 'page' ) ) {
+				$pageNames[] = $value;
+			}
+		}
+
+		if ( $pageNames === [] ) {
+			$pageNames[] = $request->renderingPageName;
+		}
+
+		return $pageNames;
 	}
 
 	/**
@@ -46,7 +103,7 @@ class NetworkUseCase {
 			array_filter(
 				array_map(
 					'trim',
-					explode( '|', $pages )
+					explode( ';', $pages )
 				),
 				function( string $pageName ): bool {
 					return $pageName !== '';

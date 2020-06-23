@@ -13,7 +13,7 @@ use Parser;
 class NetworkFunction {
 
 	public static function onParserFirstCallInit( Parser $parser ): void {
-		$parser->setHook(
+		$parser->setFunctionHook(
 			'network',
 			function() {
 				return ( new self() )->handleParserFunctionCall( ...func_get_args() );
@@ -22,12 +22,11 @@ class NetworkFunction {
 	}
 
 	/**
-	 * @param string $text
 	 * @param Parser $parser
 	 * @param string[] ...$arguments
 	 * @return array|string
 	 */
-	public function handleParserFunctionCall( string $text, array $arguments, Parser $parser ) {
+	public function handleParserFunctionCall( Parser $parser, ...$arguments ) {
 		$requestModel = new RequestModel();
 		$requestModel->functionArguments = $arguments;
 
@@ -35,18 +34,12 @@ class NetworkFunction {
 		 * @psalm-suppress PossiblyNullReference
 		 */
 		$requestModel->renderingPageName = $parser->getTitle()->getFullText();
-		$presenter = $this->newPresenterFromJsonOptions( $text );
+		$presenter = Extension::getFactory()->newNetworkPresenter();
 
 		$this->newUseCase( $presenter )->run( $requestModel );
 
 		$parser->getOutput()->addModules( $presenter->getResourceModules() );
 		return $presenter->getParserFunctionReturnValue();
-	}
-
-	private function newPresenterFromJsonOptions( string $jsonOptions ): NetworkPresenter {
-		return Extension::getFactory()->newNetworkPresenter(
-			json_decode( $jsonOptions, true ) ?? []
-		);
 	}
 
 	private function newUseCase( NetworkPresenter $presenter ): NetworkUseCase {

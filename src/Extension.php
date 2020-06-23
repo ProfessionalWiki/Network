@@ -6,7 +6,7 @@ namespace MediaWiki\Extension\Network;
 
 use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
-use MediaWiki\Extension\Network\NetworkFunction\TagNetworkPresenter;
+use MediaWiki\Extension\Network\NetworkFunction\ParserFunctionNetworkPresenter;
 
 class Extension {
 
@@ -15,14 +15,11 @@ class Extension {
 	}
 
 	public function newNetworkFunction( NetworkPresenter $presenter ): NetworkUseCase {
-		return new NetworkUseCase( $presenter );
+		return new NetworkUseCase( $presenter, $GLOBALS['wgPageNetworkOptions'] );
 	}
 
-	public function newNetworkPresenter( array $options ): NetworkPresenter {
-		return new TagNetworkPresenter( array_replace_recursive(
-			$GLOBALS['wgPageNetworkOptions'],
-			$options
-		) );
+	public function newNetworkPresenter(): NetworkPresenter {
+		return new ParserFunctionNetworkPresenter();
 	}
 
 }

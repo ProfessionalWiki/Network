@@ -43,11 +43,19 @@ You can verify the extension was enabled successfully by opening your wikis Spec
 ## Usage
 
 ```
-<network></network>
+{{#network:}}
 ```
 
 ```
-<network pages="Cats|Kittens|Bunnies" exclude="Main Page|Sitemap" class="col-lg-3 mt-0">
+{{#network:Page1 | Page2 | Page3
+ | class = col-lg-3 mt-0
+}}
+```
+
+```
+{{#network:Page1 | Page2 | Page3
+ | class = col-lg-3 mt-0
+ | options=
 {
     "autoResize": true,
     "width": "50%",
@@ -56,7 +64,14 @@ You can verify the extension was enabled successfully by opening your wikis Spec
         "shape": "box"
     }
 }
-</network>
+}}
+```
+
+```
+{{#network: {{NetworkPages}}
+ | class = col-lg-3 mt-0
+ | options= {{NetworkOptions}}
+}}
 ```
 
 ### Parameters
@@ -85,6 +100,12 @@ You can verify the extension was enabled successfully by opening your wikis Spec
         <td></td>
         <td>Sitemap| Main Page</td>
         <td>Pages to exclude from the network graph, separated by semicolon</td>
+    </tr>
+    <tr>
+        <th>options</th>
+        <td></td>
+        <td>{"nodes": {"shape": "box"}}</td>
+        <td>[vis.js options](https://visjs.github.io/vis-network/docs/network/#options) in JSON</td>
     </tr>
 </table>
 

@@ -25,7 +25,7 @@ class NetworkUseCaseTest extends TestCase {
 	private function runAndReturnPresenter( RequestModel $requestModel ): SpyNetworkPresenter {
 		$presenter = new SpyNetworkPresenter();
 
-		( new NetworkUseCase( $presenter ) )->run( $requestModel );
+		( new NetworkUseCase( $presenter, [] ) )->run( $requestModel );
 
 		return $presenter;
 	}
@@ -41,7 +41,7 @@ class NetworkUseCaseTest extends TestCase {
 
 	public function testSpecifiedPageName() {
 		$request = $this->newBasicRequestModel();
-		$request->functionArguments = [ 'page' => 'Kittens' ];
+		$request->functionArguments = [ 'page = Kittens' ];
 
 		$this->assertSame(
 			[ 'Kittens' ],
@@ -60,7 +60,7 @@ class NetworkUseCaseTest extends TestCase {
 
 	public function testSpecifiedCssClass() {
 		$request = $this->newBasicRequestModel();
-		$request->functionArguments = [ 'class' => 'col-lg-3 mt-2 ' ];
+		$request->functionArguments = [ 'class = col-lg-3 mt-2 ' ];
 
 		$this->assertSame(
 			'network-visualization col-lg-3 mt-2',
@@ -70,7 +70,7 @@ class NetworkUseCaseTest extends TestCase {
 
 	public function testMultiplePageNames() {
 		$request = $this->newBasicRequestModel();
-		$request->functionArguments = [ 'pages' => 'Kittens|Cats | Tigers |  |Bobcats ' ];
+		$request->functionArguments = [ 'Kittens', 'Cats', 'page = Tigers', 'page=Bobcats ' ];
 
 		$this->assertSame(
 			[ 'Kittens', 'Cats', 'Tigers', 'Bobcats' ],
@@ -87,7 +87,7 @@ class NetworkUseCaseTest extends TestCase {
 
 	public function testExclude() {
 		$request = $this->newBasicRequestModel();
-		$request->functionArguments = [ 'pages' => 'Kittens', 'exclude' => 'Foo | Bar | Baz:bah' ];
+		$request->functionArguments = [ 'Kittens', 'exclude = Foo ; Bar ; Baz:bah' ];
 
 		$this->assertSame(
 			[ 'Foo', 'Bar', 'Baz:bah' ],
@@ -97,7 +97,7 @@ class NetworkUseCaseTest extends TestCase {
 
 	public function testCanUseMaxPages() {
 		$request = $this->newBasicRequestModel();
-		$request->functionArguments = [ 'pages' => implode( '|', $this->getPageNames( 100 ) ) ];
+		$request->functionArguments = $this->getPageNames( 100 );
 
 		$this->assertSame(
 			$this->getPageNames( 100 ),
@@ -117,16 +117,12 @@ class NetworkUseCaseTest extends TestCase {
 
 	public function testMoreThanMaxPagesResultsInError() {
 		$request = $this->newBasicRequestModel();
-		$request->functionArguments = [ 'pages' => implode( '|', $this->getPageNames( 101 ) ) ];
+		$request->functionArguments = $this->getPageNames( 101 );
+
 
 		$this->assertSame(
 			[ 'too many pages' ],
 			$this->runAndReturnPresenter( $request )->getErrors()
-		);
-
-		$this->assertSame(
-			[],
-			$this->runAndReturnPresenter( $request )->getResourceModules()
 		);
 	}
 
