@@ -84,10 +84,10 @@ You can verify the extension was enabled successfully by opening your wikis Spec
         <th>Description</th>
     </tr>
     <tr>
-        <th>(page)</th>
+        <th>(`page` or `pages`)</th>
         <td><i>The current page</i></td>
         <td>MyPage</td>
-        <td>The name of the page to show connections for. Can be specified multiple times. The parameter name is optional.</td>
+        <td>The name of the page to show connections for. Can be specified multiple times. The parameter name is optional. Templates are supported</td>
     </tr>
     <tr>
         <th>class</th>

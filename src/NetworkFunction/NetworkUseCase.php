@@ -82,8 +82,10 @@ class NetworkUseCase {
 		foreach ( $request->functionArguments as $argument ) {
 			[$key, $value] = $this->argumentStringToKeyValue( $argument );
 
-			if ( $value !== '' && ( is_null( $key ) || $key === 'page' ) ) {
-				$pageNames[] = $value;
+			if ( $value !== '' && $this->isPageKey( $key ) ) {
+				foreach ( $this->pagesStringToArray( $value, '|' ) as $pageName ) {
+					$pageNames[] = $pageName;
+				}
 			}
 		}
 
@@ -94,16 +96,21 @@ class NetworkUseCase {
 		return $pageNames;
 	}
 
+	private function isPageKey( ?string $key ): bool {
+		return is_null( $key ) || in_array( $key, [ 'page', 'pages' ] );
+	}
+
 	/**
 	 * @param string $pages
+	 * @param string $delimiter
 	 * @return string[]
 	 */
-	private function pagesStringToArray( string $pages ): array {
+	private function pagesStringToArray( string $pages, string $delimiter ): array {
 		return array_values(
 			array_filter(
 				array_map(
 					'trim',
-					explode( ';', $pages )
+					explode( $delimiter, $pages )
 				),
 				function( string $pageName ): bool {
 					return $pageName !== '';
@@ -121,7 +128,7 @@ class NetworkUseCase {
 	 * @return string[]
 	 */
 	private function getExcludedPages( array $arguments ): array {
-		return $this->pagesStringToArray( $arguments['exclude'] ?? '' );
+		return $this->pagesStringToArray( $arguments['exclude'] ?? '', ';' );
 	}
 
 }

@@ -78,6 +78,16 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
+	public function testPageParametersWithPipe() {
+		$request = $this->newBasicRequestModel();
+		$request->functionArguments = [ 'Kittens|Cats', 'pages = Tigers|Bobcats' ];
+
+		$this->assertSame(
+			[ 'Kittens', 'Cats', 'Tigers', 'Bobcats' ],
+			$this->runAndReturnPresenter( $request )->getResponseModel()->pageNames
+		);
+	}
+
 	public function testNothingExcludedByDefault() {
 		$this->assertSame(
 			[],
