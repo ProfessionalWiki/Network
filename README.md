@@ -9,9 +9,21 @@ The **Network** extension allows visualizing connections between wiki pages via 
 It was created by [Professional.Wiki](https://professional.wiki/) and funded by
 [KDZ - Centre for Public Administration Research](https://www.kdz.eu/).
 
-Example network
-
-TODO
+- [Platform requirements](#platform-requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+  * [Parameters](#parameters)
+  * [Layout CSS](#layout-css)
+  * [Configuration](#configuration)
+  * [Examples](#examples)
+    + [Options parameter](#options-parameter)
+    + [Using templates](#using-templates)
+- [Performance / caching](#performance---caching)
+- [Limitations](#limitations)
+- [Contribution and support](#contribution-and-support)
+- [Development](#development)
+- [License](#license)
+- [Release notes](#release-notes)
 
 ## Platform requirements
 
@@ -42,35 +54,18 @@ You can verify the extension was enabled successfully by opening your wikis Spec
 
 ## Usage
 
+Minimal example
+
 ```
 {{#network:}}
 ```
 
-```
-{{#network:Page1 | Page2 | Page3
- | class = col-lg-3 mt-0
-}}
-```
+Example with parameters
 
 ```
 {{#network:Page1 | Page2 | Page3
  | class = col-lg-3 mt-0
- | options=
-{
-    "autoResize": true,
-    "width": "50%",
-    "nodes": {
-        "borderWidth" => 1,
-        "shape": "box"
-    }
-}
-}}
-```
-
-```
-{{#network: {{NetworkPages}}
- | class = col-lg-3 mt-0
- | options= {{NetworkOptions}}
+ | exclude = Main Page ; Sitemap
 }}
 ```
 
@@ -104,13 +99,13 @@ You can verify the extension was enabled successfully by opening your wikis Spec
     <tr>
         <th>options</th>
         <td></td>
-        <td>{"nodes": {"shape": "box"} }</td>
+        <td>{ "nodes": { "shape": "box" } }</td>
         <td>
             <a href="https://visjs.github.io/vis-network/docs/network/#options">vis.js options</a> in JSON.
             Option names and text values both need to be surrounded with double quotes.
             Single quotes will not work. Tailing commas also do not work. Two curly brackets closes the parser function,
-            so if you are putting the JSON directly in the parser function rather than using a template, put a space between
-            the closing brackets. 
+            so if you are putting the JSON directly in the parser function rather than using a template, put a tailing space
+            or new line after each closing bracket.
         </td>
     </tr>
 </table>
@@ -149,6 +144,35 @@ $wgPageNetworkOptions = [
     ],
 ];
 ```
+
+### Examples
+
+#### Options parameter
+
+```
+{{#network:Page1 | Page2 | Page3
+ | options=
+{
+    "autoResize": true,
+    "width": "50%",
+    "nodes": {
+        "borderWidth" => 1,
+        "shape": "box"
+    }
+}
+}}
+```
+
+#### Using templates
+
+```
+{{#network: {{NetworkPages}}
+ | class = col-lg-3 mt-0
+ | options= {{NetworkOptions}}
+}}
+```
+
+Where `NetworkPages` contains `Page1 | Page2 | Page3` and `NetworkOptions` contains `{ "nodes": { "shape": "box" } } `
 
 ## Performance / caching
 
@@ -202,10 +226,6 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 TODO
 
 Initial release
-
-## Examples
-
-TODO
 
 [MediaWiki:Common.css]: https://www.mediawiki.org/wiki/Manual:Interface/Stylesheets
 [JS tests]: https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing
