@@ -126,4 +126,92 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
+	public function testNoOptionsInLocalSettingsAndNoOptionsParameter() {
+		$presenter = new SpyNetworkPresenter();
+		( new NetworkUseCase( $presenter, [] ) )->run( $this->newBasicRequestModel() );
+
+		$this->assertSame(
+			[
+				'layout' => [
+					'randomSeed' => 42
+				]
+			],
+			$presenter->getResponseModel()->visJsOptions
+		);
+	}
+
+	public function testOptionsInLocalSettings() {
+		$setting = [
+			'height' => '42%',
+			'layout' => [
+				'foo' => 'bar'
+			]
+		];
+
+		$presenter = new SpyNetworkPresenter();
+		( new NetworkUseCase( $presenter, $setting ) )->run( $this->newBasicRequestModel() );
+
+		$this->assertEquals(
+			[
+				'height' => '42%',
+				'layout' => [
+					'randomSeed' => 42,
+					'foo' => 'bar'
+				]
+			],
+			$presenter->getResponseModel()->visJsOptions
+		);
+	}
+
+	public function testOptionsParameter() {
+		$request = $this->newBasicRequestModel();
+		$request->functionArguments = [ 'options={"nodes": {"shape": "box"}}' ];
+
+		$presenter = new SpyNetworkPresenter();
+		( new NetworkUseCase( $presenter, [] ) )->run( $request );
+
+		$this->assertSame(
+			[
+				'layout' => [
+					'randomSeed' => 42
+				],
+				'nodes' => [
+					'shape' => 'box'
+				]
+			],
+			$presenter->getResponseModel()->visJsOptions
+		);
+	}
+
+	public function testOptionsParameterWithLocalSettingsConfig() {
+		$setting = [
+			'height' => '42%',
+			'nodes' => [
+				'color' => 'blue',
+				'foo' => 'bar'
+			]
+		];
+
+		$request = $this->newBasicRequestModel();
+		$request->functionArguments = [ 'options={"nodes": {"shape": "box", "color": "red"}}' ];
+
+		$presenter = new SpyNetworkPresenter();
+		( new NetworkUseCase( $presenter, $setting ) )->run( $request );
+
+		$this->assertEquals(
+			[
+				'height' => '42%',
+				'layout' => [
+					'randomSeed' => 42
+				],
+				'nodes' => [
+					'color' => 'red',
+					'shape' => 'box',
+					'foo' => 'bar'
+				]
+			],
+			$presenter->getResponseModel()->visJsOptions
+		);
+	}
+
 }
