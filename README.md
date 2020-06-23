@@ -104,8 +104,14 @@ You can verify the extension was enabled successfully by opening your wikis Spec
     <tr>
         <th>options</th>
         <td></td>
-        <td>{"nodes": {"shape": "box"}}</td>
-        <td><a href="https://visjs.github.io/vis-network/docs/network/#options">vis.js options</a> in JSON</td>
+        <td>{"nodes": {"shape": "box"} }</td>
+        <td>
+            <a href="https://visjs.github.io/vis-network/docs/network/#options">vis.js options</a> in JSON.
+            Option names and text values both need to be surrounded with double quotes.
+            Single quotes will not work. Tailing commas also do not work. Two curly brackets closes the parser function,
+            so if you are putting the JSON directly in the parser function rather than using a template, put a space between
+            the closing brackets. 
+        </td>
     </tr>
 </table>
 
