@@ -77,25 +77,25 @@ You can verify the extension was enabled successfully by opening your wikis Spec
 ### Parameters
 
 <table>
-	<tr>
-		<th></th>
-		<th>Default</th>
-		<th>Example value</th>
-		<th>Description</th>
-	</tr>
-	<tr>
-	    <th>(page)</th>
-	    <td><i>The current page</i></td>
-	    <td>MyPage</td>
-	    <td>The name of the page to show connections for. Can be specified multiple times. The parameter name is optional.</td>
-	</tr>
-	<tr>
+    <tr>
+        <th></th>
+        <th>Default</th>
+        <th>Example value</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <th>(page)</th>
+        <td><i>The current page</i></td>
+        <td>MyPage</td>
+        <td>The name of the page to show connections for. Can be specified multiple times. The parameter name is optional.</td>
+    </tr>
+    <tr>
         <th>class</th>
         <td></td>
         <td>col-lg-3 mt-0</td>
         <td>Extra css class(es) to add to the network graph</td>
     </tr>
-	<tr>
+    <tr>
         <th>exclude</th>
         <td></td>
         <td>Sitemap| Main Page</td>
@@ -115,8 +115,8 @@ The network graphs are located in a div with class `network-visualization`. The 
 
 ```css
 .network-visualization {
-	width: 100%;
-	height: 600px;
+    width: 100%;
+    height: 600px;
 }
 ```
 
@@ -135,7 +135,7 @@ Example of changing one of the configuration settings:
 
 ```php
 $wgPageNetworkOptions = [
-	'width' => '50%',
+    'width' => '50%',
     'nodes' => [
         'borderWidth' => 1,
         'borderWidthSelected' => 2,
