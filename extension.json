@@ -80,5 +80,11 @@
 		]
 	},
 
+	"config": {
+		"PageNetworkOptions": {
+			"value": []
+		}
+	},
+
 	"manifest_version": 2
 }
