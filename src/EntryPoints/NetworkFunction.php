@@ -27,6 +27,8 @@ class NetworkFunction {
 	 * @return array|string
 	 */
 	public function handleParserFunctionCall( Parser $parser, ...$arguments ) {
+		$parser->getOutput()->addModules( [ 'ext.network' ] );
+
 		$requestModel = new RequestModel();
 		$requestModel->functionArguments = $arguments;
 
@@ -38,7 +40,6 @@ class NetworkFunction {
 
 		$this->newUseCase( $presenter )->run( $requestModel );
 
-		$parser->getOutput()->addModules( $presenter->getResourceModules() );
 		return $presenter->getParserFunctionReturnValue();
 	}
 

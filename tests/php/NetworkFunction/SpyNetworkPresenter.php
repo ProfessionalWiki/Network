@@ -28,10 +28,6 @@ class SpyNetworkPresenter implements NetworkPresenter {
 		return $this->errors;
 	}
 
-	public function getResourceModules(): array {
-		return [];
-	}
-
 	public function getParserFunctionReturnValue() {
 		return [];
 	}

@@ -11,11 +11,6 @@ interface NetworkPresenter {
 	public function showTooManyPagesError(): void;
 
 	/**
-	 * @return string[]
-	 */
-	public function getResourceModules(): array;
-
-	/**
 	 * @return mixed[]|string
 	 */
 	public function getParserFunctionReturnValue();

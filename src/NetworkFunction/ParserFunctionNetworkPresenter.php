@@ -10,21 +10,13 @@ class ParserFunctionNetworkPresenter implements NetworkPresenter {
 
 	private static $idCounter = 1;
 
-	/**
-	 * @var string[]
-	 */
-	private $resourceModules = [];
 
 	/**
 	 * @var mixed[]|string
 	 */
 	private $parserFunctionReturnValue = '';
 
-
-
 	public function showGraph( ResponseModel $viewModel ): void {
-		$this->resourceModules = [ 'ext.network' ];
-
 		$this->parserFunctionReturnValue = [
 			Html::element(
 				'div',
@@ -39,13 +31,6 @@ class ParserFunctionNetworkPresenter implements NetworkPresenter {
 			'noparse' => true,
 			'isHTML' => true,
 		];
-	}
-
-	/**
-	 * @return string[]
-	 */
-	public function getResourceModules(): array {
-		return $this->resourceModules;
 	}
 
 	/**
