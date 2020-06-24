@@ -47,7 +47,8 @@
 	"ResourceModules": {
 		"ext.network": {
 			"dependencies": [
-				"mediawiki.api"
+				"mediawiki.api",
+				"mediawiki.Title"
 			],
 			"scripts": [
 				"lib/vis-network.min.js",

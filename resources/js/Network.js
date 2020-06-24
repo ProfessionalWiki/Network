@@ -1,4 +1,4 @@
-module.Network = ( function (vis, mw, NetworkData ) {
+module.Network = (function (vis, NetworkData) {
 	"use strict"
 
 	/**
@@ -80,4 +80,4 @@ module.Network = ( function (vis, mw, NetworkData ) {
 
 	return Network;
 
-}( window.vis, window.mediaWiki, module.NetworkData ) );
+}(window.vis, module.NetworkData));
