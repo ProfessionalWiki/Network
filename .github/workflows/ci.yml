@@ -17,8 +17,13 @@ jobs:
 
     strategy:
       matrix:
-        php: [ '7.3', '7.4' ]
-        mw: [ 'REL1_33', 'REL1_34' ]
+        include:
+          - php: 7.3
+            mw: 'REL1_33'
+          - php: 7.4
+            mw: 'REL1_34'
+          - php: 7.4
+            mw: 'master'
 
     name: Tests on MW ${{ matrix.mw }} with PHP ${{ matrix.php }}
 
@@ -35,12 +40,13 @@ jobs:
           extensions: mbstring, intl
           tools: composer
 
+      # FIXME: Network composer dependencies are getting cached
       - name: Cache MediaWiki
         id: cache-mediawiki
         uses: actions/cache@v2
         with:
           path: |
-            mediawiki # FIXME: Network composer dependencies are getting cached
+            mediawiki
             !mediawiki/extensions/Network
           key: mw_${{ matrix.mw }}-php${{ matrix.php }}
 
@@ -64,7 +70,7 @@ jobs:
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
         run: |
           composer install
-          php maintenance/install.php --dbtype sqlite --dbuser root --dbname mw --dbpath $(pwd) --pass AdminPass WikiName AdminUser
+          php maintenance/install.php --dbtype sqlite --dbuser root --dbname mw --dbpath $(pwd) --pass AdminPass10 WikiName AdminUser
 
       - name: Create composer.local.json
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
