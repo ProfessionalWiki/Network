@@ -1,0 +1,108 @@
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ "*" ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  test:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: [ '7.3', '7.4' ]
+
+    name: Tests with PHP ${{ matrix.php }}
+
+    defaults:
+      run:
+        working-directory: mediawiki
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, intl
+          tools: composer
+
+      - name: Cache MediaWiki
+        id: cache-mediawiki
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/mediawiki # FIXME: Network composer dependencies are getting cached
+            !~/mediawiki/extensions/Network
+          key: mediawiki-php${{ matrix.php }}-v6
+
+      - name: Cache Composer packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache
+          key: composer-php{{ matrix.php }}
+
+      - name: Download MediaWiki
+        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
+        working-directory: ~
+        run: |
+          wget https://github.com/wikimedia/mediawiki/archive/REL1_34.tar.gz -nv
+          tar -zxf REL1_34.tar.gz
+          mv mediawiki-REL1_34 mediawiki
+          pwd
+          ls -lap mediawiki
+
+      - name: Install MediaWiki
+        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
+        run: |
+          composer install
+          php maintenance/install.php --dbtype sqlite --dbuser root --dbname mw --pass AdminPass WikiName AdminUser
+
+      - name: Create composer.local.json
+        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
+        run: |
+          cat <<EOT >> composer.local.json
+          {
+          	"extra": {
+          		"merge-plugin": {
+          			"merge-dev": true,
+          			"include": [
+          				"extensions/Network/composer.json"
+          			]
+          		}
+          	}
+          }
+          EOT
+
+      - name: Update LocalSetting.php
+        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
+        run: |
+          tail -n5 LocalSettings.php
+          echo 'error_reporting(E_ALL| E_STRICT);' >> LocalSettings.php
+          echo 'ini_set("display_errors", 1);' >> LocalSettings.php
+          echo '$wgShowExceptionDetails = true;' >> LocalSettings.php
+          echo '$wgShowDBErrorBacktrace = true;' >> LocalSettings.php
+          echo '$wgDevelopmentWarnings = true;' >> LocalSettings.php
+          echo 'wfLoadExtension( "Network" );' >> LocalSettings.php
+
+      - uses: actions/checkout@v2
+        with:
+          path: mediawiki/extensions/Network
+
+      - name: Composer update
+        run: composer update
+
+      - name: Debug
+        run: php -v
+
+      - name: Run PHPUnit
+        run: php tests/phpunit/phpunit.php -c extensions/Network/phpunit.xml.dist
+
+
