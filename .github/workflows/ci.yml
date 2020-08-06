@@ -105,11 +105,6 @@ jobs:
 
       - name: Composer update
         run: |
-          pwd
-          ls -lap
-          ls -lap /home/runner/work/Network/
-          ls -lap /home/runner/work/Network/Network/
-          ls -lap /home/runner/work/Network/Network/mediawiki
           composer update
 
       - name: Run PHPUnit
