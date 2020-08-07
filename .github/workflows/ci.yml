@@ -10,10 +10,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   test:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
 
     strategy:
       matrix:
@@ -25,7 +23,7 @@ jobs:
           - mw: 'master'
             php: 7.4
 
-    name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
+    runs-on: ubuntu-latest
 
     defaults:
       run:
@@ -106,3 +104,47 @@ jobs:
 
       - name: Run PHPUnit
         run: php tests/phpunit/phpunit.php -c extensions/Network/phpunit.xml.dist
+
+  coding-standards:
+    name: "Coding Standards"
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: mbstring
+          tools: composer, cs2pr
+
+      - name: composer install
+        run: "composer install --no-progress --no-suggest --no-interaction --prefer-dist --optimize-autoloader"
+
+      - name: phpcs
+        run: "php vendor/bin/phpcs -q --report=checkstyle --no-colors | cs2pr"
+
+  static-analysis:
+    name: "Static Analysis"
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: mbstring
+          tools: composer, cs2pr
+
+      - name: composer install
+        run: "composer install --no-progress --no-suggest --no-interaction --prefer-dist --optimize-autoloader"
+
+      - name: phpstan
+        run: "php vendor/bin/phpstan analyse --error-format=checkstyle --no-progress | cs2pr"
