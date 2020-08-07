@@ -18,14 +18,14 @@ jobs:
     strategy:
       matrix:
         include:
-          - php: 7.3
-            mw: 'REL1_33'
-          - php: 7.4
-            mw: 'REL1_34'
-          - php: 7.4
-            mw: 'master'
+          - mw: 'REL1_33'
+            php: 7.3
+          - mw: 'REL1_34'
+            php: 7.4
+          - mw: 'master'
+            php: 7.4
 
-    name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}, sqlite"
+    name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
 
     defaults:
       run:
@@ -40,14 +40,14 @@ jobs:
           extensions: mbstring, intl
           tools: composer
 
-      # FIXME: Network composer dependencies are getting cached
       - name: Cache MediaWiki
         id: cache-mediawiki
         uses: actions/cache@v2
         with:
           path: |
             mediawiki
-            !mediawiki/extensions/Network
+            !mediawiki/extensions/
+            !mediawiki/vendor/
           key: mw_${{ matrix.mw }}-php${{ matrix.php }}
 
       - name: Cache Composer packages
@@ -63,8 +63,6 @@ jobs:
           wget https://github.com/wikimedia/mediawiki/archive/${{ matrix.mw }}.tar.gz -nv
           tar -zxf ${{ matrix.mw }}.tar.gz
           mv mediawiki-${{ matrix.mw }} mediawiki
-          pwd
-          ls -lap mediawiki
 
       - name: Install MediaWiki
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
@@ -104,8 +102,7 @@ jobs:
           path: mediawiki/extensions/Network
 
       - name: Composer update
-        run: |
-          composer update
+        run: composer update
 
       - name: Run PHPUnit
         run: php tests/phpunit/phpunit.php -c extensions/Network/phpunit.xml.dist
