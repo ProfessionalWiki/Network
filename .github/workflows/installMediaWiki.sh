@@ -1,3 +1,5 @@
+#! /bin/bash
+
 set +x
 
 MW_BRANCH=$0
