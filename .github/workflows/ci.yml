@@ -108,9 +108,7 @@ jobs:
       - name: Install MediaWiki
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
         working-directory: ~
-        run: |
-          wget https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/d0861c0633aa384e754fbf5ad89866ddac882276/installMediaWiki.sh
-          ./installMediaWiki.sh ${{ matrix.mw }} Network
+        run: https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/d0861c0633aa384e754fbf5ad89866ddac882276/installMediaWiki.sh | bash -s ${{ matrix.mw }} Network
 
       - name: composer install
         run: composer install --no-progress --no-suggest --no-interaction --prefer-dist --optimize-autoloader
