@@ -46,7 +46,7 @@ jobs:
             mediawiki
             !mediawiki/extensions/
             !mediawiki/vendor/
-          key: mw_${{ matrix.mw }}-php${{ matrix.php }}
+          key: mw_${{ matrix.mw }}-php${{ matrix.php }}-v20
 
       - name: Cache Composer cache
         uses: actions/cache@v2
@@ -57,7 +57,7 @@ jobs:
       - name: Install MediaWiki
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
         working-directory: ~
-        run: bash extensions/Network/.github/workflows/installMediaWiki.sh
+        run: curl https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/installMediaWiki.sh | bash -s ${{ matrix.mw }} Network
 
       - uses: actions/checkout@v2
         with:
