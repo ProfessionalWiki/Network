@@ -25,7 +25,7 @@ jobs:
           - php: 7.4
             mw: 'master'
 
-    name: Tests on MW ${{ matrix.mw }} with PHP ${{ matrix.php }}
+    name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}, sqlite"
 
     defaults:
       run:
