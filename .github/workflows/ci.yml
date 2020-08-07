@@ -54,46 +54,10 @@ jobs:
           path: ~/.composer/cache
           key: composer-php${{ matrix.php }}
 
-      - name: Download MediaWiki
-        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
-        working-directory: ~
-        run: |
-          wget https://github.com/wikimedia/mediawiki/archive/${{ matrix.mw }}.tar.gz -nv
-          tar -zxf ${{ matrix.mw }}.tar.gz
-          mv mediawiki-${{ matrix.mw }} mediawiki
-
       - name: Install MediaWiki
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
-        run: |
-          composer install
-          php maintenance/install.php --dbtype sqlite --dbuser root --dbname mw --dbpath $(pwd) --pass AdminPass10 WikiName AdminUser
-
-      - name: Create composer.local.json
-        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
-        run: |
-          cat <<EOT >> composer.local.json
-          {
-          	"extra": {
-          		"merge-plugin": {
-          			"merge-dev": true,
-          			"include": [
-          				"extensions/Network/composer.json"
-          			]
-          		}
-          	}
-          }
-          EOT
-
-      - name: Update LocalSetting.php
-        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
-        run: |
-          tail -n5 LocalSettings.php
-          echo 'error_reporting(E_ALL| E_STRICT);' >> LocalSettings.php
-          echo 'ini_set("display_errors", 1);' >> LocalSettings.php
-          echo '$wgShowExceptionDetails = true;' >> LocalSettings.php
-          echo '$wgShowDBErrorBacktrace = true;' >> LocalSettings.php
-          echo '$wgDevelopmentWarnings = true;' >> LocalSettings.php
-          echo 'wfLoadExtension( "Network" );' >> LocalSettings.php
+        working-directory: ~
+        run: bash extensions/Network/.github/workflows/installMediaWiki.sh
 
       - uses: actions/checkout@v2
         with:
@@ -105,33 +69,15 @@ jobs:
       - name: Run PHPUnit
         run: php tests/phpunit/phpunit.php -c extensions/Network/phpunit.xml.dist
 
-  coding-standards:
-    name: "Coding Standards"
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '7.4'
-          extensions: mbstring
-          tools: composer, cs2pr
-
-      - name: composer install
-        run: "composer install --no-progress --no-suggest --no-interaction --prefer-dist --optimize-autoloader"
-
-      - name: phpcs
-        run: "php vendor/bin/phpcs -q --report=checkstyle --no-colors | cs2pr"
-
   static-analysis:
     name: "Static Analysis"
 
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: mediawiki
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -143,8 +89,26 @@ jobs:
           extensions: mbstring
           tools: composer, cs2pr
 
-      - name: composer install
-        run: "composer install --no-progress --no-suggest --no-interaction --prefer-dist --optimize-autoloader"
+      - name: Cache MediaWiki
+        id: cache-mediawiki
+        uses: actions/cache@v2
+        with:
+          path: |
+            mediawiki
+            !mediawiki/extensions/
+            !mediawiki/vendor/
+          key: mw_${{ matrix.mw }}-php${{ matrix.php }}
 
-      - name: phpstan
-        run: "php vendor/bin/phpstan analyse --error-format=checkstyle --no-progress | cs2pr"
+      - name: Install MediaWiki
+        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
+        working-directory: ~
+        run: bash extensions/Network/.github/workflows/installMediaWiki.sh
+
+      - name: composer install
+        run: composer install --no-progress --no-suggest --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: PHPStan
+        run: php vendor/bin/phpstan analyse --error-format=checkstyle --no-progress | cs2pr
+
+      - name: Psalm
+        run: php vendor/bin/psalm
