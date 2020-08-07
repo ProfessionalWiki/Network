@@ -86,26 +86,9 @@ jobs:
           extensions: mbstring
           tools: composer, cs2pr
 
-      - name: Cache MediaWiki
-        id: cache-mediawiki
-        uses: actions/cache@v2
+      - uses: ProfessionalWiki/setup-mediawiki@0.1
         with:
-          path: |
-            mediawiki
-            !mediawiki/extensions/
-            !mediawiki/vendor/
-          key: mediawiki-cache
-
-      - name: Cache Composer cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.composer/cache
-          key: composer-cache
-
-      - name: Install MediaWiki
-        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
-        working-directory: ~
-        run: curl https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/installMediaWiki.sh | bash -s REL1_34 Network
+          extension: Network
 
       - uses: actions/checkout@v2
         with:
