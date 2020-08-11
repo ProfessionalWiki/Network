@@ -25,6 +25,8 @@ It was created by [Professional.Wiki](https://professional.wiki/) and funded by
 - [License](#license)
 - [Release notes](#release-notes)
 
+<img src="network.png" />
+
 ## Platform requirements
 
 * PHP 7.1 or later
@@ -223,7 +225,7 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 ### Version 1.0.0
 
-TODO
+Released on August 11, 2020.
 
 Initial release
 
