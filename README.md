@@ -9,6 +9,8 @@ The **Network** extension allows visualizing connections between wiki pages via 
 It was created by [Professional.Wiki](https://professional.wiki/) and funded by
 [KDZ - Centre for Public Administration Research](https://www.kdz.eu/).
 
+<img src="network.png" width="400px" />
+
 - [Platform requirements](#platform-requirements)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -24,8 +26,6 @@ It was created by [Professional.Wiki](https://professional.wiki/) and funded by
 - [Development](#development)
 - [License](#license)
 - [Release notes](#release-notes)
-
-<img src="network.png" />
 
 ## Platform requirements
 
