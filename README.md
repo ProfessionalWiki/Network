@@ -10,7 +10,7 @@ It was created by [Professional.Wiki](https://professional.wiki/) and funded by
 [KDZ - Centre for Public Administration Research](https://www.kdz.eu/).
 
 <a href="https://raw.githubusercontent.com/ProfessionalWiki/Network/master/.github/network.png"><img src=".github/network.png" width="350px" title="View image" /></a>
-<a href="https://www.youtube.com/watch?v=KLHPt4E7HAM&feature=youtu.be&t=1"><img src=".github/youtube.png" width="350px" title="Play video" /></a>
+<a href="https://www.youtube.com/watch?v=iI1zJ8ma474&feature=youtu.be&t=1"><img src=".github/youtube.png" width="350px" title="Play video" /></a>
 
 - [Platform requirements](#platform-requirements)
 - [Installation](#installation)
