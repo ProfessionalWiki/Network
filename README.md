@@ -21,7 +21,6 @@ It was created by [Professional.Wiki](https://professional.wiki/) and funded by
   * [Examples](#examples)
     + [Options parameter](#options-parameter)
     + [Using templates](#using-templates)
-- [Performance / caching](#performance---caching)
 - [Limitations](#limitations)
 - [Contribution and support](#contribution-and-support)
 - [Development](#development)
