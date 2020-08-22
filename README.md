@@ -190,7 +190,7 @@ without needing to purge the page cache.
 Pull requests to remove those limitations are welcome.
 
 You can also contact [Professional.Wiki](https://professional.wiki/)
-for [Professional MediaWiki development](https://professional.wiki/en/services#development) services.
+for [Professional MediaWiki development](https://professional.wiki/en/mediawiki-development) services.
 
 ## Contribution and support
 
