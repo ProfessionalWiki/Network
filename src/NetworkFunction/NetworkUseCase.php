@@ -65,6 +65,12 @@ class NetworkUseCase {
 			[
 				'layout' => [
 					'randomSeed' => 42
+				],
+				'physics' => [
+					'barnesHut' => [
+						'gravitationalConstant' => -5000,
+						'damping' => 0.242
+					]
 				]
 			],
 			$this->visJsOptions,
