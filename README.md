@@ -147,6 +147,8 @@ $wgPageNetworkOptions = [
 ];
 ```
 
+Note: to change the width or height, use CSS, not the network options.
+
 ### Examples
 
 #### Options parameter
