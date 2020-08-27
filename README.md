@@ -138,7 +138,7 @@ Example of changing one of the configuration settings:
 
 ```php
 $wgPageNetworkOptions = [
-    'width' => '50%',
+    'clickToUse' => true,
     'nodes' => [
         'borderWidth' => 1,
         'borderWidthSelected' => 2,
