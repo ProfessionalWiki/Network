@@ -10,7 +10,6 @@ class ParserFunctionNetworkPresenter implements NetworkPresenter {
 
 	private static $idCounter = 1;
 
-
 	/**
 	 * @var mixed[]|string
 	 */

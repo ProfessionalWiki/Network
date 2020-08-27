@@ -28,6 +28,8 @@ class NetworkFunction {
 	 */
 	public function handleParserFunctionCall( Parser $parser, ...$arguments ) {
 		$parser->getOutput()->addModules( [ 'ext.network' ] );
+		$parser->getOutput()->addJsConfigVars( 'networkExcludedNamespaces', $GLOBALS['wgPageNetworkExcludedNamespaces'] );
+		$parser->getOutput()->addJsConfigVars( 'networkExcludeTalkPages', $GLOBALS['wgPageNetworkExcludeTalkPages'] );
 
 		$requestModel = new RequestModel();
 		$requestModel->functionArguments = $arguments;

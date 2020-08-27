@@ -20,6 +20,18 @@
 		"MediaWiki": ">= 1.31.0"
 	},
 
+	"config": {
+		"PageNetworkOptions": {
+			"value": []
+		},
+		"PageNetworkExcludeTalkPages": {
+			"value": true
+		},
+		"PageNetworkExcludedNamespaces": {
+			"value": [ 2, 6, 12 ]
+		}
+	},
+
 	"MessagesDirs": {
 		"Network": [
 			"i18n"
@@ -82,12 +94,6 @@
 		"dependencies": [
 			"ext.network"
 		]
-	},
-
-	"config": {
-		"PageNetworkOptions": {
-			"value": []
-		}
 	},
 
 	"manifest_version": 2

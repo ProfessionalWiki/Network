@@ -130,11 +130,17 @@ You can add extra CSS in [MediaWiki:Common.css]. You can also add extra classes 
 The default value of all parameters can be changed by placing configuration in "LocalSettings.php".
 These configuration settings are available:
 
-* `$wgPageNetworkOptions` – an array of [vis.js options](https://visjs.github.io/vis-network/docs/network/#options). Can be (partially) overridden per network via the `options` parameter
+* `$wgPageNetworkOptions` – options passed directly to the graph visualization library
+* `$wgPageNetworkExcludeTalkPages` - indicates if talk pages should be excluded
+* `$wgPageNetworkExcludedNamespaces` - IDs of namespaces to exclude
 
 Default values of these configuration settings can be found in "extension.json". Do not change "extension.json".
 
-Example of changing one of the configuration settings:
+**$wgPageNetworkOptions**
+
+Array of [vis.js options](https://visjs.github.io/vis-network/docs/network/#options). Can be (partially) overridden per network via the `options` parameter
+
+Example:
 
 ```php
 $wgPageNetworkOptions = [
@@ -148,6 +154,20 @@ $wgPageNetworkOptions = [
 ```
 
 Note: to change the width or height, use CSS, not the network options.
+
+**$wgPageNetworkExcludeTalkPages**
+
+Possible values: `true`, `false`
+
+Default value: `true` (talk pages get excluded)
+
+**$wgPageNetworkExcludedNamespaces**
+
+List of IDs of namespaces of which all pages should be excluded.
+
+Default value: `[ 2, 6, 12 ]` (excluding `User`, `File` and `Help`)
+
+Example: `$wgPageNetworkExcludedNamespaces = [ NS_USER, NS_PROJECT ];`
 
 ### Examples
 
@@ -224,6 +244,13 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 [GNU General Public License v2.0 or later (GPL-2.0-or-later)](/COPYING).
 
 ## Release notes
+
+### Version 1.1.0
+
+Released on August 27, 2020.
+
+* Added `$wgPageNetworkExcludeTalkPages` option
+* Added `$wgPageNetworkExcludedNamespaces` option
 
 ### Version 1.0.0
 
