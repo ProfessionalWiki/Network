@@ -1,10 +1,10 @@
-( function (ApiConnectionsBuilder) {
+( function (ApiConnectionsBuilder, stub) {
 	QUnit.module( 'ext.network.SinglePageConnectionsTest' );
 
 
 	QUnit.test( 'Pages/nodes integration test', function ( assert ) {
 		let builder = new ApiConnectionsBuilder();
-		let connections = builder.connectionsFromApiResponses(module.stub.Cats);
+		let connections = builder.connectionsFromApiResponses(stub.Cats);
 
 		// console.log(JSON.stringify(connections.pages, null, 4));
 
@@ -35,7 +35,7 @@
 
 	QUnit.test( 'Links/edges integration test', function ( assert ) {
 		let builder = new ApiConnectionsBuilder();
-		let connections = builder.connectionsFromApiResponses(module.stub.Cats);
+		let connections = builder.connectionsFromApiResponses(stub.Cats);
 
 		// console.log(JSON.stringify(connections.links, null, 4));
 
@@ -70,4 +70,4 @@
 		);
 	} );
 
-}(window.NetworkExtension.ApiConnectionsBuilder) );
+}(window.NetworkExtension.ApiConnectionsBuilder, module.stub) );
