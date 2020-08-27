@@ -18,7 +18,7 @@ module.ApiConnectionsBuilder = ( function () {
 		};
 	}
 
-	ApiConnectionsBuilder.prototype._centralPagesFromApiResponse = function( apiResponse) {
+	ApiConnectionsBuilder.prototype._centralPagesFromApiResponse = function(apiResponse) {
 		return Object.values(apiResponse.query.pages)
 			.map(function(page) {
 				return {

@@ -9,7 +9,11 @@
 			let network = new netw.Network(
 				$this.attr('id'),
 				new netw.ApiPageConnectionRepo(),
-				new netw.PageBlacklist($this.data('exclude')),
+				new netw.PageBlacklist(
+					$this.data('exclude'),
+					mw.config.get('networkExcludedNamespaces'),
+					mw.config.get('networkExcludeTalkPages')
+				),
 				$this.data('options')
 			);
 
