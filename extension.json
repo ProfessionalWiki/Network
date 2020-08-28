@@ -28,7 +28,7 @@
 			"value": true
 		},
 		"PageNetworkExcludedNamespaces": {
-			"value": [ 2, 6, 12 ]
+			"value": [ 2, 4, 8, 12 ]
 		}
 	},
 

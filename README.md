@@ -165,9 +165,11 @@ Default value: `true` (talk pages get excluded)
 
 List of IDs of namespaces of which all pages should be excluded.
 
-Default value: `[ 2, 6, 12 ]` (excluding `User`, `File` and `Help`)
+Default value: `[ 2, 4, 8, 12 ]` (excluding `User`, `Project`, `MediaWiki` and `Help`)
 
 Example: `$wgPageNetworkExcludedNamespaces = [ NS_USER, NS_PROJECT ];`
+
+See also: https://www.mediawiki.org/wiki/Manual:Namespace#Built-in_namespaces
 
 ### Examples
 
