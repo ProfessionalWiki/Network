@@ -144,6 +144,12 @@ class NetworkUseCaseTest extends TestCase {
 			[
 				'layout' => [
 					'randomSeed' => 42
+				],
+				'physics' => [
+					'barnesHut' => [
+						'gravitationalConstant' => -5000,
+						'damping' => 0.242
+					]
 				]
 			],
 			$presenter->getResponseModel()->visJsOptions
@@ -155,7 +161,7 @@ class NetworkUseCaseTest extends TestCase {
 			'height' => '42%',
 			'layout' => [
 				'foo' => 'bar'
-			]
+			],
 		];
 
 		$presenter = new SpyNetworkPresenter();
@@ -167,6 +173,12 @@ class NetworkUseCaseTest extends TestCase {
 				'layout' => [
 					'randomSeed' => 42,
 					'foo' => 'bar'
+				],
+				'physics' => [
+					'barnesHut' => [
+						'gravitationalConstant' => -5000,
+						'damping' => 0.242
+					]
 				]
 			],
 			$presenter->getResponseModel()->visJsOptions
@@ -184,6 +196,12 @@ class NetworkUseCaseTest extends TestCase {
 			[
 				'layout' => [
 					'randomSeed' => 42
+				],
+				'physics' => [
+					'barnesHut' => [
+						'gravitationalConstant' => -5000,
+						'damping' => 0.242
+					]
 				],
 				'nodes' => [
 					'shape' => 'box'
@@ -218,6 +236,12 @@ class NetworkUseCaseTest extends TestCase {
 					'color' => 'red',
 					'shape' => 'box',
 					'foo' => 'bar'
+				],
+				'physics' => [
+					'barnesHut' => [
+						'gravitationalConstant' => -5000,
+						'damping' => 0.242
+					]
 				]
 			],
 			$presenter->getResponseModel()->visJsOptions
