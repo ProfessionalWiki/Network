@@ -249,7 +249,7 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 ### Version 1.1.0
 
-Released on August 28, 2020.
+Released on August 30, 2020.
 
 * Added `$wgPageNetworkExcludeTalkPages` option
 * Added `$wgPageNetworkExcludedNamespaces` option
