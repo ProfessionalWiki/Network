@@ -247,6 +247,12 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 ## Release notes
 
+### Version 1.1.1
+
+Released on September 7, 2020.
+
+* Fixed error happening when giving invalid page names to `#network`
+
 ### Version 1.1.0
 
 Released on August 30, 2020.
