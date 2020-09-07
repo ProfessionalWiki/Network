@@ -20,7 +20,8 @@ module.NetworkData = ( function ( vis, mw ) {
 						label: page.title,
 
 						getUrl: function() {
-							return mw.Title.newFromText(page.title, page.ns).getUrl();
+							let title = mw.Title.newFromText(page.title, page.ns);
+							return  title === null ? '' : title.getUrl();
 						}
 					}
 
