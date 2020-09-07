@@ -30,4 +30,31 @@
 		);
 	} );
 
+	QUnit.test( 'Talk pages are allowed by default', function ( assert ) {
+		let blacklist = new PageBlacklist( [], [], false );
+
+		assert.strictEqual(
+			blacklist.isBlacklisted( 'Talk:Kittens' ),
+			false
+		);
+	} );
+
+	QUnit.test( 'Talk pages are not allowed when blacklisted', function ( assert ) {
+		let blacklist = new PageBlacklist( [], [], true );
+
+		assert.strictEqual(
+			blacklist.isBlacklisted( 'Talk:Kittens' ),
+			true
+		);
+	} );
+
+	QUnit.test( 'Namespace blacklisting', function ( assert ) {
+		let blacklist = new PageBlacklist( [], [ 0 ], false );
+
+		assert.strictEqual(
+			blacklist.isBlacklisted( 'Kittens' ),
+			true
+		);
+	} );
+
 }() );
