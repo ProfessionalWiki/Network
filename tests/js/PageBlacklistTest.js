@@ -57,4 +57,13 @@
 		);
 	} );
 
+	QUnit.test( 'Invalid titles are blacklisted', function ( assert ) {
+		let blacklist = new PageBlacklist( [], [], false );
+
+		assert.strictEqual(
+			blacklist.isBlacklisted( '|' ),
+			true
+		);
+	} );
+
 }() );
