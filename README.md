@@ -247,6 +247,12 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 ## Release notes
 
+### Version 1.2.0
+
+Released on September 7, 2020.
+
+* Upgraded viz-network from 7.6 to 8.3
+
 ### Version 1.1.2
 
 Released on September 7, 2020.

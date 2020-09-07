@@ -1,7 +1,7 @@
 {
 	"name": "Network",
 
-	"version": "1.1.2",
+	"version": "1.2.0",
 
 	"author": [
 		"[https://www.entropywins.wtf/mediawiki Jeroen De Dauw]",
@@ -64,7 +64,7 @@
 				"mediawiki.Title"
 			],
 			"scripts": [
-				"lib/vis-network.min.js",
+				"lib/vis-network.js",
 
 				"js/PageBlacklist.js",
 				"js/NetworkData.js",
