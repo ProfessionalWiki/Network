@@ -26,9 +26,15 @@ module.PageBlacklist = ( function ( mw ) {
 		let title = mw.Title.newFromText(pageName);
 
 		return title === null
-			|| (this.excludeTalk && title.isTalkPage())
+			|| (this.excludeTalk && this._isTalkPage(title))
 			|| this.namespaces.includes(title.getNamespaceId());
-	}
+	};
+
+	PageBlacklist.prototype._isTalkPage = function(title) {
+		// Can replace this function with title.isTalkPage() on MW 1.35+
+		let namespaceId = title.getNamespaceId();
+		return !!(namespaceId > 0 && namespaceId % 2);
+	};
 
 	return PageBlacklist;
 
