@@ -47,6 +47,8 @@
 		"MediaWiki\\Extension\\Network\\Tests\\": "tests/php"
 	},
 
+	"callback": "MediaWiki\\Extension\\Network\\Extension::addMediaWiki131compat",
+
 	"Hooks": {
 		"ParserFirstCallInit": "MediaWiki\\Extension\\Network\\EntryPoints\\NetworkFunction::onParserFirstCallInit"
 	},
@@ -59,8 +61,7 @@
 	"ResourceModules": {
 		"ext.network": {
 			"dependencies": [
-				"jquery",
-				"mediawiki.api",
+				"mediawiki.api.edit",
 				"mediawiki.Title"
 			],
 			"scripts": [
