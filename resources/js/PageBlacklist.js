@@ -25,7 +25,8 @@ module.PageBlacklist = ( function ( mw ) {
 
 		let title = mw.Title.newFromText(pageName);
 
-		return (this.excludeTalk && title.isTalkPage())
+		return title === null
+			|| (this.excludeTalk && title.isTalkPage())
 			|| this.namespaces.includes(title.getNamespaceId());
 	}
 
