@@ -175,6 +175,8 @@ See also: https://www.mediawiki.org/wiki/Manual:Namespace#Built-in_namespaces
 
 #### Options parameter
 
+Array of [vis.js options](https://visjs.github.io/vis-network/docs/network/#options)
+
 ```
 {{#network:Page1 | Page2 | Page3
  | options=
@@ -182,12 +184,16 @@ See also: https://www.mediawiki.org/wiki/Manual:Namespace#Built-in_namespaces
     "autoResize": true,
     "width": "50%",
     "nodes": {
-        "borderWidth" => 1,
-        "shape": "box"
+        "color": "lightblue",
+        "shape": "box",
+        "borderWidth": 3,
+        "font": { "color": "red", "size": 17 }
     }
 }
 }}
 ```
+
+Wrong: `"font.color": "red"`, right: `"font": { "color": "red" }`, also right: `"font": "14 px arial red"` 
 
 #### Using templates
 
