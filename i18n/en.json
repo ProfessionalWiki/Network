@@ -6,5 +6,6 @@
 		]
 	},
 	"network-name": "Network",
-	"network-desc": "Allows adding interactive network visualizations in your wiki pages"
+	"network-desc": "Allows adding interactive network visualizations in your wiki pages",
+	"network-aria": "Network visualization showing the outgoing and incoming links for {{PLURAL:$1|page|pages}} $2"
 }

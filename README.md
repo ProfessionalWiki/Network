@@ -182,7 +182,6 @@ Array of [vis.js options](https://visjs.github.io/vis-network/docs/network/#opti
  | options=
 {
     "autoResize": true,
-    "width": "50%",
     "nodes": {
         "color": "lightblue",
         "shape": "box",
@@ -252,6 +251,12 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 [GNU General Public License v2.0 or later (GPL-2.0-or-later)](/COPYING).
 
 ## Release notes
+
+### Version 1.3.0
+
+Released on September 8, 2020.
+
+* Added WAI compliance by adding an aria-label attribute to the network canvas
 
 ### Version 1.2.1
 
