@@ -4,5 +4,6 @@
 			"Eduardo Addad de Oliveira"
 		]
 	},
-	"network-desc": "Permitir adicionar visualizações de rede interativas nas suas páginas da wiki"
+	"network-desc": "Permitir adicionar visualizações de rede interativas nas suas páginas da wiki",
+	"network-aria": "Visualização de rede mostrando os links de saída e entrada para {{PLURAL:$1|página|páginas}} $2"
 }

@@ -4,5 +4,6 @@
 			"Kly"
 		]
 	},
-	"network-desc": "允許添加視覺化互動網路在您的 wiki 頁面"
+	"network-desc": "允許添加視覺化互動網路在您的 wiki 頁面",
+	"network-aria": "網路視覺化顯示出{{PLURAL:$1|頁面}}$2的傳出與傳入連結"
 }
