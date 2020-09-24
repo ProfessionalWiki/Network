@@ -35,7 +35,6 @@
 		}
 	],
 	"support": {
-		"irc": "irc://irc.freenode.net/mediawiki",
 		"source": "https://github.com/ProfessionalWiki/Network/issues"
 	},
 	"require": {
