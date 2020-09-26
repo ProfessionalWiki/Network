@@ -54,6 +54,8 @@ wfLoadExtension( 'Network' );
 
 You can verify the extension was enabled successfully by opening your wikis Special:Version page in your browser.
 
+Finally, please consider [sponsoring the project].
+
 ## Usage
 
 Minimal example
@@ -250,6 +252,10 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 [GNU General Public License v2.0 or later (GPL-2.0-or-later)](/COPYING).
 
+## Professional Support and Development
+
+[Professional.Wiki] provides commercial [MediaWiki development], [managed wiki hosting] and [MediaWiki support].
+
 ## Release notes
 
 ### Version 1.3.0
@@ -292,3 +298,8 @@ Initial release
 
 [MediaWiki:Common.css]: https://www.mediawiki.org/wiki/Manual:Interface/Stylesheets
 [JS tests]: https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing
+[sponsoring the project]: https://github.com/sponsors/JeroenDeDauw
+[Professional.Wiki]: https://professional.wiki
+[MediaWiki development]: https://professional.wiki/en/mediawiki-development
+[managed wiki hosting]: https://professional.wiki/en/hosting
+[MediaWiki support]: https://professional.wiki/en/support
