@@ -1,6 +1,6 @@
 # Network
 
-[![Build Status](https://travis-ci.org/ProfessionalWiki/Network.svg?branch=master)](https://travis-ci.org/ProfessionalWiki/Network)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ProfessionalWiki/Network/CI)](https://github.com/ProfessionalWiki/Network/actions?query=workflow%3ACI)
 [![Latest Stable Version](https://poser.pugx.org/professional-wiki/network/version.png)](https://packagist.org/packages/professional-wiki/network)
 [![Download count](https://poser.pugx.org/professional-wiki/network/d/total.png)](https://packagist.org/packages/professional-wiki/network)
 
