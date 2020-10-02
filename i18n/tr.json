@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"BaRaN6161 TURK"
+			"BaRaN6161 TURK",
+			"MuratTheTurkish"
 		]
 	},
-	"network-desc": "Viki sayfalarınıza etkileşimli ağ görselleştirmeleri eklemenizi sağlar"
+	"network-desc": "Viki sayfalarınıza etkileşimli ağ görselleştirmeleri eklemenize izin verir",
+	"network-aria": "{{PLURAL:$1|Sayfa}} $2 için giden ve gelen bağlantıları gösteren ağ görselleştirme"
 }
