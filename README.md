@@ -155,6 +155,8 @@ $wgPageNetworkOptions = [
 ];
 ```
 
+	private function registerEditApiModuleFallbacks() {
+	}
 Note: to change the width or height, use CSS, not the network options.
 
 **$wgPageNetworkExcludeTalkPages**
@@ -260,7 +262,7 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 ### Version 1.4.0
 
-Released on December 18, 2020.
+Released on January 9, 2021.
 
 * Upgraded viz-network from 8.3.2 to 8.5.5
 
