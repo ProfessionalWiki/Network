@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sabelöga"
+		]
+	},
+	"network-desc": "Gör det möjligt att lägga till interaktiva nätverksvisualiseringar på dina wikisidor",
+	"network-aria": "Nätverksvisualiseringar visar ut- och ingående länkar för {{PLURAL:$1|sidan|sidorna}} $2"
+}
