@@ -42,8 +42,18 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 						.filter(p => p.missing === '')
 						.map(p => p.title);
 
+					let displaytitles = [];
+					pageInfoResponse.query.pages.forEach(function(page) {
+						if ( page.pageprops && page.pageprops.displaytitle) {
+							displaytitles[page.title] = page.pageprops.displaytitle;
+						} else {
+							displaytitles[page.title] = page.title;
+						}
+					});
+
 					connections.pages.forEach(function(page) {
-						if(missingPages.includes(page.title)) {
+						page.displaytitle = displaytitles[page.title];
+						if (missingPages.includes(page.title)) {
 							page.isMissing = true;
 						}
 					});
@@ -73,6 +83,8 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 		return new mw.Api().get({
 			action: 'query',
 			titles: pageNodes.map(page => page.title),
+
+			prop: [ 'pageprops' ],
 
 			format: 'json',
 			redirects: 'true'

@@ -17,7 +17,7 @@ module.NetworkData = ( function ( vis, mw ) {
 				.map(function(page) {
 					let node = {
 						id: page.title,
-						label: page.title,
+						label: page.displaytitle,
 
 						getUrl: function() {
 							let title = mw.Title.newFromText(page.title, page.ns);
