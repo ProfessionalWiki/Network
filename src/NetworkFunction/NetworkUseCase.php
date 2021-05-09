@@ -29,6 +29,7 @@ class NetworkUseCase {
 		$response->excludedPages = $this->getExcludedPages( $keyValuePairs );
 		$response->visJsOptions = $this->getVisJsOptions( $keyValuePairs );
 		$response->labelMaxLength = $this->getLabelMaxLength( $keyValuePairs, $request->defaultLabelMaxLength );
+		$response->enableDisplayTitle = $this->getEnableDisplayTitle( $keyValuePairs, $request->defaultEnableDisplayTitle );
 
 		$this->presenter->showGraph( $response );
 	}
@@ -145,5 +146,16 @@ class NetworkUseCase {
 	 */
 	private function getLabelMaxLength(array $arguments, $defaultLabelMaxLength ): int {
 		return isset( $arguments['labelMaxLength'] ) ? (int)$arguments['labelMaxLength'] : $defaultLabelMaxLength;
+	}
+
+	/**
+	 * @param string[] $arguments
+	 * @param int $defaultLabelMaxLength
+	 * @return bool
+	 */
+	private function getEnableDisplayTitle(array $arguments, $defaultEnableDisplayTitle ): bool {
+		return isset( $arguments['enableDisplayTitle'] )
+			? filter_var( $arguments['enableDisplayTitle'], FILTER_VALIDATE_BOOLEAN )
+			: $defaultEnableDisplayTitle;
 	}
 }
