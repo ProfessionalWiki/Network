@@ -25,6 +25,7 @@ class ParserFunctionNetworkPresenter implements NetworkPresenter {
 					'data-pages' => json_encode( $viewModel->pageNames ),
 					'data-exclude' => json_encode( $viewModel->excludedPages ),
 					'data-options' => json_encode( $viewModel->visJsOptions ),
+					'data-labelmaxlength' => json_encode( $viewModel->labelMaxLength ),
 				]
 			),
 			'noparse' => true,

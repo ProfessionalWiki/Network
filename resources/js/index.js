@@ -14,7 +14,8 @@
 					mw.config.get('networkExcludedNamespaces'),
 					mw.config.get('networkExcludeTalkPages')
 				),
-				$this.data('options')
+				$this.data('options'),
+				$this.data('labelmaxlength')
 			);
 
 			network.showPages($this.data('pages')).then(function() {

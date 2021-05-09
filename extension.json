@@ -29,6 +29,9 @@
 		},
 		"PageNetworkExcludedNamespaces": {
 			"value": [ 2, 4, 8, 12 ]
+		},
+		"PageNetworkDefaultLabelMaxLength": {
+			"value": 20
 		}
 	},
 

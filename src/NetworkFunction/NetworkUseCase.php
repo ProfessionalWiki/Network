@@ -28,6 +28,7 @@ class NetworkUseCase {
 		$response->cssClass = $this->getCssClass( $keyValuePairs );
 		$response->excludedPages = $this->getExcludedPages( $keyValuePairs );
 		$response->visJsOptions = $this->getVisJsOptions( $keyValuePairs );
+		$response->labelMaxLength = $this->getLabelMaxLength( $keyValuePairs, $request->defaultLabelMaxLength );
 
 		$this->presenter->showGraph( $response );
 	}
@@ -137,4 +138,12 @@ class NetworkUseCase {
 		return $this->pagesStringToArray( $arguments['exclude'] ?? '', ';' );
 	}
 
+	/**
+	 * @param string[] $arguments
+	 * @param int $defaultLabelMaxLength
+	 * @return int
+	 */
+	private function getLabelMaxLength(array $arguments, $defaultLabelMaxLength ): int {
+		return isset( $arguments['labelMaxLength'] ) ? (int)$arguments['labelMaxLength'] : $defaultLabelMaxLength;
+	}
 }

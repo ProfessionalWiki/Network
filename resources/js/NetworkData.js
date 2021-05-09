@@ -4,20 +4,31 @@
 module.NetworkData = ( function ( vis, mw ) {
 	"use strict"
 
-	let NetworkData = function(pageBlacklist) {
+	let NetworkData = function(pageBlacklist, labelMaxLength) {
 		this.nodes = new vis.DataSet();
 		this.edges = new vis.DataSet();
 		this._pageBlacklist = pageBlacklist;
+		this._labelMaxLength = labelMaxLength;
 	};
 
 	NetworkData.prototype.addPages = function(pages) {
+		var maxlength = this._labelMaxLength;
 		this.nodes.update(
 			pages
 				.filter(page => this._pageTitleIsAllowed(page.title))
 				.map(function(page) {
+					let label = page.displaytitle;
+					if (label.length > maxlength) {
+						label = label.slice(0, maxlength) + '\u2026';
+					}
+					let title = page.displaytitle;
+					if (page.title !== page.displaytitle) {
+						title += ' <i>(' + page.title + ')</i>';
+					}
 					let node = {
 						id: page.title,
-						label: page.displaytitle,
+						label: label,
+						title: title,
 
 						getUrl: function() {
 							let title = mw.Title.newFromText(page.title, page.ns);
