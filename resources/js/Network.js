@@ -27,7 +27,7 @@ module.Network = (function (vis, NetworkData) {
 
 		promise.then(
 			connections => {
-				this._data.addPages(connections.pages, this._maxLabelLength);
+				this._data.addPages(connections.pages);
 				this._data.addLinks(connections.links);
 			}
 		);
