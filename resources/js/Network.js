@@ -6,12 +6,13 @@ module.Network = (function (vis, NetworkData) {
 	 * @param {module.ApiPageConnectionRepo} pageConnectionRepo
 	 * @param {module.PageBlacklist} pageBlacklist
 	 * @param {object} options
+	 * @param {int} labelMaxLength
 	 */
-	let Network = function(divId, pageConnectionRepo, pageBlacklist, options) {
+	let Network = function(divId, pageConnectionRepo, pageBlacklist, options, labelMaxLength ) {
 		this._pageConnectionRepo = pageConnectionRepo;
 
 		this._options = options;
-		this._data = new NetworkData(pageBlacklist);
+		this._data = new NetworkData(pageBlacklist, labelMaxLength);
 		this._network = this._newNetwork(divId);
 
 		this._bindEvents();
@@ -26,7 +27,7 @@ module.Network = (function (vis, NetworkData) {
 
 		promise.then(
 			connections => {
-				this._data.addPages(connections.pages);
+				this._data.addPages(connections.pages, this._maxLabelLength);
 				this._data.addLinks(connections.links);
 			}
 		);

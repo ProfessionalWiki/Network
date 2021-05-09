@@ -8,5 +8,6 @@ class RequestModel {
 
 	public /* string[] */ $functionArguments;
 	public /* string */ $renderingPageName;
+	public /* int */ $defaultLabelMaxLength;
 
 }
