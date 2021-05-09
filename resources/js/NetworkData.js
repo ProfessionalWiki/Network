@@ -18,7 +18,7 @@ module.NetworkData = ( function ( vis, mw ) {
 				.filter(page => this._pageTitleIsAllowed(page.title))
 				.map(function(page) {
 					let label = page.displaytitle;
-					if (label.length > maxlength) {
+					if (maxlength > 0 && label.length > maxlength) {
 						label = label.slice(0, maxlength) + '\u2026';
 					}
 					let title = page.displaytitle;
