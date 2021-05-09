@@ -10,9 +10,10 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 
 	/**
 	 * @param {string[]} pageNames
+	 * @param {boolean} enableDisplayTitle
 	 * @return {Promise}
 	 */
-	ApiPageConnectionRepo.prototype.addConnections = function(pageNames) {
+	ApiPageConnectionRepo.prototype.addConnections = function(pageNames, enableDisplayTitle) {
 		return new Promise(
 			function(resolve) {
 				let pagesToAdd =  pageNames.filter(p => !this._addedPages.includes(p));
@@ -24,7 +25,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 
 					this._queryLinks(pagesToAdd).done(
 						function(apiResponse) {
-							this._apiResponseToPagesAndLinks(apiResponse).then(connections => resolve(connections))
+							this._apiResponseToPagesAndLinks(apiResponse, enableDisplayTitle).then(connections => resolve(connections))
 						}.bind(this)
 					);
 				}
@@ -32,12 +33,12 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 		);
 	};
 
-	ApiPageConnectionRepo.prototype._apiResponseToPagesAndLinks = function(linkQueryResponse) {
+	ApiPageConnectionRepo.prototype._apiResponseToPagesAndLinks = function(linkQueryResponse, enableDisplayTitle) {
 		return new Promise(
 			function(resolve) {
 				let connections = (new ApiConnectionsBuilder()).connectionsFromApiResponses(linkQueryResponse)
 
-				this._queryPageNodeInfo(connections.pages).done(function(pageInfoResponse) {
+				this._queryPageNodeInfo(connections.pages, enableDisplayTitle).done(function(pageInfoResponse) {
 					let missingPages = Object.values(pageInfoResponse.query.pages)
 						.filter(p => p.missing === '')
 						.map(p => p.title);
@@ -79,16 +80,17 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 		});
 	};
 
-	ApiPageConnectionRepo.prototype._queryPageNodeInfo = function(pageNodes) {
-		return new mw.Api().get({
+	ApiPageConnectionRepo.prototype._queryPageNodeInfo = function(pageNodes, enableDisplayTitle) {
+		let parameters = {
 			action: 'query',
 			titles: pageNodes.map(page => page.title),
-
-			prop: [ 'pageprops' ],
-
 			format: 'json',
 			redirects: 'true'
-		});
+		};
+		if (enableDisplayTitle) {
+			parameters.prop = [ 'pageprops' ];
+		}
+		return new mw.Api().get(parameters);
 	};
 
 	return ApiPageConnectionRepo;

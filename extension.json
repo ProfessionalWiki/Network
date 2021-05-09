@@ -30,6 +30,9 @@
 		"PageNetworkExcludedNamespaces": {
 			"value": [ 2, 4, 8, 12 ]
 		},
+		"PageNetworkDefaultEnableDisplayTitle": {
+			"value": true
+		},
 		"PageNetworkDefaultLabelMaxLength": {
 			"value": 20
 		}

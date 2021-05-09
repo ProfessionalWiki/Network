@@ -15,7 +15,8 @@
 					mw.config.get('networkExcludeTalkPages')
 				),
 				$this.data('options'),
-				$this.data('labelmaxlength')
+				$this.data('labelmaxlength'),
+				$this.data('enabledisplaytitle')
 			);
 
 			network.showPages($this.data('pages')).then(function() {
