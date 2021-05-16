@@ -28,8 +28,8 @@ class NetworkUseCase {
 		$response->cssClass = $this->getCssClass( $keyValuePairs );
 		$response->excludedPages = $this->getExcludedPages( $keyValuePairs );
 		$response->visJsOptions = $this->getVisJsOptions( $keyValuePairs );
-		$response->labelMaxLength = $this->getLabelMaxLength( $keyValuePairs, $request->defaultLabelMaxLength );
 		$response->enableDisplayTitle = $this->getEnableDisplayTitle( $keyValuePairs, $request->defaultEnableDisplayTitle );
+		$response->labelMaxLength = $this->getLabelMaxLength( $keyValuePairs, $request->defaultLabelMaxLength );
 
 		$this->presenter->showGraph( $response );
 	}

@@ -35,6 +35,8 @@ class NetworkUseCaseTest extends TestCase {
 
 		$request->renderingPageName = 'MyPage';
 		$request->functionArguments = [ '' ];
+		$request->defaultEnableDisplayTitle = true;
+		$request->defaultLabelMaxLength = 20;
 
 		return $request;
 	}
@@ -133,6 +135,48 @@ class NetworkUseCaseTest extends TestCase {
 		$this->assertSame(
 			[ 'too many pages' ],
 			$this->runAndReturnPresenter( $request )->getErrors()
+		);
+	}
+
+	public function testDefaultEnableDisplayTitle() {
+		$request = $this->newBasicRequestModel();
+
+		$this->assertSame(
+			$request->defaultEnableDisplayTitle,
+			true
+		);
+		$this->assertSame(
+			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle,
+			true
+		);
+	}
+
+	public function testOverrideEnableDisplayTitleFalse() {
+		$request = $this->newBasicRequestModel();
+		$request->functionArguments = [ 'enableDisplayTitle = true' ];
+
+		$this->assertSame(
+			$request->defaultEnableDisplayTitle,
+			true
+		);
+		$this->assertSame(
+			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle,
+			true
+		);
+	}
+
+
+	public function testOverrideEnableDisplayTitleTrue() {
+		$request = $this->newBasicRequestModel();
+		$request->functionArguments = [ 'enableDisplayTitle = false' ];
+
+		$this->assertSame(
+			$request->defaultEnableDisplayTitle,
+			true
+		);
+		$this->assertSame(
+			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle,
+			false
 		);
 	}
 

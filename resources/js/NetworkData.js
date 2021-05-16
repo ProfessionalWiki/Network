@@ -17,18 +17,23 @@ module.NetworkData = ( function ( vis, mw ) {
 			pages
 				.filter(page => this._pageTitleIsAllowed(page.title))
 				.map(function(page) {
-					let label = page.displaytitle;
-					if (maxlength > 0 && label.length > maxlength) {
-						label = label.slice(0, maxlength) + '\u2026';
+					if (maxlength > 0 && page.displayTitle.length > maxlength) {
+						page.label = page.displayTitle.slice(0, maxlength) + '\u2026';
+					} else {
+						page.label = page.displayTitle;
 					}
-					let title = page.displaytitle;
-					if (page.title !== page.displaytitle) {
-						title += ' <i>(' + page.title + ')</i>';
+					if (page.title !== page.displayTitle) {
+						page.tooltip = page.displayTitle + ' <i>(' + page.title + ')</i>';
+					} else {
+						page.tooltip = page.displayTitle;
 					}
+					return page;
+				})
+				.map(function(page) {
 					let node = {
 						id: page.title,
-						label: label,
-						title: title,
+						label: page.label,
+						title: page.tooltip,
 
 						getUrl: function() {
 							let title = mw.Title.newFromText(page.title, page.ns);
