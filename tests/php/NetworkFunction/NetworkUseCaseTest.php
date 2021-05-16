@@ -142,9 +142,6 @@ class NetworkUseCaseTest extends TestCase {
 		$request = $this->newBasicRequestModel();
 
 		$this->assertTrue(
-			$request->defaultEnableDisplayTitle
-		);
-		$this->assertTrue(
 			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle
 		);
 	}
@@ -153,9 +150,6 @@ class NetworkUseCaseTest extends TestCase {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'enableDisplayTitle = true' ];
 
-		$this->assertTrue(
-			$request->defaultEnableDisplayTitle
-		);
 		$this->assertTrue(
 			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle
 		);
@@ -166,9 +160,6 @@ class NetworkUseCaseTest extends TestCase {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'enableDisplayTitle = false' ];
 
-		$this->assertTrue(
-			$request->defaultEnableDisplayTitle
-		);
 		$this->assertFalse(
 			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle
 		);
