@@ -141,42 +141,36 @@ class NetworkUseCaseTest extends TestCase {
 	public function testDefaultEnableDisplayTitle() {
 		$request = $this->newBasicRequestModel();
 
-		$this->assertSame(
-			$request->defaultEnableDisplayTitle,
-			true
+		$this->assertTrue(
+			$request->defaultEnableDisplayTitle
 		);
-		$this->assertSame(
-			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle,
-			true
+		$this->assertTrue(
+			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle
 		);
 	}
-
-	public function testOverrideEnableDisplayTitleFalse() {
-		$request = $this->newBasicRequestModel();
-		$request->functionArguments = [ 'enableDisplayTitle = true' ];
-
-		$this->assertSame(
-			$request->defaultEnableDisplayTitle,
-			true
-		);
-		$this->assertSame(
-			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle,
-			true
-		);
-	}
-
 
 	public function testOverrideEnableDisplayTitleTrue() {
 		$request = $this->newBasicRequestModel();
+		$request->functionArguments = [ 'enableDisplayTitle = true' ];
+
+		$this->assertTrue(
+			$request->defaultEnableDisplayTitle
+		);
+		$this->assertTrue(
+			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle
+		);
+	}
+
+
+	public function testOverrideEnableDisplayTitleFalse() {
+		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'enableDisplayTitle = false' ];
 
-		$this->assertSame(
-			$request->defaultEnableDisplayTitle,
-			true
+		$this->assertTrue(
+			$request->defaultEnableDisplayTitle
 		);
-		$this->assertSame(
-			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle,
-			false
+		$this->assertFalse(
+			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle
 		);
 	}
 
