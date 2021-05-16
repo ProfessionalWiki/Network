@@ -8,15 +8,14 @@
 
 			let network = new netw.Network(
 				$this.attr('id'),
-				new netw.ApiPageConnectionRepo(),
+				new netw.ApiPageConnectionRepo($this.data('enabledisplaytitle')),
 				new netw.PageBlacklist(
 					$this.data('exclude'),
 					mw.config.get('networkExcludedNamespaces'),
 					mw.config.get('networkExcludeTalkPages')
 				),
 				$this.data('options'),
-				$this.data('labelmaxlength'),
-				$this.data('enabledisplaytitle')
+				$this.data('labelmaxlength')
 			);
 
 			network.showPages($this.data('pages')).then(function() {

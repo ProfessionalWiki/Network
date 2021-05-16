@@ -33,8 +33,8 @@ class NetworkFunction {
 
 		$requestModel = new RequestModel();
 		$requestModel->functionArguments = $arguments;
-		$requestModel->defaultLabelMaxLength = (int)$GLOBALS['wgPageNetworkDefaultLabelMaxLength'];
 		$requestModel->defaultEnableDisplayTitle = (bool)$GLOBALS['wgPageNetworkDefaultEnableDisplayTitle'];
+		$requestModel->defaultLabelMaxLength = (int)$GLOBALS['wgPageNetworkDefaultLabelMaxLength'];
 
 		/**
 		 * @psalm-suppress PossiblyNullReference

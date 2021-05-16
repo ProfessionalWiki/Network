@@ -7,22 +7,18 @@ module.Network = (function (vis, NetworkData) {
 	 * @param {module.PageBlacklist} pageBlacklist
 	 * @param {object} options
 	 * @param {int} labelMaxLength
-	 * @param {boolean} enableDisplayTitle
 	 */
 	let Network = function(
 		divId,
 		pageConnectionRepo,
 		pageBlacklist,
 		options,
-		labelMaxLength,
-		enableDisplayTitle
+		labelMaxLength
 	) {
 		this._pageConnectionRepo = pageConnectionRepo;
-
-		this._options = options;
 		this._data = new NetworkData(pageBlacklist, labelMaxLength);
+		this._options = options;
 		this._network = this._newNetwork(divId);
-		this._enableDisplayTitle = enableDisplayTitle;
 
 		this._bindEvents();
 	};
@@ -32,7 +28,7 @@ module.Network = (function (vis, NetworkData) {
 	 * @return {Promise}
 	 */
 	Network.prototype.showPages = function(pageNames) {
-		let promise = this._pageConnectionRepo.addConnections(pageNames, this._enableDisplayTitle);
+		let promise = this._pageConnectionRepo.addConnections(pageNames);
 
 		promise.then(
 			connections => {

@@ -4,16 +4,20 @@
 module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 	"use strict"
 
-	let ApiPageConnectionRepo = function() {
+	/**
+	 * @param {boolean} enableDisplayTitle
+	 * @constructor
+	 */
+	let ApiPageConnectionRepo = function(enableDisplayTitle) {
 		this._addedPages = [];
+		this._enableDisplayTitle = enableDisplayTitle;
 	};
 
 	/**
 	 * @param {string[]} pageNames
-	 * @param {boolean} enableDisplayTitle
 	 * @return {Promise}
 	 */
-	ApiPageConnectionRepo.prototype.addConnections = function(pageNames, enableDisplayTitle) {
+	ApiPageConnectionRepo.prototype.addConnections = function(pageNames) {
 		return new Promise(
 			function(resolve) {
 				let pagesToAdd =  pageNames.filter(p => !this._addedPages.includes(p));
@@ -25,7 +29,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 
 					this._queryLinks(pagesToAdd).done(
 						function(apiResponse) {
-							this._apiResponseToPagesAndLinks(apiResponse, enableDisplayTitle).then(connections => resolve(connections))
+							this._apiResponseToPagesAndLinks(apiResponse).then(connections => resolve(connections))
 						}.bind(this)
 					);
 				}
@@ -33,27 +37,27 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 		);
 	};
 
-	ApiPageConnectionRepo.prototype._apiResponseToPagesAndLinks = function(linkQueryResponse, enableDisplayTitle) {
+	ApiPageConnectionRepo.prototype._apiResponseToPagesAndLinks = function(linkQueryResponse) {
 		return new Promise(
 			function(resolve) {
 				let connections = (new ApiConnectionsBuilder()).connectionsFromApiResponses(linkQueryResponse)
 
-				this._queryPageNodeInfo(connections.pages, enableDisplayTitle).done(function(pageInfoResponse) {
+				this._queryPageNodeInfo(connections.pages).done(function(pageInfoResponse) {
 					let missingPages = Object.values(pageInfoResponse.query.pages)
 						.filter(p => p.missing === '')
 						.map(p => p.title);
 
-					let displaytitles = [];
+					let displayTitles = [];
 					pageInfoResponse.query.pages.forEach(function(page) {
 						if ( page.pageprops && page.pageprops.displaytitle) {
-							displaytitles[page.title] = page.pageprops.displaytitle;
+							displayTitles[page.title] = page.pageprops.displaytitle;
 						} else {
-							displaytitles[page.title] = page.title;
+							displayTitles[page.title] = page.title;
 						}
 					});
 
 					connections.pages.forEach(function(page) {
-						page.displaytitle = displaytitles[page.title];
+						page.displayTitle = displayTitles[page.title];
 						if (missingPages.includes(page.title)) {
 							page.isMissing = true;
 						}
@@ -80,14 +84,14 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 		});
 	};
 
-	ApiPageConnectionRepo.prototype._queryPageNodeInfo = function(pageNodes, enableDisplayTitle) {
+	ApiPageConnectionRepo.prototype._queryPageNodeInfo = function(pageNodes) {
 		let parameters = {
 			action: 'query',
 			titles: pageNodes.map(page => page.title),
 			format: 'json',
 			redirects: 'true'
 		};
-		if (enableDisplayTitle) {
+		if (this._enableDisplayTitle) {
 			parameters.prop = [ 'pageprops' ];
 		}
 		return new mw.Api().get(parameters);
