@@ -141,15 +141,6 @@ class NetworkUseCase {
 
 	/**
 	 * @param string[] $arguments
-	 * @param int $defaultLabelMaxLength
-	 * @return int
-	 */
-	private function getLabelMaxLength(array $arguments, int $defaultLabelMaxLength ): int {
-		return isset( $arguments['labelMaxLength'] ) ? (int)$arguments['labelMaxLength'] : $defaultLabelMaxLength;
-	}
-
-	/**
-	 * @param string[] $arguments
 	 * @param bool $defaultEnableDisplayTitle
 	 * @return bool
 	 */
@@ -157,5 +148,14 @@ class NetworkUseCase {
 		return isset( $arguments['enableDisplayTitle'] )
 			? filter_var( $arguments['enableDisplayTitle'], FILTER_VALIDATE_BOOLEAN )
 			: $defaultEnableDisplayTitle;
+	}
+
+	/**
+	 * @param string[] $arguments
+	 * @param int $defaultLabelMaxLength
+	 * @return int
+	 */
+	private function getLabelMaxLength(array $arguments, int $defaultLabelMaxLength ): int {
+		return isset( $arguments['labelMaxLength'] ) ? (int)$arguments['labelMaxLength'] : $defaultLabelMaxLength;
 	}
 }
