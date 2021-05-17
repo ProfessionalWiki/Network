@@ -112,6 +112,25 @@ Example with parameters
             or new line after each closing bracket.
         </td>
     </tr>
+    <tr>
+        <th>enableDisplayTitle</th>
+        <td>true</td>
+        <td>false</td>
+        <td>
+            Should the <a href="https://www.mediawiki.org/wiki/Help:Magic_words#DISPLAYTITLE">display title</a> rather than the page title be displayed as a node's label?
+            Overrides the value of the `$wgPageNetworkDefaultEnableDisplayTitle` configuration variable.
+        </td>
+    </tr>
+    <tr>
+        <th>labelMaxLength</th>
+        <td>20</td>
+        <td>30</td>
+        <td>
+            The text length of a node's label. If the node label must be truncated, an ellipsis (&#8230;) will appended.
+            A value of 0 indicates that the text length is not limited.
+            Overrides the value of the `$wgPageNetworkDefaultLabelMaxLength` configuration variable.
+        </td>
+    </tr>
 </table>
 
 ### Layout CSS
@@ -135,6 +154,8 @@ These configuration settings are available:
 * `$wgPageNetworkOptions` – options passed directly to the graph visualization library
 * `$wgPageNetworkExcludeTalkPages` - indicates if talk pages should be excluded
 * `$wgPageNetworkExcludedNamespaces` - IDs of namespaces to exclude
+* `$wgPageNetworkDefaultEnableDisplayTitle` - indicates if display title should be used for node labels by default
+* `$wgPageNetworkDefaultLabelMaxLength` - default maximum length for node labels
 
 Default values of these configuration settings can be found in "extension.json". Do not change "extension.json".
 
@@ -175,6 +196,25 @@ Example: `$wgPageNetworkExcludedNamespaces = [ NS_USER, NS_PROJECT ];`
 
 See also: https://www.mediawiki.org/wiki/Manual:Namespace#Built-in_namespaces
 
+**$wgPageNetworkDefaultEnableDisplayTitle**
+
+By default, should the display title rather than the page title be displayed as a node's label?
+This can be overridden on a per-graph basis using the `enableDisplayTitle` parameter to #network.
+
+Possible values: `true`, `false`
+
+Default value: `true` (use display title for node labels)
+
+**$wgPageNetworkDefaultLabelMaxLength**
+
+The default text length of a node's label. If the node label must be truncated, an ellipsis (&#8230;) will appended.
+A value of 0 indicates that the text length is not limited.
+This can be overridden on a per-graph basis using the `labelMaxLength` parameter to #network.
+
+Possible values: 0 or a positive integer value
+
+Default value: 20
+
 ### Examples
 
 #### Options parameter
@@ -196,7 +236,7 @@ Array of [vis.js options](https://visjs.github.io/vis-network/docs/network/#opti
 }}
 ```
 
-Wrong: `"font.color": "red"`, right: `"font": { "color": "red" }`, also right: `"font": "14 px arial red"` 
+Wrong: `"font.color": "red"`, right: `"font": { "color": "red" }`, also right: `"font": "14 px arial red"`
 
 #### Using templates
 
@@ -244,7 +284,7 @@ in the `extensions/Network` directory:
 
 * `make ci` - run everything
 * `make cs` - run style checks
-* `make test` - run the tests 
+* `make test` - run the tests
 
 For more details see the `Makefile`.
 
@@ -264,7 +304,9 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 Under development
 
-*
+* Added optional support for using display title for nodes' labels.
+* Added configurable maximum length for node labels.
+* Added tooltips to nodes.
 
 ### Version 1.4.0
 
