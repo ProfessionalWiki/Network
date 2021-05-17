@@ -260,6 +260,12 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 ## Release notes
 
+### Version 1.5.0
+
+Under development
+
+*
+
 ### Version 1.4.0
 
 Released on January 9, 2021.
