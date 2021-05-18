@@ -117,8 +117,9 @@ Example with parameters
         <td>true</td>
         <td>false</td>
         <td>
-            Should the <a href="https://www.mediawiki.org/wiki/Help:Magic_words#DISPLAYTITLE">display title</a> rather than the page title be displayed as a node's label?
-            Overrides the value of the `$wgPageNetworkDefaultEnableDisplayTitle` configuration variable.
+            Should the <a href="https://www.mediawiki.org/wiki/Help:Magic_words#DISPLAYTITLE">display title</a> rather than
+	    the page title be displayed as a node's label?
+	    Overrides the value of the <code>$wgPageNetworkDefaultEnableDisplayTitle</code> configuration variable.
         </td>
     </tr>
     <tr>
@@ -128,7 +129,7 @@ Example with parameters
         <td>
             The text length of a node's label. If the node label must be truncated, an ellipsis (&#8230;) will appended.
             A value of 0 indicates that the text length is not limited.
-            Overrides the value of the `$wgPageNetworkDefaultLabelMaxLength` configuration variable.
+	    Overrides the value of the <code>$wgPageNetworkDefaultLabelMaxLength</code> configuration variable.
         </td>
     </tr>
 </table>
