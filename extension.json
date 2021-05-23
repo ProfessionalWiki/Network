@@ -22,7 +22,33 @@
 
 	"config": {
 		"PageNetworkOptions": {
-			"value": []
+			"value": {
+				"layout": {
+					"randomSeed": 42
+				},
+				"physics": {
+					"barnesHut": {
+						"gravitationalConstant": -5000,
+						"damping": 0.242
+					}
+				},
+				"groups": {
+					"redlink": {
+						"color": {
+							"background": "lightgrey",
+							"border": "grey",
+							"highlight": {
+								"background": "lightgrey",
+								"border": "grey"
+							}
+						},
+						"font": {
+							"color": "#ba0000"
+						}
+					}
+				}
+			},
+			"merge_strategy": "array_replace_recursive"
 		},
 		"PageNetworkExcludeTalkPages": {
 			"value": true

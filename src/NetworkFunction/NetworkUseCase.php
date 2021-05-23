@@ -64,17 +64,6 @@ class NetworkUseCase {
 
 	private function getVisJsOptions( array $arguments ): array {
 		return array_replace_recursive(
-			[
-				'layout' => [
-					'randomSeed' => 42
-				],
-				'physics' => [
-					'barnesHut' => [
-						'gravitationalConstant' => -5000,
-						'damping' => 0.242
-					]
-				]
-			],
 			$this->visJsOptions,
 			json_decode( $arguments['options'] ?? '{}', true ) ?? []
 		);
