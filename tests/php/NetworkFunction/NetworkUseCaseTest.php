@@ -223,15 +223,6 @@ class NetworkUseCaseTest extends TestCase {
 
 		$this->assertSame(
 			[
-				'layout' => [
-					'randomSeed' => 42
-				],
-				'physics' => [
-					'barnesHut' => [
-						'gravitationalConstant' => -5000,
-						'damping' => 0.242
-					]
-				],
 				'nodes' => [
 					'shape' => 'box'
 				]
