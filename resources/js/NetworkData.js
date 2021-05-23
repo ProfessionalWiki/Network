@@ -42,17 +42,9 @@ module.NetworkData = ( function ( vis, mw ) {
 					}
 
 					if (page.isMissing) {
-						node.color = {
-							background: 'lightgrey',
-							border: 'grey',
-							highlight: {
-								background: 'lightgrey',
-								border: 'grey',
-							}
-						};
-						node.font = {
-							color: '#ba0000'
-						};
+						node.group = 'redlink';
+					} else {
+						node.group = 'bluelink';
 					}
 
 					return node;

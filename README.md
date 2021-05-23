@@ -177,8 +177,11 @@ $wgPageNetworkOptions = [
 ];
 ```
 
-	private function registerEditApiModuleFallbacks() {
-	}
+Predefined groups exist to represent links to existing pages (group "bluelink")
+and links to missing pages (group "redilink"). Styling of those groups can be
+overridden site-wide using `$wgPageNetworkOptions` or per graph using the options
+parameter described below.
+
 Note: to change the width or height, use CSS, not the network options.
 
 **$wgPageNetworkExcludeTalkPages**
@@ -308,6 +311,9 @@ Under development
 * Added optional support for using display title for nodes' labels.
 * Added configurable maximum length for node labels.
 * Added tooltips to nodes.
+* Made styling of nodes representing links to existing pages and links to
+  missing pages configurable by adding vis.js groups named "bluelink" and
+  "redlink".
 
 ### Version 1.4.0
 
