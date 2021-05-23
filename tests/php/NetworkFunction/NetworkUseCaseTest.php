@@ -25,7 +25,18 @@ class NetworkUseCaseTest extends TestCase {
 	private function runAndReturnPresenter( RequestModel $requestModel ): SpyNetworkPresenter {
 		$presenter = new SpyNetworkPresenter();
 
-		( new NetworkUseCase( $presenter, [] ) )->run( $requestModel );
+		$visJsOptions = [
+			'layout' => [
+				'randomSeed' => 42
+			],
+			'physics' => [
+				'barnesHut' => [
+					'gravitationalConstant' => -5000,
+					'damping' => 0.242
+				]
+			]
+		];
+		( new NetworkUseCase( $presenter, $visJsOptions ) )->run( $requestModel );
 
 		return $presenter;
 	}
@@ -170,17 +181,7 @@ class NetworkUseCaseTest extends TestCase {
 		( new NetworkUseCase( $presenter, [] ) )->run( $this->newBasicRequestModel() );
 
 		$this->assertSame(
-			[
-				'layout' => [
-					'randomSeed' => 42
-				],
-				'physics' => [
-					'barnesHut' => [
-						'gravitationalConstant' => -5000,
-						'damping' => 0.242
-					]
-				]
-			],
+			[],
 			$presenter->getResponseModel()->visJsOptions
 		);
 	}
@@ -197,19 +198,7 @@ class NetworkUseCaseTest extends TestCase {
 		( new NetworkUseCase( $presenter, $setting ) )->run( $this->newBasicRequestModel() );
 
 		$this->assertEquals(
-			[
-				'height' => '42%',
-				'layout' => [
-					'randomSeed' => 42,
-					'foo' => 'bar'
-				],
-				'physics' => [
-					'barnesHut' => [
-						'gravitationalConstant' => -5000,
-						'damping' => 0.242
-					]
-				]
-			],
+			$setting,
 			$presenter->getResponseModel()->visJsOptions
 		);
 	}
@@ -219,12 +208,23 @@ class NetworkUseCaseTest extends TestCase {
 		$request->functionArguments = [ 'options={"nodes": {"shape": "box"}}' ];
 
 		$presenter = new SpyNetworkPresenter();
-		( new NetworkUseCase( $presenter, [] ) )->run( $request );
+		$defaultOptions = [
+			'nodes' => [
+				'shape' => 'circle',
+				'color' => [
+					'background' => 'red'
+				]
+			]
+		];
+		( new NetworkUseCase( $presenter, $defaultOptions ) )->run( $request );
 
 		$this->assertSame(
 			[
 				'nodes' => [
-					'shape' => 'box'
+					'shape' => 'box',
+					'color' => [
+						'background' => 'red'
+					]
 				]
 			],
 			$presenter->getResponseModel()->visJsOptions
