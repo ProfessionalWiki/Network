@@ -208,23 +208,12 @@ class NetworkUseCaseTest extends TestCase {
 		$request->functionArguments = [ 'options={"nodes": {"shape": "box"}}' ];
 
 		$presenter = new SpyNetworkPresenter();
-		$defaultOptions = [
-			'nodes' => [
-				'shape' => 'circle',
-				'color' => [
-					'background' => 'red'
-				]
-			]
-		];
-		( new NetworkUseCase( $presenter, $defaultOptions ) )->run( $request );
+		( new NetworkUseCase( $presenter, [] ) )->run( $request );
 
 		$this->assertSame(
 			[
 				'nodes' => [
 					'shape' => 'box',
-					'color' => [
-						'background' => 'red'
-					]
 				]
 			],
 			$presenter->getResponseModel()->visJsOptions
@@ -249,20 +238,11 @@ class NetworkUseCaseTest extends TestCase {
 		$this->assertEquals(
 			[
 				'height' => '42%',
-				'layout' => [
-					'randomSeed' => 42
-				],
 				'nodes' => [
 					'color' => 'red',
 					'shape' => 'box',
 					'foo' => 'bar'
 				],
-				'physics' => [
-					'barnesHut' => [
-						'gravitationalConstant' => -5000,
-						'damping' => 0.242
-					]
-				]
 			],
 			$presenter->getResponseModel()->visJsOptions
 		);
