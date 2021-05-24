@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Network;
 
+use MediaWiki\Extension\Network\NetworkFunction\NetworkConfig;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
 use MediaWiki\Extension\Network\NetworkFunction\ParserFunctionNetworkPresenter;
@@ -14,8 +15,8 @@ class Extension {
 		return new self();
 	}
 
-	public function newNetworkFunction( NetworkPresenter $presenter ): NetworkUseCase {
-		return new NetworkUseCase( $presenter, $GLOBALS['wgPageNetworkOptions'] );
+	public function newNetworkFunction( NetworkPresenter $presenter, NetworkConfig $config ): NetworkUseCase {
+		return new NetworkUseCase( $presenter, $config->getOptions() );
 	}
 
 	public function newNetworkPresenter(): NetworkPresenter {
