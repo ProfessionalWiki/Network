@@ -18,9 +18,6 @@ class NetworkFunction {
 	 */
 	private $config;
 
-	/**
-	 * @param NetworkConfig $config
-	 */
 	public function __construct( NetworkConfig $config ) {
 		$this->config = $config;
 	}
