@@ -178,7 +178,7 @@ $wgPageNetworkOptions = [
 ```
 
 Predefined groups exist to represent links to existing pages (group "bluelink")
-and links to missing pages (group "redilink"). Styling of those groups can be
+and links to missing pages (group "redlink"). Styling of those groups can be
 overridden site-wide using `$wgPageNetworkOptions` or per graph using the options
 parameter described below.
 
