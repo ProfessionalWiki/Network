@@ -34,16 +34,53 @@
 				},
 				"groups": {
 					"redlink": {
+						"borderWidth": 0,
 						"color": {
-							"background": "lightgrey",
+							"background": "white",
 							"border": "grey",
 							"highlight": {
-								"background": "lightgrey",
+								"background": "white",
 								"border": "grey"
 							}
 						},
 						"font": {
 							"color": "#ba0000"
+						},
+						"shape": "image",
+						"size": 10,
+						"image": "extensions/Network/resources/lib/fontawesome/svgs/solid/ban.svg",
+						"shapeProperties": {
+							"useBorderWithImage": true
+						}
+					},
+					"bluelink": {
+						"borderWidth": 0,
+						"color": {
+							"background": "white",
+							"highlight": {
+								"background": "white"
+							}
+						},
+						"shape": "image",
+						"size": 10,
+						"image": "extensions/Network/resources/lib/fontawesome/svgs/regular/file.svg",
+						"shapeProperties": {
+							"useBorderWithImage": true
+						}
+					},
+					"externallink": {
+						"borderWidth": 0,
+						"color": {
+							"background": "white",
+							"highlight": {
+								"background": "white"
+							}
+						},
+						"shape": "image",
+						"size": 10,
+						"image": "extensions/Network/resources/lib/fontawesome/svgs/solid/wifi.svg",
+						"shapeProperties": {
+							"useBorderWithImage": true
 						}
 					}
 				}

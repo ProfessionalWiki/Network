@@ -36,6 +36,9 @@ module.NetworkData = ( function ( vis, mw ) {
 						title: page.tooltip,
 
 						getUrl: function() {
+							if (page.isExternal) {
+								return page.title;
+							}
 							let title = mw.Title.newFromText(page.title, page.ns);
 							return  title === null ? '' : title.getUrl();
 						}
@@ -43,6 +46,8 @@ module.NetworkData = ( function ( vis, mw ) {
 
 					if (page.isMissing) {
 						node.group = 'redlink';
+					} else if (page.isExternal) {
+						node.group = 'externallink';
 					} else {
 						node.group = 'bluelink';
 					}

@@ -59,7 +59,11 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 					};
 
 					connections.pages.forEach(function(page) {
-						page.displayTitle = displayTitles[page.title];
+						if ( page.isExternal ) {
+							page.displayTitle = page.title;
+						} else {
+							page.displayTitle = displayTitles[page.title];
+						}
 						if (missingPages.includes(page.title)) {
 							page.isMissing = true;
 						}
@@ -89,7 +93,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 	ApiPageConnectionRepo.prototype._queryPageNodeInfo = function(pageNodes) {
 		let parameters = {
 			action: 'query',
-			titles: pageNodes.map(page => page.title),
+			titles: pageNodes.filter(page => page.isExternal !== true).map(page => page.title),
 			format: 'json',
 			redirects: 'true'
 		};

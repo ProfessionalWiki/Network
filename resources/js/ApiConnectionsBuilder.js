@@ -35,6 +35,7 @@ module.ApiConnectionsBuilder = ( function () {
 			.map(function(page) {
 				return {
 					title: page.title,
+					isExternal: page.external
 				};
 			});
 	};
@@ -43,16 +44,18 @@ module.ApiConnectionsBuilder = ( function () {
 		let pages = {};
 
 		centralPages.forEach(function(centralPage) {
-			pages[centralPage.title] = {
-				title: centralPage.title
-			};
+			pages[centralPage.title] = { title: centralPage.title, external: false };
 
 			centralPage.outgoingLinks.forEach(
-				page => { pages[page.title] = page; }
+				page => { pages[page.title] = { title: page.title, external: false } }
 			);
 
 			centralPage.incomingLinks.forEach(
-				page => { pages[page.title] = page; }
+				page => { pages[page.title] = { title: page.title, external: false } }
+			);
+
+			centralPage.externalLinks.forEach(
+				page => { pages[page['*']] = { title: page['*'], external: true } }
 			);
 		});
 
@@ -63,7 +66,8 @@ module.ApiConnectionsBuilder = ( function () {
 		return centralPages.map(
 			centralPage => {
 				return this._buildOutgoingLinks(centralPage.title, centralPage.outgoingLinks)
-					.concat(this._buildIncomingLinks(centralPage.title, centralPage.incomingLinks));
+					.concat(this._buildIncomingLinks(centralPage.title, centralPage.incomingLinks))
+					.concat(this._buildExternalLinks(centralPage.title, centralPage.externalLinks));
 			}
 		).flat();
 	}
@@ -74,6 +78,17 @@ module.ApiConnectionsBuilder = ( function () {
 				return {
 					from: sourceTitle,
 					to: page.title
+				};
+			}
+		);
+	};
+
+	ApiConnectionsBuilder.prototype._buildExternalLinks = function(sourceTitle, targetPages) {
+		return targetPages.map(
+			page => {
+				return {
+					from: sourceTitle,
+					to: page['*']
 				};
 			}
 		);
