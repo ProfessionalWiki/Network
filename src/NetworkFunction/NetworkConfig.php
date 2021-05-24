@@ -48,8 +48,7 @@ class NetworkConfig {
 	/**
 	 * @param array $options
 	 */
-
-	public function setOptions( $options ) {
+	public function setOptions( $options ) : void {
 		$this->options = $options;
 	}
 
@@ -63,7 +62,7 @@ class NetworkConfig {
 	/**
 	 * @param bool $excludeTalkPages
 	 */
-	public function setExcludeTalkPages( bool $excludeTalkPages ) {
+	public function setExcludeTalkPages( bool $excludeTalkPages ) : void {
 		$this->excludeTalkPages = $excludeTalkPages;
 	}
 
@@ -77,7 +76,7 @@ class NetworkConfig {
 	/**
 	 * @param int[] $excludeTalkPages
 	 */
-	public function setExcludedNamespaces( $excludedNamespaces ) {
+	public function setExcludedNamespaces( $excludedNamespaces ) : void {
 		$this->excludedNamespaces = $excludedNamespaces;
 	}
 
@@ -91,7 +90,7 @@ class NetworkConfig {
 	/**
 	 * @param bool $excludeTalkPages
 	 */
-	public function setDefaultEnableDisplayTitle( bool $defaultEnableDisplayTitle ) {
+	public function setDefaultEnableDisplayTitle( bool $defaultEnableDisplayTitle ) : void {
 		$this->defaultEnableDisplayTitle = $defaultEnableDisplayTitle;
 	}
 
@@ -105,7 +104,7 @@ class NetworkConfig {
 	/**
 	 * @param int $defaultLabelMaxLength
 	 */
-	public function setDefaultLabelMaxLength( int $defaultLabelMaxLength ) {
+	public function setDefaultLabelMaxLength( int $defaultLabelMaxLength ) : void {
 		$this->defaultLabelMaxLength = $defaultLabelMaxLength;
 	}
 }
