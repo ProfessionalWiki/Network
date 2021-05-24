@@ -38,43 +38,23 @@ class NetworkConfig {
 		$this->defaultLabelMaxLength = (int)$GLOBALS['wgPageNetworkDefaultLabelMaxLength'];
 	}
 
-	public function getOptions() : array {
+	public function getOptions(): array {
 		return $this->options;
 	}
 
-	public function setOptions( array $options ) : void {
-		$this->options = $options;
-	}
-
-	public function getExcludeTalkPages() : bool {
+	public function getExcludeTalkPages(): bool {
 		return $this->excludeTalkPages;
 	}
 
-	public function setExcludeTalkPages( bool $excludeTalkPages ) : void {
-		$this->excludeTalkPages = $excludeTalkPages;
-	}
-
-	public function getExcludedNamespaces() : array {
+	public function getExcludedNamespaces(): array {
 		return $this->excludedNamespaces;
 	}
 
-	public function setExcludedNamespaces( array $excludedNamespaces ) : void {
-		$this->excludedNamespaces = $excludedNamespaces;
-	}
-
-	public function getDefaultEnableDisplayTitle() : bool {
+	public function getDefaultEnableDisplayTitle(): bool {
 		return $this->defaultEnableDisplayTitle;
 	}
 
-	public function setDefaultEnableDisplayTitle( bool $defaultEnableDisplayTitle ) : void {
-		$this->defaultEnableDisplayTitle = $defaultEnableDisplayTitle;
-	}
-
-	public function getDefaultLabelMaxLength() : int {
+	public function getDefaultLabelMaxLength(): int {
 		return $this->defaultLabelMaxLength;
-	}
-
-	public function setDefaultLabelMaxLength( int $defaultLabelMaxLength ) : void {
-		$this->defaultLabelMaxLength = $defaultLabelMaxLength;
 	}
 }
