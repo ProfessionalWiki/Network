@@ -11,6 +11,7 @@ use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
 use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
 use OutputPage;
 use Parser;
+use ParserOutput;
 
 class NetworkFunction {
 
