@@ -6,5 +6,17 @@
 			"Kghbln"
 		]
 	},
-	"network-desc": "{{Desc|name=Network|url=https://github.com/ProfessionalWiki/Network}}"
+	"network-desc": "{{Desc|name=Network|url=https://github.com/ProfessionalWiki/Network}}",
+	"pagenetwork-pages-field-label": "Field label\\n{{Identical|Pages}}",
+	"pagenetwork-pages-field-help": "Field help",
+	"pagenetwork-exclude-field-label": "Field label\\n{{Identical|Exclude Pages}}",
+	"pagenetwork-exclude-field-help": "Field help",
+	"pagenetwork-class-field-label": "Field label\\n{{Identical|CSS Classes}}",
+	"pagenetwork-class-field-help": "Field help",
+	"pagenetwork-options-field-label": "Field label\\n{{Identical|Graph Options}}",
+	"pagenetwork-options-field-help": "Field help",
+	"pagenetwork-disableDisplayTitle-field-label": "Field label\\n{{Identical|Enable Display Title}}",
+	"pagenetwork-disableDisplayTitle-field-help": "Field help",
+	"pagenetwork-labelMaxLength-field-label": "Field label\\n{{Identical|Maximum Label Length}}",
+	"pagenetwork-labelMaxLength-field-help": "Field help"
 }

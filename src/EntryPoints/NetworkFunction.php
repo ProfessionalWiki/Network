@@ -9,6 +9,7 @@ use MediaWiki\Extension\Network\NetworkFunction\NetworkConfig;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
 use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
+use OutputPage;
 use Parser;
 
 class NetworkFunction {
@@ -26,20 +27,23 @@ class NetworkFunction {
 		$parser->setFunctionHook(
 			'network',
 			function() {
-				return ( new self( new NetworkConfig() ) )->handleParserFunctionCall( ...func_get_args() );
+				$args = func_get_args();
+				$parser = $args[0];
+				array_shift( $args );
+				return ( new self( new NetworkConfig() ) )->handleParserFunctionCall( $parser->getOutput(), $args );
 			}
 		);
 	}
 
 	/**
-	 * @param Parser $parser
-	 * @param string[] ...$arguments
+	 * @param OutputPage $parser
+	 * @param string[] $arguments
 	 * @return array|string
 	 */
-	public function handleParserFunctionCall( Parser $parser, ...$arguments ) {
-		$parser->getOutput()->addModules( [ 'ext.network' ] );
-		$parser->getOutput()->addJsConfigVars( 'networkExcludedNamespaces', $this->config->getExcludedNamespaces() );
-		$parser->getOutput()->addJsConfigVars( 'networkExcludeTalkPages', $this->config->getExcludeTalkPages() );
+	public function handleParserFunctionCall( OutputPage $output, $arguments ) {
+		$output->addModules( [ 'ext.network' ] );
+		$output->addJsConfigVars( 'networkExcludedNamespaces', $this->config->getExcludedNamespaces() );
+		$output->addJsConfigVars( 'networkExcludeTalkPages', $this->config->getExcludeTalkPages() );
 
 		$requestModel = new RequestModel();
 		$requestModel->functionArguments = $arguments;
@@ -49,7 +53,7 @@ class NetworkFunction {
 		/**
 		 * @psalm-suppress PossiblyNullReference
 		 */
-		$requestModel->renderingPageName = $parser->getTitle()->getFullText();
+		$requestModel->renderingPageName = $output->getTitle()->getFullText();
 		$presenter = Extension::getFactory()->newNetworkPresenter();
 
 		$this->newUseCase( $presenter, $this->config )->run( $requestModel );

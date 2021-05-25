@@ -5,7 +5,20 @@
 			"Karsten Hoffmeyer"
 		]
 	},
+	"network": "Network",
 	"network-name": "Network",
 	"network-desc": "Allows adding interactive network visualizations in your wiki pages",
-	"network-aria": "Network visualization showing the outgoing and incoming links for {{PLURAL:$1|page|pages}} $2"
+	"network-aria": "Network visualization showing the outgoing and incoming links for {{PLURAL:$1|page|pages}} $2",
+	"pagenetwork-pages-field-label": "Pages",
+	"pagenetwork-pages-field-help": "The name of the page or pages to show connections for, one per line",
+	"pagenetwork-exclude-field-label": "Exclude Pages",
+	"pagenetwork-exclude-field-help": "Pages to exclude from the network graph, one per line",
+	"pagenetwork-class-field-label": "CSS Classes",
+	"pagenetwork-class-field-help": "Extra css class(es) to add to the network graph, separated by spaces",
+	"pagenetwork-options-field-label": "Graph Options",
+	"pagenetwork-options-field-help": "JSON structure with vis.js graph options",
+	"pagenetwork-disableDisplayTitle-field-label": "Disable Display Title",
+	"pagenetwork-disableDisplayTitle-field-help": "Should the page title or the display title be displayed as a node's label?",
+	"pagenetwork-labelMaxLength-field-label": "Maximum Label Length",
+	"pagenetwork-labelMaxLength-field-help": "The maximum text length of a node's label or 0 if unlimited. If the node label must be truncated, an ellipsis (…) will appended."
 }
