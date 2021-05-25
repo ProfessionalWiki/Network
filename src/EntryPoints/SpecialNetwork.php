@@ -59,6 +59,9 @@ class SpecialNetwork extends IncludableSpecialPage {
 		);
 		$params[] = 'labelMaxLength=' . strval( $labelMaxLength );
 
+		/**
+		 * @psalm-suppress PossiblyNullReference
+		 */
 		$html = ( new NetworkFunction( $config ) )->handleParserFunctionCall(
 			$output,
 			$output->getTitle()->getFullText(),
