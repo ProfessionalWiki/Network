@@ -19,8 +19,9 @@
 		<MissingPropertyType errorLevel="suppress" />
 		<MissingClosureReturnType errorLevel="suppress" />
 		<MissingParamType>
-			<errorLevel type="suppress" />
-			<file name="../../includes/specialpage/IncludableSpecialPage.php" />
+			<errorLevel type="suppress">
+				<file name="../../includes/specialpage/IncludableSpecialPage.php" />
+			</errorLevel>
 		</MissingParamType>
 	</issueHandlers>
 </psalm>
