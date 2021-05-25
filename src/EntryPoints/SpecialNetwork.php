@@ -9,6 +9,9 @@ use IncludableSpecialPage;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkConfig;
 use Title;
 
+/**
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 class SpecialNetwork extends IncludableSpecialPage {
 
 	public function __construct() {
@@ -56,7 +59,11 @@ class SpecialNetwork extends IncludableSpecialPage {
 		);
 		$params[] = 'labelMaxLength=' . strval( $labelMaxLength );
 
-		$html = ( new NetworkFunction( $config ) )->handleParserFunctionCall( $output, $params );
+		$html = ( new NetworkFunction( $config ) )->handleParserFunctionCall(
+			$output,
+			$output->getTitle()->getFullText(),
+			$params
+		);
 		$output->addHTML( $html[0] );
 
 		if ( !$this->including() ) {

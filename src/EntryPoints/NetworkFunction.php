@@ -30,17 +30,22 @@ class NetworkFunction {
 				$args = func_get_args();
 				$parser = $args[0];
 				array_shift( $args );
-				return ( new self( new NetworkConfig() ) )->handleParserFunctionCall( $parser->getOutput(), $args );
+				return ( new self( new NetworkConfig() ) )->handleParserFunctionCall(
+					$parser->getOutput(),
+					$parser->getTitle()->getFullText(),
+					$args
+				);
 			}
 		);
 	}
 
 	/**
-	 * @param OutputPage $parser
+	 * @param OutputPage|ParserOutput $output
+	 * @param string $renderingPageName
 	 * @param string[] $arguments
 	 * @return array|string
 	 */
-	public function handleParserFunctionCall( OutputPage $output, $arguments ) {
+	public function handleParserFunctionCall( $output, $renderingPageName, $arguments ) {
 		$output->addModules( [ 'ext.network' ] );
 		$output->addJsConfigVars( 'networkExcludedNamespaces', $this->config->getExcludedNamespaces() );
 		$output->addJsConfigVars( 'networkExcludeTalkPages', $this->config->getExcludeTalkPages() );
@@ -53,7 +58,7 @@ class NetworkFunction {
 		/**
 		 * @psalm-suppress PossiblyNullReference
 		 */
-		$requestModel->renderingPageName = $output->getTitle()->getFullText();
+		$requestModel->renderingPageName = $renderingPageName;
 		$presenter = Extension::getFactory()->newNetworkPresenter();
 
 		$this->newUseCase( $presenter, $this->config )->run( $requestModel );
