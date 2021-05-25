@@ -18,7 +18,7 @@ class SpecialNetwork extends IncludableSpecialPage {
 	/**
 	 * @param string|null $subPage
 	 */
-	public function execute( $subPage ) {
+	public function execute( $subPage ) : void {
 		$request = $this->getRequest();
 		$output = $this->getOutput();
 		$this->setHeaders();
