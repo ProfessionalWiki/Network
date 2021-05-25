@@ -134,6 +134,23 @@ Example with parameters
     </tr>
 </table>
 
+There is also an includable special page, Special:Network, that can be used to construct graphs interactively. The
+special page presents a form that can be filled in with the same parameters listed above and submitted to render a
+graph. The special page can also be included in other pages for the same results as the parser function with the
+following modifications: the pages must be provided in a single `pages` parameter, and all values for the `pages` and
+`exclude` parameters must be separated by newlines. For example,
+
+```
+{{Special:Network
+ |pages=Page1
+ Page2
+ Page3
+ | class = col-lg-3 mt-0
+ | exclude = Main Page
+ Sitemap
+}}
+```
+
 ### Layout CSS
 
 The network graphs are located in a div with class `network-visualization`. The default css for this class is

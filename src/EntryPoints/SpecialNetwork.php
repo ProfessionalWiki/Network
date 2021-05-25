@@ -43,8 +43,12 @@ class SpecialNetwork extends IncludableSpecialPage {
 		$options = $request->getText( 'options', json_encode( $config->getOptions(), JSON_PRETTY_PRINT ) );
 		$params[] = 'options=' . $options;
 
-		$disableDisplayTitle = $request->getBool( 'disableDisplayTitle' );
-		$params[] = 'enableDisplayTitle=' . ( $disableDisplayTitle ? 'false' : 'true' );
+		$enableDisplayTitle = filter_var(
+			$request->getText( 'enableDisplayTitle', strval( $config->getDefaultEnableDisplayTitle() ) ),
+			FILTER_VALIDATE_BOOL,
+			FILTER_NULL_ON_FAILURE
+		);
+		$params[] = 'enableDisplayTitle=' . ( $enableDisplayTitle ? 'true' : 'false' );
 
 		$labelMaxLength = $request->getInt(
 			'labelMaxLength',
@@ -88,12 +92,12 @@ class SpecialNetwork extends IncludableSpecialPage {
 					'default' => $options,
 					'name' => 'options'
 				],
-				'disableDisplayTitle' => [
-					'label-message' => 'pagenetwork-disableDisplayTitle-field-label',
-					'help-message' => 'pagenetwork-disableDisplayTitle-field-help',
+				'enableDisplayTitle' => [
+					'label-message' => 'pagenetwork-enableDisplayTitle-field-label',
+					'help-message' => 'pagenetwork-enableDisplayTitle-field-help',
 					'class' => 'HTMLCheckField',
-					'default' => $disableDisplayTitle,
-					'name' => 'disableDisplayTitle'
+					'default' => $enableDisplayTitle,
+					'name' => 'enableDisplayTitle'
 				],
 				'labelMaxLengthfield' => [
 					'label-message' => 'pagenetwork-labelMaxLength-field-label',

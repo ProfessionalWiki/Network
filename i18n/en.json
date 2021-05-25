@@ -17,8 +17,8 @@
 	"pagenetwork-class-field-help": "Extra css class(es) to add to the network graph, separated by spaces",
 	"pagenetwork-options-field-label": "Graph Options",
 	"pagenetwork-options-field-help": "JSON structure with vis.js graph options",
-	"pagenetwork-disableDisplayTitle-field-label": "Disable Display Title",
-	"pagenetwork-disableDisplayTitle-field-help": "Should the page title or the display title be displayed as a node's label?",
+	"pagenetwork-enableDisplayTitle-field-label": "Enable Display Title",
+	"pagenetwork-enableDisplayTitle-field-help": "Should the page title or the display title be displayed as a node's label?",
 	"pagenetwork-labelMaxLength-field-label": "Maximum Label Length",
 	"pagenetwork-labelMaxLength-field-help": "The maximum text length of a node's label or 0 if unlimited. If the node label must be truncated, an ellipsis (…) will appended."
 }
