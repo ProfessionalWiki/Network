@@ -43,7 +43,7 @@ class SpecialNetwork extends IncludableSpecialPage {
 	/**
 	 * @param WebRequest $request
 	 * @param NetworkConfig $config
-	 * @return string[] $params
+	 * @return array $params
 	 */
 	private function parseParams( WebRequest $request, NetworkConfig $config ) : array {
 		$params = [];
@@ -101,7 +101,7 @@ class SpecialNetwork extends IncludableSpecialPage {
 	/**
 	 * @param string[] $arguments
 	 * @param NetworkConfig $config
-	 * @return string
+	 * @return mixed[]|string
 	 */
 	public function showGraph( array $arguments, NetworkConfig $config) : string {
 		$output = $this->getOutput();
