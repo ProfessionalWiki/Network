@@ -11,7 +11,7 @@ class SpecialNetworkPresenter extends AbstractNetworkPresenter {
 	}
 
 	/**
-	 * @return mixed[]|string
+	 * @return string
 	 */
 	public function getReturnValue() {
 		return $this->html;

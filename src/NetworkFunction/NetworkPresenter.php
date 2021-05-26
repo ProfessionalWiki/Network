@@ -10,8 +10,4 @@ interface NetworkPresenter {
 
 	public function setTooManyPagesError(): void;
 
-	/**
-	 * @return mixed[]|string
-	 */
-	public function getReturnValue();
 }

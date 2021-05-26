@@ -101,7 +101,7 @@ class SpecialNetwork extends IncludableSpecialPage {
 	/**
 	 * @param string[] $arguments
 	 * @param NetworkConfig $config
-	 * @return mixed[]|string
+	 * @return string
 	 */
 	public function showGraph( array $arguments, NetworkConfig $config) : string {
 		$output = $this->getOutput();
