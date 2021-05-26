@@ -8,6 +8,7 @@ use MediaWiki\Extension\Network\Extension;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkConfig;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
+use MediaWiki\Extension\Network\NetworkFunction\ParserFunctionNetworkPresenter;
 use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
 use Parser;
 
@@ -50,11 +51,11 @@ class NetworkFunction {
 		 * @psalm-suppress PossiblyNullReference
 		 */
 		$requestModel->renderingPageName = $parser->getTitle()->getFullText();
-		$presenter = Extension::getFactory()->newNetworkPresenter();
+		$presenter = Extension::getFactory()->newParserFunctionNetworkPresenter();
 
 		$this->newUseCase( $presenter, $this->config )->run( $requestModel );
 
-		return $presenter->getParserFunctionReturnValue();
+		return $presenter->getReturnValue();
 	}
 
 	private function newUseCase( NetworkPresenter $presenter, NetworkConfig $config ): NetworkUseCase {

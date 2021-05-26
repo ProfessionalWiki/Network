@@ -6,44 +6,27 @@ namespace MediaWiki\Extension\Network\NetworkFunction;
 
 use Html;
 
-class ParserFunctionNetworkPresenter implements NetworkPresenter {
-
-	private static $idCounter = 1;
+class ParserFunctionNetworkPresenter extends AbstractNetworkPresenter {
 
 	/**
-	 * @var mixed[]|string
+	 * @var array
 	 */
-	private $parserFunctionReturnValue = '';
+	private $parserFunctionReturnValue = [];
 
-	public function showGraph( ResponseModel $viewModel ): void {
+	public function buildGraph( ResponseModel $viewModel ): void {
+		$this->setHtml( $viewModel );
 		$this->parserFunctionReturnValue = [
-			Html::element(
-				'div',
-				[
-					'id' => 'network-viz-' . (string)self::$idCounter++,
-					'class' => $viewModel->cssClass,
-					'data-pages' => json_encode( $viewModel->pageNames ),
-					'data-exclude' => json_encode( $viewModel->excludedPages ),
-					'data-options' => json_encode( $viewModel->visJsOptions ),
-					'data-enabledisplaytitle' => json_encode( $viewModel->enableDisplayTitle ),
-					'data-labelmaxlength' => json_encode( $viewModel->labelMaxLength ),
-				]
-			),
+			$this->html,
 			'noparse' => true,
 			'isHTML' => true,
 		];
 	}
 
 	/**
-	 * @return mixed[]|string
+	 * @return array
 	 */
-	public function getParserFunctionReturnValue() {
+	public function getReturnValue() : array {
 		return $this->parserFunctionReturnValue;
-	}
-
-	public function showTooManyPagesError(): void {
-		// TODO: i18n
-		$this->parserFunctionReturnValue = 'Too many pages. Can only show connections for up to 100 pages.';
 	}
 
 }

@@ -48,13 +48,15 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 						.map(p => p.title);
 
 					let displayTitles = [];
-					pageInfoResponse.query.pages.forEach(function(page) {
+					var index;
+					for ( index in pageInfoResponse.query.pages ) {
+						let page = pageInfoResponse.query.pages[index];
 						if ( page.pageprops && page.pageprops.displaytitle) {
 							displayTitles[page.title] = page.pageprops.displaytitle;
 						} else {
 							displayTitles[page.title] = page.title;
 						}
-					});
+					};
 
 					connections.pages.forEach(function(page) {
 						page.displayTitle = displayTitles[page.title];
