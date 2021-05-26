@@ -6,13 +6,12 @@ namespace MediaWiki\Extension\Network\NetworkFunction;
 
 interface NetworkPresenter {
 
-	public function showGraph( ResponseModel $viewModel ): void;
+	public function buildGraph( ResponseModel $viewModel ): void;
 
-	public function showTooManyPagesError(): void;
+	public function setTooManyPagesError(): void;
 
 	/**
 	 * @return mixed[]|string
 	 */
-	public function getParserFunctionReturnValue();
-
+	public function getReturnValue();
 }

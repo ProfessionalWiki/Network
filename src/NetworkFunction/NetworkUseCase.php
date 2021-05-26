@@ -19,7 +19,7 @@ class NetworkUseCase {
 		$response->pageNames = $this->getPageNames( $request );
 
 		if ( count( $response->pageNames ) > 100 ) {
-			$this->presenter->showTooManyPagesError();
+			$this->presenter->setTooManyPagesError();
 			return;
 		}
 
@@ -31,7 +31,7 @@ class NetworkUseCase {
 		$response->enableDisplayTitle = $this->getEnableDisplayTitle( $keyValuePairs, $request->defaultEnableDisplayTitle );
 		$response->labelMaxLength = $this->getLabelMaxLength( $keyValuePairs, $request->defaultLabelMaxLength );
 
-		$this->presenter->showGraph( $response );
+		$this->presenter->buildGraph( $response );
 	}
 
 

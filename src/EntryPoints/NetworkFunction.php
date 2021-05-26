@@ -8,10 +8,9 @@ use MediaWiki\Extension\Network\Extension;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkConfig;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
+use MediaWiki\Extension\Network\NetworkFunction\ParserFunctionNetworkPresenter;
 use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
-use OutputPage;
 use Parser;
-use ParserOutput;
 
 class NetworkFunction {
 
@@ -28,28 +27,20 @@ class NetworkFunction {
 		$parser->setFunctionHook(
 			'network',
 			function() {
-				$args = func_get_args();
-				$parser = $args[0];
-				array_shift( $args );
-				return ( new self( new NetworkConfig() ) )->handleParserFunctionCall(
-					$parser->getOutput(),
-					$parser->getTitle()->getFullText(),
-					$args
-				);
+				return ( new self( new NetworkConfig() ) )->handleParserFunctionCall( ...func_get_args() );
 			}
 		);
 	}
 
 	/**
-	 * @param OutputPage|ParserOutput $output
-	 * @param string $renderingPageName
-	 * @param string[] $arguments
+	 * @param Parser $parser
+	 * @param string[] ...$arguments
 	 * @return array|string
 	 */
-	public function handleParserFunctionCall( $output, $renderingPageName, $arguments ) {
-		$output->addModules( [ 'ext.network' ] );
-		$output->addJsConfigVars( 'networkExcludedNamespaces', $this->config->getExcludedNamespaces() );
-		$output->addJsConfigVars( 'networkExcludeTalkPages', $this->config->getExcludeTalkPages() );
+	public function handleParserFunctionCall( Parser $parser, ...$arguments ) {
+		$parser->getOutput()->addModules( [ 'ext.network' ] );
+		$parser->getOutput()->addJsConfigVars( 'networkExcludedNamespaces', $this->config->getExcludedNamespaces() );
+		$parser->getOutput()->addJsConfigVars( 'networkExcludeTalkPages', $this->config->getExcludeTalkPages() );
 
 		$requestModel = new RequestModel();
 		$requestModel->functionArguments = $arguments;
@@ -59,12 +50,12 @@ class NetworkFunction {
 		/**
 		 * @psalm-suppress PossiblyNullReference
 		 */
-		$requestModel->renderingPageName = $renderingPageName;
-		$presenter = Extension::getFactory()->newNetworkPresenter();
+		$requestModel->renderingPageName = $parser->getTitle()->getFullText();
+		$presenter = Extension::getFactory()->newParserFunctionNetworkPresenter();
 
 		$this->newUseCase( $presenter, $this->config )->run( $requestModel );
 
-		return $presenter->getParserFunctionReturnValue();
+		return $presenter->getReturnValue();
 	}
 
 	private function newUseCase( NetworkPresenter $presenter, NetworkConfig $config ): NetworkUseCase {

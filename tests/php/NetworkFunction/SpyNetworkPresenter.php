@@ -12,7 +12,7 @@ class SpyNetworkPresenter implements NetworkPresenter {
 	private $viewModel;
 	private $errors = [];
 
-	public function showGraph( ResponseModel $viewModel ): void {
+	public function buildGraph( ResponseModel $viewModel ): void {
 		$this->viewModel = $viewModel;
 	}
 
@@ -20,7 +20,7 @@ class SpyNetworkPresenter implements NetworkPresenter {
 		return $this->viewModel;
 	}
 
-	public function showTooManyPagesError(): void {
+	public function setTooManyPagesError(): void {
 		$this->errors[] = 'too many pages';
 	}
 

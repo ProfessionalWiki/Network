@@ -8,6 +8,7 @@ use MediaWiki\Extension\Network\NetworkFunction\NetworkConfig;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
 use MediaWiki\Extension\Network\NetworkFunction\ParserFunctionNetworkPresenter;
+use MediaWiki\Extension\Network\NetworkFunction\SpecialNetworkPresenter;
 
 class Extension {
 
@@ -19,8 +20,12 @@ class Extension {
 		return new NetworkUseCase( $presenter, $config->getOptions() );
 	}
 
-	public function newNetworkPresenter(): NetworkPresenter {
+	public function newParserFunctionNetworkPresenter(): ParserFunctionNetworkPresenter {
 		return new ParserFunctionNetworkPresenter();
+	}
+
+	public function newSpecialNetworkPresenter(): SpecialNetworkPresenter {
+		return new SpecialNetworkPresenter();
 	}
 
 	public static function addMediaWiki131compat(): void {
