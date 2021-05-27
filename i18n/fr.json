@@ -1,9 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gomoko"
+			"Ajeje Brazorf",
+			"Gomoko",
+			"JenyxGym"
 		]
 	},
 	"network-desc": "Permet l’ajout de visualisations de réseau interactives dans vos pages wiki",
-	"network-aria": "Affichage du réseau montrant les liens sortant et entrant pour {{PLURAL:$1|la page|les pages}} $2"
+	"network-aria": "Affichage du réseau montrant les liens sortant et entrant pour {{PLURAL:$1|la page|les pages}} $2",
+	"pagenetwork-pages-field-label": "Pages",
+	"pagenetwork-options-field-label": "Options du graphique"
 }

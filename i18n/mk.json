@@ -4,6 +4,19 @@
 			"Bjankuloski06"
 		]
 	},
+	"network": "Мрежа",
 	"network-desc": "Овозможува додавање на интерактивни нагледни прикази на мрежата во вашите викистраници",
-	"network-aria": "Мрежен нагледен приказ на појдовните и дојдовните врски за {{PLURAL:$1|страницата|страниците}} $2"
+	"network-aria": "Мрежен нагледен приказ на појдовните и дојдовните врски за {{PLURAL:$1|страницата|страниците}} $2",
+	"pagenetwork-pages-field-label": "Страници",
+	"pagenetwork-pages-field-help": "За која страница или страници да се прикажат поврзаности, по една во секој ред.\nПо основно ја дава главната страница.",
+	"pagenetwork-exclude-field-label": "Изземи страници",
+	"pagenetwork-exclude-field-help": "Кои страници да се изземат од графиконот на мрежата, по една во секој ред.",
+	"pagenetwork-class-field-label": "CSS-класи",
+	"pagenetwork-class-field-help": "Дополнителни CSS-класи за додавање во графиконот на мрежата, одделени со празни места.",
+	"pagenetwork-options-field-label": "Нагодувања за графиконот",
+	"pagenetwork-options-field-help": "JSON-структура со графиконски можности на vis.js.",
+	"pagenetwork-enableDisplayTitle-field-label": "Овозможи наслов за приказ",
+	"pagenetwork-enableDisplayTitle-field-help": "Дали да се прикажува насловот на страницата или друг наслов за приказ како натпис на јазолот?",
+	"pagenetwork-labelMaxLength-field-label": "Допуштена должина на натписот",
+	"pagenetwork-labelMaxLength-field-help": "Најголемата допуштена должина на текстот во натписот на јазолот или 0 за неограничено. Ако натписот мора да биде скратен, на крајот ќе се појават три точки (…)."
 }
