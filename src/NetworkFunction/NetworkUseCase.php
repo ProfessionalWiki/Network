@@ -63,10 +63,32 @@ class NetworkUseCase {
 	}
 
 	private function getVisJsOptions( array $arguments ): array {
-		return array_replace_recursive(
+		$visJsOptions = array_replace_recursive(
 			$this->visJsOptions,
 			json_decode( $arguments['options'] ?? '{}', true ) ?? []
 		);
+		$visJsOptions = $this->resolveImageAliases( $visJsOptions );
+		return $visJsOptions;
+	}
+
+	private function resolveImageAliases( $options ) : array {
+		foreach ($options as $key => $value) {
+			if (is_array( $value ) ) {
+				$options[$key] = $this->resolveImageAliases( $value );
+			} elseif ($key == "image" && preg_match( '/^%fa[brs]-/', $value ) ) {
+				$code = substr( $value, 3, 1 );
+				if ( $code === 'b' ) {
+					$dir = 'brands';
+				} elseif ( $code === 'r' ) {
+					$dir = 'regular';
+				} else { // $code === 's'
+					$dir = 'solid';
+				}
+				$options[$key] = 'extensions/Network/node_modules/@fortawesome/fontawesome-free/svgs/' .
+					$dir . '/' . substr( $value, 5 ) . '.svg';
+			}
+		}
+		return $options;
 	}
 
 	/**
