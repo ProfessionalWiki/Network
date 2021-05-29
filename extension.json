@@ -32,55 +32,46 @@
 						"damping": 0.242
 					}
 				},
+				"nodes": {
+					"color": {
+						"background": "white",
+						"highlight": {
+							"background": "white"
+						}
+					},
+					"borderWidth": 0,
+					"shape": "image",
+					"size": 10,
+					"shapeProperties": {
+						"useBorderWithImage": true
+					}
+				},
 				"groups": {
+					"bluelink": {
+						"image": "%far-file"
+					},
 					"redlink": {
-						"borderWidth": 0,
+						"image": "%fas-ban",
 						"color": {
-							"background": "white",
-							"border": "grey",
+							"border": "#ba0000",
 							"highlight": {
-								"background": "white",
-								"border": "grey"
+								"border": "#ba0000"
 							}
 						},
 						"font": {
 							"color": "#ba0000"
-						},
-						"shape": "image",
-						"size": 10,
-						"image": "extensions/Network/resources/lib/fontawesome/svgs/solid/ban.svg",
-						"shapeProperties": {
-							"useBorderWithImage": true
-						}
-					},
-					"bluelink": {
-						"borderWidth": 0,
-						"color": {
-							"background": "white",
-							"highlight": {
-								"background": "white"
-							}
-						},
-						"shape": "image",
-						"size": 10,
-						"image": "extensions/Network/resources/lib/fontawesome/svgs/regular/file.svg",
-						"shapeProperties": {
-							"useBorderWithImage": true
 						}
 					},
 					"externallink": {
-						"borderWidth": 0,
+						"image": "%fas-link",
 						"color": {
-							"background": "white",
+							"border": "grey",
 							"highlight": {
-								"background": "white"
+								"border": "grey"
 							}
 						},
-						"shape": "image",
-						"size": 10,
-						"image": "extensions/Network/resources/lib/fontawesome/svgs/solid/wifi.svg",
-						"shapeProperties": {
-							"useBorderWithImage": true
+						"font": {
+							"color": "grey"
 						}
 					}
 				}

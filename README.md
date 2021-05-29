@@ -46,6 +46,13 @@ COMPOSER=composer.local.json composer require --no-update professional-wiki/netw
 composer update professional-wiki/network --no-dev -o
 ```
 
+Install the Font Awesome icons, which are used by default for node icons. On the commandline, go to the
+`extensions/Network` directory. Then run the command:
+
+```shell script
+npm install --save
+```
+
 Then enable the extension by adding the following to the bottom of your wikis `LocalSettings.php` file:
 
 ```php
@@ -164,6 +171,21 @@ The network graphs are located in a div with class `network-visualization`. The 
 
 You can add extra CSS in [MediaWiki:Common.css]. You can also add extra classes to the div via the `class` parameter.
 
+### Node Icons
+
+By default, nodes are represented by [Font Awesome icons](https://fontawesome.com/). The `image` option on `nodes` and
+`groups` specifies the path to the SVG file for the icon relative to the Network extension diretory. However, a shortcut
+has been provided to specify the icon. If the value provided begins with `%fab-`, `%far-`, or `%fas-` followed by the
+name of the icon, this will be translated into the correct relative path, where the prefix indicates whether the icon
+is in brands, regular, or solid collection, respectively. This works for both  `$wgPageNetworkOptions` and the options
+parameter. For example, the specification for the group `bluelink` is:
+
+```json
+"bluelink": {
+    "image": "%far-file"
+}
+```
+
 ### Configuration
 
 The default value of all parameters can be changed by placing configuration in "LocalSettings.php".
@@ -194,10 +216,9 @@ $wgPageNetworkOptions = [
 ];
 ```
 
-Predefined groups exist to represent links to existing pages (group "bluelink")
-and links to missing pages (group "redlink"). Styling of those groups can be
-overridden site-wide using `$wgPageNetworkOptions` or per graph using the options
-parameter described below.
+Predefined style groups exist to represent links to existing pages (group "bluelink"), links to missing pages
+(group "redlink"), and links to external web pages (group "externallink"). Styling of those groups can be
+overridden site-wide using `$wgPageNetworkOptions` or per graph using the options parameter described above.
 
 Note: to change the width or height, use CSS, not the network options.
 
@@ -277,8 +298,6 @@ without needing to purge the page cache.
 
 ## Limitations
 
-* External links are not shown
-* Node labels cannot be changed. They are always the full page name
 * Styling or grouping per category or namespace is not supported
 
 Pull requests to remove those limitations are welcome.
@@ -331,6 +350,8 @@ Under development
 * Made styling of nodes representing links to existing pages and links to
   missing pages configurable by adding vis.js groups named "bluelink" and
   "redlink".
+* Added support for Font Awesome icons.
+* Added support for external links.
 
 ### Version 1.4.0
 
