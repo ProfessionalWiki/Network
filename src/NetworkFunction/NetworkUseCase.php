@@ -71,7 +71,7 @@ class NetworkUseCase {
 		return $visJsOptions;
 	}
 
-	private function resolveImageAliases( $options ) : array {
+	private function resolveImageAliases( array $options ) : array {
 		foreach ($options as $key => $value) {
 			if (is_array( $value ) ) {
 				$options[$key] = $this->resolveImageAliases( $value );
