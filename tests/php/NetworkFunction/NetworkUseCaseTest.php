@@ -7,6 +7,8 @@ namespace MediaWiki\Extension\Network\Tests\NetworkFunction;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
 use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase
@@ -248,4 +250,119 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
+	public function provideResolveImageAliases() {
+		yield [ [], [] ];
+		yield [
+			[
+				'a' => [
+					'b' => [
+						'image' => 'some string'
+					]
+				]
+			],
+			[
+				'a' => [
+					'b' => [
+						'image' => 'some string'
+					]
+				]
+			]
+		];
+		yield [
+			[
+				'a' => [
+					'b' => [
+						'image' => 'fas-missing%'
+					]
+				]
+			],
+			[
+				'a' => [
+					'b' => [
+						'image' => 'fas-missing%'
+					]
+				]
+			]
+		];
+		yield [
+			[
+				'a' => [
+					'b' => [
+						'image' => '%fax-wrongprefix'
+					]
+				]
+			],
+			[
+				'a' => [
+					'b' => [
+						'image' => '%fax-wrongprefix'
+					]
+				]
+			]
+		];
+		yield [
+			[
+				'a' => [
+					'b' => [
+						'image' => '%fab-icon'
+					]
+				]
+			],
+			[
+				'a' => [
+					'b' => [
+						'image' => 'extensions/Network/node_modules/@fortawesome/fontawesome-free/svgs/brands/icon.svg'
+					]
+				]
+			]
+		];
+		yield [
+			[
+				'a' => [
+					'b' => [
+						'image' => '%far-icon'
+					]
+				]
+			],
+			[
+				'a' => [
+					'b' => [
+						'image' => 'extensions/Network/node_modules/@fortawesome/fontawesome-free/svgs/regular/icon.svg'
+					]
+				]
+			]
+		];
+		yield [
+			[
+				'a' => [
+					'b' => [
+						'image' => '%fas-icon'
+					]
+				]
+			],
+			[
+				'a' => [
+					'b' => [
+						'image' => 'extensions/Network/node_modules/@fortawesome/fontawesome-free/svgs/solid/icon.svg'
+					]
+				]
+			]
+		];
+	}
+
+	/**
+	 * @param $input
+	 * @param $expected
+	 * @dataProvider provideResolveImageAliases
+	 */
+	public function testResolveImageAliases( $input, $expected ) {
+		$presenter = new SpyNetworkPresenter();
+		$request = $this->newBasicRequestModel();
+		$useCase = new NetworkUseCase( $presenter, [] );
+		$wrapper = TestingAccessWrapper::newFromObject( $useCase );
+		$this->assertEquals(
+			$wrapper->resolveImageAliases( $input ),
+			$expected
+		);
+	}
 }
