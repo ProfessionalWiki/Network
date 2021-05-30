@@ -67,8 +67,7 @@ class NetworkUseCase {
 			$this->visJsOptions,
 			json_decode( $arguments['options'] ?? '{}', true ) ?? []
 		);
-		$visJsOptions = $this->resolveImageAliases( $visJsOptions );
-		return $visJsOptions;
+		return $this->resolveImageAliases( $visJsOptions );
 	}
 
 	private function resolveImageAliases( array $options ) : array {
