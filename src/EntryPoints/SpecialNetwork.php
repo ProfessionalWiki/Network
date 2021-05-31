@@ -12,6 +12,7 @@ use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
 use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
 use MediaWiki\MediaWikiServices;
+use Message;
 use Title;
 use WebRequest;
 
@@ -24,9 +25,6 @@ class SpecialNetwork extends IncludableSpecialPage {
 		parent::__construct( 'Network' );
 	}
 
-	/**
-	 * @param string|null $subPage
-	 */
 	public function execute( $subPage ) : void {
 		$this->setHeaders();
 
@@ -41,11 +39,6 @@ class SpecialNetwork extends IncludableSpecialPage {
 		}
 	}
 
-	/**
-	 * @param WebRequest $request
-	 * @param NetworkConfig $config
-	 * @return array $params
-	 */
 	private function parseParams( WebRequest $request, NetworkConfig $config ) : array {
 		$params = [];
 		if ( $request->getCheck( 'pages' ) ) {
@@ -77,10 +70,10 @@ class SpecialNetwork extends IncludableSpecialPage {
 	}
 
 	/**
-	 * @param string[] $params
+	 * @param array $params
 	 * @return string[]
 	 */
-	private function formatParams( $params ) : array {
+	private function formatParams( array $params ) : array {
 		$formattedParams = [];
 		if ( $params['pages'] === '' ) {
 			$formattedParams['pages'] = 'pages=' . Title::newMainPage()->getPrefixedText();
@@ -138,21 +131,7 @@ class SpecialNetwork extends IncludableSpecialPage {
 	 * @param string[] $defaultValues
 	 * @param NetworkConfig $config
 	 */
-	private function showForm( $defaultValues, NetworkConfig $config ): void {
-		$namespaces = MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces();
-		$namespaces[0] = wfMessage( 'blanknamespace' )->plain();
-		$namespaces = array_filter(
-			array_flip( $namespaces ),
-			function( $value ) use( $config ){
-				if ( $value < 0 ) {
-					return false;
-				}
-				if ( $config->getExcludeTalkPages() ) {
-					return !( $value % 2 );
-				}
-				return true;
-			}
-		);
+	private function showForm( array $defaultValues, NetworkConfig $config ): void {
 		$formDescriptor = [
 			'pagesfield' => [
 				'label-message' => 'pagenetwork-pages-field-label',
@@ -177,7 +156,7 @@ class SpecialNetwork extends IncludableSpecialPage {
 				'help-message' => 'pagenetwork-excludedNamespaces-field-help',
 				'class' => 'HTMLMultiSelectField',
 				'default' => $defaultValues['excludedNamespaces'],
-				'options' => $namespaces,
+				'options' => $this->getNamespaces( $config ),
 				'nodata' => true,
 				'name' => 'excludedNamespaces'
 			],
@@ -218,5 +197,22 @@ class SpecialNetwork extends IncludableSpecialPage {
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm->setMethod( 'get' );
 		$htmlForm->prepareForm()->displayForm( false );
+	}
+
+	private function getNamespaces(NetworkConfig $config): array {
+		$namespaces = MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces();
+		$namespaces[0] = ( new Message( 'blanknamespace' ) )->plain();
+		return array_filter(
+			array_flip( $namespaces ),
+			function ( $value ) use ( $config ) {
+				if ( $value < 0 ) {
+					return false;
+				}
+				if ( $config->getExcludeTalkPages() ) {
+					return !($value % 2);
+				}
+				return true;
+			}
+		);
 	}
 }
