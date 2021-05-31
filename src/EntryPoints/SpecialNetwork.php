@@ -6,7 +6,6 @@ namespace MediaWiki\Extension\Network\EntryPoints;
 
 use HTMLForm;
 use IncludableSpecialPage;
-use Language;
 use MediaWiki\Extension\Network\Extension;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkConfig;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
