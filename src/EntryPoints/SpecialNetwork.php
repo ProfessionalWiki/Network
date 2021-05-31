@@ -6,6 +6,7 @@ namespace MediaWiki\Extension\Network\EntryPoints;
 
 use HTMLForm;
 use IncludableSpecialPage;
+use Language;
 use MediaWiki\Extension\Network\Extension;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkConfig;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
@@ -204,7 +205,7 @@ class SpecialNetwork extends IncludableSpecialPage {
 		$namespaces[0] = ( new Message( 'blanknamespace' ) )->plain();
 		return array_filter(
 			array_flip( $namespaces ),
-			function ( $value ) use ( $config ) {
+			function ( int $value ) use ( $config ) {
 				if ( $value < 0 ) {
 					return false;
 				}
