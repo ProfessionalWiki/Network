@@ -23,19 +23,19 @@ class NetworkConfig {
 	/**
 	 * @var bool
 	 */
-	private $defaultEnableDisplayTitle;
+	private $enableDisplayTitle;
 
 	/**
 	 * @var int
 	 */
-	private $defaultLabelMaxLength;
+	private $labelMaxLength;
 
 	public function __construct() {
 		$this->options = $GLOBALS['wgPageNetworkOptions'];
 		$this->excludeTalkPages = (bool)$GLOBALS['wgPageNetworkExcludeTalkPages'];
 		$this->excludedNamespaces = $GLOBALS['wgPageNetworkExcludedNamespaces'];
-		$this->defaultEnableDisplayTitle = (bool)$GLOBALS['wgPageNetworkDefaultEnableDisplayTitle'];
-		$this->defaultLabelMaxLength = (int)$GLOBALS['wgPageNetworkDefaultLabelMaxLength'];
+		$this->enableDisplayTitle = (bool)$GLOBALS['wgPageNetworkEnableDisplayTitle'];
+		$this->labelMaxLength = (int)$GLOBALS['wgPageNetworkLabelMaxLength'];
 	}
 
 	public function getOptions(): array {
@@ -50,11 +50,11 @@ class NetworkConfig {
 		return $this->excludedNamespaces;
 	}
 
-	public function getDefaultEnableDisplayTitle(): bool {
-		return $this->defaultEnableDisplayTitle;
+	public function getEnableDisplayTitle(): bool {
+		return $this->enableDisplayTitle;
 	}
 
-	public function getDefaultLabelMaxLength(): int {
-		return $this->defaultLabelMaxLength;
+	public function getLabelMaxLength(): int {
+		return $this->labelMaxLength;
 	}
 }

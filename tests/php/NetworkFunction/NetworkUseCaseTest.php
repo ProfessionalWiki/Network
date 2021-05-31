@@ -48,8 +48,9 @@ class NetworkUseCaseTest extends TestCase {
 
 		$request->renderingPageName = 'MyPage';
 		$request->functionArguments = [ '' ];
-		$request->defaultEnableDisplayTitle = true;
-		$request->defaultLabelMaxLength = 20;
+		$request->excludedNamespaces = [];
+		$request->enableDisplayTitle = true;
+		$request->labelMaxLength = 20;
 
 		return $request;
 	}

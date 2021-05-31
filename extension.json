@@ -84,10 +84,10 @@
 		"PageNetworkExcludedNamespaces": {
 			"value": [ 2, 4, 8, 12 ]
 		},
-		"PageNetworkDefaultEnableDisplayTitle": {
+		"PageNetworkEnableDisplayTitle": {
 			"value": true
 		},
-		"PageNetworkDefaultLabelMaxLength": {
+		"PageNetworkLabelMaxLength": {
 			"value": 20
 		}
 	},
@@ -133,7 +133,7 @@
 			"scripts": [
 				"lib/vis-network.js",
 
-				"js/PageBlacklist.js",
+				"js/PageExclusionManager.js",
 				"js/NetworkData.js",
 				"js/ApiConnectionsBuilder.js",
 				"js/ApiPageConnectionRepo.js",

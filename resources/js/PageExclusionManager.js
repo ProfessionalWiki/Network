@@ -1,16 +1,16 @@
 /**
  * Visjs agnostic
  */
-module.PageBlacklist = ( function ( mw ) {
+module.PageExclusionManager = ( function (mw ) {
 	"use strict"
 
 	/**
-	 * @param {string[]} blacklistedPageNames
+	 * @param {string[]} excludedPageNames
 	 * @param {int[]} excludedNamespaces
 	 * @param {boolean} excludeTalkPages
 	 */
-	let PageBlacklist = function(blacklistedPageNames, excludedNamespaces, excludeTalkPages) {
-		this.pages = blacklistedPageNames;
+	let PageExclusionManager = function(excludedPageNames, excludedNamespaces, excludeTalkPages) {
+		this.pages = excludedPageNames;
 		this.namespaces = excludedNamespaces;
 		this.excludeTalk = excludeTalkPages;
 	};
@@ -18,7 +18,7 @@ module.PageBlacklist = ( function ( mw ) {
 	/**
 	 * @param {string} pageName
 	 */
-	PageBlacklist.prototype.isBlacklisted = function(pageName) {
+	PageExclusionManager.prototype.isExcluded = function(pageName) {
 		if (this.pages.includes(pageName)) {
 			return true;
 		}
@@ -30,12 +30,12 @@ module.PageBlacklist = ( function ( mw ) {
 			|| this.namespaces.includes(title.getNamespaceId());
 	};
 
-	PageBlacklist.prototype._isTalkPage = function(title) {
+	PageExclusionManager.prototype._isTalkPage = function(title) {
 		// Can replace this function with title.isTalkPage() on MW 1.35+
 		let namespaceId = title.getNamespaceId();
 		return !!(namespaceId > 0 && namespaceId % 2);
 	};
 
-	return PageBlacklist;
+	return PageExclusionManager;
 
 }( window.mediaWiki ) );

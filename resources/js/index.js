@@ -9,9 +9,9 @@
 			let network = new netw.Network(
 				$this.attr('id'),
 				new netw.ApiPageConnectionRepo($this.data('enabledisplaytitle')),
-				new netw.PageBlacklist(
-					$this.data('exclude'),
-					mw.config.get('networkExcludedNamespaces'),
+				new netw.PageExclusionManager(
+					$this.data('excludedpages'),
+					$this.data('excludednamespaces'),
 					mw.config.get('networkExcludeTalkPages')
 				),
 				$this.data('options'),

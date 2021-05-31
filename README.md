@@ -108,6 +108,12 @@ Example with parameters
         <td>Pages to exclude from the network graph, separated by semicolon</td>
     </tr>
     <tr>
+        <th>excludedNamespaces</th>
+        <td></td>
+        <td>2, 4, 8, 12</td>
+        <td>Namespaces to exclude from the network graph by namespace number, separated by comma</td>
+    </tr>
+    <tr>
         <th>options</th>
         <td></td>
         <td>{ "nodes": { "shape": "box" } }</td>
@@ -126,7 +132,7 @@ Example with parameters
         <td>
             Should the <a href="https://www.mediawiki.org/wiki/Help:Magic_words#DISPLAYTITLE">display title</a> rather than
 	    the page title be displayed as a node's label?
-	    Overrides the value of the <code>$wgPageNetworkDefaultEnableDisplayTitle</code> configuration variable.
+	    Overrides the value of the <code>$wgPageNetworkEnableDisplayTitle</code> configuration variable.
         </td>
     </tr>
     <tr>
@@ -136,7 +142,7 @@ Example with parameters
         <td>
             The text length of a node's label. If the node label must be truncated, an ellipsis (&#8230;) will appended.
             A value of 0 indicates that the text length is not limited.
-	    Overrides the value of the <code>$wgPageNetworkDefaultLabelMaxLength</code> configuration variable.
+	    Overrides the value of the <code>$wgPageNetworkLabelMaxLength</code> configuration variable.
         </td>
     </tr>
 </table>
@@ -194,8 +200,8 @@ These configuration settings are available:
 * `$wgPageNetworkOptions` – options passed directly to the graph visualization library
 * `$wgPageNetworkExcludeTalkPages` - indicates if talk pages should be excluded
 * `$wgPageNetworkExcludedNamespaces` - IDs of namespaces to exclude
-* `$wgPageNetworkDefaultEnableDisplayTitle` - indicates if display title should be used for node labels by default
-* `$wgPageNetworkDefaultLabelMaxLength` - default maximum length for node labels
+* `$wgPageNetworkEnableDisplayTitle` - indicates if display title should be used for node labels by default
+* `$wgPageNetworkLabelMaxLength` - default maximum length for node labels
 
 Default values of these configuration settings can be found in "extension.json". Do not change "extension.json".
 
@@ -238,7 +244,7 @@ Example: `$wgPageNetworkExcludedNamespaces = [ NS_USER, NS_PROJECT ];`
 
 See also: https://www.mediawiki.org/wiki/Manual:Namespace#Built-in_namespaces
 
-**$wgPageNetworkDefaultEnableDisplayTitle**
+**$wgPageNetworkEnableDisplayTitle**
 
 By default, should the display title rather than the page title be displayed as a node's label?
 This can be overridden on a per-graph basis using the `enableDisplayTitle` parameter to #network.
@@ -247,7 +253,7 @@ Possible values: `true`, `false`
 
 Default value: `true` (use display title for node labels)
 
-**$wgPageNetworkDefaultLabelMaxLength**
+**$wgPageNetworkLabelMaxLength**
 
 The default text length of a node's label. If the node label must be truncated, an ellipsis (&#8230;) will appended.
 A value of 0 indicates that the text length is not limited.

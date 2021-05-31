@@ -4,19 +4,19 @@ module.Network = (function (vis, NetworkData) {
 	/**
 	 * @param {string} divId
 	 * @param {module.ApiPageConnectionRepo} pageConnectionRepo
-	 * @param {module.PageBlacklist} pageBlacklist
+	 * @param {module.PageExclusionManager} pageExclusionManager
 	 * @param {object} options
 	 * @param {int} labelMaxLength
 	 */
 	let Network = function(
 		divId,
 		pageConnectionRepo,
-		pageBlacklist,
+		pageExclusionManager,
 		options,
 		labelMaxLength
 	) {
 		this._pageConnectionRepo = pageConnectionRepo;
-		this._data = new NetworkData(pageBlacklist, labelMaxLength);
+		this._data = new NetworkData(pageExclusionManager, labelMaxLength);
 		this._options = options;
 		this._network = this._newNetwork(divId);
 

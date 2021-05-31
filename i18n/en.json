@@ -13,6 +13,8 @@
 	"pagenetwork-pages-field-help": "The name of the page or pages to show connections for, one per line. Defaults to main page.",
 	"pagenetwork-exclude-field-label": "Exclude Pages",
 	"pagenetwork-exclude-field-help": "Pages to exclude from the network graph, one per line.",
+	"pagenetwork-excludedNamespaces-field-label": "Exclude Namespaces",
+	"pagenetwork-excludedNamespaces-field-help": "Namespaces to exclude from the network graph.",
 	"pagenetwork-class-field-label": "CSS Classes",
 	"pagenetwork-class-field-help": "Extra css class(es) to add to the network graph, separated by spaces.",
 	"pagenetwork-options-field-label": "Graph Options",

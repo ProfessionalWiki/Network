@@ -4,10 +4,10 @@
 module.NetworkData = ( function ( vis, mw ) {
 	"use strict"
 
-	let NetworkData = function(pageBlacklist, labelMaxLength) {
+	let NetworkData = function(pageExclusionManager, labelMaxLength) {
 		this.nodes = new vis.DataSet();
 		this.edges = new vis.DataSet();
-		this._pageBlacklist = pageBlacklist;
+		this._pageExclusionManager = pageExclusionManager;
 		this._labelMaxLength = labelMaxLength;
 	};
 
@@ -58,7 +58,7 @@ module.NetworkData = ( function ( vis, mw ) {
 	}
 
 	NetworkData.prototype._pageTitleIsAllowed = function(pageTitle) {
-		return !this._pageBlacklist.isBlacklisted(pageTitle);
+		return !this._pageExclusionManager.isExcluded(pageTitle);
 	}
 
 	NetworkData.prototype.addLinks = function(links) {

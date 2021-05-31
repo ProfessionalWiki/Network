@@ -11,6 +11,8 @@
 	"pagenetwork-pages-field-help": "Field help",
 	"pagenetwork-exclude-field-label": "Field label\\n{{Identical|Exclude Pages}}",
 	"pagenetwork-exclude-field-help": "Field help",
+	"pagenetwork-excludedNamespaces-field-label": "Field label\\n{{Identical|Exclude Pages}}",
+	"pagenetwork-excludedNamespaces-field-help": "Field help",
 	"pagenetwork-class-field-label": "Field label\\n{{Identical|CSS Classes}}",
 	"pagenetwork-class-field-help": "Field help",
 	"pagenetwork-options-field-label": "Field label\\n{{Identical|Graph Options}}",
