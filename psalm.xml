@@ -23,5 +23,10 @@
 				<file name="../../includes/specialpage/IncludableSpecialPage.php" />
 			</errorLevel>
 		</MissingParamType>
+		<UndefinedDocblockClass>
+			<errorLevel type="suppress">
+				<file name="src/EntryPoints/SpecialNetwork.php" />
+			</errorLevel>
+		</UndefinedDocblockClass>
 	</issueHandlers>
 </psalm>
