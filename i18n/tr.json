@@ -2,9 +2,23 @@
 	"@metadata": {
 		"authors": [
 			"BaRaN6161 TURK",
+			"Mim.saitkilic",
 			"MuratTheTurkish"
 		]
 	},
+	"network": "Ağ",
 	"network-desc": "Viki sayfalarınıza etkileşimli ağ görselleştirmeleri eklemenize izin verir",
-	"network-aria": "{{PLURAL:$1|Sayfa}} $2 için giden ve gelen bağlantıları gösteren ağ görselleştirme"
+	"network-aria": "{{PLURAL:$1|Sayfa}} $2 için giden ve gelen bağlantıları gösteren ağ görselleştirme",
+	"pagenetwork-pages-field-label": "Sayfalar",
+	"pagenetwork-pages-field-help": "Her satıra bir tane olmak üzere, bağlantıların gösterileceği sayfanın veya sayfaların adı. Varsayılan ana sayfadır.",
+	"pagenetwork-exclude-field-label": "Sayfaları Hariç Tut",
+	"pagenetwork-exclude-field-help": "Her satırda bir tane olacak şekilde ağ grafiğinden hariç tutulacak sayfalar.",
+	"pagenetwork-class-field-label": "CSS Sınıfları",
+	"pagenetwork-class-field-help": "Ağ grafiğine eklenecek, boşluklarla ayrılmış ekstra css sınıfları.",
+	"pagenetwork-options-field-label": "Grafik Seçenekleri",
+	"pagenetwork-options-field-help": "vis.js grafik seçenekleriyle JSON yapısı.",
+	"pagenetwork-enableDisplayTitle-field-label": "Görüntü Başlığını Etkinleştir",
+	"pagenetwork-enableDisplayTitle-field-help": "Sayfa başlığı mı yoksa görünen başlık bir düğümün etiketi olarak mı görüntülenmeli?",
+	"pagenetwork-labelMaxLength-field-label": "Maksimum Etiket Uzunluğu",
+	"pagenetwork-labelMaxLength-field-help": "Bir düğümün etiketinin maksimum metin uzunluğu veya sınırsızsa 0. Düğüm etiketinin kesilmesi gerekiyorsa, bir üç nokta (…) eklenir."
 }

@@ -5,6 +5,14 @@
 			"Eduardoaddad"
 		]
 	},
+	"network": "Rede",
 	"network-desc": "Permitir adicionar visualizações de rede interativas nas suas páginas da wiki",
-	"network-aria": "Visualização de rede mostrando os links de saída e entrada para {{PLURAL:$1|página|páginas}} $2"
+	"network-aria": "Visualização de rede mostrando os links de saída e entrada para {{PLURAL:$1|página|páginas}} $2",
+	"pagenetwork-pages-field-label": "Páginas",
+	"pagenetwork-pages-field-help": "O nome da página ou páginas para mostrar as conexões, uma por linha. Padrões para a página principal.",
+	"pagenetwork-exclude-field-help": "Páginas a serem excluídas do gráfico da rede, uma por linha.",
+	"pagenetwork-class-field-label": "Classes CSS",
+	"pagenetwork-options-field-label": "Opções de gráfico",
+	"pagenetwork-enableDisplayTitle-field-label": "Ativar título de exibição",
+	"pagenetwork-enableDisplayTitle-field-help": "O título da página ou o título de exibição deve ser exibido como um rótulo de nó?"
 }

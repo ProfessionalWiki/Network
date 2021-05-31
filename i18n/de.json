@@ -6,5 +6,5 @@
 		]
 	},
 	"network-desc": "Ermöglicht die Visualisierung von Netzwerkbeziehungen zwischen Seiten",
-	"network-aria": "Die Netzwerkvisualisierung zeigt eingehende und ausgehende Links der{{PLURAL:$1|Seite|Seiten}} $2"
+	"network-aria": "Die Netzwerkvisualisierung zeigt eingehende und ausgehende Links der {{PLURAL:$1|Seite|Seiten}} $2"
 }
