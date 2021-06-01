@@ -19,6 +19,7 @@ module.Network = (function (vis, NetworkData) {
 		this._data = new NetworkData(pageBlacklist, labelMaxLength);
 		this._options = options;
 		this._network = this._newNetwork(divId);
+		this._lastZoomPosition = {x:0, y:0}
 
 		this._bindEvents();
 	};
@@ -59,6 +60,8 @@ module.Network = (function (vis, NetworkData) {
 		this._network.on('doubleClick', this._onDoubleClick.bind(this));
 		this._network.on('hold', this._onHold.bind(this));
 		this._network.on('select', this._onSelect.bind(this));
+		this._network.on('zoom', this._onZoom.bind(this));
+		this._network.on('dragEnd', this._onDragEnd.bind(this));
 	};
 
 	Network.prototype._onDoubleClick = function(event) {
@@ -83,6 +86,31 @@ module.Network = (function (vis, NetworkData) {
 			this._network.selectNodes([targetNodeId]);
 		}
 	};
+
+	Network.prototype._onZoom = function(event) {
+		let MIN_ZOOM = 0.25
+		let MAX_ZOOM = 3.0
+		let scale = this._network.getScale()
+		if (scale <= MIN_ZOOM) {
+			this._network.moveTo({
+				position: this._lastZoomPosition,
+				scale: MIN_ZOOM
+			});
+		}
+		else if (scale >= MAX_ZOOM) {
+			this._network.moveTo({
+				position: this._lastZoomPosition,
+				scale: MAX_ZOOM,
+			});
+		}
+		else {
+			this._lastZoomPosition = this._network.getViewPosition()
+		}
+	}
+
+	Network.prototype._onDragEnd = function(event) {
+		this._lastZoomPosition = this._network.getViewPosition()
+	}
 
 	return Network;
 
