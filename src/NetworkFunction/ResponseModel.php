@@ -9,6 +9,7 @@ class ResponseModel {
 	public /* string[] */ $pageNames;
 	public /* string */ $cssClass;
 	public /* string[] */ $excludedPages;
+	public /* int[] */ $excludedNamespaces;
 	public /* bool */ $enableDisplayTitle;
 	public /* int */ $labelMaxLength;
 	public /* array */ $visJsOptions;

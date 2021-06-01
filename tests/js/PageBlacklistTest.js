@@ -1,13 +1,13 @@
 ( function () {
 	QUnit.module( 'ext.network.PageBlacklistTest' );
 
-	let PageBlacklist = window.NetworkExtension.PageBlacklist;
+	let PageBlacklist = window.NetworkExtension.PageExclusions;
 
 	QUnit.test( 'Page is allowed when blacklist is empty', function ( assert ) {
 		let blacklist = new PageBlacklist( [], [], false );
 
 		assert.strictEqual(
-			blacklist.isBlacklisted( 'Kittens' ),
+			blacklist.isExcluded( 'Kittens' ),
 			false
 		);
 	} );
@@ -16,7 +16,7 @@
 		let blacklist = new PageBlacklist( [ 'Cats', 'Category:Kittens' ], [], false );
 
 		assert.strictEqual(
-			blacklist.isBlacklisted( 'Kittens' ),
+			blacklist.isExcluded( 'Kittens' ),
 			false
 		);
 	} );
@@ -25,7 +25,7 @@
 		let blacklist = new PageBlacklist( [ 'Cats', 'Category:Kittens' ], [], false );
 
 		assert.strictEqual(
-			blacklist.isBlacklisted( 'Category:Kittens' ),
+			blacklist.isExcluded( 'Category:Kittens' ),
 			true
 		);
 	} );
@@ -34,7 +34,7 @@
 		let blacklist = new PageBlacklist( [], [], false );
 
 		assert.strictEqual(
-			blacklist.isBlacklisted( 'Talk:Kittens' ),
+			blacklist.isExcluded( 'Talk:Kittens' ),
 			false
 		);
 	} );
@@ -43,7 +43,7 @@
 		let blacklist = new PageBlacklist( [], [], true );
 
 		assert.strictEqual(
-			blacklist.isBlacklisted( 'Talk:Kittens' ),
+			blacklist.isExcluded( 'Talk:Kittens' ),
 			true
 		);
 	} );
@@ -52,7 +52,7 @@
 		let blacklist = new PageBlacklist( [], [ 0 ], false );
 
 		assert.strictEqual(
-			blacklist.isBlacklisted( 'Kittens' ),
+			blacklist.isExcluded( 'Kittens' ),
 			true
 		);
 	} );
@@ -61,7 +61,7 @@
 		let blacklist = new PageBlacklist( [], [], false );
 
 		assert.strictEqual(
-			blacklist.isBlacklisted( '|' ),
+			blacklist.isExcluded( '|' ),
 			true
 		);
 	} );

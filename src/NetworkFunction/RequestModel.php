@@ -8,7 +8,8 @@ class RequestModel {
 
 	public /* string[] */ $functionArguments;
 	public /* string */ $renderingPageName;
-	public /* bool */ $defaultEnableDisplayTitle;
-	public /* int */ $defaultLabelMaxLength;
+	public /* int[] */ $excludedNamespaces;
+	public /* bool */ $enableDisplayTitle;
+	public /* int */ $labelMaxLength;
 
 }

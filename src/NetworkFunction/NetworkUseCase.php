@@ -27,9 +27,10 @@ class NetworkUseCase {
 
 		$response->cssClass = $this->getCssClass( $keyValuePairs );
 		$response->excludedPages = $this->getExcludedPages( $keyValuePairs );
+		$response->excludedNamespaces = $this->getExcludedNamespaces( $keyValuePairs, $request->excludedNamespaces );
+		$response->enableDisplayTitle = $this->getEnableDisplayTitle( $keyValuePairs, $request->enableDisplayTitle );
+		$response->labelMaxLength = $this->getLabelMaxLength( $keyValuePairs, $request->labelMaxLength );
 		$response->visJsOptions = $this->getVisJsOptions( $keyValuePairs );
-		$response->enableDisplayTitle = $this->getEnableDisplayTitle( $keyValuePairs, $request->defaultEnableDisplayTitle );
-		$response->labelMaxLength = $this->getLabelMaxLength( $keyValuePairs, $request->defaultLabelMaxLength );
 
 		$this->presenter->buildGraph( $response );
 	}
@@ -151,21 +152,35 @@ class NetworkUseCase {
 
 	/**
 	 * @param string[] $arguments
-	 * @param bool $defaultEnableDisplayTitle
-	 * @return bool
+	 * @param int[] $excludedNamespaces
+	 * @return int[]
 	 */
-	private function getEnableDisplayTitle(array $arguments, bool $defaultEnableDisplayTitle ): bool {
-		return isset( $arguments['enableDisplayTitle'] )
-			? filter_var( $arguments['enableDisplayTitle'], FILTER_VALIDATE_BOOLEAN )
-			: $defaultEnableDisplayTitle;
+	private function getExcludedNamespaces(array $arguments, array $excludedNamespaces ): array {
+		if ( !isset( $arguments['excludedNamespaces'] ) ) {
+			return $excludedNamespaces;
+		}
+		$namespaces = explode( ',', $arguments['excludedNamespaces'] );
+		array_walk( $namespaces, 'intval' );
+		return  $namespaces;
 	}
 
 	/**
 	 * @param string[] $arguments
-	 * @param int $defaultLabelMaxLength
+	 * @param bool $enableDisplayTitle
+	 * @return bool
+	 */
+	private function getEnableDisplayTitle(array $arguments, bool $enableDisplayTitle ): bool {
+		return isset( $arguments['enableDisplayTitle'] )
+			? filter_var( $arguments['enableDisplayTitle'], FILTER_VALIDATE_BOOLEAN )
+			: $enableDisplayTitle;
+	}
+
+	/**
+	 * @param string[] $arguments
+	 * @param int $labelMaxLength
 	 * @return int
 	 */
-	private function getLabelMaxLength(array $arguments, int $defaultLabelMaxLength ): int {
-		return isset( $arguments['labelMaxLength'] ) ? (int)$arguments['labelMaxLength'] : $defaultLabelMaxLength;
+	private function getLabelMaxLength(array $arguments, int $labelMaxLength ): int {
+		return isset( $arguments['labelMaxLength'] ) ? (int)$arguments['labelMaxLength'] : $labelMaxLength;
 	}
 }

@@ -39,13 +39,13 @@ class NetworkFunction {
 	 */
 	public function handleParserFunctionCall( Parser $parser, ...$arguments ) {
 		$parser->getOutput()->addModules( [ 'ext.network' ] );
-		$parser->getOutput()->addJsConfigVars( 'networkExcludedNamespaces', $this->config->getExcludedNamespaces() );
 		$parser->getOutput()->addJsConfigVars( 'networkExcludeTalkPages', $this->config->getExcludeTalkPages() );
 
 		$requestModel = new RequestModel();
 		$requestModel->functionArguments = $arguments;
-		$requestModel->defaultEnableDisplayTitle = $this->config->getDefaultEnableDisplayTitle();
-		$requestModel->defaultLabelMaxLength = $this->config->getDefaultLabelMaxLength();
+		$requestModel->excludedNamespaces = $this->config->getExcludedNamespaces();
+		$requestModel->enableDisplayTitle = $this->config->getEnableDisplayTitle();
+		$requestModel->labelMaxLength = $this->config->getLabelMaxLength();
 
 		/**
 		 * @psalm-suppress PossiblyNullReference
