@@ -40,7 +40,12 @@
 						}
 					},
 					"borderWidth": 0,
-					"shape": "image",
+					"shape": "icon",
+					"icon": {
+						"face": "'Font Awesome 5 Free'",
+						"weight": "bold",
+						"size": 30
+					},
 					"size": 10,
 					"shapeProperties": {
 						"useBorderWithImage": true
@@ -48,10 +53,15 @@
 				},
 				"groups": {
 					"bluelink": {
-						"image": "%far-file"
+						"icon": {
+							"code": "\uf15b"
+						}
 					},
 					"redlink": {
-						"image": "%fas-ban",
+						"icon": {
+							"code": "\uf05e",
+							"color": "#ba0000"
+						},
 						"color": {
 							"border": "#ba0000",
 							"highlight": {
@@ -63,7 +73,10 @@
 						}
 					},
 					"externallink": {
-						"image": "%fas-link",
+						"icon": {
+							"code": "\uf0c1",
+							"color": "grey"
+						},
 						"color": {
 							"border": "grey",
 							"highlight": {
@@ -119,8 +132,8 @@
 	},
 
 	"ResourceFileModulePaths": {
-		"localBasePath": "resources",
-		"remoteExtPath": "Network/resources"
+		"localBasePath": "/",
+		"remoteExtPath": "Network"
 	},
 
 	"ResourceModules": {
@@ -131,17 +144,18 @@
 				"mediawiki.jqueryMsg"
 			],
 			"scripts": [
-				"lib/vis-network.js",
+				"resources/lib/vis-network.js",
 
-				"js/PageExclusionManager.js",
-				"js/NetworkData.js",
-				"js/ApiConnectionsBuilder.js",
-				"js/ApiPageConnectionRepo.js",
-				"js/Network.js",
-				"js/index.js"
+				"resources/js/PageExclusionManager.js",
+				"resources/js/NetworkData.js",
+				"resources/js/ApiConnectionsBuilder.js",
+				"resources/js/ApiPageConnectionRepo.js",
+				"resources/js/Network.js",
+				"resources/js/index.js"
 			],
 			"styles": [
-				"network.css"
+				"resources/network.css",
+				"node_modules/@fortawesome/fontawesome-free/css/all.min.css"
 			],
 			"messages": [
 				"network-aria"
@@ -155,7 +169,7 @@
 				"oojs-ui-widgets"
 			],
 			"scripts": [
-				"js/SpecialForm.js"
+				"resources/js/SpecialForm.js"
 			],
 			"messages": [
 				"htmlform-submit",
