@@ -187,7 +187,7 @@ options as:
 "icon": {
   "face": "'Font Awesome 5 Free'",
   "weight": "bold",
-  "size": 30
+  "size": 30,
   "code": <insert Font Awesome icon code, e.g. "\uf05e">,
   "color": <insert desired icon color, e.g. "#ba0000">
 },
