@@ -54,6 +54,10 @@ class SpecialNetwork extends IncludableSpecialPage {
 
 		$params['exclude'] = $request->getText( 'exclude', '' );
 
+		/**
+		 * @psalm-suppress PossiblyNullArgument
+		 * @psalm-suppress PossiblyNullArrayAccess
+		 */
 		$params['excludedNamespaces'] = array_map(
 			'strval',
 			$request->getArray( 'excludedNamespaces', $config->getExcludedNamespaces() )
