@@ -33,7 +33,7 @@ class NetworkConfig {
 	public function __construct() {
 		$this->options = $GLOBALS['wgPageNetworkOptions'];
 		$this->excludeTalkPages = (bool)$GLOBALS['wgPageNetworkExcludeTalkPages'];
-		$this->excludedNamespaces = $GLOBALS['wgPageNetworkExcludedNamespaces'];
+		$this->excludedNamespaces = array_map( 'strval', $GLOBALS['wgPageNetworkExcludedNamespaces'] );
 		$this->enableDisplayTitle = (bool)$GLOBALS['wgPageNetworkEnableDisplayTitle'];
 		$this->labelMaxLength = (int)$GLOBALS['wgPageNetworkLabelMaxLength'];
 	}
