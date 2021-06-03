@@ -195,8 +195,8 @@ options as:
 
 Alternatively, the Font Awesome SVG files can be used for node icons. This may load slightly faster but currently [does not
 work on Firefox](https://github.com/almende/vis/issues/1736). To use the SVG images with Firefox, you need to manually edit the
-SVG files (which are text files) that you want to use to add a width and height adjacent to the viewBox parameter (e.g. add
-'width="10" height="10').
+SVG files (which are text files) that you want to use to add a width and height adjacent to the viewBox parameter (e.g.
+width="10" height="10").
 
 When using SVG images, the `image` option on `nodes` and `groups` specifies the path to the SVG file for the icon relative to
 the Network extension diretory. However, a shortcut has been provided to specify the icon. If the value provided begins with
