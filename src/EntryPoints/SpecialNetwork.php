@@ -4,7 +4,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Network\EntryPoints;
 
-use HTMLForm;
+use Html;
 use IncludableSpecialPage;
 use MediaWiki\Extension\Network\Extension;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkConfig;
@@ -30,6 +30,7 @@ class SpecialNetwork extends IncludableSpecialPage {
 
 		$config = new NetworkConfig();
 		$params = $this->parseParams( $this->getRequest(), $config );
+
 		if ( $this->getRequest()->getCheck( 'pages' ) ) {
 			$this->getOutput()->addHTML( $this->showGraph( $this->formatParams( $params ), $config ) );
 		}
@@ -41,31 +42,42 @@ class SpecialNetwork extends IncludableSpecialPage {
 
 	private function parseParams( WebRequest $request, NetworkConfig $config ) : array {
 		$params = [];
+
 		if ( $request->getCheck( 'pages' ) ) {
 			$params['pages'] = $request->getText( 'pages' );
 			if ( $params['pages'] === '' ) {
 				$params['pages'] = Title::newMainPage()->getPrefixedText();
 			}
-			$params['enableDisplayTitle'] =
-				filter_var(
-					$request->getText( 'enableDisplayTitle', 'false' ),
-					FILTER_VALIDATE_BOOL,
-					FILTER_NULL_ON_FAILURE
-				);
 		} else {
 			$params['pages'] = '';
+		}
+
+		$params['exclude'] = $request->getText( 'exclude', '' );
+
+		$params['excludedNamespaces'] = array_map(
+			'strval',
+			$request->getArray( 'excludedNamespaces', $config->getExcludedNamespaces() )
+		);
+
+		$params['class'] = $request->getText( 'class', '' );
+
+		$params['options'] = $request->getText( 'options', json_encode( $config->getOptions(), JSON_PRETTY_PRINT ) );
+
+		if ( $this->including() ) {
 			$params['enableDisplayTitle'] =
 				filter_var(
 					$request->getText( 'enableDisplayTitle', strval( $config->getEnableDisplayTitle() ) ),
 					FILTER_VALIDATE_BOOL,
 					FILTER_NULL_ON_FAILURE
 				);
+		} elseif ( $request->getCheck( 'pages' ) ) {
+			$params['enableDisplayTitle'] = $request->getCheck('enableDisplayTitle');
+		} else {
+			$params['enableDisplayTitle'] = $config->getEnableDisplayTitle();
 		}
-		$params['exclude'] = $request->getText( 'exclude', '' );
-		$params['excludedNamespaces'] = $request->getArray( 'excludedNamespaces', $config->getExcludedNamespaces() );
-		$params['class'] = $request->getText( 'class', '' );
-		$params['options'] = $request->getText( 'options', json_encode( $config->getOptions(), JSON_PRETTY_PRINT ) );
+
 		$params['labelMaxLength'] = $request->getInt( 'labelMaxLength', $config->getLabelMaxLength() );
+
 		return $params;
 	}
 
@@ -132,78 +144,23 @@ class SpecialNetwork extends IncludableSpecialPage {
 	 * @param NetworkConfig $config
 	 */
 	private function showForm( array $defaultValues, NetworkConfig $config ): void {
-		$formDescriptor = [
-			'pagesfield' => [
-				'label-message' => 'pagenetwork-pages-field-label',
-				'help-message' => 'pagenetwork-pages-field-help',
-				'class' => 'HTMLTextAreaField',
-				'rows' => 4,
-				'default' => $defaultValues['pages'],
-				'nodata' => true,
-				'name' => 'pages'
-			],
-			'excludefield' => [
-				'label-message' => 'pagenetwork-exclude-field-label',
-				'help-message' => 'pagenetwork-exclude-field-help',
-				'class' => 'HTMLTextAreaField',
-				'rows' => 4,
-				'default' => $defaultValues['exclude'],
-				'nodata' => true,
-				'name' => 'exclude'
-			],
-			'excludednamespacesfield' => [
-				'label-message' => 'pagenetwork-excludedNamespaces-field-label',
-				'help-message' => 'pagenetwork-excludedNamespaces-field-help',
-				'class' => 'HTMLMultiSelectField',
-				'default' => $defaultValues['excludedNamespaces'],
-				'options' => $this->getNamespaces( $config ),
-				'nodata' => true,
-				'name' => 'excludedNamespaces'
-			],
-			'classfield' => [
-				'label-message' => 'pagenetwork-class-field-label',
-				'help-message' => 'pagenetwork-class-field-help',
-				'class' => 'HTMLTextField',
-				'default' => $defaultValues['class'],
-				'nodata' => true,
-				'name' => 'class'
-			],
-			'optionsfield' => [
-				'label-message' => 'pagenetwork-options-field-label',
-				'help-message' => 'pagenetwork-options-field-help',
-				'class' => 'HTMLTextAreaField',
-				'default' => $defaultValues['options'],
-				'nodata' => true,
-				'name' => 'options'
-			],
-			'enableDisplayTitle' => [
-				'label-message' => 'pagenetwork-enableDisplayTitle-field-label',
-				'help-message' => 'pagenetwork-enableDisplayTitle-field-help',
-				'class' => 'HTMLCheckField',
-				'default' => $defaultValues['enableDisplayTitle'],
-				'nodata' => true,
-				'name' => 'enableDisplayTitle'
-			],
-			'labelMaxLengthfield' => [
-				'label-message' => 'pagenetwork-labelMaxLength-field-label',
-				'help-message' => 'pagenetwork-labelMaxLength-field-help',
-				'class' => 'HTMLIntField',
-				'default' => $defaultValues['labelMaxLength'],
-				'nodata' => true,
-				'name' => 'labelMaxLength'
+		$output = $this->getOutput();
+		$output->addModules( [ 'ext.network.special' ] );
+		$output->addHTML( Html::element(
+			'div',
+			[
+				'class' => 'network-special-form',
+				'data-defaultvalues' => json_encode( $defaultValues ),
+				'data-namespaces' => json_encode( $this->getNamespaces( $config ) )
 			]
-		];
-
-		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
-		$htmlForm->setMethod( 'get' );
-		$htmlForm->prepareForm()->displayForm( false );
+		) );
 	}
 
 	private function getNamespaces(NetworkConfig $config): array {
 		$namespaces = MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces();
 		$namespaces[0] = ( new Message( 'blanknamespace' ) )->plain();
 		return array_filter(
-			array_flip( $namespaces ),
+			$namespaces,
 			function ( int $value ) use ( $config ) {
 				if ( $value < 0 ) {
 					return false;
@@ -212,7 +169,8 @@ class SpecialNetwork extends IncludableSpecialPage {
 					return !($value % 2);
 				}
 				return true;
-			}
+			},
+			ARRAY_FILTER_USE_KEY
 		);
 	}
 }

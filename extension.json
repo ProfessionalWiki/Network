@@ -147,6 +147,36 @@
 				"network-aria"
 			],
 			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.network.special": {
+			"dependencies": [
+				"mediawiki.Title",
+				"oojs-ui-core",
+				"oojs-ui-widgets"
+			],
+			"scripts": [
+				"js/SpecialForm.js"
+			],
+			"messages": [
+				"htmlform-submit",
+				"pagenetwork-pages-field-label",
+				"pagenetwork-pages-field-help",
+				"pagenetwork-exclude-field-label",
+				"pagenetwork-exclude-field-help",
+				"pagenetwork-excludedNamespaces-field-label",
+				"pagenetwork-excludedNamespaces-field-help",
+				"pagenetwork-class-field-label",
+				"pagenetwork-class-field-help",
+				"pagenetwork-options-field-label",
+				"pagenetwork-options-field-help",
+				"pagenetwork-enableDisplayTitle-field-label",
+				"pagenetwork-enableDisplayTitle-field-help",
+				"pagenetwork-labelMaxLength-field-label",
+				"pagenetwork-labelMaxLength-field-help",
+				"pagenetwork-basic-tab-label",
+				"pagenetwork-advanced-tab-label"
+			],
+			"targets": [ "desktop", "mobile" ]
 		}
 	},
 

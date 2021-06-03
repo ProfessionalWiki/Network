@@ -22,5 +22,7 @@
 	"pagenetwork-enableDisplayTitle-field-label": "Enable Display Title",
 	"pagenetwork-enableDisplayTitle-field-help": "Should the page title or the display title be displayed as a node's label?",
 	"pagenetwork-labelMaxLength-field-label": "Maximum Label Length",
-	"pagenetwork-labelMaxLength-field-help": "The maximum text length of a node's label or 0 if unlimited. If the node label must be truncated, an ellipsis (…) will appended."
+	"pagenetwork-labelMaxLength-field-help": "The maximum text length of a node's label or 0 if unlimited. If the node label must be truncated, an ellipsis (…) will appended.",
+	"pagenetwork-basic-tab-label": "Basic Options",
+	"pagenetwork-advanced-tab-label": "Advanced Options"
 }

@@ -27,7 +27,7 @@ module.PageExclusionManager = ( function (mw ) {
 
 		return title === null
 			|| (this.excludeTalk && this._isTalkPage(title))
-			|| this.namespaces.includes(title.getNamespaceId());
+			|| this.namespaces.includes(title.getNamespaceId().toString());
 	};
 
 	PageExclusionManager.prototype._isTalkPage = function(title) {

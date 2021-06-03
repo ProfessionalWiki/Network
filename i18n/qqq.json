@@ -21,5 +21,7 @@
 	"pagenetwork-enableDisplayTitle-field-label": "Field label\\n{{Identical|Enable Display Title}}",
 	"pagenetwork-enableDisplayTitle-field-help": "Field help",
 	"pagenetwork-labelMaxLength-field-label": "Field label\\n{{Identical|Maximum Label Length}}",
-	"pagenetwork-labelMaxLength-field-help": "Field help"
+	"pagenetwork-labelMaxLength-field-help": "Field help",
+	"pagenetwork-basic-tab-label": "Tab label\\n{{Identical|Basic Options}}",
+	"pagenetwork-advanced-tab-label": "Tab label\\n{{Identical|Advanced Options}}"
 }
