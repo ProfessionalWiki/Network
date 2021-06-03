@@ -11,6 +11,8 @@
 	"pagenetwork-pages-field-help": "За која страница или страници да се прикажат поврзаности, по една во секој ред.\nПо основно ја дава главната страница.",
 	"pagenetwork-exclude-field-label": "Изземи страници",
 	"pagenetwork-exclude-field-help": "Кои страници да се изземат од графиконот на мрежата, по една во секој ред.",
+	"pagenetwork-excludedNamespaces-field-label": "Изземи именски простори",
+	"pagenetwork-excludedNamespaces-field-help": "Кои именски простори да се изземат од мрежниот графикон.",
 	"pagenetwork-class-field-label": "CSS-класи",
 	"pagenetwork-class-field-help": "Дополнителни CSS-класи за додавање во графиконот на мрежата, одделени со празни места.",
 	"pagenetwork-options-field-label": "Нагодувања за графиконот",

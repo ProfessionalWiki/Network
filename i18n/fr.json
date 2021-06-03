@@ -10,5 +10,17 @@
 	"network-desc": "Permet l’ajout de visualisations de réseau interactives dans vos pages wiki",
 	"network-aria": "Affichage du réseau montrant les liens sortant et entrant pour {{PLURAL:$1|la page|les pages}} $2",
 	"pagenetwork-pages-field-label": "Pages",
-	"pagenetwork-options-field-label": "Options du graphique"
+	"pagenetwork-pages-field-help": "Le nom de la ou des pages pour lesquelles afficher les connexions, une par ligne.\nPar défaut, la page principale.",
+	"pagenetwork-exclude-field-label": "Exclure des pages",
+	"pagenetwork-exclude-field-help": "Pages à exclure du graphe du réseau, une par ligne.",
+	"pagenetwork-excludedNamespaces-field-label": "Exclure des espaces de nom",
+	"pagenetwork-excludedNamespaces-field-help": "Espaces de nom à exclure du graphe du réseau.",
+	"pagenetwork-class-field-label": "Classes CSS",
+	"pagenetwork-class-field-help": "Classes CSS supplémentaires à ajouter au graphe du réseau, séparées par des espaces.",
+	"pagenetwork-options-field-label": "Options du graphique",
+	"pagenetwork-options-field-help": "Structure JSON avec les options de graphe vis.js.",
+	"pagenetwork-enableDisplayTitle-field-label": "Activer le titre d’affichage",
+	"pagenetwork-enableDisplayTitle-field-help": "La page doit-elle afficher son titre ou le titre d’affichage comme libellé du nœud ?",
+	"pagenetwork-labelMaxLength-field-label": "Longueur maximale du libellé",
+	"pagenetwork-labelMaxLength-field-help": "La longueur maximale du texte du libellé d’un nœud, ou 0 si illimité. Si le libellé du nœud doit être tronqué, un caractère (…) sera ajouté."
 }
