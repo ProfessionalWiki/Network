@@ -16,7 +16,7 @@ class NetworkConfig {
 	private $excludeTalkPages;
 
 	/**
-	 * @var int[]
+	 * @var string[]
 	 */
 	private $excludedNamespaces;
 
