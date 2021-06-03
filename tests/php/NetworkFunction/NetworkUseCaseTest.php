@@ -312,7 +312,7 @@ class NetworkUseCaseTest extends TestCase {
 			[
 				'a' => [
 					'b' => [
-						'image' => 'extensions/Network/node_modules/@fortawesome/fontawesome-free/svgs/brands/icon.svg'
+						'image' => 'extensions/Network/vendor/fortawesome/font-awesome/svgs/brands/icon.svg'
 					]
 				]
 			]
@@ -328,7 +328,7 @@ class NetworkUseCaseTest extends TestCase {
 			[
 				'a' => [
 					'b' => [
-						'image' => 'extensions/Network/node_modules/@fortawesome/fontawesome-free/svgs/regular/icon.svg'
+						'image' => 'extensions/Network/vendor/fortawesome/font-awesome/svgs/regular/icon.svg'
 					]
 				]
 			]
@@ -344,7 +344,7 @@ class NetworkUseCaseTest extends TestCase {
 			[
 				'a' => [
 					'b' => [
-						'image' => 'extensions/Network/node_modules/@fortawesome/fontawesome-free/svgs/solid/icon.svg'
+						'image' => 'extensions/Network/vendor/fortawesome/font-awesome/svgs/solid/icon.svg'
 					]
 				]
 			]
