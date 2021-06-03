@@ -84,7 +84,7 @@ class NetworkUseCase {
 				} else { // $code === 's'
 					$dir = 'solid';
 				}
-				$options[$key] = 'extensions/Network/node_modules/@fortawesome/fontawesome-free/svgs/' .
+				$options[$key] = 'extensions/Network/vendor/fortawesome/font-awesome/svgs/' .
 					$dir . '/' . substr( $value, 5 ) . '.svg';
 			}
 		}

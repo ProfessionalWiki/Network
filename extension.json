@@ -155,7 +155,7 @@
 			],
 			"styles": [
 				"resources/network.css",
-				"node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+				"vendor/fortawesome/font-awesome/css/all.min.css"
 			],
 			"messages": [
 				"network-aria"
