@@ -179,16 +179,35 @@ You can add extra CSS in [MediaWiki:Common.css]. You can also add extra classes 
 
 ### Node Icons
 
-By default, nodes are represented by [Font Awesome icons](https://fontawesome.com/). The `image` option on `nodes` and
-`groups` specifies the path to the SVG file for the icon relative to the Network extension diretory. However, a shortcut
-has been provided to specify the icon. If the value provided begins with `%fab-`, `%far-`, or `%fas-` followed by the
-name of the icon, this will be translated into the correct relative path, where the prefix indicates whether the icon
-is in brands, regular, or solid collection, respectively. This works for both  `$wgPageNetworkOptions` and the options
-parameter. For example, the specification for the group `bluelink` is:
+By default, nodes are represented by [Font Awesome icons](https://fontawesome.com/). This is specified in the node or group
+options as:
+
+```
+"shape": "icon",
+"icon": {
+  "face": "'Font Awesome 5 Free'",
+  "weight": "bold",
+  "size": 30
+  "code": <insert Font Awesome icon code, e.g. "\uf05e">,
+  "color": <insert desired icon color, e.g. "#ba0000">
+},
+```
+
+Alternatively, the Font Awesome SVG files can be used for node icons. This may load slightly faster but currently [does not
+work on Firefox](https://github.com/almende/vis/issues/1736). To use the SVG images with Firefox, you need to manually edit the
+SVG files (which are text files) that you want to use to add a width and height adjacent to the viewBox parameter (e.g. add
+'width="10" height="10').
+
+When using SVG images, the `image` option on `nodes` and `groups` specifies the path to the SVG file for the icon relative to
+the Network extension diretory. However, a shortcut has been provided to specify the icon. If the value provided begins with
+`%fab-`, `%far-`, or `%fas-` followed by the name of the icon, this will be translated into the correct relative path, where
+the prefix indicates whether the icon is in brands, regular, or solid collection, respectively. This works for both
+`$wgPageNetworkOptions` and the options parameter. For example, the specification for the group `bluelink` is:
 
 ```json
 "bluelink": {
-    "image": "%far-file"
+  "shape": "icon",
+  "image": "%far-file"
 }
 ```
 
