@@ -46,13 +46,6 @@ COMPOSER=composer.local.json composer require --no-update professional-wiki/netw
 composer update professional-wiki/network --no-dev -o
 ```
 
-Install the Font Awesome icons, which are used by default for node icons. On the commandline, go to the
-`extensions/Network` directory. Then run the command:
-
-```shell script
-npm install --save
-```
-
 Then enable the extension by adding the following to the bottom of your wikis `LocalSettings.php` file:
 
 ```php
