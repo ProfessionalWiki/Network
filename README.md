@@ -182,7 +182,7 @@ You can add extra CSS in [MediaWiki:Common.css]. You can also add extra classes 
 By default, nodes are represented by [Font Awesome icons](https://fontawesome.com/). This is specified in the node or group
 options as:
 
-```
+```json
 "shape": "icon",
 "icon": {
   "face": "'Font Awesome 5 Free'",
@@ -206,7 +206,7 @@ the prefix indicates whether the icon is in brands, regular, or solid collection
 
 ```json
 "bluelink": {
-  "shape": "icon",
+  "shape": "image",
   "image": "%far-file"
 }
 ```
