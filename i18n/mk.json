@@ -20,5 +20,7 @@
 	"pagenetwork-enableDisplayTitle-field-label": "Овозможи наслов за приказ",
 	"pagenetwork-enableDisplayTitle-field-help": "Дали да се прикажува насловот на страницата или друг наслов за приказ како натпис на јазолот?",
 	"pagenetwork-labelMaxLength-field-label": "Допуштена должина на натписот",
-	"pagenetwork-labelMaxLength-field-help": "Најголемата допуштена должина на текстот во натписот на јазолот или 0 за неограничено. Ако натписот мора да биде скратен, на крајот ќе се појават три точки (…)."
+	"pagenetwork-labelMaxLength-field-help": "Најголемата допуштена должина на текстот во натписот на јазолот или 0 за неограничено. Ако натписот мора да биде скратен, на крајот ќе се појават три точки (…).",
+	"pagenetwork-basic-tab-label": "Основни можности",
+	"pagenetwork-advanced-tab-label": "Напредни можности"
 }

@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ykhwong"
+		]
+	},
+	"network": "네트워크",
+	"pagenetwork-excludedNamespaces-field-label": "이름공간 제외",
+	"pagenetwork-class-field-label": "CSS 클래스",
+	"pagenetwork-options-field-label": "그래프 옵션",
+	"pagenetwork-enableDisplayTitle-field-label": "표시 제목 활성화",
+	"pagenetwork-labelMaxLength-field-label": "최대 레이블 길이",
+	"pagenetwork-basic-tab-label": "기본 옵션",
+	"pagenetwork-advanced-tab-label": "고급 옵션"
+}

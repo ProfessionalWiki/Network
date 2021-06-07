@@ -14,5 +14,6 @@
 	"pagenetwork-class-field-label": "Classes CSS",
 	"pagenetwork-options-field-label": "Opções de gráfico",
 	"pagenetwork-enableDisplayTitle-field-label": "Ativar título de exibição",
-	"pagenetwork-enableDisplayTitle-field-help": "O título da página ou o título de exibição deve ser exibido como um rótulo de nó?"
+	"pagenetwork-enableDisplayTitle-field-help": "O título da página ou o título de exibição deve ser exibido como um rótulo de nó?",
+	"pagenetwork-advanced-tab-label": "Opções avançadas"
 }

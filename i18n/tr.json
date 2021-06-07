@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"BaRaN6161 TURK",
+			"Joseph",
 			"Mim.saitkilic",
 			"MuratTheTurkish"
 		]
@@ -13,6 +14,8 @@
 	"pagenetwork-pages-field-help": "Her satıra bir tane olmak üzere, bağlantıların gösterileceği sayfanın veya sayfaların adı. Varsayılan ana sayfadır.",
 	"pagenetwork-exclude-field-label": "Sayfaları Hariç Tut",
 	"pagenetwork-exclude-field-help": "Her satırda bir tane olacak şekilde ağ grafiğinden hariç tutulacak sayfalar.",
+	"pagenetwork-excludedNamespaces-field-label": "Ad Alanlarını Hariç Tut",
+	"pagenetwork-excludedNamespaces-field-help": "Ağ grafiğinden hariç tutulacak ad alanları.",
 	"pagenetwork-class-field-label": "CSS Sınıfları",
 	"pagenetwork-class-field-help": "Ağ grafiğine eklenecek, boşluklarla ayrılmış ekstra css sınıfları.",
 	"pagenetwork-options-field-label": "Grafik Seçenekleri",
@@ -20,5 +23,7 @@
 	"pagenetwork-enableDisplayTitle-field-label": "Görüntü Başlığını Etkinleştir",
 	"pagenetwork-enableDisplayTitle-field-help": "Sayfa başlığı mı yoksa görünen başlık bir düğümün etiketi olarak mı görüntülenmeli?",
 	"pagenetwork-labelMaxLength-field-label": "Maksimum Etiket Uzunluğu",
-	"pagenetwork-labelMaxLength-field-help": "Bir düğümün etiketinin maksimum metin uzunluğu veya sınırsızsa 0. Düğüm etiketinin kesilmesi gerekiyorsa, bir üç nokta (…) eklenir."
+	"pagenetwork-labelMaxLength-field-help": "Bir düğümün etiketinin maksimum metin uzunluğu veya sınırsızsa 0. Düğüm etiketinin kesilmesi gerekiyorsa, bir üç nokta (…) eklenir.",
+	"pagenetwork-basic-tab-label": "Temel Seçenekler",
+	"pagenetwork-advanced-tab-label": "Gelişmiş Seçenekler"
 }

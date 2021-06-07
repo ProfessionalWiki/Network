@@ -22,5 +22,7 @@
 	"pagenetwork-enableDisplayTitle-field-label": "Activer le titre d’affichage",
 	"pagenetwork-enableDisplayTitle-field-help": "La page doit-elle afficher son titre ou le titre d’affichage comme libellé du nœud ?",
 	"pagenetwork-labelMaxLength-field-label": "Longueur maximale du libellé",
-	"pagenetwork-labelMaxLength-field-help": "La longueur maximale du texte du libellé d’un nœud, ou 0 si illimité. Si le libellé du nœud doit être tronqué, un caractère (…) sera ajouté."
+	"pagenetwork-labelMaxLength-field-help": "La longueur maximale du texte du libellé d’un nœud, ou 0 si illimité. Si le libellé du nœud doit être tronqué, un caractère (…) sera ajouté.",
+	"pagenetwork-basic-tab-label": "Options de base",
+	"pagenetwork-advanced-tab-label": "Options avancées"
 }
