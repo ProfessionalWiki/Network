@@ -18,10 +18,9 @@ class NetworkUseCaseTest extends TestCase {
 	private const RENDERING_PAGE_NAME = 'MyPage';
 
 	public function testDefaultPageName() {
-		$this->assertSame(
-			[ self::RENDERING_PAGE_NAME ],
-			$this->runAndReturnPresenter( $this->newBasicRequestModel() )->getResponseModel()->pageNames
-		);
+		$this->assertSame( [ self::RENDERING_PAGE_NAME ],
+			$this->runAndReturnPresenter( $this->newBasicRequestModel() )
+				->getResponseModel()->pageNames );
 	}
 
 	private function runAndReturnPresenter( RequestModel $requestModel ): SpyNetworkPresenter {
@@ -33,7 +32,7 @@ class NetworkUseCaseTest extends TestCase {
 			],
 			'physics' => [
 				'barnesHut' => [
-					'gravitationalConstant' => -5000,
+					'gravitationalConstant' => - 5000,
 					'damping' => 0.242
 				]
 			]
@@ -59,82 +58,66 @@ class NetworkUseCaseTest extends TestCase {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'page = Kittens' ];
 
-		$this->assertSame(
-			[ 'Kittens' ],
-			$this->runAndReturnPresenter( $request )->getResponseModel()->pageNames
-		);
+		$this->assertSame( [ 'Kittens' ],
+			$this->runAndReturnPresenter( $request )->getResponseModel()->pageNames );
 	}
 
 	public function testDefaultCssClass() {
 		$request = $this->newBasicRequestModel();
 
-		$this->assertSame(
-			'network-visualization',
-			$this->runAndReturnPresenter( $request )->getResponseModel()->cssClass
-		);
+		$this->assertSame( 'network-visualization',
+			$this->runAndReturnPresenter( $request )->getResponseModel()->cssClass );
 	}
 
 	public function testSpecifiedCssClass() {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'class = col-lg-3 mt-2 ' ];
 
-		$this->assertSame(
-			'network-visualization col-lg-3 mt-2',
-			$this->runAndReturnPresenter( $request )->getResponseModel()->cssClass
-		);
+		$this->assertSame( 'network-visualization col-lg-3 mt-2',
+			$this->runAndReturnPresenter( $request )->getResponseModel()->cssClass );
 	}
 
 	public function testMultiplePageNames() {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'Kittens', 'Cats', 'page = Tigers', 'page=Bobcats ' ];
 
-		$this->assertSame(
-			[ 'Kittens', 'Cats', 'Tigers', 'Bobcats' ],
-			$this->runAndReturnPresenter( $request )->getResponseModel()->pageNames
-		);
+		$this->assertSame( [ 'Kittens', 'Cats', 'Tigers', 'Bobcats' ],
+			$this->runAndReturnPresenter( $request )->getResponseModel()->pageNames );
 	}
 
 	public function testPageParametersWithPipe() {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'Kittens|Cats', 'pages = Tigers|Bobcats' ];
 
-		$this->assertSame(
-			[ 'Kittens', 'Cats', 'Tigers', 'Bobcats' ],
-			$this->runAndReturnPresenter( $request )->getResponseModel()->pageNames
-		);
+		$this->assertSame( [ 'Kittens', 'Cats', 'Tigers', 'Bobcats' ],
+			$this->runAndReturnPresenter( $request )->getResponseModel()->pageNames );
 	}
 
 	public function testNothingExcludedByDefault() {
-		$this->assertSame(
-			[],
-			$this->runAndReturnPresenter( $this->newBasicRequestModel() )->getResponseModel()->excludedPages
-		);
+		$this->assertSame( [], $this->runAndReturnPresenter( $this->newBasicRequestModel() )
+			->getResponseModel()->excludedPages );
 	}
 
 	public function testExclude() {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'Kittens', 'exclude = Foo ; Bar ; Baz:bah' ];
 
-		$this->assertSame(
-			[ 'Foo', 'Bar', 'Baz:bah' ],
-			$this->runAndReturnPresenter( $request )->getResponseModel()->excludedPages
-		);
+		$this->assertSame( [ 'Foo', 'Bar', 'Baz:bah' ],
+			$this->runAndReturnPresenter( $request )->getResponseModel()->excludedPages );
 	}
 
 	public function testCanUseMaxPages() {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = $this->getPageNames( 100 );
 
-		$this->assertSame(
-			$this->getPageNames( 100 ),
-			$this->runAndReturnPresenter( $request )->getResponseModel()->pageNames
-		);
+		$this->assertSame( $this->getPageNames( 100 ),
+			$this->runAndReturnPresenter( $request )->getResponseModel()->pageNames );
 	}
 
 	private function getPageNames( int $count ): array {
 		$pageNames = [];
 
-		for ( $i = 0 ; $i < $count ; $i++ ) {
+		for ( $i = 0; $i < $count; $i ++ ) {
 			$pageNames[] = 'Page' . (string)$i;
 		}
 
@@ -146,27 +129,23 @@ class NetworkUseCaseTest extends TestCase {
 		$request->functionArguments = $this->getPageNames( 101 );
 
 
-		$this->assertSame(
-			[ 'too many pages' ],
-			$this->runAndReturnPresenter( $request )->getErrors()
-		);
+		$this->assertSame( [ 'too many pages' ],
+			$this->runAndReturnPresenter( $request )->getErrors() );
 	}
 
 	public function testDefaultEnableDisplayTitle() {
 		$request = $this->newBasicRequestModel();
 
-		$this->assertTrue(
-			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle
-		);
+		$this->assertTrue( $this->runAndReturnPresenter( $request )
+			->getResponseModel()->enableDisplayTitle );
 	}
 
 	public function testOverrideEnableDisplayTitleTrue() {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'enableDisplayTitle = true' ];
 
-		$this->assertTrue(
-			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle
-		);
+		$this->assertTrue( $this->runAndReturnPresenter( $request )
+			->getResponseModel()->enableDisplayTitle );
 	}
 
 
@@ -174,19 +153,15 @@ class NetworkUseCaseTest extends TestCase {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'enableDisplayTitle = false' ];
 
-		$this->assertFalse(
-			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle
-		);
+		$this->assertFalse( $this->runAndReturnPresenter( $request )
+			->getResponseModel()->enableDisplayTitle );
 	}
 
 	public function testNoOptionsInLocalSettingsAndNoOptionsParameter() {
 		$presenter = new SpyNetworkPresenter();
 		( new NetworkUseCase( $presenter, [] ) )->run( $this->newBasicRequestModel() );
 
-		$this->assertSame(
-			[],
-			$presenter->getResponseModel()->visJsOptions
-		);
+		$this->assertSame( [], $presenter->getResponseModel()->visJsOptions );
 	}
 
 	public function testOptionsInLocalSettings() {
@@ -200,10 +175,7 @@ class NetworkUseCaseTest extends TestCase {
 		$presenter = new SpyNetworkPresenter();
 		( new NetworkUseCase( $presenter, $setting ) )->run( $this->newBasicRequestModel() );
 
-		$this->assertEquals(
-			$setting,
-			$presenter->getResponseModel()->visJsOptions
-		);
+		$this->assertEquals( $setting, $presenter->getResponseModel()->visJsOptions );
 	}
 
 	public function testOptionsParameter() {
@@ -213,14 +185,11 @@ class NetworkUseCaseTest extends TestCase {
 		$presenter = new SpyNetworkPresenter();
 		( new NetworkUseCase( $presenter, [] ) )->run( $request );
 
-		$this->assertSame(
-			[
-				'nodes' => [
-					'shape' => 'box',
-				]
-			],
-			$presenter->getResponseModel()->visJsOptions
-		);
+		$this->assertSame( [
+			'nodes' => [
+				'shape' => 'box',
+			]
+		], $presenter->getResponseModel()->visJsOptions );
 	}
 
 	public function testOptionsParameterWithLocalSettingsConfig() {
@@ -238,132 +207,13 @@ class NetworkUseCaseTest extends TestCase {
 		$presenter = new SpyNetworkPresenter();
 		( new NetworkUseCase( $presenter, $setting ) )->run( $request );
 
-		$this->assertEquals(
-			[
-				'height' => '42%',
-				'nodes' => [
-					'color' => 'red',
-					'shape' => 'box',
-					'foo' => 'bar'
-				],
+		$this->assertEquals( [
+			'height' => '42%',
+			'nodes' => [
+				'color' => 'red',
+				'shape' => 'box',
+				'foo' => 'bar'
 			],
-			$presenter->getResponseModel()->visJsOptions
-		);
-	}
-
-	public function provideResolveImageAliases() {
-		yield [ [], [] ];
-		yield [
-			[
-				'a' => [
-					'b' => [
-						'image' => 'some string'
-					]
-				]
-			],
-			[
-				'a' => [
-					'b' => [
-						'image' => 'some string'
-					]
-				]
-			]
-		];
-		yield [
-			[
-				'a' => [
-					'b' => [
-						'image' => 'fas-missing%'
-					]
-				]
-			],
-			[
-				'a' => [
-					'b' => [
-						'image' => 'fas-missing%'
-					]
-				]
-			]
-		];
-		yield [
-			[
-				'a' => [
-					'b' => [
-						'image' => '%fax-wrongprefix'
-					]
-				]
-			],
-			[
-				'a' => [
-					'b' => [
-						'image' => '%fax-wrongprefix'
-					]
-				]
-			]
-		];
-		yield [
-			[
-				'a' => [
-					'b' => [
-						'image' => '%fab-icon'
-					]
-				]
-			],
-			[
-				'a' => [
-					'b' => [
-						'image' => 'extensions/Network/vendor/fortawesome/font-awesome/svgs/brands/icon.svg'
-					]
-				]
-			]
-		];
-		yield [
-			[
-				'a' => [
-					'b' => [
-						'image' => '%far-icon'
-					]
-				]
-			],
-			[
-				'a' => [
-					'b' => [
-						'image' => 'extensions/Network/vendor/fortawesome/font-awesome/svgs/regular/icon.svg'
-					]
-				]
-			]
-		];
-		yield [
-			[
-				'a' => [
-					'b' => [
-						'image' => '%fas-icon'
-					]
-				]
-			],
-			[
-				'a' => [
-					'b' => [
-						'image' => 'extensions/Network/vendor/fortawesome/font-awesome/svgs/solid/icon.svg'
-					]
-				]
-			]
-		];
-	}
-
-	/**
-	 * @param $input
-	 * @param $expected
-	 * @dataProvider provideResolveImageAliases
-	 */
-	public function testResolveImageAliases( $input, $expected ) {
-		$presenter = new SpyNetworkPresenter();
-		$request = $this->newBasicRequestModel();
-		$useCase = new NetworkUseCase( $presenter, [] );
-		$wrapper = TestingAccessWrapper::newFromObject( $useCase );
-		$this->assertEquals(
-			$wrapper->resolveImageAliases( $input ),
-			$expected
-		);
+		], $presenter->getResponseModel()->visJsOptions );
 	}
 }
