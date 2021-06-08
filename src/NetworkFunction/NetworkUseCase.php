@@ -68,27 +68,7 @@ class NetworkUseCase {
 			$this->visJsOptions,
 			json_decode( $arguments['options'] ?? '{}', true ) ?? []
 		);
-		return $this->resolveImageAliases( $visJsOptions );
-	}
-
-	private function resolveImageAliases( array $options ) : array {
-		foreach ($options as $key => $value) {
-			if (is_array( $value ) ) {
-				$options[$key] = $this->resolveImageAliases( $value );
-			} elseif ($key == "image" && preg_match( '/^%fa[brs]-/', $value ) ) {
-				$code = substr( $value, 3, 1 );
-				if ( $code === 'b' ) {
-					$dir = 'brands';
-				} elseif ( $code === 'r' ) {
-					$dir = 'regular';
-				} else { // $code === 's'
-					$dir = 'solid';
-				}
-				$options[$key] = 'extensions/Network/vendor/fortawesome/font-awesome/svgs/' .
-					$dir . '/' . substr( $value, 5 ) . '.svg';
-			}
-		}
-		return $options;
+		return $visJsOptions;
 	}
 
 	/**
