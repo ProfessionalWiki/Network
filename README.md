@@ -172,36 +172,27 @@ You can add extra CSS in [MediaWiki:Common.css]. You can also add extra classes 
 
 ### Node Icons
 
-By default, nodes are represented by [Font Awesome icons](https://fontawesome.com/). This is specified in the node or group
+By default, nodes are represented by [OOUI icons](https://doc.wikimedia.org/oojs-ui/master/demos/?page=icons&theme=wikimediaui). This is specified in the node or group
 options as:
 
 ```json
-"shape": "icon",
-"icon": {
-  "face": "'Font Awesome 5 Free'",
-  "weight": "bold",
-  "size": 30,
-  "code": <insert Font Awesome icon code, e.g. "\uf05e">,
-  "color": <insert desired icon color, e.g. "#ba0000">
+"nodes": {
+    ...
+    "shape": "image",
+    ...
 },
-```
-
-Alternatively, the Font Awesome SVG files can be used for node icons. This may load slightly faster but currently [does not
-work on Firefox](https://github.com/almende/vis/issues/1736). To use the SVG images with Firefox, you need to manually edit the
-SVG files (which are text files) that you want to use to add a width and height adjacent to the viewBox parameter (e.g.
-width="10" height="10").
-
-When using SVG images, the `image` option on `nodes` and `groups` specifies the path to the SVG file for the icon relative to
-the Network extension diretory. However, a shortcut has been provided to specify the icon. If the value provided begins with
-`%fab-`, `%far-`, or `%fas-` followed by the name of the icon, this will be translated into the correct relative path, where
-the prefix indicates whether the icon is in brands, regular, or solid collection, respectively. This works for both
-`$wgPageNetworkOptions` and the options parameter. For example, the specification for the group `bluelink` is:
-
-```json
-"bluelink": {
-  "shape": "image",
-  "image": "%far-file"
-}
+"groups": {
+    "bluelink": {
+        "image": "resources/lib/ooui/themes/wikimediaui/images/icons/wikiText-progressive.svg"
+    },
+    "redlink": {
+        "image": "resources/lib/ooui/themes/wikimediaui/images/icons/cancel-destructive.svg",
+        ...
+    },
+    "externallink": {
+        "image": "resources/lib/ooui/themes/wikimediaui/images/icons/linkExternal-ltr.svg",
+        ```
+    },
 ```
 
 ### Configuration
@@ -368,7 +359,7 @@ Under development
 * Made styling of nodes representing links to existing pages and links to
   missing pages configurable by adding vis.js groups named "bluelink" and
   "redlink".
-* Added support for Font Awesome icons.
+* Added support for OOUI icons.
 * Added support for external links.
 
 ### Version 1.4.0

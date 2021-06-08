@@ -40,12 +40,7 @@
 						}
 					},
 					"borderWidth": 0,
-					"shape": "icon",
-					"icon": {
-						"face": "'Font Awesome 5 Free'",
-						"weight": "bold",
-						"size": 30
-					},
+					"shape": "image",
 					"size": 10,
 					"shapeProperties": {
 						"useBorderWithImage": true
@@ -53,15 +48,10 @@
 				},
 				"groups": {
 					"bluelink": {
-						"icon": {
-							"code": "\uf15b"
-						}
+						"image": "resources/lib/ooui/themes/wikimediaui/images/icons/wikiText-progressive.svg"
 					},
 					"redlink": {
-						"icon": {
-							"code": "\uf05e",
-							"color": "#ba0000"
-						},
+						"image": "resources/lib/ooui/themes/wikimediaui/images/icons/cancel-destructive.svg",
 						"color": {
 							"border": "#ba0000",
 							"highlight": {
@@ -73,10 +63,7 @@
 						}
 					},
 					"externallink": {
-						"icon": {
-							"code": "\uf0c1",
-							"color": "grey"
-						},
+						"image": "resources/lib/ooui/themes/wikimediaui/images/icons/linkExternal-ltr.svg",
 						"color": {
 							"border": "grey",
 							"highlight": {
@@ -154,8 +141,7 @@
 				"resources/js/index.js"
 			],
 			"styles": [
-				"resources/network.css",
-				"vendor/fortawesome/font-awesome/css/all.min.css"
+				"resources/network.css"
 			],
 			"messages": [
 				"network-aria"
