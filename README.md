@@ -172,27 +172,24 @@ You can add extra CSS in [MediaWiki:Common.css]. You can also add extra classes 
 
 ### Node Icons
 
-By default, nodes are represented by [OOUI icons](https://doc.wikimedia.org/oojs-ui/master/demos/?page=icons&theme=wikimediaui). This is specified in the node or group
-options as:
+By default, nodes are represented by [OOUI icons](https://doc.wikimedia.org/oojs-ui/master/demos/?page=icons&theme=wikimediaui). This is specified in the node
+or group options as (excerpted from the full options):
 
 ```json
 "nodes": {
-    ...
-    "shape": "image",
-    ...
+    "shape": "image"
 },
 "groups": {
     "bluelink": {
         "image": "resources/lib/ooui/themes/wikimediaui/images/icons/wikiText-progressive.svg"
     },
     "redlink": {
-        "image": "resources/lib/ooui/themes/wikimediaui/images/icons/cancel-destructive.svg",
-        ...
+        "image": "resources/lib/ooui/themes/wikimediaui/images/icons/cancel-destructive.svg"
     },
     "externallink": {
-        "image": "resources/lib/ooui/themes/wikimediaui/images/icons/linkExternal-ltr.svg",
-        ```
-    },
+        "image": "resources/lib/ooui/themes/wikimediaui/images/icons/linkExternal-ltr.svg"
+    }
+}
 ```
 
 ### Configuration
