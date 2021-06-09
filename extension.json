@@ -48,10 +48,10 @@
 				},
 				"groups": {
 					"bluelink": {
-						"image": "resources/lib/ooui/themes/wikimediaui/images/icons/wikiText-progressive.svg"
+						"image": "resources/lib/ooui/themes/wikimediaui/images/icons/article-rtl-progressive.svg"
 					},
 					"redlink": {
-						"image": "resources/lib/ooui/themes/wikimediaui/images/icons/cancel-destructive.svg",
+						"image": "resources/lib/ooui/themes/wikimediaui/images/icons/articleNotFound-ltr.svg",
 						"color": {
 							"border": "#ba0000",
 							"highlight": {
@@ -63,7 +63,7 @@
 						}
 					},
 					"externallink": {
-						"image": "resources/lib/ooui/themes/wikimediaui/images/icons/linkExternal-ltr.svg",
+						"image": "resources/lib/ooui/themes/wikimediaui/images/icons/linkExternal-ltr-progressive.svg",
 						"color": {
 							"border": "grey",
 							"highlight": {
