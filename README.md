@@ -181,13 +181,13 @@ or group options as (excerpted from the full options):
 },
 "groups": {
     "bluelink": {
-        "image": "resources/lib/ooui/themes/wikimediaui/images/icons/wikiText-progressive.svg"
+        "image": "resources/lib/ooui/themes/wikimediaui/images/icons/article-rtl-progressive.svg"
     },
     "redlink": {
-        "image": "resources/lib/ooui/themes/wikimediaui/images/icons/cancel-destructive.svg"
+        "image": "resources/lib/ooui/themes/wikimediaui/images/icons/articleNotFound-ltr.svg"
     },
     "externallink": {
-        "image": "resources/lib/ooui/themes/wikimediaui/images/icons/linkExternal-ltr.svg"
+        "image": "resources/lib/ooui/themes/wikimediaui/images/icons/linkExternal-ltr-progressive.svg"
     }
 }
 ```
