@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kareyac"
+		]
+	},
+	"network": "Сеть",
+	"pagenetwork-pages-field-label": "Страницы",
+	"pagenetwork-enableDisplayTitle-field-label": "Включить отображаемый заголовок",
+	"pagenetwork-basic-tab-label": "Основные настройки",
+	"pagenetwork-advanced-tab-label": "Расширенные настройки"
+}
