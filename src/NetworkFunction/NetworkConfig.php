@@ -4,6 +4,8 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Network\NetworkFunction;
 
+use MediaWiki\MediaWikiServices;
+
 class NetworkConfig {
 	/**
 	 * @var array
@@ -31,11 +33,12 @@ class NetworkConfig {
 	private $labelMaxLength;
 
 	public function __construct() {
-		$this->options = $GLOBALS['wgPageNetworkOptions'];
-		$this->excludeTalkPages = (bool)$GLOBALS['wgPageNetworkExcludeTalkPages'];
-		$this->excludedNamespaces = array_map( 'strval', $GLOBALS['wgPageNetworkExcludedNamespaces'] );
-		$this->enableDisplayTitle = (bool)$GLOBALS['wgPageNetworkEnableDisplayTitle'];
-		$this->labelMaxLength = (int)$GLOBALS['wgPageNetworkLabelMaxLength'];
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$this->options = $config->get( 'PageNetworkOptions' );
+		$this->excludeTalkPages = (bool)$config->get( 'PageNetworkExcludeTalkPages' );
+		$this->excludedNamespaces = array_map( 'strval', $config->get( 'PageNetworkExcludedNamespaces' ) );
+		$this->enableDisplayTitle = (bool)$config->get( 'PageNetworkEnableDisplayTitle' );
+		$this->labelMaxLength = (int)$config->get( 'PageNetworkLabelMaxLength' );
 	}
 
 	public function getOptions(): array {
