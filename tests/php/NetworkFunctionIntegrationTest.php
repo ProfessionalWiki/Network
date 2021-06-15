@@ -17,14 +17,14 @@ class NetworkFunctionIntegrationTest extends TestCase {
 	}
 
 	public function testWhenThereAreNoParameters_contextPageIsUsed() {
-		$this->assertStringContainsString(
+		$this->assertContains(
 			'data-pages="[&quot;ContextPageTitle&quot;]"',
 			$this->parse( '{{#network:}}' )
 		);
 	}
 
 	public function testOptionsParameters() {
-		$this->assertStringContainsString(
+		$this->assertContains(
 			'&quot;shape&quot;:&quot;tomato&quot;',
 			$this->parse( '{{#network:options={"nodes": {"shape": "tomato"} } }}' )
 		);
