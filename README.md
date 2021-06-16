@@ -192,6 +192,10 @@ or group options as (excerpted from the full options):
 }
 ```
 
+If the [Title Icon](https://mediawiki.org/wiki/Extension:Title_Icon) extension is installed and a page rendered in the
+graph has an OOUI or file type title icon defined and the node shape is set to "image", the title icon will be used for
+that node's icon.
+
 ### Configuration
 
 The default value of all parameters can be changed by placing configuration in "LocalSettings.php".
