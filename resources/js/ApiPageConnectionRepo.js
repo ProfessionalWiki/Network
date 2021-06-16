@@ -51,7 +51,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 						let displayTitles = this._getDisplayTitles(pages)
 
 						this._getTitleIcons(pages)
-							.then( function (titleIcons) {
+							.then(function(titleIcons) {
 
 								connections.pages.forEach(function(page) {
 									if (missingPages.includes(page.title)) {
@@ -70,7 +70,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 								});
 
 								resolve(connections);
-							} )
+							})
 					}.bind(this)
 				)
 			}.bind(this)
@@ -138,18 +138,18 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 			} else {
 				displayTitles[page.title] = page.title
 			}
-		} )
+		})
 		return displayTitles
 	}
 
 	ApiPageConnectionRepo.prototype._getTitleIcons = function(pages) {
 		return new Promise(
-			function (resolve) {
+			function(resolve) {
 				let titleIcons = []
 				let fileIcons = [];
 				let fileSearch = [];
-				pages.forEach( function ( page ) {
-					if ( page.pageprops && page.pageprops.titleicons ) {
+				pages.forEach(function(page) {
+					if (page.pageprops && page.pageprops.titleicons) {
 						try {
 							let icons = JSON.parse(page.pageprops.titleicons);
 							for (let index in icons) {
@@ -173,10 +173,10 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 					files.push(index);
 				}
 				this._queryFileUrls(files)
-					.done(function (imageInfoResponse) {
+					.done(function(imageInfoResponse) {
 						var filePages = Object.values(imageInfoResponse.query.pages);
 						let fileUrls = []
-						filePages.forEach(function (filePage) {
+						filePages.forEach(function(filePage) {
 							fileUrls[filePage.title] = filePage.imageinfo[0].url;
 						})
 
@@ -186,7 +186,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 
 						resolve(titleIcons)
 					})
-			}.bind( this )
+			}.bind(this)
 		)
 	}
 
