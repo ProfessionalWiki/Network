@@ -42,34 +42,79 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 			function(resolve) {
 				let connections = (new ApiConnectionsBuilder()).connectionsFromApiResponses(linkQueryResponse)
 
+				let self = this;
 				this._queryPageNodeInfo(connections.pages).done(function(pageInfoResponse) {
 					let missingPages = Object.values(pageInfoResponse.query.pages)
 						.filter(p => p.missing === '')
 						.map(p => p.title);
 
 					let displayTitles = [];
+					let titleIcons = [];
+					let fileIcons = [];
+					let fileSearch = [];
 					var index;
 					for ( index in pageInfoResponse.query.pages ) {
 						let page = pageInfoResponse.query.pages[index];
-						if ( page.pageprops && page.pageprops.displaytitle) {
-							displayTitles[page.title] = page.pageprops.displaytitle;
+						if ( page.pageprops ) {
+							if (page.pageprops.displaytitle) {
+								displayTitles[page.title] = page.pageprops.displaytitle;
+							} else {
+								displayTitles[page.title] = page.title;
+							}
+							if ( page.pageprops.titleicons ) {
+								try {
+									let icons = JSON.parse(page.pageprops.titleicons);
+									var icon;
+									for ( icon in icons ) {
+										if ( icons[icon].type === 'ooui' ) {
+											titleIcons[page.title] = 'resources/lib/ooui/themes/wikimediaui/images/icons/' + icons[icon].icon;
+											break;
+										} else if ( icons[icon].type === 'file' ) {
+											fileIcons[page.title] = icons[icon].icon;
+											fileSearch[icons[icon].icon] = true;
+											break;
+										}
+									}
+								} catch (e) {
+									// do nothing
+								}
+							}
 						} else {
 							displayTitles[page.title] = page.title;
 						}
-					};
+					}
 
-					connections.pages.forEach(function(page) {
-						if ( page.isExternal ) {
-							page.displayTitle = page.title;
-						} else {
-							page.displayTitle = displayTitles[page.title];
+					var titles = [];
+					for ( index in fileSearch ) {
+						titles.push( index );
+					}
+					var fileUrls = []
+					self._queryFileUrls(titles).done(function(imageInfoResponse) {
+						var pages = imageInfoResponse.query.pages;
+						for ( index in pages ) {
+							fileUrls[pages[index].title] = pages[index].imageinfo[0].url;
 						}
-						if (missingPages.includes(page.title)) {
-							page.isMissing = true;
+
+						for ( index in fileIcons ) {
+							titleIcons[index] = fileUrls[fileIcons[index]];
 						}
+
+						connections.pages.forEach(function(page) {
+							if ( page.isExternal ) {
+								page.displayTitle = page.title;
+							} else {
+								page.displayTitle = displayTitles[page.title];
+							}
+							if ( missingPages.includes( page.title ) ) {
+								page.isMissing = true;
+							}
+							if ( titleIcons[page.title] !== undefined ) {
+								page.image = titleIcons[page.title];
+							}
+						});
+
+						resolve(connections);
 					});
-
-					resolve(connections);
 				});
 			}.bind(this)
 		);
@@ -101,6 +146,18 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 			parameters.prop = [ 'pageprops' ];
 		}
 		return new mw.Api().get(parameters);
+	};
+
+	ApiPageConnectionRepo.prototype._queryFileUrls = function(fileNames) {
+		return new mw.Api().get({
+			action: 'query',
+			titles: fileNames,
+
+			prop: ['imageinfo'],
+			iiprop: 'url',
+
+			format: 'json'
+		});
 	};
 
 	return ApiPageConnectionRepo;

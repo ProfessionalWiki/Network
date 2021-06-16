@@ -52,6 +52,9 @@ module.NetworkData = ( function ( vis, mw ) {
 						node.group = 'bluelink';
 					}
 
+					if (page.image !== undefined) {
+						node.image = page.image;
+					}
 					return node;
 				})
 		);
