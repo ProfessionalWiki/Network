@@ -7,8 +7,6 @@ namespace MediaWiki\Extension\Network\Tests\NetworkFunction;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
 use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
 use PHPUnit\Framework\TestCase;
-use ReflectionClass;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase

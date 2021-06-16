@@ -4,8 +4,6 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Network\NetworkFunction;
 
-use Html;
-
 class ParserFunctionNetworkPresenter extends AbstractNetworkPresenter {
 
 	/**

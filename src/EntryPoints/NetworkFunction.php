@@ -8,7 +8,6 @@ use MediaWiki\Extension\Network\Extension;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkConfig;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
-use MediaWiki\Extension\Network\NetworkFunction\ParserFunctionNetworkPresenter;
 use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
 use Parser;
 
