@@ -20,7 +20,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 	ApiPageConnectionRepo.prototype.addConnections = function(pageNames) {
 		return new Promise(
 			function(resolve) {
-				let pagesToAdd =  pageNames.filter(p => !this._addedPages.includes(p));
+				let pagesToAdd = pageNames.filter(page => !this._addedPages.includes(page));
 
 				if (pagesToAdd.length === 0) {
 					resolve({pages: [], links: []});
@@ -42,80 +42,37 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 			function(resolve) {
 				let connections = (new ApiConnectionsBuilder()).connectionsFromApiResponses(linkQueryResponse)
 
-				let self = this;
-				this._queryPageNodeInfo(connections.pages).done(function(pageInfoResponse) {
-					let missingPages = Object.values(pageInfoResponse.query.pages)
-						.filter(p => p.missing === '')
-						.map(p => p.title);
+				this._queryPageNodeInfo(connections.pages).done(
+					function(pageInfoResponse) {
+						let pages = Object.values(pageInfoResponse.query.pages)
 
-					let displayTitles = [];
-					let titleIcons = [];
-					let fileIcons = [];
-					let fileSearch = [];
-					var index;
-					for ( index in pageInfoResponse.query.pages ) {
-						let page = pageInfoResponse.query.pages[index];
-						if ( page.pageprops ) {
-							if (page.pageprops.displaytitle) {
-								displayTitles[page.title] = page.pageprops.displaytitle;
-							} else {
-								displayTitles[page.title] = page.title;
-							}
-							if ( page.pageprops.titleicons ) {
-								try {
-									let icons = JSON.parse(page.pageprops.titleicons);
-									var icon;
-									for ( icon in icons ) {
-										if ( icons[icon].type === 'ooui' ) {
-											titleIcons[page.title] = 'resources/lib/ooui/themes/wikimediaui/images/icons/' + icons[icon].icon;
-											break;
-										} else if ( icons[icon].type === 'file' ) {
-											fileIcons[page.title] = icons[icon].icon;
-											fileSearch[icons[icon].icon] = true;
-											break;
-										}
+						let missingPages = this._getMissingPages(pages)
+
+						let displayTitles = this._getDisplayTitles(pages)
+
+						this._getTitleIcons(pages)
+							.then( function (titleIcons) {
+
+								connections.pages.forEach(function(page) {
+									if (missingPages.includes(page.title)) {
+										page.isMissing = true;
 									}
-								} catch (e) {
-									// do nothing
-								}
-							}
-						} else {
-							displayTitles[page.title] = page.title;
-						}
-					}
 
-					var titles = [];
-					for ( index in fileSearch ) {
-						titles.push( index );
-					}
-					var fileUrls = []
-					self._queryFileUrls(titles).done(function(imageInfoResponse) {
-						var pages = imageInfoResponse.query.pages;
-						for ( index in pages ) {
-							fileUrls[pages[index].title] = pages[index].imageinfo[0].url;
-						}
+									if (page.isExternal) {
+										page.displayTitle = page.title;
+									} else {
+										page.displayTitle = displayTitles[page.title];
+									}
 
-						for ( index in fileIcons ) {
-							titleIcons[index] = fileUrls[fileIcons[index]];
-						}
+									if (titleIcons[page.title] !== undefined) {
+										page.image = titleIcons[page.title];
+									}
+								});
 
-						connections.pages.forEach(function(page) {
-							if ( page.isExternal ) {
-								page.displayTitle = page.title;
-							} else {
-								page.displayTitle = displayTitles[page.title];
-							}
-							if ( missingPages.includes( page.title ) ) {
-								page.isMissing = true;
-							}
-							if ( titleIcons[page.title] !== undefined ) {
-								page.image = titleIcons[page.title];
-							}
-						});
-
-						resolve(connections);
-					});
-				});
+								resolve(connections);
+							} )
+					}.bind(this)
+				)
 			}.bind(this)
 		);
 	};
@@ -136,15 +93,21 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 	};
 
 	ApiPageConnectionRepo.prototype._queryPageNodeInfo = function(pageNodes) {
+		let titles = pageNodes
+			.filter(page => page.isExternal !== true)
+			.map(page => page.title)
+
 		let parameters = {
 			action: 'query',
-			titles: pageNodes.filter(page => page.isExternal !== true).map(page => page.title),
+			titles: titles,
+
 			format: 'json',
 			redirects: 'true'
-		};
+		}
 		if (this._enableDisplayTitle) {
 			parameters.prop = [ 'pageprops' ];
 		}
+
 		return new mw.Api().get(parameters);
 	};
 
@@ -156,9 +119,76 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 			prop: ['imageinfo'],
 			iiprop: 'url',
 
-			format: 'json'
+			format: 'json',
+			redirects: 'true'
 		});
 	};
+
+	ApiPageConnectionRepo.prototype._getMissingPages = function(pages) {
+		return pages
+			.filter(page => page.missing === '')
+			.map(page => page.title);
+	}
+
+	ApiPageConnectionRepo.prototype._getDisplayTitles = function(pages) {
+		let displayTitles = []
+		pages.forEach(function(page) {
+			if (page.pageprops && page.pageprops.displaytitle) {
+				displayTitles[page.title] = page.pageprops.displaytitle
+			} else {
+				displayTitles[page.title] = page.title
+			}
+		} )
+		return displayTitles
+	}
+
+	ApiPageConnectionRepo.prototype._getTitleIcons = function(pages) {
+		return new Promise(
+			function (resolve) {
+				let titleIcons = []
+				let fileIcons = [];
+				let fileSearch = [];
+				pages.forEach( function ( page ) {
+					if ( page.pageprops && page.pageprops.titleicons ) {
+						try {
+							let icons = JSON.parse(page.pageprops.titleicons);
+							for (let index in icons) {
+								if (icons[index].type === 'ooui') {
+									titleIcons[page.title] = 'resources/lib/ooui/themes/wikimediaui/images/icons/' + icons[index].icon;
+									break;
+								} else if (icons[index].type === 'file') {
+									fileIcons[page.title] = icons[index].icon;
+									fileSearch[icons[index].icon] = true;
+									break;
+								}
+							}
+						} catch (e) {
+							// do nothing
+						}
+					}
+				})
+
+				let files = [];
+				for (let index in fileSearch) {
+					files.push(index);
+				}
+				this._queryFileUrls(files)
+					.done(function (imageInfoResponse) {
+						var filePages = Object.values(imageInfoResponse.query.pages);
+						let fileUrls = []
+						filePages.forEach(function (filePage) {
+							fileUrls[filePage.title] = filePage.imageinfo[0].url;
+						})
+
+						for (let page in fileIcons) {
+							titleIcons[page] = fileUrls[fileIcons[page]];
+						}
+
+						resolve(titleIcons)
+					})
+			}.bind( this )
+		)
+	}
 
 	return ApiPageConnectionRepo;
 
