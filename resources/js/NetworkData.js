@@ -40,22 +40,31 @@ module.NetworkData = ( function ( vis, mw ) {
 								return page.title;
 							}
 							let title = mw.Title.newFromText(page.title, page.ns);
-							return  title === null ? '' : title.getUrl();
+							return  title === null ? '' : title.getUrl()
 						}
 					}
 
 					if (page.isMissing) {
-						node.group = 'redlink';
+						node.group = 'redlink'
 					} else if (page.isExternal) {
-						node.group = 'externallink';
+						node.group = 'externallink'
 					} else {
-						node.group = 'bluelink';
+						node.group = 'bluelink'
 					}
 
 					if (page.image !== undefined) {
 						node.image = page.image;
+						node.shape = 'image'
 					}
-					return node;
+
+					if (page.text !== undefined) {
+						let txt = document.createElement("textarea");
+						txt.innerHTML = page.text + '&nbsp;' + node.label;
+						node.label = txt.value;
+						node.shape = 'text'
+					}
+
+					return node
 				})
 		);
 	}

@@ -193,8 +193,7 @@ or group options as (excerpted from the full options):
 ```
 
 If the [Title Icon](https://mediawiki.org/wiki/Extension:Title_Icon) extension is installed and a page rendered in the
-graph has an OOUI or file type title icon defined and the node shape is set to "image", the title icon will be used for
-that node's icon.
+graph has a title icon defined, the title icon will be used for that node's icon.
 
 ### Configuration
 
