@@ -55,23 +55,23 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 
 								connections.pages.forEach(function(page) {
 									if (missingPages.includes(page.title)) {
-										page.isMissing = true
+										page.isMissing = true;
 									}
 
 									if (page.isExternal) {
-										page.displayTitle = page.title
+										page.displayTitle = page.title;
 									} else {
-										page.displayTitle = displayTitles[page.title]
+										page.displayTitle = displayTitles[page.title];
 									}
 
 									if (titleIcons.images[page.title] !== undefined) {
-										page.image = titleIcons.images[page.title]
+										page.image = titleIcons.images[page.title];
 									} else if (titleIcons.text[page.title] !== undefined) {
-										page.text = titleIcons.text[page.title]
+										page.text = titleIcons.text[page.title];
 									}
 								});
 
-								resolve(connections)
+								resolve(connections);
 							})
 					}.bind(this)
 				)
@@ -147,10 +147,10 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 	ApiPageConnectionRepo.prototype._getTitleIcons = function(pages) {
 		return new Promise(
 			function(resolve) {
-				let images = []
-				let text = []
-				let fileIcons = []
-				let fileSearch = []
+				let images = [];
+				let text = [];
+				let fileIcons = [];
+				let fileSearch = [];
 				pages.forEach(function(page) {
 					if (page.pageprops && page.pageprops.titleicons) {
 						try {
@@ -182,7 +182,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 				this._queryFileUrls(files)
 					.done(function(imageInfoResponse) {
 						var filePages = Object.values(imageInfoResponse.query.pages);
-						let fileUrls = []
+						let fileUrls = [];
 						filePages.forEach(function(filePage) {
 							fileUrls[filePage.title] = filePage.imageinfo[0].url;
 						})
@@ -191,7 +191,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 							images[page] = fileUrls[fileIcons[page]];
 						}
 
-						resolve({'images': images, 'text': text})
+						resolve({'images': images, 'text': text});
 					})
 			}.bind(this)
 		)
