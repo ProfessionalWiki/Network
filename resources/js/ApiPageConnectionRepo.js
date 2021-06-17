@@ -55,21 +55,23 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 
 								connections.pages.forEach(function(page) {
 									if (missingPages.includes(page.title)) {
-										page.isMissing = true;
+										page.isMissing = true
 									}
 
 									if (page.isExternal) {
-										page.displayTitle = page.title;
+										page.displayTitle = page.title
 									} else {
-										page.displayTitle = displayTitles[page.title];
+										page.displayTitle = displayTitles[page.title]
 									}
 
-									if (titleIcons[page.title] !== undefined) {
-										page.image = titleIcons[page.title];
+									if (titleIcons.images[page.title] !== undefined) {
+										page.image = titleIcons.images[page.title]
+									} else if (titleIcons.text[page.title] !== undefined) {
+										page.text = titleIcons.text[page.title]
 									}
 								});
 
-								resolve(connections);
+								resolve(connections)
 							})
 					}.bind(this)
 				)
@@ -145,21 +147,26 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 	ApiPageConnectionRepo.prototype._getTitleIcons = function(pages) {
 		return new Promise(
 			function(resolve) {
-				let titleIcons = []
-				let fileIcons = [];
-				let fileSearch = [];
+				let images = []
+				let text = []
+				let fileIcons = []
+				let fileSearch = []
 				pages.forEach(function(page) {
 					if (page.pageprops && page.pageprops.titleicons) {
 						try {
 							let icons = JSON.parse(page.pageprops.titleicons);
 							for (let index in icons) {
-								if (icons[index].type === 'ooui') {
-									titleIcons[page.title] = 'resources/lib/ooui/themes/wikimediaui/images/icons/' + icons[index].icon;
-									break;
-								} else if (icons[index].type === 'file') {
-									fileIcons[page.title] = icons[index].icon;
-									fileSearch[icons[index].icon] = true;
-									break;
+								let icon = icons[index]
+								if (icon.type === 'ooui') {
+									images[page.title] = 'resources/lib/ooui/themes/wikimediaui/images/icons/' + icon.icon;
+									break
+								} else if (icon.type === 'file') {
+									fileIcons[page.title] = icon.icon;
+									fileSearch[icon.icon] = true;
+									break
+								} else if (icon.type === 'unicode') {
+									text[page.title] = icon.icon;
+									break
 								}
 							}
 						} catch (e) {
@@ -181,10 +188,10 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 						})
 
 						for (let page in fileIcons) {
-							titleIcons[page] = fileUrls[fileIcons[page]];
+							images[page] = fileUrls[fileIcons[page]];
 						}
 
-						resolve(titleIcons)
+						resolve({'images': images, 'text': text})
 					})
 			}.bind(this)
 		)
