@@ -55,7 +55,23 @@ module.ApiConnectionsBuilder = ( function () {
 			);
 
 			centralPage.externalLinks.forEach(
-				page => { pages[page['*']] = { title: page['*'], external: true } }
+				page => {
+					let link = page['*'];
+					let pattern = mw.config.get('wgServer') + mw.config.get('wgArticlePath');
+					let titleLocation = pattern.indexOf('$1');
+					if (link.indexOf(pattern.substring(0, titleLocation)) === 0) {
+						let title = mw.Title.newFromText(link.substring(titleLocation));
+						if (title !== null) {
+							let titleStr = title.getPrefixedText();
+							page['*'] = titleStr;
+							pages[titleStr] = { title: titleStr, external: false }
+						} else {
+							pages[page['*']] = { title: page['*'], external: true }
+						}
+					} else {
+						pages[page['*']] = { title: page['*'], external: true }
+					}
+				}
 			);
 		});
 

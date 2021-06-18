@@ -266,6 +266,13 @@ Possible values: 0 or a positive integer value
 
 Default value: 20
 
+**$wgRegisterInternalExternals**
+By default, MediaWiki does not consider links using external link syntax that point to pages in the wiki to be
+internal links. To make them show up as internal links on the network graph, you need to set
+`$wgRegisterInternalExternals` to `true` in "LocalSettings.php". If pages already exist in your wiki when that
+setting is changed, you will need to run the `refreshLinks.php` MediaWiki maintenance script for the change to
+be recognized.
+
 ### Examples
 
 #### Options parameter
