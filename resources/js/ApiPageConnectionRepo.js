@@ -103,11 +103,13 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 			action: 'query',
 			titles: titles,
 
+			prop: ['titleicons'],
+
 			format: 'json',
 			redirects: 'true'
 		}
 		if (this._enableDisplayTitle) {
-			parameters.prop = [ 'pageprops', 'titleicons' ];
+			parameters.prop.concat('pageprops');
 		}
 
 		return new mw.Api().get(parameters);
