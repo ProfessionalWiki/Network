@@ -107,7 +107,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 			redirects: 'true'
 		}
 		if (this._enableDisplayTitle) {
-			parameters.prop = [ 'pageprops' ];
+			parameters.prop = [ 'pageprops', 'titleicons' ];
 		}
 
 		return new mw.Api().get(parameters);
@@ -152,9 +152,9 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 				let fileIcons = [];
 				let fileSearch = [];
 				pages.forEach(function(page) {
-					if (page.pageprops && page.pageprops.titleicons) {
+					if (page.titleicons && page.titleicons) {
 						try {
-							let icons = JSON.parse(page.pageprops.titleicons);
+							let icons = JSON.parse(page.titleicons);
 							for (let index in icons) {
 								let icon = icons[index]
 								if (icon.type === 'ooui') {
@@ -181,18 +181,20 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 				}
 				this._queryFileUrls(files)
 					.done(function(imageInfoResponse) {
-						var filePages = Object.values(imageInfoResponse.query.pages);
-						let fileUrls = [];
-						filePages.forEach(function(filePage) {
-							if (filePage.imageInfo !== undefined
-								&& filePage.imageInfo[0] !== undefined
-								&& filePage.imageInfo[0].url !== undefined) {
-								fileUrls[filePage.title] = filePage.imageinfo[0].url;
-							}
-						})
+						if (imageInfoResponse.query && imageInfoResponse.query.pages) {
+							let fileUrls = [];
+							var filePages = Object.values(imageInfoResponse.query.pages);
+							filePages.forEach(function(filePage) {
+								if (filePage.imageInfo !== undefined
+									&& filePage.imageInfo[0] !== undefined
+									&& filePage.imageInfo[0].url !== undefined) {
+									fileUrls[filePage.title] = filePage.imageinfo[0].url;
+								}
+							})
 
-						for (let page in fileIcons) {
-							images[page] = fileUrls[fileIcons[page]];
+							for (let page in fileIcons) {
+								images[page] = fileUrls[fileIcons[page]];
+							}
 						}
 
 						resolve({'images': images, 'text': text});
