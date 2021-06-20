@@ -192,8 +192,10 @@ or group options as (excerpted from the full options):
 }
 ```
 
-If the [Title Icon](https://mediawiki.org/wiki/Extension:Title_Icon) extension is installed and a page rendered in the
-graph has a title icon defined, the title icon will be used for that node's icon.
+If version 5.1 or later of the [Title Icon](https://mediawiki.org/wiki/Extension:Title_Icon) extension is installed and
+a page rendered in the graph has at least one title icon defined, one of those title icons will be used for that node's
+icon. If there are multiple title icons defined for the page, one will be selected in the order in which they were
+parsed on the page.
 
 ### Configuration
 
