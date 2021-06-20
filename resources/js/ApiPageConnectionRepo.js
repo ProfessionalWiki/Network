@@ -187,9 +187,9 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 							let fileUrls = [];
 							var filePages = Object.values(imageInfoResponse.query.pages);
 							filePages.forEach(function(filePage) {
-								if (filePage.imageInfo !== undefined
-									&& filePage.imageInfo[0] !== undefined
-									&& filePage.imageInfo[0].url !== undefined) {
+								if (filePage.imageinfo !== undefined
+									&& filePage.imageinfo[0] !== undefined
+									&& filePage.imageinfo[0].url !== undefined) {
 									fileUrls[filePage.title] = filePage.imageinfo[0].url;
 								}
 							})
