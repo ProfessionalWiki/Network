@@ -109,7 +109,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 			redirects: 'true'
 		}
 		if (this._enableDisplayTitle) {
-			parameters.prop.concat('pageprops');
+			parameters.prop.push('pageprops');
 		}
 
 		return new mw.Api().get(parameters);
