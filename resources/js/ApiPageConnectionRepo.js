@@ -152,7 +152,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 				let fileIcons = [];
 				let fileSearch = [];
 				pages.forEach(function(page) {
-					if (page.titleicons && page.titleicons) {
+					if (page.titleicons) {
 						try {
 							let icons = JSON.parse(page.titleicons);
 							for (let index in icons) {
