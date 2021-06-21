@@ -15,5 +15,7 @@
 	"pagenetwork-options-field-label": "Opções de gráfico",
 	"pagenetwork-enableDisplayTitle-field-label": "Ativar título de exibição",
 	"pagenetwork-enableDisplayTitle-field-help": "O título da página ou o título de exibição deve ser exibido como um rótulo de nó?",
+	"pagenetwork-labelMaxLength-field-label": "Comprimento máximo do rótulo.",
+	"pagenetwork-basic-tab-label": "Opções básicas",
 	"pagenetwork-advanced-tab-label": "Opções avançadas"
 }
