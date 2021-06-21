@@ -64,9 +64,9 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 										page.displayTitle = displayTitles[page.title];
 									}
 
-									if (titleIcons.images[page.title] !== undefined) {
+									if (titleIcons.images[page.title]) {
 										page.image = titleIcons.images[page.title];
-									} else if (titleIcons.text[page.title] !== undefined) {
+									} else if (titleIcons.text[page.title]) {
 										page.text = titleIcons.text[page.title];
 									}
 								});
@@ -187,9 +187,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 							let fileUrls = [];
 							var filePages = Object.values(imageInfoResponse.query.pages);
 							filePages.forEach(function(filePage) {
-								if (filePage.imageinfo !== undefined
-									&& filePage.imageinfo[0] !== undefined
-									&& filePage.imageinfo[0].url !== undefined) {
+								if (filePage.imageinfo && filePage.imageinfo[0] && filePage.imageinfo[0].url) {
 									fileUrls[filePage.title] = filePage.imageinfo[0].url;
 								}
 							})
