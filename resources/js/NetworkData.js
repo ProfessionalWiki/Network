@@ -52,12 +52,12 @@ module.NetworkData = ( function ( vis, mw ) {
 						node.group = 'bluelink';
 					}
 
-					if (page.image !== undefined) {
+					if (page.image) {
 						node.image = page.image;
 						node.shape = 'image';
 					}
 
-					if (page.text !== undefined) {
+					if (page.text) {
 						let txt = document.createElement("textarea");
 						txt.innerHTML = page.text + '&nbsp;' + node.label;
 						node.label = txt.value;
