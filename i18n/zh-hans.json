@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"GuoPC",
+			"Zhang8569"
+		]
+	},
+	"network": "网络",
+	"pagenetwork-pages-field-label": "页面",
+	"pagenetwork-pages-field-help": "该页面的名字或者展示该链接的页面，每行一个。\n默认为主页面。",
+	"pagenetwork-exclude-field-label": "排除的页面",
+	"pagenetwork-exclude-field-help": "从网络图标排除的页面，每行一个。",
+	"pagenetwork-excludedNamespaces-field-label": "排除名字空间",
+	"pagenetwork-excludedNamespaces-field-help": "要从网络图表中排除的名字空间。",
+	"pagenetwork-class-field-label": "CSS课程",
+	"pagenetwork-class-field-help": "添加额外的css课程到网络图标，由空格分隔。",
+	"pagenetwork-options-field-label": "图表选项",
+	"pagenetwork-options-field-help": "JSON 结构和 vis.js显示选项。",
+	"pagenetwork-enableDisplayTitle-field-label": "启用显示标题",
+	"pagenetwork-enableDisplayTitle-field-help": "页面标题或显示标题是否应该被当作节点标签来显示？",
+	"pagenetwork-labelMaxLength-field-label": "最长标签长度",
+	"pagenetwork-labelMaxLength-field-help": "该节点标签的最高文字长度或在无限制情况下为0. 如果节点标签必须被缩短，一个省略号(…）将会被附加，",
+	"pagenetwork-basic-tab-label": "基本选项",
+	"pagenetwork-advanced-tab-label": "高级选项"
+}
