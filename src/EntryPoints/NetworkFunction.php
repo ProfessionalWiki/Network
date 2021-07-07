@@ -33,10 +33,10 @@ class NetworkFunction {
 
 	/**
 	 * @param Parser $parser
-	 * @param string[] ...$arguments
+	 * @param string ...$arguments
 	 * @return array|string
 	 */
-	public function handleParserFunctionCall( Parser $parser, ...$arguments ) {
+	public function handleParserFunctionCall( Parser $parser, string ...$arguments ) {
 		$parser->getOutput()->addModules( [ 'ext.network' ] );
 		$parser->getOutput()->addJsConfigVars( 'networkExcludeTalkPages', $this->config->getExcludeTalkPages() );
 
