@@ -358,18 +358,18 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 ## Release notes
 
-### Version 1.5.0
+### Version 2.0.0
 
-Under development
+Released on July 7th, 2021.
 
-* Added optional support for using display title for nodes' labels.
-* Added configurable maximum length for node labels.
-* Added tooltips to nodes.
+* Added optional support for using display title for nodes' labels. (thanks @cicalese)
+* Added configurable maximum length for node labels. (thanks @cicalese)
+* Added tooltips to nodes. (thanks @cicalese)
 * Made styling of nodes representing links to existing pages and links to
   missing pages configurable by adding vis.js groups named "bluelink" and
-  "redlink".
-* Added support for OOUI icons.
-* Added support for external links.
+  "redlink". (thanks @cicalese)
+* Added support for OOUI icons. (thanks @cicalese)
+* Added support for external links. (thanks @cicalese)
 
 ### Version 1.4.0
 
