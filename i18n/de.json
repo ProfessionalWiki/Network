@@ -3,11 +3,13 @@
 		"authors": [
 			"Kghbln",
 			"Krabina",
+			"Lorem Ipsum",
 			"Umlaut"
 		]
 	},
 	"network": "Netzwerk",
 	"network-desc": "Ermöglicht die Visualisierung von Netzwerkbeziehungen zwischen Seiten",
 	"network-aria": "Die Netzwerkvisualisierung zeigt eingehende und ausgehende Links der {{PLURAL:$1|Seite|Seiten}} $2",
-	"pagenetwork-pages-field-label": "Seiten"
+	"pagenetwork-pages-field-label": "Seiten",
+	"pagenetwork-basic-tab-label": "Basisoptionen"
 }
