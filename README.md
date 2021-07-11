@@ -360,7 +360,7 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 ### Version 2.0.0
 
-Released on July 7th, 2021.
+Released on July 11th, 2021.
 
 * Added optional support for using display title for nodes' labels. (thanks @cicalese)
 * Added configurable maximum length for node labels. (thanks @cicalese)
