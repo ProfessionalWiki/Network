@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"DDPAT"
+		]
+	},
+	"network": "Мережа",
+	"network-desc": "Дозволяє додавати інтерактивні візуалізації мережі на ваші вікі-сторінки",
+	"network-aria": "Візуалізація мережі, що показує вихідні та вхідні посилання на {{PLURAL:$1|сторінку|сторінок}} $2",
+	"pagenetwork-pages-field-label": "Сторінок",
+	"pagenetwork-pages-field-help": "Назва сторінки або сторінок, до яких відображатимуться з'єднання, по одному на рядок. За замовчуванням для головної сторінки.",
+	"pagenetwork-exclude-field-label": "Виключити сторінки",
+	"pagenetwork-exclude-field-help": "Сторінки для виключення з мережевого графіка - по одній на рядок.",
+	"pagenetwork-excludedNamespaces-field-label": "Виключити простори назв",
+	"pagenetwork-excludedNamespaces-field-help": "Простори назв для виключення з мережевого діаграми.",
+	"pagenetwork-class-field-label": "Класи CSS",
+	"pagenetwork-class-field-help": "Додаткові класи(и) css для додавання до мережевого графа, розділені пробілами.",
+	"pagenetwork-options-field-label": "Параметри графіків",
+	"pagenetwork-options-field-help": "Структура JSON з параметрами графіку vis.js",
+	"pagenetwork-enableDisplayTitle-field-label": "Увімкнути назву дисплея",
+	"pagenetwork-enableDisplayTitle-field-help": "Чи має заголовок сторінки або заголовок відображення відображатися як мітка вузла?",
+	"pagenetwork-labelMaxLength-field-label": "Максимальна довжина етикетки",
+	"pagenetwork-labelMaxLength-field-help": "Максимальна довжина тексту мітки вузла або 0, якщо необмежена. Якщо мітку вузла потрібно урізати, буде додано крапку (…).",
+	"pagenetwork-basic-tab-label": "Основні параметри",
+	"pagenetwork-advanced-tab-label": "Розширені параметри"
+}
