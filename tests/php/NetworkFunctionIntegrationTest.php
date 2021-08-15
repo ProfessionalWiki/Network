@@ -10,21 +10,25 @@ use PHPUnit\Framework\TestCase;
 class NetworkFunctionIntegrationTest extends TestCase {
 
 	private const PAGE_TITLE = 'ContextPageTitle';
-
-	private function parse( string $textToParse ): string {
+	
+	private function parse( string $wikiText ): string {
 		return MediaWikiServices::getInstance()->getParser()
-			->parse( $textToParse, \Title::newFromText( self::PAGE_TITLE ), new \ParserOptions() )->getText();
+			->parse(
+				$wikiText,
+				\Title::newFromText( self::PAGE_TITLE ),
+				new \ParserOptions( \User::newSystemUser( 'TestUser' ) )
+			)->getText();
 	}
 
 	public function testWhenThereAreNoParameters_contextPageIsUsed() {
-		$this->assertContains(
+		$this->assertStringContainsString(
 			'data-pages="[&quot;ContextPageTitle&quot;]"',
 			$this->parse( '{{#network:}}' )
 		);
 	}
 
 	public function testOptionsParameters() {
-		$this->assertContains(
+		$this->assertStringContainsString(
 			'&quot;shape&quot;:&quot;tomato&quot;',
 			$this->parse( '{{#network:options={"nodes": {"shape": "tomato"} } }}' )
 		);
