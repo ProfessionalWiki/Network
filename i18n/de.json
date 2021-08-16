@@ -4,12 +4,14 @@
 			"Kghbln",
 			"Krabina",
 			"Lorem Ipsum",
-			"Umlaut"
+			"Umlaut",
+			"Zabe"
 		]
 	},
 	"network": "Netzwerk",
 	"network-desc": "Ermöglicht die Visualisierung von Netzwerkbeziehungen zwischen Seiten",
 	"network-aria": "Die Netzwerkvisualisierung zeigt eingehende und ausgehende Links der {{PLURAL:$1|Seite|Seiten}} $2",
 	"pagenetwork-pages-field-label": "Seiten",
+	"pagenetwork-class-field-label": "CSS-Klassen",
 	"pagenetwork-basic-tab-label": "Basisoptionen"
 }
