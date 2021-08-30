@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"GuoPC",
-			"Zhang8569"
+			"Zhang8569",
+			"落花有意12138"
 		]
 	},
 	"network": "网络",
@@ -19,7 +20,7 @@
 	"pagenetwork-enableDisplayTitle-field-label": "启用显示标题",
 	"pagenetwork-enableDisplayTitle-field-help": "页面标题或显示标题是否应该被当作节点标签来显示？",
 	"pagenetwork-labelMaxLength-field-label": "最长标签长度",
-	"pagenetwork-labelMaxLength-field-help": "该节点标签的最高文字长度或在无限制情况下为0. 如果节点标签必须被缩短，一个省略号(…）将会被附加，",
+	"pagenetwork-labelMaxLength-field-help": "该节点标签的最高文字长度或在无限制情况下为0. 如果节点标签必须被缩短，一个省略号（…）将会被附加，",
 	"pagenetwork-basic-tab-label": "基本选项",
 	"pagenetwork-advanced-tab-label": "高级选项"
 }
