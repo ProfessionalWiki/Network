@@ -4,6 +4,23 @@
 			"Kly"
 		]
 	},
+	"network": "網路",
 	"network-desc": "允許添加視覺化互動網路在您的 wiki 頁面",
-	"network-aria": "網路視覺化顯示出{{PLURAL:$1|頁面}}$2的傳出與傳入連結"
+	"network-aria": "網路視覺化顯示出{{PLURAL:$1|頁面}}$2的傳出與傳入連結",
+	"pagenetwork-pages-field-label": "頁面",
+	"pagenetwork-pages-field-help": "頁面的名稱或是顯示所連結的頁面，一行一個。預設為主頁面。",
+	"pagenetwork-exclude-field-label": "排除的頁面",
+	"pagenetwork-exclude-field-help": "從網路圖形排除的頁面，每行一個。",
+	"pagenetwork-excludedNamespaces-field-label": "排除的命名空間",
+	"pagenetwork-excludedNamespaces-field-help": "從網路圖形中排除的命名空間。",
+	"pagenetwork-class-field-label": "CSS 類別",
+	"pagenetwork-class-field-help": "添加額外的 css 類別到網路圖形，以空格分隔。",
+	"pagenetwork-options-field-label": "圖形選項",
+	"pagenetwork-options-field-help": "帶有 vis.js 圖形選項的 JSON 結構。",
+	"pagenetwork-enableDisplayTitle-field-label": "啟用顯示標題",
+	"pagenetwork-enableDisplayTitle-field-help": "頁面標題或是顯示標題是否應以節點標籤來顯示？",
+	"pagenetwork-labelMaxLength-field-label": "標籤最大長度",
+	"pagenetwork-labelMaxLength-field-help": "節點標籤的最大文字長度，若為 0 代表無限制。如果節點標籤必須被截短，將會附加一個省略號（…）。",
+	"pagenetwork-basic-tab-label": "基本選項",
+	"pagenetwork-advanced-tab-label": "進階選項"
 }
