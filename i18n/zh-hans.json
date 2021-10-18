@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"GuoPC",
+			"Xiplus",
 			"Zhang8569",
 			"落花有意12138"
 		]
@@ -11,8 +12,8 @@
 	"pagenetwork-pages-field-help": "该页面的名字或者展示该链接的页面，每行一个。\n默认为主页面。",
 	"pagenetwork-exclude-field-label": "排除的页面",
 	"pagenetwork-exclude-field-help": "从网络图标排除的页面，每行一个。",
-	"pagenetwork-excludedNamespaces-field-label": "排除名字空间",
-	"pagenetwork-excludedNamespaces-field-help": "要从网络图表中排除的名字空间。",
+	"pagenetwork-excludedNamespaces-field-label": "排除命名空间",
+	"pagenetwork-excludedNamespaces-field-help": "要从网络图表中排除的命名空间。",
 	"pagenetwork-class-field-label": "CSS课程",
 	"pagenetwork-class-field-help": "添加额外的css课程到网络图标，由空格分隔。",
 	"pagenetwork-options-field-label": "图表选项",
