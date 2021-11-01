@@ -43,7 +43,7 @@
 	},
 	"require-dev": {
 		"vimeo/psalm": "dev-master",
-		"phpstan/phpstan": "^0.12.29",
+		"phpstan/phpstan": "^1.0.0",
 		"maglnet/composer-require-checker": "^2.1"
 	}
 }
