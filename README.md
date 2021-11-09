@@ -251,7 +251,7 @@ Exclude the User and Project namespaces:
 `$wgPageNetworkExcludedNamespaces = [ NS_USER, NS_PROJECT ];`
 
 Keep the default exclusions and also exclude the Talk namespace:
-Example: `$wgPageNetworkExcludedNamespaces[] = [ NS_TALK ];`
+Example: `$wgPageNetworkExcludedNamespaces[] = NS_TALK;`
 
 See also: https://www.mediawiki.org/wiki/Manual:Namespace#Built-in_namespaces
 
