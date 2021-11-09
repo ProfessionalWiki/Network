@@ -245,7 +245,13 @@ List of IDs of namespaces of which all pages should be excluded.
 
 Default value: `[ 2, 4, 8, 12 ]` (excluding `User`, `Project`, `MediaWiki` and `Help`)
 
-Example: `$wgPageNetworkExcludedNamespaces = [ NS_USER, NS_PROJECT ];`
+Examples: 
+
+Exclude the User and Project namespaces:
+`$wgPageNetworkExcludedNamespaces = [ NS_USER, NS_PROJECT ];`
+
+Keep the default exclusions and also exclude the Talk namespace:
+Example: `$wgPageNetworkExcludedNamespaces[] = [ NS_TALK ];`
 
 See also: https://www.mediawiki.org/wiki/Manual:Namespace#Built-in_namespaces
 
