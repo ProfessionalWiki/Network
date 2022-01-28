@@ -42,7 +42,7 @@
 		"composer/installers": "^2|^1.0.1"
 	},
 	"require-dev": {
-		"vimeo/psalm": "dev-master",
+		"vimeo/psalm": "*",
 		"phpstan/phpstan": "^1.0.0"
 	}
 }
