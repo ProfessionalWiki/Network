@@ -13,7 +13,7 @@ class NetworkFunctionIntegrationTest extends TestCase {
 
 	private function parse( string $textToParse ): string {
 		return MediaWikiServices::getInstance()->getParser()
-			->parse( $textToParse, \Title::newFromText( self::PAGE_TITLE ), new \ParserOptions() )->getText();
+			->parse( $textToParse, \Title::newFromText( self::PAGE_TITLE ), new \ParserOptions( \User::newSystemUser( 'TestUser' ) ) )->getText();
 	}
 
 	public function testWhenThereAreNoParameters_contextPageIsUsed() {
