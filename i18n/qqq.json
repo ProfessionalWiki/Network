@@ -4,7 +4,8 @@
 			"Cantons-de-l'Est",
 			"Jeroen De Dauw",
 			"Karsten Hoffmeyer",
-			"Kghbln"
+			"Kghbln",
+			"Verdy p"
 		]
 	},
 	"network": "This is a noun.",
@@ -12,9 +13,9 @@
 	"network-aria": "Informatory message.\n\nParameters:\n* $1 - Holds the number of pages listed with parameter $2\n* $2 - Holds the name of a page or the names of pages",
 	"pagenetwork-pages-field-label": "Field label\\n{{Identical|Pages}}",
 	"pagenetwork-pages-field-help": "Field help",
-	"pagenetwork-exclude-field-label": "Field label\\n{{Identical|Exclude Pages}}",
+	"pagenetwork-exclude-field-label": "Field label\n{{Related|Pagenetwork-exclude}}",
 	"pagenetwork-exclude-field-help": "Field help",
-	"pagenetwork-excludedNamespaces-field-label": "Field label\\n{{Identical|Exclude Pages}}",
+	"pagenetwork-excludedNamespaces-field-label": "Field label\n{{Related|Pagenetwork-exclude}}",
 	"pagenetwork-excludedNamespaces-field-help": "Field help",
 	"pagenetwork-class-field-label": "Field label\\n{{Identical|CSS Classes}}",
 	"pagenetwork-class-field-help": "Field help",

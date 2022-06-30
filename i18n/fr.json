@@ -3,7 +3,8 @@
 		"authors": [
 			"Ajeje Brazorf",
 			"Gomoko",
-			"JenyxGym"
+			"JenyxGym",
+			"Verdy p"
 		]
 	},
 	"network": "Réseau",
@@ -13,7 +14,7 @@
 	"pagenetwork-pages-field-help": "Le nom de la ou des pages pour lesquelles afficher les connexions, une par ligne.\nPar défaut, la page principale.",
 	"pagenetwork-exclude-field-label": "Exclure des pages",
 	"pagenetwork-exclude-field-help": "Pages à exclure du graphe du réseau, une par ligne.",
-	"pagenetwork-excludedNamespaces-field-label": "Exclure des espaces de nom",
+	"pagenetwork-excludedNamespaces-field-label": "Exclure des espaces de noms",
 	"pagenetwork-excludedNamespaces-field-help": "Espaces de nom à exclure du graphe du réseau.",
 	"pagenetwork-class-field-label": "Classes CSS",
 	"pagenetwork-class-field-help": "Classes CSS supplémentaires à ajouter au graphe du réseau, séparées par des espaces.",
