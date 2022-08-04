@@ -89,6 +89,12 @@
 		},
 		"PageNetworkLabelMaxLength": {
 			"value": 20
+		},
+		"PageNetworkAllowOnlyLinksToPages": {
+			"value": false
+		},
+		"PageNetworkAllowLinkExpansion": {
+			"value": true
 		}
 	},
 
@@ -174,7 +180,11 @@
 				"pagenetwork-labelMaxLength-field-label",
 				"pagenetwork-labelMaxLength-field-help",
 				"pagenetwork-basic-tab-label",
-				"pagenetwork-advanced-tab-label"
+				"pagenetwork-advanced-tab-label",
+				"pagenetwork-AllowOnlyLinksToPages-field-label",
+				"pagenetwork-AllowOnlyLinksToPages-field-help",
+				"pagenetwork-AllowLinkExpansion-field-label",
+				"pagenetwork-AllowLinkExpansion-field-help"
 			],
 			"targets": [ "desktop", "mobile" ]
 		}

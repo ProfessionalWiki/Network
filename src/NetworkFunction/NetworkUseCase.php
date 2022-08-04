@@ -31,6 +31,8 @@ class NetworkUseCase {
 		$response->enableDisplayTitle = $this->getEnableDisplayTitle( $keyValuePairs, $request->enableDisplayTitle );
 		$response->labelMaxLength = $this->getLabelMaxLength( $keyValuePairs, $request->labelMaxLength );
 		$response->visJsOptions = $this->getVisJsOptions( $keyValuePairs );
+		$response->AllowOnlyLinksToPages = $this->getAllowOnlyLinksToPages($keyValuePairs, $request->AllowOnlyLinksToPages);
+		$response->AllowLinkExpansion = $this->getAllowLinkExpansion($keyValuePairs, $request->AllowLinkExpansion);
 
 		$this->presenter->buildGraph( $response );
 	}
@@ -163,4 +165,27 @@ class NetworkUseCase {
 	private function getLabelMaxLength(array $arguments, int $labelMaxLength ): int {
 		return isset( $arguments['labelMaxLength'] ) ? (int)$arguments['labelMaxLength'] : $labelMaxLength;
 	}
+
+	/**
+	 * @param string[] $arguments
+	 * @param bool $AllowOnlyLinksToPages
+	 * @return bool
+	 */
+	private function getAllowOnlyLinksToPages(array $arguments, bool $AllowOnlyLinksToPages ): bool {
+		return isset( $arguments['AllowOnlyLinksToPages'] )
+			? filter_var( $arguments['AllowOnlyLinksToPages'], FILTER_VALIDATE_BOOLEAN )
+			: $AllowOnlyLinksToPages;
+	}
+
+	/**
+	 * @param string[] $arguments
+	 * @param bool $AllowLinkExpansion
+	 * @return bool
+	 */
+	private function getAllowLinkExpansion(array $arguments, bool $AllowLinkExpansion ): bool {
+		return isset( $arguments['AllowLinkExpansion'] )
+			? filter_var( $arguments['AllowLinkExpansion'], FILTER_VALIDATE_BOOLEAN )
+			: $AllowLinkExpansion;
+	}
+
 }

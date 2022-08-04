@@ -49,7 +49,8 @@ class NetworkUseCaseTest extends TestCase {
 		$request->excludedNamespaces = [];
 		$request->enableDisplayTitle = true;
 		$request->labelMaxLength = 20;
-
+		$request->AllowOnlyLinksToPages=false;
+		$request->AllowLinkExpansion=false;
 		return $request;
 	}
 

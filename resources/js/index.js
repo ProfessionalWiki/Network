@@ -15,10 +15,13 @@
 					mw.config.get('networkExcludeTalkPages')
 				),
 				$this.data('options'),
-				$this.data('labelmaxlength')
+				$this.data('labelmaxlength'),
+				$this.data('pages'),
+				$this.data('allowonlylinkstopages'),
+				$this.data('allowlinkexpansion')
 			);
 
-			network.showPages($this.data('pages')).then(function() {
+			network.showPages($this.data('pages'),$this.data('allowonlylinkstopages')).then(function() {
 				$this.find('canvas:first').attr(
 					'aria-label',
 					mw.message(

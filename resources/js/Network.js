@@ -7,20 +7,25 @@ module.Network = (function (vis, NetworkData) {
 	 * @param {module.PageExclusionManager} pageExclusionManager
 	 * @param {object} options
 	 * @param {int} labelMaxLength
+	 * @param {string[]} pageNamesOrig
+	 * @param {bool} startWithPageNamesOrigOnly
+	 * @param {bool} allowNodeExpansion
 	 */
 	let Network = function(
 		divId,
 		pageConnectionRepo,
 		pageExclusionManager,
 		options,
-		labelMaxLength
+		labelMaxLength,
+		pageNamesOrig,
+		startWithPageNamesOrigOnly,
+		allowNodeExpansion
 	) {
 		this._pageConnectionRepo = pageConnectionRepo;
-		this._data = new NetworkData(pageExclusionManager, labelMaxLength);
+		this._data = new NetworkData(pageExclusionManager, labelMaxLength, pageNamesOrig, startWithPageNamesOrigOnly, allowNodeExpansion);
 		this._options = options;
 		this._network = this._newNetwork(divId);
 		this._lastZoomPosition = {x:0, y:0}
-
 		this._bindEvents();
 	};
 
@@ -28,12 +33,12 @@ module.Network = (function (vis, NetworkData) {
 	 * @param {string[]} pageNames
 	 * @return {Promise}
 	 */
-	Network.prototype.showPages = function(pageNames) {
+	Network.prototype.showPages = function(pageNames, allowOnly_pageNamesOrigList=true) {
 		let promise = this._pageConnectionRepo.addConnections(pageNames);
 
 		promise.then(
 			connections => {
-				this._data.addPages(connections.pages);
+				this._data.addPages(connections.pages, allowOnly_pageNamesOrigList);
 				this._data.addLinks(connections.links);
 			}
 		);
@@ -42,7 +47,7 @@ module.Network = (function (vis, NetworkData) {
 	};
 
 	Network.prototype._addPage = function(pageName) {
-		return this.showPages([pageName]);
+		return this.showPages([pageName], !this._data._allowNodeExpansion );
 	};
 
 	Network.prototype._newNetwork = function(divId) {

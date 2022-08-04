@@ -45,6 +45,8 @@ class NetworkFunction {
 		$requestModel->excludedNamespaces = $this->config->getExcludedNamespaces();
 		$requestModel->enableDisplayTitle = $this->config->getEnableDisplayTitle();
 		$requestModel->labelMaxLength = $this->config->getLabelMaxLength();
+		$requestModel->AllowOnlyLinksToPages = $this->config->getAllowOnlyLinksToPages();
+		$requestModel->AllowLinkExpansion = $this->config->getAllowLinkExpansion();
 
 		/**
 		 * @psalm-suppress PossiblyNullReference

@@ -24,5 +24,9 @@
 	"pagenetwork-labelMaxLength-field-label": "Maximum Label Length",
 	"pagenetwork-labelMaxLength-field-help": "The maximum text length of a node's label or 0 if unlimited. If the node label must be truncated, an ellipsis (…) will appended.",
 	"pagenetwork-basic-tab-label": "Basic Options",
-	"pagenetwork-advanced-tab-label": "Advanced Options"
+	"pagenetwork-advanced-tab-label": "Advanced Options",
+	"pagenetwork-AllowOnlyLinksToPages-field-label": "Allow Only Links To Pages",
+	"pagenetwork-AllowOnlyLinksToPages-field-help": "If true only specified pages will be displayed as nodes",
+	"pagenetwork-AllowLinkExpansion-field-label": "Allow Link Expansion",
+	"pagenetwork-AllowLinkExpansion-field-help": "If true Link Expansion when holding the node is possible"
 }

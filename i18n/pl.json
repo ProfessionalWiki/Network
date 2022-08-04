@@ -1,9 +1,32 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rail"
+			"Rail",
+			"pw"
 		]
 	},
+	"network": "Sieć",
+	"network-name": "Sieć",
 	"network-desc": "Umożliwia dodawanie interaktywnych wizualizacji sieci do stron na wiki",
-	"network-aria": "Wizualizacja sieci pokazująca wychodzące i przychodzące połączenia dla {{PLURAL:$1|strony|stron}} $2"
-}
+	"network-aria": "Wizualizacja sieci pokazująca wychodzące i przychodzące połączenia dla {{PLURAL:$1|strony|stron}} $2",
+	"pagenetwork-pages-field-label": "Strony",
+	"pagenetwork-pages-field-help": "Nazwa jednej lub wielu stron których połączenia mają zostać zwizualizowane, jedna na linię. Domyślnie to strona główna.",
+	"pagenetwork-exclude-field-label": "Wykluczone strony",
+	"pagenetwork-exclude-field-help": "Strony które mają zostać wykluczone z wizualizacji sieci połączeń, jedna na linię.",
+	"pagenetwork-excludedNamespaces-field-label": "Wykluczone przestrzenie nazw",
+	"pagenetwork-excludedNamespaces-field-help": "Przestrzenie nazw które mają zostać wykluczone z wizualizacji.",
+	"pagenetwork-class-field-label": "Klasy CSS",
+	"pagenetwork-class-field-help": "Dodatkowa klasa lub klasy które mają zostać dodane do wizualizacji, separowane znakiem spacji.",
+	"pagenetwork-options-field-label": "Opcje wizualizacji",
+	"pagenetwork-options-field-help": "Struktura JSON z opcjami wizualizacji vis.js.",
+	"pagenetwork-enableDisplayTitle-field-label": "Włącz wyświetlanie tytułu strony",
+	"pagenetwork-enableDisplayTitle-field-help": "Czy tytuł strony czy tytuł wyświetlania powinien być wyświetlany jako etykieta węzła?",
+	"pagenetwork-labelMaxLength-field-label": "Maksymalna długość etykiety",
+	"pagenetwork-labelMaxLength-field-help": "Maksymalna ilość znaków etykiety węzła lub zero dla braku ograniczenia. Jeżeli etkieta węzła zostanie obcięta to zostanie dodany wielokropek (…).",
+	"pagenetwork-basic-tab-label": "Opcje Podstawowe",
+	"pagenetwork-advanced-tab-label": "Opcje Zaawansowane",
+	"pagenetwork-AllowOnlyLinksToPages-field-label": "Wizualizuj tylko strony z listy",
+	"pagenetwork-AllowOnlyLinksToPages-field-help": "Wizualizuj tylko połączenia stron z listy",
+	"pagenetwork-AllowLinkExpansion-field-label": "Zezwalaj na dodawanie połączeń",
+	"pagenetwork-AllowLinkExpansion-field-help": "Umożliwia dodawanie połączeń ze strony poprzez przytrzymanie jej węzła"
+	}

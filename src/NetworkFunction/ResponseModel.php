@@ -13,5 +13,7 @@ class ResponseModel {
 	public /* bool */ $enableDisplayTitle;
 	public /* int */ $labelMaxLength;
 	public /* array */ $visJsOptions;
+	public  /* bool */ $AllowOnlyLinksToPages;
+	public  /* bool */ $AllowLinkExpansion;
 
 }

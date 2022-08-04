@@ -82,6 +82,32 @@ class SpecialNetwork extends IncludableSpecialPage {
 
 		$params['labelMaxLength'] = $request->getInt( 'labelMaxLength', $config->getLabelMaxLength() );
 
+		if ( $this->including() ) {
+			$params['AllowOnlyLinksToPages'] =
+				filter_var(
+					$request->getText( 'AllowOnlyLinksToPages', strval( $config->getAllowOnlyLinksToPages() ) ),
+					FILTER_VALIDATE_BOOL,
+					FILTER_NULL_ON_FAILURE
+				);
+		} elseif ( $request->getCheck( 'pages' ) ) {
+			$params['AllowOnlyLinksToPages'] = $request->getCheck('AllowOnlyLinksToPages');
+		} else {
+			$params['AllowOnlyLinksToPages'] = $config->getAllowOnlyLinksToPages();
+		}
+
+		if ( $this->including() ) {
+			$params['AllowLinkExpansion'] =
+				filter_var(
+					$request->getText( 'AllowLinkExpansion', strval( $config->getAllowLinkExpansion() ) ),
+					FILTER_VALIDATE_BOOL,
+					FILTER_NULL_ON_FAILURE
+				);
+		} elseif ( $request->getCheck( 'pages' ) ) {
+			$params['AllowLinkExpansion'] = $request->getCheck('AllowLinkExpansion');
+		} else {
+			$params['AllowLinkExpansion'] = $config->getAllowLinkExpansion();
+		}
+
 		return $params;
 	}
 
@@ -109,6 +135,10 @@ class SpecialNetwork extends IncludableSpecialPage {
 		$formattedParams['enableDisplayTitle'] = 'enableDisplayTitle=' .
 			( $params['enableDisplayTitle'] ? 'true' : 'false' );
 		$formattedParams['labelMaxLength'] = 'labelMaxLength=' . strval( $params['labelMaxLength'] );
+		$formattedParams['AllowOnlyLinksToPages'] = 'AllowOnlyLinksToPages=' .
+			( $params['AllowOnlyLinksToPages'] ? 'true' : 'false' );
+		$formattedParams['AllowLinkExpansion'] = 'AllowLinkExpansion=' .
+			( $params['AllowLinkExpansion'] ? 'true' : 'false' );
 		return $formattedParams;
 	}
 
@@ -127,6 +157,9 @@ class SpecialNetwork extends IncludableSpecialPage {
 		$requestModel->excludedNamespaces = $config->getExcludedNamespaces();
 		$requestModel->enableDisplayTitle = $config->getEnableDisplayTitle();
 		$requestModel->labelMaxLength = $config->getLabelMaxLength();
+		$requestModel->AllowOnlyLinksToPages = $config->getAllowOnlyLinksToPages();
+		$requestModel->AllowLinkExpansion = $config->getAllowLinkExpansion();
+
 
 		/**
 		 * @psalm-suppress PossiblyNullReference
