@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"network": "Rede",
+	"network-desc": "Permite adicionar vistas de rede interativas nas páginas da sua wiki",
+	"network-aria": "Vista de rede que mostra as hiperligações de entrada e saída {{PLURAL:$1|da página|das páginas}} $2",
+	"pagenetwork-pages-field-label": "Páginas",
+	"pagenetwork-pages-field-help": "O nome da página, ou páginas, cujas ligações serão mostradas, uma por linha. Por omissão, a página principal.",
+	"pagenetwork-exclude-field-label": "Páginas a excluir",
+	"pagenetwork-exclude-field-help": "Páginas a serem excluídas do gráfico de rede, uma por linha.",
+	"pagenetwork-excludedNamespaces-field-label": "Espaços nominais a excluir",
+	"pagenetwork-excludedNamespaces-field-help": "Espaços nominais a serem excluídos do gráfico de rede.",
+	"pagenetwork-class-field-label": "Classes CSS",
+	"pagenetwork-class-field-help": "Classes CSS extra a adicionar ao gráfico de rede, separadas por espaços.",
+	"pagenetwork-options-field-label": "Opções do gráfico",
+	"pagenetwork-options-field-help": "Estrutura JSON com opções de gráfico vis.js.",
+	"pagenetwork-enableDisplayTitle-field-label": "Ativar a apresentação do título",
+	"pagenetwork-enableDisplayTitle-field-help": "Deve ser apresentado como rótulo de um nó o título da página ou o título de apresentação?",
+	"pagenetwork-labelMaxLength-field-label": "Comprimento máximo do rótulo",
+	"pagenetwork-labelMaxLength-field-help": "O comprimento máximo do texto do rótulo de um nó ou 0, se ilimitado. Se o rótulo do nó tiver de ser truncado, serão acrescentadas reticências.",
+	"pagenetwork-basic-tab-label": "Opções de base",
+	"pagenetwork-advanced-tab-label": "Opções avançadas"
+}
