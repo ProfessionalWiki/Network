@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"network": "Rete",
+	"network-desc": "Permitte adder visualisationes de rete interactive in tu paginas wiki",
+	"network-aria": "Visualisation de rete que monstra le ligamines sortiente e entrante pro le pagina{{PLURAL:$1||s}} $2",
+	"pagenetwork-pages-field-label": "Paginas",
+	"pagenetwork-pages-field-help": "Le nomine(s) del pagina(s) pro le qual(es) monstrar connexiones, un per linea. Le valor predefinite es le pagina principal.",
+	"pagenetwork-exclude-field-label": "Excluder paginas",
+	"pagenetwork-exclude-field-help": "Paginas a excluder del graphico de rete, un per linea.",
+	"pagenetwork-excludedNamespaces-field-label": "Excluder spatios de nomines",
+	"pagenetwork-excludedNamespaces-field-help": "Spatios de nomines a excluder del graphico de rete.",
+	"pagenetwork-class-field-label": "Classes CSS",
+	"pagenetwork-class-field-help": "Class(es) CSS supplementari a adder al graphico de rete, separate per spatios.",
+	"pagenetwork-options-field-label": "Optiones de graphico",
+	"pagenetwork-options-field-help": "Structura JSON con optiones de graphico vis.js.",
+	"pagenetwork-enableDisplayTitle-field-label": "Activar le titulo a monstrar",
+	"pagenetwork-enableDisplayTitle-field-help": "Debe le titulo del pagina o le titulo a monstrar esser monstrate como le etiquetta de un nodo?",
+	"pagenetwork-labelMaxLength-field-label": "Longitude maxime del etiquetta",
+	"pagenetwork-labelMaxLength-field-help": "Le longitude maxime del texto del etiquetta de un nodo, o 0 si illimitate. Si le etiquetta de un nodo debe esser truncate, un ellipse (…) essera adjungite.",
+	"pagenetwork-basic-tab-label": "Optiones de base",
+	"pagenetwork-advanced-tab-label": "Optiones avantiate"
+}
