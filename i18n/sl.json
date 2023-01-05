@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"network": "Omrežje",
+	"network-desc": "Omogoča dodajanje interaktivnih vizualizacij omrežja v vaše viki strani",
+	"network-aria": "Vizualizacija omrežja, ki prikazuje odhodne in dohodne povezave za {{PLURAL:$1|stran|strani}} $2",
+	"pagenetwork-pages-field-label": "Strani",
+	"pagenetwork-pages-field-help": "Ime strani za prikaz povezav, po ena na vrstico. Privzeto glavna stran.",
+	"pagenetwork-exclude-field-label": "Izključi strani",
+	"pagenetwork-exclude-field-help": "Strani za izključitev iz grafa omrežja, po ena na vrstico.",
+	"pagenetwork-excludedNamespaces-field-label": "Izključi imenske prostore",
+	"pagenetwork-excludedNamespaces-field-help": "Imenski prostori, ki naj bodo izključeni iz grafa omrežja.",
+	"pagenetwork-class-field-label": "Razredi CSS",
+	"pagenetwork-class-field-help": "Dodatni razred(i) css, ki ga(jih) želite dodati v graf omrežja, ločeni s presledki.",
+	"pagenetwork-options-field-label": "Možnosti grafikona",
+	"pagenetwork-options-field-help": "Struktura JSON z možnostmi grafa vis.js.",
+	"pagenetwork-enableDisplayTitle-field-label": "Omogoči prikaz naslova",
+	"pagenetwork-enableDisplayTitle-field-help": "Ali naj bo naslov strani ali prikazni naslov prikazan kot oznaka vozlišča?",
+	"pagenetwork-labelMaxLength-field-label": "Največja dolžina oznake",
+	"pagenetwork-labelMaxLength-field-help": "Največja dolžina besedila oznake vozlišča ali 0, če je neomejeno. Če mora biti oznaka vozlišča okrnjena, bo dodano tripičje (…).",
+	"pagenetwork-basic-tab-label": "Osnovne možnosti",
+	"pagenetwork-advanced-tab-label": "Napredne možnosti"
+}

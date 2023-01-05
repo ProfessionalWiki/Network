@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Cantons-de-l'Est",
 			"Jeroen De Dauw",
 			"Karsten Hoffmeyer",
@@ -11,7 +12,7 @@
 	"network": "This is a noun.",
 	"network-desc": "{{Desc|name=Network|url=https://github.com/ProfessionalWiki/Network}}",
 	"network-aria": "Informatory message.\n\nParameters:\n* $1 - Holds the number of pages listed with parameter $2\n* $2 - Holds the name of a page or the names of pages",
-	"pagenetwork-pages-field-label": "Field label\\n{{Identical|Pages}}",
+	"pagenetwork-pages-field-label": "Field label\n\n{{Identical|Pages}}",
 	"pagenetwork-pages-field-help": "Field help",
 	"pagenetwork-exclude-field-label": "Field label\n{{Related|Pagenetwork-exclude}}",
 	"pagenetwork-exclude-field-help": "Field help",
