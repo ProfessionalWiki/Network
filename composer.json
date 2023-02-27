@@ -44,5 +44,10 @@
 	"require-dev": {
 		"vimeo/psalm": "*",
 		"phpstan/phpstan": "^1.0.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
+		}
 	}
 }
