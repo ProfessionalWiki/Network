@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Avma"
+		]
+	},
+	"network": "רשת",
+	"network-desc": "מאפשרת הוספת הדמיות רשת הידויות בדפי הוויקי שלך",
+	"network-aria": "הדמיית רשת המציגה את הקישורים היוצאים והנכנסים עבור {{PLURAL:$1|הדף|הדפים}} $2",
+	"pagenetwork-pages-field-label": "דפים",
+	"pagenetwork-pages-field-help": "שם הדף או הדפים שעבורם יש להציג חיבורים, אחד בכל שורה. ברירת מחדל היא העמוד הראשי.",
+	"pagenetwork-exclude-field-label": "ללא הדפים האלה",
+	"pagenetwork-exclude-field-help": "דפים להחרגה מגרף הרשת, אחד בכל שורה.",
+	"pagenetwork-excludedNamespaces-field-label": "לא לכלול את מרחבי השם",
+	"pagenetwork-excludedNamespaces-field-help": "מרחבי שם להחרגה מתרשים הרשת.",
+	"pagenetwork-class-field-label": "מחלקות CSS",
+	"pagenetwork-class-field-help": "מחלקות css נוספות להוספה לגרף הרשת, מופרדות ברווחים.",
+	"pagenetwork-options-field-label": "אפשרויות תרשים",
+	"pagenetwork-options-field-help": "מבנה JSON עם אפשרויות גרף vis.js.",
+	"pagenetwork-enableDisplayTitle-field-label": "הפעלת כותרת התצוגה",
+	"pagenetwork-enableDisplayTitle-field-help": "האם יש להציג את כותרת הדף או את כותרת התצוגה כתווית של צומת?",
+	"pagenetwork-labelMaxLength-field-label": "אורך תווית מרבי",
+	"pagenetwork-labelMaxLength-field-help": "אורך הטקסט המרבי של תווית של צומת או 0 אם בלתי מוגבל. אם יש לחתוך את תווית הצומת, יתווספו שלוש נקודות (...).",
+	"pagenetwork-basic-tab-label": "אפשרויות בסיסיות",
+	"pagenetwork-advanced-tab-label": "אפשרויות מתקדמות"
+}
