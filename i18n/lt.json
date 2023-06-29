@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nokeoo"
+		]
+	},
+	"network": "Tinklas",
+	"network-desc": "Leidžia pridėti interaktyvių tinklo vizualizacijų jūsų viki puslapiuose",
+	"network-aria": "Tinklo vizualizacija, rodanti išeinančias ir čia vedančias nuorodas {{PLURAL:$1|puslapiui|puslapiams}} $2",
+	"pagenetwork-pages-field-label": "Puslapiai",
+	"pagenetwork-pages-field-help": "Puslapio ar puslapių, kuriuose rodomi ryšiai, pavadinimas, po vieną eilutėje. Numatytasis – pagrindinis puslapis.",
+	"pagenetwork-exclude-field-label": "Neįtraukti puslapių",
+	"pagenetwork-exclude-field-help": "Puslapiai, kurių netraukti į tinklo grafiką, po vieną eilutėje.",
+	"pagenetwork-excludedNamespaces-field-label": "Neįtraukti vardų sričių",
+	"pagenetwork-excludedNamespaces-field-help": "Neįtrauktinos į tinklo grafiką vardų sritys.",
+	"pagenetwork-class-field-label": "CSS klasės",
+	"pagenetwork-class-field-help": "Papildoma (-os) css klasė (-s), kurią (-as) reikia pridėti prie tinklo grafiko, atskirtos tarpais.",
+	"pagenetwork-options-field-label": "Grafiko parinktys",
+	"pagenetwork-options-field-help": "JSON struktūra su vis.js grafiko parinktimis.",
+	"pagenetwork-enableDisplayTitle-field-label": "Įgalinti Rodyti pavadinimą",
+	"pagenetwork-enableDisplayTitle-field-help": "Ar taško etiketė turėtų būti puslapio pavadinimas ar puslapio rodomas pavadinimas?",
+	"pagenetwork-labelMaxLength-field-label": "Maksimalus etiketės ilgis",
+	"pagenetwork-labelMaxLength-field-help": "Maksimalus taško etiketės teksto ilgis arba 0, jei neribotas. Jei taško etiketė turi būti sutrumpinta, bus pridėta elipsė (…).",
+	"pagenetwork-basic-tab-label": "Pagrindinės parinktys",
+	"pagenetwork-advanced-tab-label": "Išplėstinės parinktys"
+}
