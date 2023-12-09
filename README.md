@@ -366,6 +366,8 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 ### Version 2.0.1
 
+Released on December 9th, 2023.
+
 * Fixed handling of redirects (thanks @thomas-topway-it)
 
 ### Version 2.0.0
