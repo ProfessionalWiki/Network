@@ -101,7 +101,7 @@ class NetworkUseCase {
 
 	/**
 	 * @param string $pages
-	 * @param string $delimiter
+	 * @param non-empty-string $delimiter
 	 * @return string[]
 	 */
 	private function pagesStringToArray( string $pages, string $delimiter ): array {
