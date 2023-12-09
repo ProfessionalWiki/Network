@@ -48,6 +48,10 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 
 						let missingPages = this._getMissingPages(pages)
 
+						// @Attention!! this won't include the redirects
+						// (the redirects are at pageInfoResponse.query.redirects !)
+						// so connections.pages and pageInfoResponse.query.pages
+						// may differ
 						let displayTitles = this._getDisplayTitles(pages)
 
 						this._getTitleIcons(pages)
@@ -60,8 +64,10 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 
 									if (page.isExternal) {
 										page.displayTitle = page.title;
-									} else {
+									} else if ( !page.isRedirect ) {
 										page.displayTitle = displayTitles[page.title];
+									} else {
+										page.displayTitle = page.title;
 									}
 
 									if (titleIcons.images[page.title]) {

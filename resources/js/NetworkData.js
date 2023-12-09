@@ -27,6 +27,9 @@ module.NetworkData = ( function ( vis, mw ) {
 					} else {
 						page.tooltip = page.displayTitle;
 					}
+					if ( page.isRedirect ) {
+						page.tooltip += ' <i>(redirect)</i>';
+					}
 					return page;
 				})
 				.map(function(page) {
