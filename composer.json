@@ -38,11 +38,11 @@
 		"source": "https://github.com/ProfessionalWiki/Network/issues"
 	},
 	"require": {
-		"php": ">=7.3",
+		"php": ">=7.4",
 		"composer/installers": "^2|^1.0.1"
 	},
 	"require-dev": {
-		"vimeo/psalm": "*",
+		"vimeo/psalm": "^5.17.0",
 		"phpstan/phpstan": "^1.0.0"
 	},
 	"config": {
