@@ -35,7 +35,8 @@ module.ApiConnectionsBuilder = ( function () {
 			.map(function(page) {
 				return {
 					title: page.title,
-					isExternal: page.external
+					isExternal: page.external,
+					isRedirect: page.isRedirect
 				};
 			});
 	};
@@ -44,14 +45,16 @@ module.ApiConnectionsBuilder = ( function () {
 		let pages = {};
 
 		centralPages.forEach(function(centralPage) {
-			pages[centralPage.title] = { title: centralPage.title, external: false };
+
+			// *** we assume is not a redirect
+			pages[centralPage.title] = { title: centralPage.title, external: false, isRedirect: false };
 
 			centralPage.outgoingLinks.forEach(
 				page => { pages[page.title] = { title: page.title, external: false } }
 			);
 
 			centralPage.incomingLinks.forEach(
-				page => { pages[page.title] = { title: page.title, external: false } }
+				page => { pages[page.title] = { title: page.title, external: false, isRedirect: ( 'redirect' in page ) } }
 			);
 
 			centralPage.externalLinks.forEach(
