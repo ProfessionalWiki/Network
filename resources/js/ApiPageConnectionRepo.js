@@ -47,7 +47,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 						let pages = Object.values(pageInfoResponse.query.pages)
 
 						let missingPages = this._getMissingPages(pages)
-					
+
 						// @Attention!! this won't include the redirects
 						// (the redirects are at pageInfoResponse.query.redirects !)
 						// so connections.pages and pageInfoResponse.query.pages
@@ -58,7 +58,6 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 							.then(function(titleIcons) {
 
 								connections.pages.forEach(function(page) {
-								
 									if (missingPages.includes(page.title)) {
 										page.isMissing = true;
 									}
