@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie",
+			"Romaine"
+		]
+	},
+	"network": "Netwerk",
+	"network-desc": "Maakt het mogelijk om interactieve netwerkvisualisaties aan uw wikipagina’s toe te voegen",
+	"network-aria": "Netwerkvisualisatie met de uitgaande en inkomende koppelingen voor de pagina{{PLURAL:$1||’s}} $2",
+	"pagenetwork-pages-field-label": "Pagina's",
+	"pagenetwork-pages-field-help": "De naam van de pagina of pagina’s waarvoor verbindingen moeten worden weergegeven, één per regel. Standaard ingesteld op de hoofdpagina.",
+	"pagenetwork-exclude-field-label": "Pagina’s uitsluiten",
+	"pagenetwork-exclude-field-help": "Pagina’s die moeten worden uitgesloten van de netwerkgrafiek, één per regel.",
+	"pagenetwork-excludedNamespaces-field-label": "Naamruimten uitsluiten",
+	"pagenetwork-excludedNamespaces-field-help": "Naamruimten die moeten worden uitgesloten van de netwerkgrafiek.",
+	"pagenetwork-class-field-label": "CSS-klassen",
+	"pagenetwork-class-field-help": "Extra CSS-klasse(n) om toe te voegen aan de netwerkgrafiek, gescheiden door spaties.",
+	"pagenetwork-options-field-label": "Grafiekopties",
+	"pagenetwork-options-field-help": "JSON-structuur met vis.js-grafiekopties.",
+	"pagenetwork-enableDisplayTitle-field-label": "Weergavetitel inschakelen",
+	"pagenetwork-enableDisplayTitle-field-help": "Moet de paginatitel of de weergavetitel worden weergegeven als het label van een knooppunt?",
+	"pagenetwork-labelMaxLength-field-label": "Maximale labellengte",
+	"pagenetwork-labelMaxLength-field-help": "De maximale tekstlengte van het label van een knooppunt, of 0 indien onbeperkt. Als het knooppunt-label moet worden afgekapt, wordt er een weglatingsteken (…) toegevoegd.",
+	"pagenetwork-basic-tab-label": "Basisopties",
+	"pagenetwork-advanced-tab-label": "Geavanceerde opties"
+}
