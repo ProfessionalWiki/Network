@@ -138,6 +138,23 @@ Example with parameters
 	    Overrides the value of the <code>$wgPageNetworkLabelMaxLength</code> configuration variable.
         </td>
     </tr>
+        <tr>
+        <th>AllowOnlyLinksToPages</th>
+        <td>true</td>
+        <td>false</td>
+        <td>
+            When set to true, during initialization nodes have only links drawn between the listed pages (from page or pages parameter).
+        </td>
+    </tr>
+    <tr>
+        <th>AllowLinkExpansion</th>
+        <td>true</td>
+        <td>false</td>
+        <td>
+            When set to true, when holding the left mouse button over graph node the links from node will be drawn. 
+            Otherwise (when set to false) this behaviour is supressed.
+        </td>
+    </tr>
 </table>
 
 There is also an includable special page, Special:Network, that can be used to construct graphs interactively. The
@@ -314,6 +331,32 @@ Wrong: `"font.color": "red"`, right: `"font": { "color": "red" }`, also right: `
 ```
 
 Where `NetworkPages` contains `Page1 | Page2 | Page3` and `NetworkOptions` contains `{ "nodes": { "shape": "box" } } `
+
+#### Using with Semantic Mediawiki inline queries
+
+```
+{{#network:
+{{#ask: [[NextPage::+]]
+| format=list
+| headers=show
+| link=none
+| order=ascending
+| merge=true
+|limit=50
+|searchlabel=|
+|sep={{!}}
+|template=ReturnTemplatesFirstArgument
+|outro={{!}}
+|intro={{!}}
+}}
+| class = col-lg-3 mt-0
+|AllowOnlyLinksToPages = true
+|AllowLinkExpansion = false
+|enableDisplayTitle = true
+}}
+```
+
+where "ReturnTemplatesFirstArgument" contains only "{{{1}}}". Resulting graph will show only pages with NextPage property and how they are interlinked.
 
 ## Performance / caching
 

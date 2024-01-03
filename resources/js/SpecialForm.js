@@ -115,6 +115,32 @@
 					helpInline: true
 				} );
 
+			let AllowOnlyLinksToPagesInput = new OO.ui.CheckboxInputWidget({
+				name: 'AllowOnlyLinksToPages',
+				selected: defaultValues['AllowOnlyLinksToPages'],
+			});
+			let AllowOnlyLinksToPagesField = new OO.ui.FieldLayout(
+				AllowOnlyLinksToPagesInput,
+				{
+					label: mw.message('pagenetwork-AllowOnlyLinksToPages-field-label').text(),
+					align: 'inline',
+					help: mw.message('pagenetwork-AllowOnlyLinksToPages-field-help').text(),
+					helpInline: true
+				} );
+
+			let AllowLinkExpansionInput = new OO.ui.CheckboxInputWidget({
+				name: 'AllowLinkExpansion',
+				selected: defaultValues['AllowLinkExpansion'],
+			});
+			let AllowLinkExpansionField = new OO.ui.FieldLayout(
+				AllowLinkExpansionInput,
+				{
+					label: mw.message('pagenetwork-AllowLinkExpansion-field-label').text(),
+					align: 'inline',
+					help: mw.message('pagenetwork-AllowLinkExpansion-field-help').text(),
+					helpInline: true
+				} );
+
 			let submitButton = new OO.ui.ButtonInputWidget( {
 				label: mw.message('htmlform-submit').text(),
 				type: 'submit',
@@ -159,7 +185,9 @@
 											classField,
 											optionsField,
 											enableDisplayTitleField,
-											labelMaxLengthField
+											labelMaxLengthField,
+											AllowOnlyLinksToPagesField,
+											AllowLinkExpansionField
 										]
 									} ),
 								] )

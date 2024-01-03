@@ -26,6 +26,8 @@ class NetworkConfig {
 	 * @var bool
 	 */
 	private $enableDisplayTitle;
+	private $AllowOnlyLinksToPages;
+	private $AllowLinkExpansion;
 
 	/**
 	 * @var int
@@ -39,6 +41,8 @@ class NetworkConfig {
 		$this->excludedNamespaces = array_map( 'strval', $config->get( 'PageNetworkExcludedNamespaces' ) );
 		$this->enableDisplayTitle = (bool)$config->get( 'PageNetworkEnableDisplayTitle' );
 		$this->labelMaxLength = (int)$config->get( 'PageNetworkLabelMaxLength' );
+		$this->AllowOnlyLinksToPages = (bool)$config->get( 'PageNetworkAllowOnlyLinksToPages');
+		$this->AllowLinkExpansion = (bool)$config->get( 'PageNetworkAllowLinkExpansion');
 	}
 
 	public function getOptions(): array {
@@ -59,5 +63,13 @@ class NetworkConfig {
 
 	public function getLabelMaxLength(): int {
 		return $this->labelMaxLength;
+	}
+
+	public function getAllowOnlyLinksToPages(): bool {
+		return $this->AllowOnlyLinksToPages;
+	}
+
+	public function getAllowLinkExpansion(): bool {
+		return $this->AllowLinkExpansion;
 	}
 }

@@ -28,6 +28,8 @@ abstract class AbstractNetworkPresenter implements NetworkPresenter {
 					'data-options' => json_encode( $viewModel->visJsOptions ),
 					'data-enabledisplaytitle' => json_encode( $viewModel->enableDisplayTitle ),
 					'data-labelmaxlength' => json_encode( $viewModel->labelMaxLength ),
+					'data-allowonlylinkstopages' => json_encode( $viewModel->AllowOnlyLinksToPages),
+					'data-allowlinkexpansion' => json_encode( $viewModel->AllowLinkExpansion),
 				]
 			);
 	}

@@ -11,5 +11,8 @@ class RequestModel {
 	public /* int[] */ $excludedNamespaces;
 	public /* bool */ $enableDisplayTitle;
 	public /* int */ $labelMaxLength;
+	public  /* bool */ $AllowOnlyLinksToPages;
+	public  /* bool */ $AllowLinkExpansion;
+
 
 }

@@ -3,19 +3,21 @@
  */
 module.NetworkData = ( function ( vis, mw ) {
 	"use strict"
-
-	let NetworkData = function(pageExclusionManager, labelMaxLength) {
+	let NetworkData = function(pageExclusionManager, labelMaxLength, pageNamesOrig, startWithPageNamesOrigOnly, allowNodeExpansion) {
 		this.nodes = new vis.DataSet();
 		this.edges = new vis.DataSet();
 		this._pageExclusionManager = pageExclusionManager;
 		this._labelMaxLength = labelMaxLength;
+		this._pageNamesOrig = pageNamesOrig;
+		this._startWithPageNamesOrigOnly = startWithPageNamesOrigOnly;
+		this._allowNodeExpansion = allowNodeExpansion;
 	};
 
-	NetworkData.prototype.addPages = function(pages) {
+	NetworkData.prototype.addPages = function(pages, allowOnly_pageNamesOrigList=true) {
 		var maxlength = this._labelMaxLength;
 		this.nodes.update(
 			pages
-				.filter(page => this._pageTitleIsAllowed(page.title))
+				.filter(page => { return this._pageTitleIsAllowed(page.title) && (!allowOnly_pageNamesOrigList||this._pageNamesOrig.includes(page.title)) })
 				.map(function(page) {
 					if (maxlength > 0 && page.displayTitle.length > maxlength) {
 						page.label = page.displayTitle.slice(0, maxlength) + '\u2026';
