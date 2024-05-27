@@ -1,14 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
+			"Suleiman the Magnificent Television",
 			"Ykhwong"
 		]
 	},
 	"network": "네트워크",
+	"network-desc": "위키 페이지에 인터랙티브 네트워크 시각화를 추가할 수 있습니다",
+	"pagenetwork-pages-field-label": "문서",
 	"pagenetwork-excludedNamespaces-field-label": "이름공간 제외",
 	"pagenetwork-class-field-label": "CSS 클래스",
 	"pagenetwork-options-field-label": "그래프 옵션",
 	"pagenetwork-enableDisplayTitle-field-label": "표시 제목 활성화",
+	"pagenetwork-enableDisplayTitle-field-help": "페이지 제목이나 디스플레이 제목은 노드의 레이블으로 표시되어야 하는가?",
 	"pagenetwork-labelMaxLength-field-label": "최대 레이블 길이",
 	"pagenetwork-basic-tab-label": "기본 옵션",
 	"pagenetwork-advanced-tab-label": "고급 옵션"
