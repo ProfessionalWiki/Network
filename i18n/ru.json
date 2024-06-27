@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kareyac"
+			"Kareyac",
+			"Okras"
 		]
 	},
 	"network": "Сеть",
 	"pagenetwork-pages-field-label": "Страницы",
+	"pagenetwork-class-field-label": "Классы CSS",
 	"pagenetwork-enableDisplayTitle-field-label": "Включить отображаемый заголовок",
 	"pagenetwork-basic-tab-label": "Основные настройки",
 	"pagenetwork-advanced-tab-label": "Расширенные настройки"

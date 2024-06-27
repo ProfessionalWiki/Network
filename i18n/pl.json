@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rail"
+			"Rail",
+			"WaldiSt"
 		]
 	},
 	"network-desc": "Umożliwia dodawanie interaktywnych wizualizacji sieci do stron na wiki",
-	"network-aria": "Wizualizacja sieci pokazująca wychodzące i przychodzące połączenia dla {{PLURAL:$1|strony|stron}} $2"
+	"network-aria": "Wizualizacja sieci pokazująca wychodzące i przychodzące połączenia dla {{PLURAL:$1|strony|stron}} $2",
+	"pagenetwork-pages-field-label": "Strony"
 }
