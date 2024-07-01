@@ -2,12 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"GuoPC",
+			"Lakejason0",
 			"Xiplus",
 			"Zhang8569",
 			"落花有意12138"
 		]
 	},
 	"network": "网络",
+	"network-desc": "允许在您的wiki页面中添加交互式网状图可视化",
+	"network-aria": "网状图可视化，显示{{PLURAL:$1|页面}}$2的传出和传入链接",
 	"pagenetwork-pages-field-label": "页面",
 	"pagenetwork-pages-field-help": "该页面的名字或者展示该链接的页面，每行一个。\n默认为主页面。",
 	"pagenetwork-exclude-field-label": "排除的页面",
