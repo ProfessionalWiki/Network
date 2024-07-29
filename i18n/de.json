@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Gichi",
+			"Justman10000",
 			"Kghbln",
 			"Krabina",
 			"Lorem Ipsum",
@@ -13,6 +14,8 @@
 	"network-desc": "Ermöglicht die Visualisierung von Netzwerkbeziehungen zwischen Seiten",
 	"network-aria": "Die Netzwerkvisualisierung zeigt eingehende und ausgehende Links der {{PLURAL:$1|Seite|Seiten}} $2",
 	"pagenetwork-pages-field-label": "Seiten",
+	"pagenetwork-pages-field-help": "Der Name der Seite oder Seiten, für die Verbindungen angezeigt werden sollen, eine pro Zeile. Standardmäßig wird die Hauptseite angezeigt.",
+	"pagenetwork-exclude-field-label": "Seiten ausschließen",
 	"pagenetwork-class-field-label": "CSS-Klassen",
 	"pagenetwork-basic-tab-label": "Basisoptionen",
 	"pagenetwork-advanced-tab-label": "Erweiterte Optionen"
