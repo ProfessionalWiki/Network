@@ -28,6 +28,7 @@
 	"pagenetwork-enableDisplayTitle-field-label": "Aktiviere Titel anzeigen",
 	"pagenetwork-enableDisplayTitle-field-help": "Soll der Seitentitel oder der Anzeigetitel als Beschriftung eines Knotens angezeigt werden?",
 	"pagenetwork-labelMaxLength-field-label": "Maximale Etikettenlänge",
+	"pagenetwork-labelMaxLength-field-help": "Die maximale Textlänge der Knotenbeschriftung oder 0, wenn sie unbegrenzt ist. Wenn die Knotenbezeichnung abgeschnitten werden muss, wird eine Ellipse (…) angehängt.",
 	"pagenetwork-basic-tab-label": "Basisoptionen",
 	"pagenetwork-advanced-tab-label": "Erweiterte Optionen"
 }
