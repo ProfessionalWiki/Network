@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Къарачайлы"
+		]
+	},
+	"network": "Нетаулау",
+	"network-desc": "Викибетилеригизге интерактив нетаулау визуализация къошаргъа амал береди",
+	"network-aria": "{{PLURAL:$1|Бет}} $2 ючюн кетген эмда келген джибериулени кёргюзген нетаулау визуализация",
+	"pagenetwork-pages-field-label": "Бетле",
+	"pagenetwork-pages-field-help": "Хар тизгиннге бир байлам болуб кёргюзюллюк бетни неда бетлени аты. Тынгылау бла баш бетди.",
+	"pagenetwork-exclude-field-label": "Бетлени Тышында Тут",
+	"pagenetwork-exclude-field-help": "Нетаулау графикден чыгъарыргъа керек бетле, хар тизгиннге бир бет.",
+	"pagenetwork-excludedNamespaces-field-label": "Ат Аламланы Тышында Тут",
+	"pagenetwork-excludedNamespaces-field-help": "Нетаулау графикледен тышында тутуллукъ ат аламла.",
+	"pagenetwork-class-field-label": "CSS Классла",
+	"pagenetwork-class-field-help": "Нетаулау графикге къошуллукъ, бошлукълагъа айрылгъан экстра css класс(ла).",
+	"pagenetwork-options-field-label": "График Опцияла",
+	"pagenetwork-options-field-help": "vis.js графика опцияла бла JSON структура.",
+	"pagenetwork-enableDisplayTitle-field-label": "Кёрнюм Башлыкъны Джандыр",
+	"pagenetwork-enableDisplayTitle-field-help": "Бет башлыкъ неда кёрюнюм башлыкъ тюйюмчекни этикети болуб кёргюзюлюрге боллукъмуду?",
+	"pagenetwork-labelMaxLength-field-label": "Максимум Этикет Узунлукъ",
+	"pagenetwork-labelMaxLength-field-help": "Бу тюйюмчекни этикетини максимум текст узунлугъу неда чексиз эсе 0. Тюйюмчек этикетни кесилиую керек эсе,  нохта (...) салыныр.",
+	"pagenetwork-basic-tab-label": "Тамал Сайлаула",
+	"pagenetwork-advanced-tab-label": "Кенгленнген Сайлаула"
+}
