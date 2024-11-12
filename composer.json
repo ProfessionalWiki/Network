@@ -43,7 +43,7 @@
 	},
 	"require-dev": {
 		"vimeo/psalm": "*",
-		"phpstan/phpstan": "^1.0.0"
+		"phpstan/phpstan": "^2.0.1"
 	},
 	"config": {
 		"allow-plugins": {
