@@ -8,6 +8,7 @@
 	"network": "네트워크",
 	"network-desc": "위키 페이지에 상호작용 네트워크 시각화의 추가를 허용합니다",
 	"pagenetwork-pages-field-label": "문서",
+	"pagenetwork-exclude-field-label": "문서 제외",
 	"pagenetwork-excludedNamespaces-field-label": "이름공간 제외",
 	"pagenetwork-excludedNamespaces-field-help": "네트워크 그래프에서 제외할 이름공간입니다.",
 	"pagenetwork-class-field-label": "CSS 클래스",
