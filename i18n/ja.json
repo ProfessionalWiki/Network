@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hideki Yoshida",
+			"Yukkuri Shambis",
+			"もなー(偽物)"
+		]
+	},
+	"network": "ネットワーク",
+	"pagenetwork-pages-field-label": "ページ",
+	"pagenetwork-exclude-field-label": "ページを除外",
+	"pagenetwork-exclude-field-help": "ネットワーク グラフから除外するページ（1ページ/行）",
+	"pagenetwork-excludedNamespaces-field-label": "名前空間を除外",
+	"pagenetwork-excludedNamespaces-field-help": "ネットワーク グラフから除外する名前空間",
+	"pagenetwork-class-field-label": "CSSクラス",
+	"pagenetwork-class-field-help": "ネットワーク グラフに対する追加のCSSクラス (スペースで区切ります)",
+	"pagenetwork-options-field-label": "グラフのオプション",
+	"pagenetwork-options-field-help": "vis.jsグラフ オプションが記載されたJSON構造。",
+	"pagenetwork-enableDisplayTitle-field-label": "表示タイトルを有効にする",
+	"pagenetwork-labelMaxLength-field-label": "最大ラベル長",
+	"pagenetwork-labelMaxLength-field-help": "最大のノードのラベルの長さ。無制限にする場合は0を記入してください。ノードのラベルが省略されるときは三点リーダ(…)が追加されます。",
+	"pagenetwork-basic-tab-label": "基本設定",
+	"pagenetwork-advanced-tab-label": "詳細設定"
+}
