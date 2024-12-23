@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Hideki Yoshida",
+			"Omotecho",
 			"Yukkuri Shambis",
 			"もなー(偽物)"
 		]
@@ -18,7 +19,7 @@
 	"pagenetwork-options-field-help": "vis.jsグラフ オプションが記載されたJSON構造。",
 	"pagenetwork-enableDisplayTitle-field-label": "表示タイトルを有効にする",
 	"pagenetwork-labelMaxLength-field-label": "最大ラベル長",
-	"pagenetwork-labelMaxLength-field-help": "最大のノードのラベルの長さ。無制限にする場合は0を記入してください。ノードのラベルが省略されるときは三点リーダ(…)が追加されます。",
+	"pagenetwork-labelMaxLength-field-help": "ノードのラベルの上限テキスト長もしくは無制限の場合は0。ノードのラベルの省略を切り捨てるには省略記号（...）を追加。",
 	"pagenetwork-basic-tab-label": "基本設定",
 	"pagenetwork-advanced-tab-label": "詳細設定"
 }
