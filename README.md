@@ -1,8 +1,9 @@
 # Network
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ProfessionalWiki/Network/ci.yml?branch=master)](https://github.com/ProfessionalWiki/Network/actions?query=workflow%3ACI)
-[![Latest Stable Version](https://poser.pugx.org/professional-wiki/network/version.png)](https://packagist.org/packages/professional-wiki/network)
-[![Download count](https://poser.pugx.org/professional-wiki/network/d/total.png)](https://packagist.org/packages/professional-wiki/network)
+[![Latest Stable Version](https://poser.pugx.org/professional-wiki/network/v/stable)](https://packagist.org/packages/professional-wiki/network)
+[![Download count](https://poser.pugx.org/professional-wiki/network/downloads)](https://packagist.org/packages/professional-wiki/network)
+[![License](https://poser.pugx.org/professional-wiki/network/license)](LICENSE)
 
 The **Network** extension allows visualizing connections between wiki pages via an interactive network graph.
 

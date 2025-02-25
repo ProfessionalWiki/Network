@@ -1,6 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Brettchenweber",
+			"DraconicDark",
+			"Gichi",
+			"Justman10000",
 			"Kghbln",
 			"Krabina",
 			"Lorem Ipsum",
@@ -12,6 +16,19 @@
 	"network-desc": "Ermöglicht die Visualisierung von Netzwerkbeziehungen zwischen Seiten",
 	"network-aria": "Die Netzwerkvisualisierung zeigt eingehende und ausgehende Links der {{PLURAL:$1|Seite|Seiten}} $2",
 	"pagenetwork-pages-field-label": "Seiten",
+	"pagenetwork-pages-field-help": "Der Name der Seite oder Seiten, für die Verbindungen angezeigt werden sollen, eine pro Zeile. Standardmäßig wird die Hauptseite angezeigt.",
+	"pagenetwork-exclude-field-label": "Seiten ausschließen",
+	"pagenetwork-exclude-field-help": "Seiten, die aus dem Netzwerkdiagramm ausgeschlossen werden sollen, eine pro Zeile.",
+	"pagenetwork-excludedNamespaces-field-label": "Namensräume ausschließen",
+	"pagenetwork-excludedNamespaces-field-help": "Namensräume, die aus dem Netzwerkdiagramm ausgeschlossen werden sollen.",
 	"pagenetwork-class-field-label": "CSS-Klassen",
-	"pagenetwork-basic-tab-label": "Basisoptionen"
+	"pagenetwork-class-field-help": "Extra css-Klasse(n), die dem Netzwerkdiagramm hinzugefügt werden sollen, getrennt durch Leerzeichen.",
+	"pagenetwork-options-field-label": "Diagrammoptionen",
+	"pagenetwork-options-field-help": "JSON-Struktur mit vis.js-Diagrammoptionen.",
+	"pagenetwork-enableDisplayTitle-field-label": "Aktiviere Titel anzeigen",
+	"pagenetwork-enableDisplayTitle-field-help": "Soll der Seitentitel oder der Anzeigetitel als Beschriftung eines Knotens angezeigt werden?",
+	"pagenetwork-labelMaxLength-field-label": "Maximale Etikettenlänge",
+	"pagenetwork-labelMaxLength-field-help": "Die maximale Textlänge der Knotenbeschriftung oder 0, wenn sie unbegrenzt ist. Wenn die Knotenbezeichnung abgeschnitten werden muss, wird eine Ellipse (…) angehängt.",
+	"pagenetwork-basic-tab-label": "Basisoptionen",
+	"pagenetwork-advanced-tab-label": "Erweiterte Optionen"
 }
