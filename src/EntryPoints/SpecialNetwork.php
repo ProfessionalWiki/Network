@@ -25,7 +25,8 @@ class SpecialNetwork extends IncludableSpecialPage {
 		parent::__construct( 'Network' );
 	}
 
-	public function execute( mixed $subPage ): void {
+	// phpcs:ignore MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic
+	public function execute( $subPage ): void {
 		$this->setHeaders();
 
 		$config = new NetworkConfig();

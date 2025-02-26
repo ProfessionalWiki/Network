@@ -8,7 +8,7 @@ phpunit:
 	php ../../tests/phpunit/phpunit.php -c phpunit.xml.dist
 
 phpcs:
-	cd ../.. && vendor/bin/phpcbf -p -s --standard=$(shell pwd)/phpcs.xml
+	cd ../.. && vendor/bin/phpcs -p -s --standard=$(shell pwd)/phpcs.xml
 
 psalm:
 	../../vendor/bin/psalm --config=psalm.xml

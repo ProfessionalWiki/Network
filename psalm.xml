@@ -16,6 +16,12 @@
 	<issueHandlers>
 		<MissingPropertyType errorLevel="suppress" />
 		<MissingClosureReturnType errorLevel="suppress" />
+		<MissingConstructor>
+			<errorLevel type="suppress">
+				<file name="src/NetworkFunction/RequestModel.php" />
+				<file name="src/NetworkFunction/ResponseModel.php" />
+			</errorLevel>
+		</MissingConstructor>
 		<MissingParamType>
 			<errorLevel type="suppress">
 				<file name="../../includes/specialpage/IncludableSpecialPage.php" />
