@@ -12,22 +12,29 @@ on:
 jobs:
   test:
     name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
+    continue-on-error: ${{ matrix.experimental }}
 
     strategy:
       matrix:
         include:
-          - mw: 'REL1_33'
-            php: 7.4
-          - mw: 'REL1_34'
-            php: 7.4
-          - mw: 'REL1_35'
-            php: 7.4
-          - mw: 'REL1_36'
-            php: 7.4
-          - mw: 'REL1_37'
-            php: 8.0
-          - mw: 'REL1_38'
+          - mw: 'REL1_39'
             php: 8.1
+            experimental: false
+          - mw: 'REL1_40'
+            php: 8.1
+            experimental: false
+          - mw: 'REL1_41'
+            php: 8.2
+            experimental: false
+          - mw: 'REL1_42'
+            php: 8.2
+            experimental: false
+          - mw: 'REL1_43'
+            php: 8.3
+            experimental: false
+          - mw: 'master'
+            php: 8.4
+            experimental: true
 
     runs-on: ubuntu-latest
 
@@ -46,26 +53,30 @@ jobs:
 
       - name: Cache MediaWiki
         id: cache-mediawiki
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             mediawiki
             !mediawiki/extensions/
             !mediawiki/vendor/
-          key: mw_${{ matrix.mw }}-php${{ matrix.php }}-v20
+          key: mw_${{ matrix.mw }}-php${{ matrix.php }}-v21
 
       - name: Cache Composer cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.composer/cache
           key: composer-php${{ matrix.php }}
 
+      - uses: actions/checkout@v4
+        with:
+          path: EarlyCopy
+  
       - name: Install MediaWiki
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
         working-directory: ~
-        run: curl https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/installMediaWiki.sh | bash -s ${{ matrix.mw }} Network
+        run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} Network
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           path: mediawiki/extensions/Network
 
@@ -76,7 +87,13 @@ jobs:
         run: php tests/phpunit/phpunit.php -c extensions/Network/phpunit.xml.dist
 
   static-analysis:
-    name: "Static Analysis"
+    name: "Static Analysis: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
+
+    strategy:
+      matrix:
+        include:
+          - mw: 'REL1_43'
+            php: '8.3'
 
     runs-on: ubuntu-latest
 
@@ -88,13 +105,13 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: ${{ matrix.php }}
           extensions: mbstring
-          tools: composer:v1, cs2pr
+          tools: composer, cs2pr
 
       - name: Cache MediaWiki
         id: cache-mediawiki
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             mediawiki
@@ -103,17 +120,21 @@ jobs:
           key: mediawiki-cache
 
       - name: Cache Composer cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.composer/cache
-          key: composer-cache
+          key: composer_static_analysis
 
+      - uses: actions/checkout@v4
+        with:
+          path: EarlyCopy
+  
       - name: Install MediaWiki
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
         working-directory: ~
-        run: curl https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/installMediaWiki.sh | bash -s REL1_34 Network
-
-      - uses: actions/checkout@v2
+        run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} Network
+  
+      - uses: actions/checkout@v4
         with:
           path: mediawiki/extensions/Network
 
@@ -125,3 +146,63 @@ jobs:
 
       - name: Psalm
         run: php vendor/bin/psalm
+
+  code-style:
+    name: "Code style: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
+
+    strategy:
+      matrix:
+        include:
+          - mw: 'REL1_43'
+            php: '8.3'
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: mediawiki/extensions/Network
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, intl, php-ast
+          tools: composer
+
+      - name: Cache MediaWiki
+        id: cache-mediawiki
+        uses: actions/cache@v4
+        with:
+          path: |
+            mediawiki
+            !mediawiki/extensions/
+            !mediawiki/vendor/
+          key: mw_static_analysis
+
+      - name: Cache Composer cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache
+          key: composer_static_analysis
+
+      - uses: actions/checkout@v4
+        with:
+          path: EarlyCopy
+
+      - name: Install MediaWiki
+        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
+        working-directory: ~
+        run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} Network
+
+      - uses: actions/checkout@v4
+        with:
+          path: mediawiki/extensions/Network
+
+      - name: Composer allow-plugins
+        run: composer config --no-plugins allow-plugins.composer/installers true
+
+      - name: Composer install
+        run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+
+      - run: vendor/bin/phpcs -p -s
