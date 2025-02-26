@@ -25,7 +25,7 @@ class SpecialNetwork extends IncludableSpecialPage {
 		parent::__construct( 'Network' );
 	}
 
-	public function execute( ?string $subPage ): void {
+	public function execute( mixed $subPage ): void {
 		$this->setHeaders();
 
 		$config = new NetworkConfig();

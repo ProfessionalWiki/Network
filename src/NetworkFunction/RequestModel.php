@@ -6,10 +6,16 @@ namespace MediaWiki\Extension\Network\NetworkFunction;
 
 class RequestModel {
 
-	public /* string[] */ $functionArguments;
-	public /* string */ $renderingPageName;
-	public /* int[] */ $excludedNamespaces;
-	public /* bool */ $enableDisplayTitle;
-	public /* int */ $labelMaxLength;
+	/** @var string[] */
+	public array $functionArguments;
+
+	public string $renderingPageName;
+
+	/** @var int[] */
+	public array $excludedNamespaces;
+
+	public bool $enableDisplayTitle;
+
+	public int $labelMaxLength;
 
 }

@@ -57,7 +57,7 @@ class NetworkUseCase {
 	}
 
 	private function argumentStringToKeyValue( string $argument ): array {
-		if ( false === strpos( $argument, '=' ) ) {
+		if ( strpos( $argument, '=' ) === false ) {
 			return [ null, $argument ];
 		}
 
