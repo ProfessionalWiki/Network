@@ -43,11 +43,13 @@
 	},
 	"require-dev": {
 		"vimeo/psalm": "^5.17.0",
-		"phpstan/phpstan": "^2.0.2"
+		"phpstan/phpstan": "^2.0.2",
+		"mediawiki/mediawiki-codesniffer": "45.0.0"
 	},
 	"config": {
 		"allow-plugins": {
-			"composer/installers": true
+			"composer/installers": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
 	}
 }
