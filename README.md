@@ -365,6 +365,12 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 ## Release notes
 
+### Version 3.0.0
+
+Release date TDB
+
+* Raised minimum MediaWiki version from 1.31 to 1.39
+
 ### Version 2.0.1
 
 Released on December 9th, 2023.
