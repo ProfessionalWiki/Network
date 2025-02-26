@@ -8,12 +8,9 @@ use Html;
 
 abstract class AbstractNetworkPresenter implements NetworkPresenter {
 
-	private static $idCounter = 1;
+	private static int $idCounter = 1;
 
-	/**
-	 * @var string
-	 */
-	protected $html = '';
+	protected string $html = '';
 
 	public function setHtml( ResponseModel $viewModel ): void {
 		$this->html =

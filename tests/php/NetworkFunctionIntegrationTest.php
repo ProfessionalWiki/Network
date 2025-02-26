@@ -7,6 +7,9 @@ namespace MediaWiki\Extension\Network\Tests;
 use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \MediaWiki\Extension\Network\EntryPoints\NetworkFunction
+ */
 class NetworkFunctionIntegrationTest extends TestCase {
 
 	private const PAGE_TITLE = 'ContextPageTitle';

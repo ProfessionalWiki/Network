@@ -9,8 +9,8 @@ use MediaWiki\Extension\Network\NetworkFunction\ResponseModel;
 
 class SpyNetworkPresenter implements NetworkPresenter {
 
-	private $viewModel;
-	private $errors = [];
+	private ResponseModel $viewModel;
+	private array $errors = [];
 
 	public function buildGraph( ResponseModel $viewModel ): void {
 		$this->viewModel = $viewModel;
