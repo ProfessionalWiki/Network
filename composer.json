@@ -42,7 +42,7 @@
 		"composer/installers": "^2|^1.0.1"
 	},
 	"require-dev": {
-		"vimeo/psalm": "^4.30.0",
+		"vimeo/psalm": "^5.17.0",
 		"phpstan/phpstan": "^2.0.2"
 	},
 	"config": {
