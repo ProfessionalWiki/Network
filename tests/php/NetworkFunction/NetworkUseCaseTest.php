@@ -132,7 +132,7 @@ class NetworkUseCaseTest extends TestCase {
 	private function getPageNames( int $count ): array {
 		$pageNames = [];
 
-		for ( $i = 0 ; $i < $count ; $i++ ) {
+		for ( $i = 0; $i < $count; $i++ ) {
 			$pageNames[] = 'Page' . (string)$i;
 		}
 
@@ -142,7 +142,6 @@ class NetworkUseCaseTest extends TestCase {
 	public function testMoreThanMaxPagesResultsInError() {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = $this->getPageNames( 101 );
-
 
 		$this->assertSame(
 			[ 'too many pages' ],
@@ -166,7 +165,6 @@ class NetworkUseCaseTest extends TestCase {
 			$this->runAndReturnPresenter( $request )->getResponseModel()->enableDisplayTitle
 		);
 	}
-
 
 	public function testOverrideEnableDisplayTitleFalse() {
 		$request = $this->newBasicRequestModel();

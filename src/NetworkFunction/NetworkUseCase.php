@@ -6,10 +6,13 @@ namespace MediaWiki\Extension\Network\NetworkFunction;
 
 class NetworkUseCase {
 
-	private $presenter;
-	private $visJsOptions;
+	private NetworkPresenter $presenter;
+	private array $visJsOptions;
 
-	public function __construct( NetworkPresenter $presenter, array $visJsOptions ) {
+	public function __construct(
+		NetworkPresenter $presenter,
+		array $visJsOptions
+	) {
 		$this->presenter = $presenter;
 		$this->visJsOptions = $visJsOptions;
 	}
@@ -35,7 +38,6 @@ class NetworkUseCase {
 		$this->presenter->buildGraph( $response );
 	}
 
-
 	/**
 	 * @param string[] $arguments
 	 * @return string[]
@@ -44,9 +46,9 @@ class NetworkUseCase {
 		$pairs = [];
 
 		foreach ( $arguments as $argument ) {
-			[$key, $value] = $this->argumentStringToKeyValue( $argument );
+			[ $key, $value ] = $this->argumentStringToKeyValue( $argument );
 
-			if ( !is_null( $key ) ) {
+			if ( $key !== null ) {
 				$pairs[$key] = $value;
 			}
 		}
@@ -56,11 +58,11 @@ class NetworkUseCase {
 
 	private function argumentStringToKeyValue( string $argument ): array {
 		if ( false === strpos( $argument, '=' ) ) {
-			return [null, $argument];
+			return [ null, $argument ];
 		}
 
-		[$key, $value] = explode( '=', $argument );
-		return [trim($key), trim($value)];
+		[ $key, $value ] = explode( '=', $argument );
+		return [ trim( $key ), trim( $value ) ];
 	}
 
 	private function getVisJsOptions( array $arguments ): array {
@@ -79,7 +81,7 @@ class NetworkUseCase {
 		$pageNames = [];
 
 		foreach ( $request->functionArguments as $argument ) {
-			[$key, $value] = $this->argumentStringToKeyValue( $argument );
+			[ $key, $value ] = $this->argumentStringToKeyValue( $argument );
 
 			if ( $value !== '' && $this->isPageKey( $key ) ) {
 				foreach ( $this->pagesStringToArray( $value, '|' ) as $pageName ) {
@@ -96,7 +98,7 @@ class NetworkUseCase {
 	}
 
 	private function isPageKey( ?string $key ): bool {
-		return is_null( $key ) || in_array( $key, [ 'page', 'pages' ] );
+		return $key === null || in_array( $key, [ 'page', 'pages' ] );
 	}
 
 	/**
@@ -111,7 +113,7 @@ class NetworkUseCase {
 					'trim',
 					explode( $delimiter, $pages )
 				),
-				function( string $pageName ): bool {
+				static function ( string $pageName ): bool {
 					return $pageName !== '';
 				}
 			)
@@ -135,13 +137,13 @@ class NetworkUseCase {
 	 * @param int[] $excludedNamespaces
 	 * @return int[]
 	 */
-	private function getExcludedNamespaces(array $arguments, array $excludedNamespaces ): array {
+	private function getExcludedNamespaces( array $arguments, array $excludedNamespaces ): array {
 		if ( !isset( $arguments['excludedNamespaces'] ) ) {
 			return $excludedNamespaces;
 		}
 		$namespaces = explode( ',', $arguments['excludedNamespaces'] );
 		array_walk( $namespaces, 'intval' );
-		return  $namespaces;
+		return $namespaces;
 	}
 
 	/**
@@ -149,7 +151,7 @@ class NetworkUseCase {
 	 * @param bool $enableDisplayTitle
 	 * @return bool
 	 */
-	private function getEnableDisplayTitle(array $arguments, bool $enableDisplayTitle ): bool {
+	private function getEnableDisplayTitle( array $arguments, bool $enableDisplayTitle ): bool {
 		return isset( $arguments['enableDisplayTitle'] )
 			? filter_var( $arguments['enableDisplayTitle'], FILTER_VALIDATE_BOOLEAN )
 			: $enableDisplayTitle;
@@ -160,7 +162,7 @@ class NetworkUseCase {
 	 * @param int $labelMaxLength
 	 * @return int
 	 */
-	private function getLabelMaxLength(array $arguments, int $labelMaxLength ): int {
+	private function getLabelMaxLength( array $arguments, int $labelMaxLength ): int {
 		return isset( $arguments['labelMaxLength'] ) ? (int)$arguments['labelMaxLength'] : $labelMaxLength;
 	}
 }

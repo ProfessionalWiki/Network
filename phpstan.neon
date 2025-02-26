@@ -6,3 +6,5 @@ parameters:
 	scanDirectories:
 		- ../../includes
 		- ../../vendor
+	bootstrapFiles:
+		- ../../includes/AutoLoader.php

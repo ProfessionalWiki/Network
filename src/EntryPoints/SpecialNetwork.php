@@ -25,7 +25,7 @@ class SpecialNetwork extends IncludableSpecialPage {
 		parent::__construct( 'Network' );
 	}
 
-	public function execute( $subPage ) : void {
+	public function execute( $subPage ): void {
 		$this->setHeaders();
 
 		$config = new NetworkConfig();
@@ -40,7 +40,7 @@ class SpecialNetwork extends IncludableSpecialPage {
 		}
 	}
 
-	private function parseParams( WebRequest $request, NetworkConfig $config ) : array {
+	private function parseParams( WebRequest $request, NetworkConfig $config ): array {
 		$params = [];
 
 		if ( $request->getCheck( 'pages' ) ) {
@@ -75,7 +75,7 @@ class SpecialNetwork extends IncludableSpecialPage {
 					FILTER_NULL_ON_FAILURE
 				);
 		} elseif ( $request->getCheck( 'pages' ) ) {
-			$params['enableDisplayTitle'] = $request->getCheck('enableDisplayTitle');
+			$params['enableDisplayTitle'] = $request->getCheck( 'enableDisplayTitle' );
 		} else {
 			$params['enableDisplayTitle'] = $config->getEnableDisplayTitle();
 		}
@@ -89,7 +89,7 @@ class SpecialNetwork extends IncludableSpecialPage {
 	 * @param array $params
 	 * @return string[]
 	 */
-	private function formatParams( array $params ) : array {
+	private function formatParams( array $params ): array {
 		$formattedParams = [];
 		if ( $params['pages'] === '' ) {
 			$formattedParams['pages'] = 'pages=' . Title::newMainPage()->getPrefixedText();
@@ -117,7 +117,7 @@ class SpecialNetwork extends IncludableSpecialPage {
 	 * @param NetworkConfig $config
 	 * @return string
 	 */
-	public function showGraph( array $arguments, NetworkConfig $config) : string {
+	public function showGraph( array $arguments, NetworkConfig $config ): string {
 		$output = $this->getOutput();
 		$output->addModules( [ 'ext.network' ] );
 		$output->addJsConfigVars( 'networkExcludeTalkPages', $config->getExcludeTalkPages() );
@@ -160,17 +160,17 @@ class SpecialNetwork extends IncludableSpecialPage {
 		) );
 	}
 
-	private function getNamespaces(NetworkConfig $config): array {
+	private function getNamespaces( NetworkConfig $config ): array {
 		$namespaces = MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces();
 		$namespaces[0] = ( new Message( 'blanknamespace' ) )->plain();
 		return array_filter(
 			$namespaces,
-			function ( int $value ) use ( $config ) {
+			static function ( int $value ) use ( $config ) {
 				if ( $value < 0 ) {
 					return false;
 				}
 				if ( $config->getExcludeTalkPages() ) {
-					return !($value % 2);
+					return !( $value % 2 );
 				}
 				return true;
 			},
