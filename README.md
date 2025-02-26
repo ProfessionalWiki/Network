@@ -30,8 +30,8 @@ It was created by [Professional.Wiki](https://professional.wiki/) and funded by
 
 ## Platform requirements
 
-* PHP 7.3 or later (tested up to PHP 8.1)
-* MediaWiki 1.31.x or later (tested up to 1.38.x)
+* PHP 7.4 or later (tested up to PHP 8.4)
+* MediaWiki 1.39.x or later (tested up to 1.43.x)
 
 See the [release notes](#release-notes) for more information on the different versions of Network.
 
