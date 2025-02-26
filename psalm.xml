@@ -11,6 +11,7 @@
     </projectFiles>
 	<extraFiles>
 		<directory name="../../includes" />
+		<directory name="../../vendor/wikimedia" />
 	</extraFiles>
 	<issueHandlers>
 		<MissingPropertyType errorLevel="suppress" />
