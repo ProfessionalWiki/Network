@@ -1,7 +1,7 @@
 {
 	"name": "Network",
 
-	"version": "2.0.1",
+	"version": "3.0.0",
 
 	"author": [
 		"[https://www.entropywins.wtf/mediawiki Jeroen De Dauw]",
@@ -17,7 +17,7 @@
 	"type": "parserhook",
 
 	"requires": {
-		"MediaWiki": ">= 1.31.0"
+		"MediaWiki": ">= 1.39.0"
 	},
 
 	"config": {
@@ -108,8 +108,6 @@
 		"MediaWiki\\Extension\\Network\\Tests\\": "tests/php"
 	},
 
-	"callback": "MediaWiki\\Extension\\Network\\Extension::addMediaWiki131compat",
-
 	"Hooks": {
 		"ParserFirstCallInit": "MediaWiki\\Extension\\Network\\EntryPoints\\NetworkFunction::onParserFirstCallInit"
 	},
@@ -126,7 +124,7 @@
 	"ResourceModules": {
 		"ext.network": {
 			"dependencies": [
-				"mediawiki.api.edit",
+				"mediawiki.api",
 				"mediawiki.Title",
 				"mediawiki.jqueryMsg"
 			],

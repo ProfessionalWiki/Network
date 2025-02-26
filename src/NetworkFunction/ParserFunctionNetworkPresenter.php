@@ -23,7 +23,7 @@ class ParserFunctionNetworkPresenter extends AbstractNetworkPresenter {
 	/**
 	 * @return array
 	 */
-	public function getReturnValue() : array {
+	public function getReturnValue(): array {
 		return $this->parserFunctionReturnValue;
 	}
 

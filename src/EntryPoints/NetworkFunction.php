@@ -10,6 +10,7 @@ use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
 use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
 use Parser;
+use Title;
 
 class NetworkFunction {
 
@@ -25,7 +26,7 @@ class NetworkFunction {
 	public static function onParserFirstCallInit( Parser $parser ): void {
 		$parser->setFunctionHook(
 			'network',
-			function() {
+			static function () {
 				return ( new self( new NetworkConfig() ) )->handleParserFunctionCall( ...func_get_args() );
 			}
 		);
@@ -38,7 +39,7 @@ class NetworkFunction {
 	 */
 	public function handleParserFunctionCall( Parser $parser, string ...$arguments ) {
 		$parser->getOutput()->addModules( [ 'ext.network' ] );
-		$parser->getOutput()->addJsConfigVars( 'networkExcludeTalkPages', $this->config->getExcludeTalkPages() );
+		$parser->getOutput()->setJsConfigVar( 'networkExcludeTalkPages', $this->config->getExcludeTalkPages() );
 
 		$requestModel = new RequestModel();
 		$requestModel->functionArguments = $arguments;
@@ -46,10 +47,11 @@ class NetworkFunction {
 		$requestModel->enableDisplayTitle = $this->config->getEnableDisplayTitle();
 		$requestModel->labelMaxLength = $this->config->getLabelMaxLength();
 
-		/**
-		 * @psalm-suppress PossiblyNullReference
-		 */
-		$requestModel->renderingPageName = $parser->getTitle()->getFullText();
+		$title = $parser->getPage();
+		if ( $title instanceof Title ) {
+			$requestModel->renderingPageName = $title->getFullText();
+		}
+
 		$presenter = Extension::getFactory()->newParserFunctionNetworkPresenter();
 
 		$this->newUseCase( $presenter, $this->config )->run( $requestModel );

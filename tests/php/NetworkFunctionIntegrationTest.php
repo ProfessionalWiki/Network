@@ -7,6 +7,9 @@ namespace MediaWiki\Extension\Network\Tests;
 use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \MediaWiki\Extension\Network\EntryPoints\NetworkFunction
+ */
 class NetworkFunctionIntegrationTest extends TestCase {
 
 	private const PAGE_TITLE = 'ContextPageTitle';
@@ -17,14 +20,14 @@ class NetworkFunctionIntegrationTest extends TestCase {
 	}
 
 	public function testWhenThereAreNoParameters_contextPageIsUsed() {
-		$this->assertContains(
+		$this->assertStringContainsString(
 			'data-pages="[&quot;ContextPageTitle&quot;]"',
 			$this->parse( '{{#network:}}' )
 		);
 	}
 
 	public function testOptionsParameters() {
-		$this->assertContains(
+		$this->assertStringContainsString(
 			'&quot;shape&quot;:&quot;tomato&quot;',
 			$this->parse( '{{#network:options={"nodes": {"shape": "tomato"} } }}' )
 		);
