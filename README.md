@@ -18,10 +18,10 @@ It was created by [Professional.Wiki](https://professional.wiki/) and funded by
 - [Usage](#usage)
   * [Parameters](#parameters)
   * [Layout CSS](#layout-css)
-  * [Configuration](#configuration)
   * [Examples](#examples)
     + [Options parameter](#options-parameter)
     + [Using templates](#using-templates)
+- [PHP Configuration](#php-configuration)
 - [Limitations](#limitations)
 - [Contribution and support](#contribution-and-support)
 - [Development](#development)
@@ -198,7 +198,41 @@ a page rendered in the graph has at least one title icon defined, one of those t
 icon. If there are multiple title icons defined for the page, one will be selected in the order in which they were
 parsed on the page.
 
-### Configuration
+### Examples
+
+#### Options parameter
+
+Array of [vis.js options](https://visjs.github.io/vis-network/docs/network/#options)
+
+```
+{{#network:Page1 | Page2 | Page3
+ | options=
+{
+    "autoResize": true,
+    "nodes": {
+        "color": "lightblue",
+        "shape": "box",
+        "borderWidth": 3,
+        "font": { "color": "red", "size": 17 }
+    }
+}
+}}
+```
+
+Wrong: `"font.color": "red"`, right: `"font": { "color": "red" }`, also right: `"font": "14 px arial red"`
+
+#### Using templates
+
+```
+{{#network: {{NetworkPages}}
+ | class = col-lg-3 mt-0
+ | options= {{NetworkOptions}}
+}}
+```
+
+Where `NetworkPages` contains `Page1 | Page2 | Page3` and `NetworkOptions` contains `{ "nodes": { "shape": "box" } } `
+
+## PHP Configuration
 
 The default value of all parameters can be changed by placing configuration in "LocalSettings.php".
 These configuration settings are available:
@@ -281,40 +315,6 @@ internal links. To make them show up as internal links on the network graph, you
 `$wgRegisterInternalExternals` to `true` in "LocalSettings.php". If pages already exist in your wiki when that
 setting is changed, you will need to run the `refreshLinks.php` MediaWiki maintenance script for the change to
 be recognized.
-
-### Examples
-
-#### Options parameter
-
-Array of [vis.js options](https://visjs.github.io/vis-network/docs/network/#options)
-
-```
-{{#network:Page1 | Page2 | Page3
- | options=
-{
-    "autoResize": true,
-    "nodes": {
-        "color": "lightblue",
-        "shape": "box",
-        "borderWidth": 3,
-        "font": { "color": "red", "size": 17 }
-    }
-}
-}}
-```
-
-Wrong: `"font.color": "red"`, right: `"font": { "color": "red" }`, also right: `"font": "14 px arial red"`
-
-#### Using templates
-
-```
-{{#network: {{NetworkPages}}
- | class = col-lg-3 mt-0
- | options= {{NetworkOptions}}
-}}
-```
-
-Where `NetworkPages` contains `Page1 | Page2 | Page3` and `NetworkOptions` contains `{ "nodes": { "shape": "box" } } `
 
 ## Performance / caching
 
