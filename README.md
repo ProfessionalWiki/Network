@@ -7,7 +7,7 @@
 
 The **Network** extension allows visualizing connections between wiki pages via an interactive network graph.
 
-It was created by [Professional.Wiki](https://professional.wiki/) and funded by
+It was created by [Professional Wiki](https://professional.wiki/) and funded by
 [KDZ - Centre for Public Administration Research](https://www.kdz.eu/).
 
 <a href="https://raw.githubusercontent.com/ProfessionalWiki/Network/master/.github/network.png"><img src=".github/network.png" width="350px" title="View image" /></a>
