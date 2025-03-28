@@ -18,7 +18,7 @@
 		"incoming links",
 		"what links here"
 	],
-	"homepage": "https://github.com/ProfessionalWiki/Network",
+	"homepage": "https://professional.wiki/en/extension/network",
 	"license": "GPL-2.0-or-later",
 	"authors": [
 		{
@@ -35,7 +35,8 @@
 		}
 	],
 	"support": {
-		"source": "https://github.com/ProfessionalWiki/Network/issues"
+		"issues": "https://github.com/ProfessionalWiki/Network/issues",
+		"source": "https://github.com/ProfessionalWiki/Network"
 	},
 	"require": {
 		"php": ">=7.4",
