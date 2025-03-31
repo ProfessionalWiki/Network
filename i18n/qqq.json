@@ -10,7 +10,7 @@
 		]
 	},
 	"network": "This is a noun.",
-	"network-desc": "{{Desc|name=Network|url=https://professional.wiki/en/extension/network}}",
+	"network-desc": "{{Desc|name=Network|url=https://github.com/ProfessionalWiki/Network}}",
 	"network-aria": "Informatory message.\n\nParameters:\n* $1 - Holds the number of pages listed with parameter $2\n* $2 - Holds the name of a page or the names of pages",
 	"pagenetwork-pages-field-label": "Field label\n\n{{Identical|Pages}}",
 	"pagenetwork-pages-field-help": "Field help",
