@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mohammed Qays",
+			"جودت",
+			"محمد أحمد عبد الفتاح"
+		]
+	},
+	"network": "شبكة",
+	"pagenetwork-pages-field-label": "الصفحات",
+	"pagenetwork-exclude-field-label": "استبعاد الصفحات",
+	"pagenetwork-options-field-label": "خيارات الرسم البياني",
+	"pagenetwork-basic-tab-label": "الخيارات الأساسية",
+	"pagenetwork-advanced-tab-label": "خيارات متقدمة"
+}
