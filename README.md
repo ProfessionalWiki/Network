@@ -43,17 +43,17 @@ The recommended way to install Network is using [Composer](https://getcomposer.o
 On the commandline, go to your wikis root directory. Then run these two commands:
 
 ```shell script
-COMPOSER=composer.local.json composer require --no-update professional-wiki/network:~2.0
+COMPOSER=composer.local.json composer require --no-update professional-wiki/network:~3.0
 composer update professional-wiki/network --no-dev -o
 ```
 
-Then enable the extension by adding the following to the bottom of your wikis `LocalSettings.php` file:
+Then enable the extension by adding the following to the bottom of your wiki's `LocalSettings.php` file:
 
 ```php
 wfLoadExtension( 'Network' );
 ```
 
-You can verify the extension was enabled successfully by opening your wikis Special:Version page in your browser.
+You can verify the extension was enabled successfully by opening your wiki's Special:Version page in your browser.
 
 Finally, please consider [sponsoring the project].
 
@@ -327,7 +327,7 @@ without needing to purge the page cache.
 
 Pull requests to remove those limitations are welcome.
 
-You can also contact [Professional.Wiki](https://professional.wiki/)
+You can also contact [Professional Wiki](https://professional.wiki/)
 for [Professional MediaWiki development](https://professional.wiki/en/mediawiki-development) services.
 
 ## Contribution and support
@@ -340,7 +340,7 @@ have a look at the contribution guideline.
 * Ask a question on [the mailing list](https://www.semantic-mediawiki.org/wiki/Mailing_list)
 
 [Professional MediaWiki support](https://professional.wiki/en/support) is available via
-[Professional.Wiki](https://professional.wiki/).
+[Professional Wiki](https://professional.wiki/).
 
 ## Development
 
@@ -361,15 +361,16 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 ## Professional Support and Development
 
-[Professional.Wiki] provides commercial [MediaWiki development], [managed wiki hosting] and [MediaWiki support].
+[Professional Wiki] provides commercial [MediaWiki development], [managed wiki hosting] and [MediaWiki support].
 
 ## Release notes
 
 ### Version 3.0.0
 
-Release date July 7th, 2025.
+Released on July 7th, 2025.
 
 * Raised minimum MediaWiki version from 1.31 to 1.39
+* Translation updates for system messages (thanks @translatewiki and its translator community)
 
 ### Version 2.0.1
 
@@ -437,7 +438,7 @@ Initial release
 [MediaWiki:Common.css]: https://www.mediawiki.org/wiki/Manual:Interface/Stylesheets
 [JS tests]: https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing
 [sponsoring the project]: https://github.com/sponsors/JeroenDeDauw
-[Professional.Wiki]: https://professional.wiki
+[Professional Wiki]: https://professional.wiki
 [MediaWiki development]: https://professional.wiki/en/mediawiki-development
 [managed wiki hosting]: https://professional.wiki/en/hosting
 [MediaWiki support]: https://professional.wiki/en/support
