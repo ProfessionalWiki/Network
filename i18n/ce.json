@@ -6,7 +6,9 @@
 	},
 	"network": "Сеть",
 	"pagenetwork-pages-field-label": "АгӀонаш",
+	"pagenetwork-exclude-field-label": "АгӀонаш йукъара йаха",
 	"pagenetwork-class-field-label": "CSS классаш",
+	"pagenetwork-options-field-label": "Графикин параметраш",
 	"pagenetwork-enableDisplayTitle-field-label": "Гойтуш йолу цӀе дӀахӀоттайе",
 	"pagenetwork-basic-tab-label": "Коьрта нисдаран гӀирс",
 	"pagenetwork-advanced-tab-label": "Шорбина нисдаран гӀирс"
