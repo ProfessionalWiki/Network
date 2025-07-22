@@ -9,8 +9,8 @@ use MediaWiki\Extension\Network\NetworkFunction\NetworkConfig;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
 use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
+use MediaWiki\Title\Title;
 use Parser;
-use Title;
 
 class NetworkFunction {
 

@@ -4,7 +4,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Network\NetworkFunction;
 
-use Html;
+use MediaWiki\Html\Html;
 
 abstract class AbstractNetworkPresenter implements NetworkPresenter {
 

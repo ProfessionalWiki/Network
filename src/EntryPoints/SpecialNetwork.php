@@ -4,16 +4,16 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Network\EntryPoints;
 
-use Html;
 use IncludableSpecialPage;
 use MediaWiki\Extension\Network\Extension;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkConfig;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
 use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use Message;
-use Title;
 use WebRequest;
 
 /**

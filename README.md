@@ -30,8 +30,8 @@ It was created by [Professional Wiki] and funded by
 
 ## Platform requirements
 
-- PHP 7.4 or later (tested up to PHP 8.4)
-- MediaWiki 1.39.x or later (tested up to 1.43.x)
+- PHP 8.1 or later (tested up to PHP 8.4)
+- MediaWiki 1.43.x or later (tested up to 1.44.x)
 
 See the [release notes](#release-notes) for more information on the different versions of Network.
 
@@ -364,6 +364,12 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 [Professional Wiki] provides commercial [MediaWiki development], [managed wiki hosting] and [MediaWiki support].
 
 ## Release notes
+
+### Version 4.0.0
+
+Released on July 22nd, 2025.
+
+- Raised minimum MediaWiki version from 1.39 to 1.43
 
 ### Version 3.0.0
 
