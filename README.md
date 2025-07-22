@@ -369,6 +369,7 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 Released on July 22nd, 2025.
 
+- Raised minimum PHP version from 7.4 to 8.1
 - Raised minimum MediaWiki version from 1.39 to 1.43
 
 ### Version 3.0.0
