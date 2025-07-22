@@ -361,13 +361,13 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 ## Professional Support and Development
 
-[Professional Wiki] provides commercial [MediaWiki development], [managed wiki hosting] and [MediaWiki support].
+[Professional Wiki] provides commercial [MediaWiki development], [managed wiki hosting], and [MediaWiki support].
 
 ## Release notes
 
 ### Version 4.0.0
 
-Released on July 22nd, 2025.
+Not yet released
 
 - Raised minimum PHP version from 7.4 to 8.1
 - Raised minimum MediaWiki version from 1.39 to 1.43
