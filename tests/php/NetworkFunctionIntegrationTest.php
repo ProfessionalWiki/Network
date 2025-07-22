@@ -5,7 +5,9 @@ declare( strict_types = 1 );
 namespace MediaWiki\Extension\Network\Tests;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,8 +18,11 @@ class NetworkFunctionIntegrationTest extends TestCase {
 	private const PAGE_TITLE = 'ContextPageTitle';
 
 	private function parse( string $textToParse ): string {
+		$parserOptions = new ParserOptions( User::newSystemUser( 'TestUser' ) );
 		return MediaWikiServices::getInstance()->getParser()
-			->parse( $textToParse, Title::newFromText( self::PAGE_TITLE ), new \ParserOptions( \User::newSystemUser( 'TestUser' ) ) )->getText();
+			->parse( $textToParse, Title::newFromText( self::PAGE_TITLE ), $parserOptions )
+			->runOutputPipeline( $parserOptions )
+			->getContentHolderText();
 	}
 
 	public function testWhenThereAreNoParameters_contextPageIsUsed() {
