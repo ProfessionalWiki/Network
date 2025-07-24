@@ -10,6 +10,7 @@
 	"network-aria": "Visualização de rede mostrando os links de saída e entrada para {{PLURAL:$1|página|páginas}} $2",
 	"pagenetwork-pages-field-label": "Páginas",
 	"pagenetwork-pages-field-help": "O nome da página ou páginas para mostrar as conexões, uma por linha. Padrões para a página principal.",
+	"pagenetwork-exclude-field-label": "Excluir páginas",
 	"pagenetwork-exclude-field-help": "Páginas a serem excluídas do gráfico da rede, uma por linha.",
 	"pagenetwork-class-field-label": "Classes CSS",
 	"pagenetwork-options-field-label": "Opções de gráfico",
