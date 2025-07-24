@@ -43,7 +43,7 @@ The recommended way to install Network is using [Composer](https://getcomposer.o
 On the commandline, go to your wikis root directory. Then run these two commands:
 
 ```shell script
-COMPOSER=composer.local.json composer require --no-update professional-wiki/network:~3.0
+COMPOSER=composer.local.json composer require --no-update professional-wiki/network:~4.0
 composer update professional-wiki/network --no-dev -o
 ```
 
@@ -280,7 +280,7 @@ List of IDs of namespaces of which all pages should be excluded.
 
 Default value: `[ 2, 4, 8, 12 ]` (excluding `User`, `Project`, `MediaWiki` and `Help`)
 
-Examples: 
+Examples:
 
 Exclude the User and Project namespaces:
 `$wgPageNetworkExcludedNamespaces = [ NS_USER, NS_PROJECT ];`
@@ -367,16 +367,16 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 ### Version 4.0.0
 
-Not yet released
+Released on July 24th, 2025.
 
-- Raised minimum PHP version from 7.4 to 8.1
-- Raised minimum MediaWiki version from 1.39 to 1.43
+- Raised the minimum PHP version from 7.4 to 8.1
+- Raised the minimum MediaWiki version from 1.39 to 1.43
 
 ### Version 3.0.0
 
 Released on July 7th, 2025.
 
-- Raised minimum MediaWiki version from 1.31 to 1.39
+- Raised the minimum MediaWiki version from 1.31 to 1.39
 - Translation updates for system messages (thanks @translatewiki and its translator community)
 
 ### Version 2.0.1
