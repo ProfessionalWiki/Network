@@ -5,8 +5,12 @@
 		]
 	},
 	"network": "Сеть",
+	"network-desc": "Бакъо ло хьан вики агӀонаш тӀехь интерактиван машанийн визуализацеш тӀетоха",
+	"network-aria": "{{PLURAL:$1|АгӀонна|АгӀонашна}} $2 -на арайолу а, чуйогӀу а хьажоргаш гойтуш йолу машанийн визуализаци.",
 	"pagenetwork-pages-field-label": "АгӀонаш",
+	"pagenetwork-pages-field-help": "АгӀонан йа агӀонийн цӀе гойтуш йолу зӀенаш, хӀора могӀанехь цхьаъ. Ӏад йитаран кепаца — Коьрта агӀо.",
 	"pagenetwork-exclude-field-label": "АгӀонаш йукъара йаха",
+	"pagenetwork-exclude-field-help": "Сетан графикера дӀайаха йезаш йолу агӀонаш, хӀора могӀанехь цхьацца.",
 	"pagenetwork-excludedNamespaces-field-label": "ЦӀерийн меттигаш йукъарайаха",
 	"pagenetwork-class-field-label": "CSS классаш",
 	"pagenetwork-options-field-label": "Графикин параметраш",
