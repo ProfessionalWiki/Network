@@ -12,10 +12,15 @@
 	"pagenetwork-exclude-field-label": "АгӀонаш йукъара йаха",
 	"pagenetwork-exclude-field-help": "Сетан графикера дӀайаха йезаш йолу агӀонаш, хӀора могӀанехь цхьацца.",
 	"pagenetwork-excludedNamespaces-field-label": "ЦӀерийн меттигаш йукъарайаха",
+	"pagenetwork-excludedNamespaces-field-help": "ЦӀерийн меттигаш сетийн графикера дӀайаха йезаш йолу.",
 	"pagenetwork-class-field-label": "CSS классаш",
+	"pagenetwork-class-field-help": "Совнаха CSS класс(аш) сетийн графике тӀетоха, кӀайдаргашца къастош.",
 	"pagenetwork-options-field-label": "Графикин параметраш",
+	"pagenetwork-options-field-help": "JSON структура vis.js графикин параметрашца.",
 	"pagenetwork-enableDisplayTitle-field-label": "Гойтуш йолу цӀе дӀахӀоттайе",
+	"pagenetwork-enableDisplayTitle-field-help": "АгӀонан цӀе йа гайтаран цӀе шедан билгало санна гайта йеза?",
 	"pagenetwork-labelMaxLength-field-label": "Билгалонан максималан йохалла",
+	"pagenetwork-labelMaxLength-field-help": "Шедан билгалонан текстан уггаре йоккха йохалла йа 0 нагахь санна доза доцуш йелахь. Нагахь санна шедан билгало дӀайаккха йезаш йелахь, дукха тӀадамаш (...) тӀетоьхна хир ду.",
 	"pagenetwork-basic-tab-label": "Коьрта нисдаран гӀирс",
 	"pagenetwork-advanced-tab-label": "Шорбина нисдаран гӀирс"
 }
