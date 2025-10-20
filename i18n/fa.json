@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jeeputer"
+			"Jeeputer",
+			"LordProfo"
 		]
 	},
 	"network": "شبکه",
@@ -9,5 +10,6 @@
 	"pagenetwork-class-field-label": "کلاس‌های سی‌اس‌اس",
 	"pagenetwork-options-field-label": "گزینه‌های نمودار",
 	"pagenetwork-enableDisplayTitle-field-label": "فعال‌سازی عنوان نمایشی",
-	"pagenetwork-labelMaxLength-field-label": "بیشتری طول برچسب"
+	"pagenetwork-labelMaxLength-field-label": "بیشتری طول برچسب",
+	"pagenetwork-advanced-tab-label": "گزینه‌های پیشرفته"
 }
