@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"network": "Rede",
+	"network-desc": "Permite engadir visualizacións de rede interactivas nas páxinas do wiki",
+	"network-aria": "Visualización de rede que mostra as ligazóns entrantes e saíntes para {{PLURAL:$1|a seguinte páxina|as seguintes páxinas}}: $2",
+	"pagenetwork-pages-field-label": "Páxinas",
+	"pagenetwork-pages-field-help": "O nome da páxina ou páxinas para as que se mostrarán as conexións, unha por liña. Por defecto, é a páxina principal.",
+	"pagenetwork-exclude-field-label": "Excluír as páxinas",
+	"pagenetwork-exclude-field-help": "Páxinas a excluír do gráfico de rede, unha por liña.",
+	"pagenetwork-excludedNamespaces-field-label": "Excluír os espazos de nomes",
+	"pagenetwork-excludedNamespaces-field-help": "Espazo de nome a excluír do gráfico de rede.",
+	"pagenetwork-class-field-label": "Clases CSS",
+	"pagenetwork-class-field-help": "Clases CSS adicionais a engadir ao gráfico de rede, separadas por espazos.",
+	"pagenetwork-options-field-label": "Opcións do gráfico",
+	"pagenetwork-options-field-help": "Estrutura JSON con opcións de gráfico vis.js.",
+	"pagenetwork-enableDisplayTitle-field-label": "Activar o título para mostrar",
+	"pagenetwork-enableDisplayTitle-field-help": "Debería mostrarse o título da páxina ou o título para mostrar como etiqueta do nodo?",
+	"pagenetwork-labelMaxLength-field-label": "Lonxitude máxima da etiqueta",
+	"pagenetwork-labelMaxLength-field-help": "A lonxitude máxima do texto da etiqueta dun nodo ou 0 se é ilimitada. Se é necesario truncar a etiqueta do nodo, engadiranse puntos suspensivos (…).",
+	"pagenetwork-basic-tab-label": "Opcións básicas",
+	"pagenetwork-advanced-tab-label": "Opcións avanzadas"
+}
