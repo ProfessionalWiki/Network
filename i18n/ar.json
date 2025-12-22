@@ -1,15 +1,29 @@
 {
 	"@metadata": {
 		"authors": [
+			"Meno25",
 			"Mohammed Qays",
 			"جودت",
 			"محمد أحمد عبد الفتاح"
 		]
 	},
 	"network": "شبكة",
+	"network-desc": "يتيح إضافة تصورات تفاعلية للشبكة في صفحات ويكي الخاصة بك",
+	"network-aria": "تمثيل مرئي للشبكة يوضح الروابط الصادرة والواردة ل{{PLURAL:$1|صفحة|صفحات}} $2",
 	"pagenetwork-pages-field-label": "الصفحات",
+	"pagenetwork-pages-field-help": "اسم الصفحة أو الصفحات المراد عرض روابطها، صفحة واحدة في كل سطر. القيمة الافتراضية هي الصفحة الرئيسية.",
 	"pagenetwork-exclude-field-label": "استبعاد الصفحات",
+	"pagenetwork-exclude-field-help": "الصفحات المراد استبعادها من الرسم البياني للشبكة، صفحة واحدة لكل سطر.",
+	"pagenetwork-excludedNamespaces-field-label": "استبعاد مساحات الأسماء",
+	"pagenetwork-excludedNamespaces-field-help": "مساحات الأسماء المراد استبعادها من الرسم البياني للشبكة.",
+	"pagenetwork-class-field-label": "فئات CSS",
+	"pagenetwork-class-field-help": "فئة (فئات) CSS إضافية لإضافتها إلى الرسم البياني للشبكة، مفصولة بمسافات.",
 	"pagenetwork-options-field-label": "خيارات الرسم البياني",
+	"pagenetwork-options-field-help": "بنية JSON مع خيارات الرسم البياني لـ vis.js.",
+	"pagenetwork-enableDisplayTitle-field-label": "تفعيل عرض العنوان",
+	"pagenetwork-enableDisplayTitle-field-help": "هل يجب عرض عنوان الصفحة أم عنوان العرض كعلامة للعقدة؟",
+	"pagenetwork-labelMaxLength-field-label": "أقصى طول للملصق",
+	"pagenetwork-labelMaxLength-field-help": "الحد الأقصى لطول نص تسمية العقدة، أو صفر إذا كان غير محدود. في حال وجوب اقتطاع تسمية العقدة، ستُضاف علامة حذف (...).",
 	"pagenetwork-basic-tab-label": "الخيارات الأساسية",
 	"pagenetwork-advanced-tab-label": "خيارات متقدمة"
 }
