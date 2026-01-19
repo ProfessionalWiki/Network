@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"network": "شبکه",
+	"network-desc": "ستاسو په ويکي مخونو کې د متقابلې شبکې ليدونو ورگډولو ته اجازه ورکوي",
+	"network-aria": "د شبکې ليد چې د {{PLURAL:$1|مخ|مخونو}} $2 لپاره د وتونکو او راتلونکو تړونو ښودنه کوي",
+	"pagenetwork-pages-field-label": "مخونه",
+	"pagenetwork-pages-field-help": "د مخ يا مخونونو نوم چې نښلېدنې يې په هره کرښه کې يوه ښودل کېږي. ار مخ ته تلواليز ټاکل کېږي.",
+	"pagenetwork-exclude-field-label": "نه رانغاړل شوي مخونه",
+	"pagenetwork-exclude-field-help": "هغه مخونه چې د شبکې گراف نه ويستل کېږي، په هره کرښه کې يو.",
+	"pagenetwork-excludedNamespaces-field-label": "نوم‌تشيالونه ويستل",
+	"pagenetwork-excludedNamespaces-field-help": "هغه نوم‌تشيالونه چې د شبکې گراف څخه ويستل کېږي.",
+	"pagenetwork-class-field-label": "سي‌اېس‌اېس ټولگي",
+	"pagenetwork-class-field-help": "نور سي‌اېس‌اېس ټولگی (ټولگي) چې  تشيالونو سره جلا شوې دي.",
+	"pagenetwork-options-field-label": "د گراف خوښنې",
+	"pagenetwork-options-field-help": "د جی‌اېس‌اواېن جوړښت د vis.js گراف خوښنو سره؟",
+	"pagenetwork-enableDisplayTitle-field-label": "ښکارېدنې سرليک چارنول",
+	"pagenetwork-enableDisplayTitle-field-help": "ايا د مخ سرليک يا د ښکارېدو سرليک بايد د نښلېد ټکي نښکې په توگه وښودل شي؟",
+	"pagenetwork-labelMaxLength-field-label": "د نښکې ډېر اوږدوالی",
+	"pagenetwork-labelMaxLength-field-help": "د نښلېد ټکي نښکې ډېر شمېر ليک اوږدوالی يا که ۰ وي.\nکه چېرې د نښلېد ټکي نښکه لنډه شي؛ نو يو بيضوي (...) نښلېدنه به شي.",
+	"pagenetwork-basic-tab-label": "بنسټيزې خوښنې",
+	"pagenetwork-advanced-tab-label": "پرمختللې خوښنې"
+}
