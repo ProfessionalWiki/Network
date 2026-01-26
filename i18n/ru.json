@@ -2,11 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Kareyac",
-			"Okras"
+			"Okras",
+			"Yurina Tatiana"
 		]
 	},
 	"network": "Сеть",
 	"pagenetwork-pages-field-label": "Страницы",
+	"pagenetwork-exclude-field-label": "Исключить страницы",
+	"pagenetwork-excludedNamespaces-field-label": "Исключить пространства имён",
 	"pagenetwork-class-field-label": "Классы CSS",
 	"pagenetwork-enableDisplayTitle-field-label": "Включить отображаемый заголовок",
 	"pagenetwork-basic-tab-label": "Основные настройки",
