@@ -50,7 +50,7 @@ module.ApiConnectionsBuilder = ( function () {
 			pages[centralPage.title] = { title: centralPage.title, external: false, isRedirect: false };
 
 			centralPage.outgoingLinks.forEach(
-				page => { pages[page.title] = { title: page.title, external: false } }
+				page => { pages[page.title] = { title: page.title, external: false, isRedirect: false } }
 			);
 
 			centralPage.incomingLinks.forEach(
