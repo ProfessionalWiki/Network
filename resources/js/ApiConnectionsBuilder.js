@@ -67,12 +67,12 @@ module.ApiConnectionsBuilder = ( function () {
 						if (title !== null) {
 							let titleStr = title.getPrefixedText();
 							page['*'] = titleStr;
-							pages[titleStr] = { title: titleStr, external: false }
+							pages[titleStr] = { title: titleStr, external: false, isRedirect: false }
 						} else {
-							pages[page['*']] = { title: page['*'], external: true }
+							pages[page['*']] = { title: page['*'], external: true, isRedirect: false }
 						}
 					} else {
-						pages[page['*']] = { title: page['*'], external: true }
+						pages[page['*']] = { title: page['*'], external: true, isRedirect: false }
 					}
 				}
 			);
