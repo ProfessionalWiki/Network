@@ -63,7 +63,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 										page.displayTitle = page.title;
 									} else {
 										let resolvedTitle = redirectMap[page.title] || page.title;
-										page.displayTitle = displayTitles[resolvedTitle] || page.title;
+										page.displayTitle = displayTitles[resolvedTitle] || resolvedTitle;
 									}
 
 									if (redirectMap[page.title]) {
