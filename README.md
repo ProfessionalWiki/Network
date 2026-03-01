@@ -365,6 +365,16 @@ The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` p
 
 ## Release notes
 
+### Version 4.0.1
+
+Released on March 2nd, 2026.
+
+- Fixed redirects causing a TypeError that broke the entire network visualization (#58, #90)
+- Fixed redirect pages showing the redirect source title instead of the resolved target title
+- Fixed title icon lookup not resolving through redirects
+- Fixed page deduplication cache not persisting across calls, causing redundant API requests
+- Translation updates (thanks translatewiki.net and its translator community)
+
 ### Version 4.0.0
 
 Released on July 24th, 2025.
