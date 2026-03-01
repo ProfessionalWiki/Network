@@ -25,7 +25,7 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 				if (pagesToAdd.length === 0) {
 					resolve({pages: [], links: []});
 				} else {
-					this._addedPages.concat(pagesToAdd);
+					this._addedPages = this._addedPages.concat(pagesToAdd);
 
 					this._queryLinks(pagesToAdd).done(
 						function(apiResponse) {
@@ -70,10 +70,11 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 										page.isRedirect = true;
 									}
 
-									if (titleIcons.images[page.title]) {
-										page.image = titleIcons.images[page.title];
-									} else if (titleIcons.text[page.title]) {
-										page.text = titleIcons.text[page.title];
+									let iconKey = redirectMap[page.title] || page.title;
+									if (titleIcons.images[iconKey]) {
+										page.image = titleIcons.images[iconKey];
+									} else if (titleIcons.text[iconKey]) {
+										page.text = titleIcons.text[iconKey];
 									}
 								});
 
