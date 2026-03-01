@@ -25,10 +25,9 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 				if (pagesToAdd.length === 0) {
 					resolve({pages: [], links: []});
 				} else {
-					this._addedPages = this._addedPages.concat(pagesToAdd);
-
 					this._queryLinks(pagesToAdd).done(
 						function(apiResponse) {
+							this._addedPages = this._addedPages.concat(pagesToAdd);
 							this._apiResponseToPagesAndLinks(apiResponse).then(connections => resolve(connections))
 						}.bind(this)
 					);
