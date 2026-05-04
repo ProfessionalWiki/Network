@@ -2,11 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Suleiman the Magnificent Television",
+			"Tensama0415",
 			"Ykhwong"
 		]
 	},
 	"network": "네트워크",
 	"network-desc": "위키 페이지에 상호작용 네트워크 시각화의 추가를 허용합니다",
+	"network-aria": "$2 {{PLURAL:$1|문서}}에 대한 나가는 링크와 들어오는 링크를 보여주는 네트워크 시각화",
 	"pagenetwork-pages-field-label": "문서",
 	"pagenetwork-exclude-field-label": "문서 제외",
 	"pagenetwork-excludedNamespaces-field-label": "이름공간 제외",
