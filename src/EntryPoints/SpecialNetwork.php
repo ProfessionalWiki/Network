@@ -4,7 +4,6 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Network\EntryPoints;
 
-use IncludableSpecialPage;
 use MediaWiki\Extension\Network\Extension;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkConfig;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkPresenter;
@@ -12,9 +11,10 @@ use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
 use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
+use MediaWiki\Request\WebRequest;
+use MediaWiki\SpecialPage\IncludableSpecialPage;
 use MediaWiki\Title\Title;
-use Message;
-use WebRequest;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
