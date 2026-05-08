@@ -75,7 +75,8 @@ jobs:
         run: composer update
 
       - name: Run PHPUnit
-        run: php tests/phpunit/phpunit.php -c extensions/Network/phpunit.xml.dist
+        run: composer phpunit
+        working-directory: mediawiki/extensions/Network
 
   static-analysis:
     name: "Static Analysis: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
