@@ -1,12 +1,12 @@
 vis-network:
   type: tar
-  src: https://registry.npmjs.org/vis-network/-/vis-network-8.5.5.tgz
-  integrity: sha384-S8pQp/ExiNasIGo8yx0ACdaiEe3iyT8lnccVAQnecyZKSjoVjZZ8h9jDIS9Nd77m
+  src: https://registry.npmjs.org/vis-network/-/vis-network-10.0.3.tgz
+  integrity: sha384-Qa6L+3X9vOWnxAVCz/YyeHDdIod2Kh7OZoF2BhXPH29R3mz+q3A5X7ij4pV3X/5A
   license: Apache-2.0 OR MIT
-  purl: pkg:npm/vis-network@8.5.5
+  purl: pkg:npm/vis-network@10.0.3
   homepage: https://visjs.github.io/vis-network/
   authors: Almende B.V. and other contributors
-  version: 8.5.5
+  version: 10.0.3
   dest:
     package/standalone/umd/vis-network.js:
     package/LICENSE-APACHE-2.0:

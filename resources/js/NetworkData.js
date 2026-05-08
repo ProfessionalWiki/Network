@@ -22,21 +22,26 @@ module.NetworkData = ( function ( vis, mw ) {
 					} else {
 						page.label = page.displayTitle;
 					}
-					if (page.title !== page.displayTitle) {
-						page.tooltip = page.displayTitle + ' <i>(' + page.title + ')</i>';
-					} else {
-						page.tooltip = page.displayTitle;
-					}
-					if ( page.isRedirect ) {
-						page.tooltip += ' <i>(redirect)</i>';
-					}
 					return page;
 				})
 				.map(function(page) {
+					const tooltip = document.createElement('span');
+					tooltip.appendChild(document.createTextNode(page.displayTitle));
+					if (page.title !== page.displayTitle) {
+						const realTitle = document.createElement('i');
+						realTitle.appendChild(document.createTextNode(' (' + page.title + ')'));
+						tooltip.appendChild(realTitle);
+					}
+					if (page.isRedirect) {
+						const redirectMarker = document.createElement('i');
+						redirectMarker.appendChild(document.createTextNode(' (redirect)'));
+						tooltip.appendChild(redirectMarker);
+					}
+
 					let node = {
 						id: page.title,
 						label: page.label,
-						title: page.tooltip,
+						title: tooltip,
 
 						getUrl: function() {
 							if (page.isExternal) {
