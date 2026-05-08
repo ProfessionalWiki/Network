@@ -6,10 +6,7 @@ namespace MediaWiki\Extension\Network\NetworkFunction;
 
 class ParserFunctionNetworkPresenter extends AbstractNetworkPresenter {
 
-	/**
-	 * @var array
-	 */
-	private $parserFunctionReturnValue = [];
+	private array $parserFunctionReturnValue = [];
 
 	public function buildGraph( ResponseModel $viewModel ): void {
 		$this->setHtml( $viewModel );

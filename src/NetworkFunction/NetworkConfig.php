@@ -7,30 +7,13 @@ namespace MediaWiki\Extension\Network\NetworkFunction;
 use MediaWiki\MediaWikiServices;
 
 class NetworkConfig {
-	/**
-	 * @var array
-	 */
-	private $options;
 
-	/**
-	 * @var bool
-	 */
-	private $excludeTalkPages;
-
-	/**
-	 * @var string[]
-	 */
-	private $excludedNamespaces;
-
-	/**
-	 * @var bool
-	 */
-	private $enableDisplayTitle;
-
-	/**
-	 * @var int
-	 */
-	private $labelMaxLength;
+	private readonly array $options;
+	private readonly bool $excludeTalkPages;
+	/** @var string[] */
+	private readonly array $excludedNamespaces;
+	private readonly bool $enableDisplayTitle;
+	private readonly int $labelMaxLength;
 
 	public function __construct() {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
