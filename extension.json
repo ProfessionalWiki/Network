@@ -145,8 +145,7 @@
 			],
 			"messages": [
 				"network-aria"
-			],
-			"targets": [ "desktop", "mobile" ]
+			]
 		},
 		"ext.network.special": {
 			"dependencies": [
@@ -175,8 +174,7 @@
 				"pagenetwork-labelMaxLength-field-help",
 				"pagenetwork-basic-tab-label",
 				"pagenetwork-advanced-tab-label"
-			],
-			"targets": [ "desktop", "mobile" ]
+			]
 		}
 	},
 
