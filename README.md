@@ -355,6 +355,43 @@ For more details see the `Makefile`.
 
 The JavaScript tests can only be run by going to the [`Special:JavaScriptTest` page][JS tests].
 
+### Upgrading vis-network
+
+The `vis-network` library is managed via MediaWiki's foreign-resources mechanism. Its version, source URL,
+and integrity hash are declared in `resources/lib/foreign-resources.yaml`.
+
+To upgrade to a new `vis-network` version:
+
+1. Edit `resources/lib/foreign-resources.yaml`: bump `version`, update `src` to the new URL, and clear the
+   `integrity` value.
+2. From the MediaWiki root, compute the new integrity hash:
+
+   ```shell script
+   php maintenance/run.php manageForeignResources make-sri --extension Network
+   ```
+
+   Copy the printed `integrity` line into `foreign-resources.yaml`.
+3. Download the new file:
+
+   ```shell script
+   php maintenance/run.php manageForeignResources update --extension Network
+   ```
+
+4. Test the network rendering with the new version. Some upstream releases change default options or APIs.
+5. Commit the updated YAML and the new `vis-network.js` file.
+
+To verify the on-disk file matches the declared integrity hash:
+
+```shell script
+php maintenance/run.php manageForeignResources verify --extension Network
+```
+
+To regenerate the CycloneDX SBOM (Software Bill of Materials) for the bundled foreign resources:
+
+```shell script
+php maintenance/run.php manageForeignResources make-cdx --extension Network
+```
+
 ## License
 
 [GNU General Public License v2.0 or later (GPL-2.0-or-later)](/COPYING).
