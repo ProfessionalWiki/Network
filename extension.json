@@ -121,6 +121,8 @@
 		"remoteExtPath": "Network"
 	},
 
+	"ForeignResourcesDir": "resources/lib",
+
 	"ResourceModules": {
 		"ext.network": {
 			"dependencies": [
@@ -129,7 +131,7 @@
 				"mediawiki.jqueryMsg"
 			],
 			"scripts": [
-				"resources/lib/vis-network.js",
+				"resources/lib/vis-network/vis-network.js",
 
 				"resources/js/PageExclusionManager.js",
 				"resources/js/NetworkData.js",

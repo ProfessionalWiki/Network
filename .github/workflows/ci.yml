@@ -139,6 +139,10 @@ jobs:
       - name: Composer install
         run: composer install --no-progress --no-suggest --no-interaction --prefer-dist --optimize-autoloader
 
+      - name: Verify foreign resources
+        working-directory: mediawiki
+        run: php maintenance/run.php manageForeignResources verify --extension Network
+
       - name: PHPStan
         run: php vendor/bin/phpstan analyse --error-format=checkstyle --no-progress | cs2pr
 
