@@ -32,5 +32,13 @@
 				<file name="src/EntryPoints/SpecialNetwork.php" />
 			</errorLevel>
 		</UndefinedDocblockClass>
+		<UndefinedConstant>
+			<errorLevel type="suppress">
+				<!-- MW_INSTALL_PATH is set by MediaWiki's runtime bootstrap.
+				     MW core uses this constant directly (CodexModule.php);
+				     there is no equivalent on the Config service in MW 1.44+. -->
+				<file name="src/Extension.php" />
+			</errorLevel>
+		</UndefinedConstant>
 	</issueHandlers>
 </psalm>
