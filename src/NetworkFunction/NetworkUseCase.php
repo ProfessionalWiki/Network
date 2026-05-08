@@ -6,15 +6,10 @@ namespace MediaWiki\Extension\Network\NetworkFunction;
 
 class NetworkUseCase {
 
-	private NetworkPresenter $presenter;
-	private array $visJsOptions;
-
 	public function __construct(
-		NetworkPresenter $presenter,
-		array $visJsOptions
+		private readonly NetworkPresenter $presenter,
+		private readonly array $visJsOptions
 	) {
-		$this->presenter = $presenter;
-		$this->visJsOptions = $visJsOptions;
 	}
 
 	public function run( RequestModel $request ): void {
