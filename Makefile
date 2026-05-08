@@ -5,7 +5,7 @@ cs: phpcs phpstan psalm
 test: phpunit
 
 phpunit:
-	php ../../tests/phpunit/phpunit.php -c phpunit.xml.dist
+	composer phpunit
 
 phpcs:
 	cd ../.. && vendor/bin/phpcs -p -s --standard=$(shell pwd)/phpcs.xml

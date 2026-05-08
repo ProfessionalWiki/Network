@@ -52,5 +52,8 @@
 			"composer/installers": true,
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
+	},
+	"scripts": {
+		"phpunit": "cd ${MW_INSTALL_PATH:-../..} && (composer phpunit:config 2>/dev/null || true) && vendor/bin/phpunit -c extensions/Network/phpunit.xml.dist --bootstrap tests/phpunit/bootstrap.php"
 	}
 }
