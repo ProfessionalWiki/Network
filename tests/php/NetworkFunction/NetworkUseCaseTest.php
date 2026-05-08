@@ -15,7 +15,7 @@ class NetworkUseCaseTest extends TestCase {
 
 	private const RENDERING_PAGE_NAME = 'MyPage';
 
-	public function testDefaultPageName() {
+	public function testDefaultPageName(): void {
 		$this->assertSame(
 			[ self::RENDERING_PAGE_NAME ],
 			$this->runAndReturnPresenter( $this->newBasicRequestModel() )->getResponseModel()->pageNames
@@ -53,7 +53,7 @@ class NetworkUseCaseTest extends TestCase {
 		return $request;
 	}
 
-	public function testSpecifiedPageName() {
+	public function testSpecifiedPageName(): void {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'page = Kittens' ];
 
@@ -63,7 +63,7 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testDefaultCssClass() {
+	public function testDefaultCssClass(): void {
 		$request = $this->newBasicRequestModel();
 
 		$this->assertSame(
@@ -72,7 +72,7 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testSpecifiedCssClass() {
+	public function testSpecifiedCssClass(): void {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'class = col-lg-3 mt-2 ' ];
 
@@ -82,7 +82,7 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testMultiplePageNames() {
+	public function testMultiplePageNames(): void {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'Kittens', 'Cats', 'page = Tigers', 'page=Bobcats ' ];
 
@@ -92,7 +92,7 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testPageParametersWithPipe() {
+	public function testPageParametersWithPipe(): void {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'Kittens|Cats', 'pages = Tigers|Bobcats' ];
 
@@ -102,14 +102,14 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testNothingExcludedByDefault() {
+	public function testNothingExcludedByDefault(): void {
 		$this->assertSame(
 			[],
 			$this->runAndReturnPresenter( $this->newBasicRequestModel() )->getResponseModel()->excludedPages
 		);
 	}
 
-	public function testExclude() {
+	public function testExclude(): void {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'Kittens', 'exclude = Foo ; Bar ; Baz:bah' ];
 
@@ -119,7 +119,7 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testCanUseMaxPages() {
+	public function testCanUseMaxPages(): void {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = $this->getPageNames( 100 );
 
@@ -139,7 +139,7 @@ class NetworkUseCaseTest extends TestCase {
 		return $pageNames;
 	}
 
-	public function testMoreThanMaxPagesResultsInError() {
+	public function testMoreThanMaxPagesResultsInError(): void {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = $this->getPageNames( 101 );
 
@@ -149,7 +149,7 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testDefaultEnableDisplayTitle() {
+	public function testDefaultEnableDisplayTitle(): void {
 		$request = $this->newBasicRequestModel();
 
 		$this->assertTrue(
@@ -157,7 +157,7 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testOverrideEnableDisplayTitleTrue() {
+	public function testOverrideEnableDisplayTitleTrue(): void {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'enableDisplayTitle = true' ];
 
@@ -166,7 +166,7 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testOverrideEnableDisplayTitleFalse() {
+	public function testOverrideEnableDisplayTitleFalse(): void {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'enableDisplayTitle = false' ];
 
@@ -175,7 +175,7 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testNoOptionsInLocalSettingsAndNoOptionsParameter() {
+	public function testNoOptionsInLocalSettingsAndNoOptionsParameter(): void {
 		$presenter = new SpyNetworkPresenter();
 		( new NetworkUseCase( $presenter, [] ) )->run( $this->newBasicRequestModel() );
 
@@ -185,7 +185,7 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testOptionsInLocalSettings() {
+	public function testOptionsInLocalSettings(): void {
 		$setting = [
 			'height' => '42%',
 			'layout' => [
@@ -202,7 +202,7 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testOptionsParameter() {
+	public function testOptionsParameter(): void {
 		$request = $this->newBasicRequestModel();
 		$request->functionArguments = [ 'options={"nodes": {"shape": "box"}}' ];
 
@@ -219,7 +219,7 @@ class NetworkUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testOptionsParameterWithLocalSettingsConfig() {
+	public function testOptionsParameterWithLocalSettingsConfig(): void {
 		$setting = [
 			'height' => '42%',
 			'nodes' => [

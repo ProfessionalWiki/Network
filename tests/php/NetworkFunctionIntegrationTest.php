@@ -25,14 +25,14 @@ class NetworkFunctionIntegrationTest extends TestCase {
 			->getContentHolderText();
 	}
 
-	public function testWhenThereAreNoParameters_contextPageIsUsed() {
+	public function testWhenThereAreNoParameters_contextPageIsUsed(): void {
 		$this->assertStringContainsString(
 			'data-pages="[&quot;ContextPageTitle&quot;]"',
 			$this->parse( '{{#network:}}' )
 		);
 	}
 
-	public function testOptionsParameters() {
+	public function testOptionsParameters(): void {
 		$this->assertStringContainsString(
 			'&quot;shape&quot;:&quot;tomato&quot;',
 			$this->parse( '{{#network:options={"nodes": {"shape": "tomato"} } }}' )

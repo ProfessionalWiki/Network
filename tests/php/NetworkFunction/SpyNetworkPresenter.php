@@ -9,7 +9,7 @@ use MediaWiki\Extension\Network\NetworkFunction\ResponseModel;
 
 class SpyNetworkPresenter implements NetworkPresenter {
 
-	private ResponseModel $viewModel;
+	private ?ResponseModel $viewModel = null;
 	private array $errors = [];
 
 	public function buildGraph( ResponseModel $viewModel ): void {

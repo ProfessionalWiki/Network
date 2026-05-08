@@ -14,13 +14,9 @@ use MediaWiki\Title\Title;
 
 class NetworkFunction {
 
-	/**
-	 * @var NetworkConfig
-	 */
-	private $config;
-
-	public function __construct( NetworkConfig $config ) {
-		$this->config = $config;
+	public function __construct(
+		private readonly NetworkConfig $config
+	) {
 	}
 
 	public static function onParserFirstCallInit( Parser $parser ): void {
