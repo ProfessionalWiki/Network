@@ -25,7 +25,9 @@ class SpecialNetwork extends IncludableSpecialPage {
 		parent::__construct( 'Network' );
 	}
 
-	// phpcs:ignore MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic
+	/**
+	 * @inheritDoc
+	 */
 	public function execute( $subPage ): void {
 		$this->setHeaders();
 

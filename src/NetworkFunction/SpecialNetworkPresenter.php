@@ -10,10 +10,7 @@ class SpecialNetworkPresenter extends AbstractNetworkPresenter {
 		$this->setHtml( $viewModel );
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getReturnValue() {
+	public function getReturnValue(): string {
 		return $this->html;
 	}
 
