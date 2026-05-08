@@ -176,7 +176,8 @@ module.ApiPageConnectionRepo = ( function ( mw, ApiConnectionsBuilder ) {
 							for (let index in icons) {
 								let icon = icons[index]
 								if (icon.type === 'ooui') {
-									images[page.title] = 'resources/lib/ooui/themes/wikimediaui/images/icons/' + icon.icon;
+									images[page.title] = (mw.config.get('wgScriptPath') || '')
+										+ '/resources/lib/ooui/themes/wikimediaui/images/icons/' + icon.icon;
 									break
 								} else if (icon.type === 'file') {
 									fileIcons[page.title] = icon.icon;

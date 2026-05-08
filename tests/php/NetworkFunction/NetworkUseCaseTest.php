@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Network\Tests\NetworkFunction;
 
+use MediaWiki\Extension\Network\NetworkFunction\IconResolver;
 use MediaWiki\Extension\Network\NetworkFunction\NetworkUseCase;
 use MediaWiki\Extension\Network\NetworkFunction\RequestModel;
 use PHPUnit\Framework\TestCase;
@@ -14,6 +15,13 @@ use PHPUnit\Framework\TestCase;
 class NetworkUseCaseTest extends TestCase {
 
 	private const RENDERING_PAGE_NAME = 'MyPage';
+
+	private function newNoOpIconResolver(): IconResolver {
+		// Pointed at a nonexistent JSON file so cdxIcon names won't resolve;
+		// none of the existing tests pass groups[*].image, so the resolver is
+		// effectively a no-op for them.
+		return new IconResolver( '/dev/null', '' );
+	}
 
 	public function testDefaultPageName(): void {
 		$this->assertSame(
@@ -36,7 +44,7 @@ class NetworkUseCaseTest extends TestCase {
 				]
 			]
 		];
-		( new NetworkUseCase( $presenter, $visJsOptions ) )->run( $requestModel );
+		( new NetworkUseCase( $presenter, $visJsOptions, $this->newNoOpIconResolver() ) )->run( $requestModel );
 
 		return $presenter;
 	}
@@ -177,7 +185,7 @@ class NetworkUseCaseTest extends TestCase {
 
 	public function testNoOptionsInLocalSettingsAndNoOptionsParameter(): void {
 		$presenter = new SpyNetworkPresenter();
-		( new NetworkUseCase( $presenter, [] ) )->run( $this->newBasicRequestModel() );
+		( new NetworkUseCase( $presenter, [], $this->newNoOpIconResolver() ) )->run( $this->newBasicRequestModel() );
 
 		$this->assertSame(
 			[],
@@ -194,7 +202,7 @@ class NetworkUseCaseTest extends TestCase {
 		];
 
 		$presenter = new SpyNetworkPresenter();
-		( new NetworkUseCase( $presenter, $setting ) )->run( $this->newBasicRequestModel() );
+		( new NetworkUseCase( $presenter, $setting, $this->newNoOpIconResolver() ) )->run( $this->newBasicRequestModel() );
 
 		$this->assertEquals(
 			$setting,
@@ -207,7 +215,7 @@ class NetworkUseCaseTest extends TestCase {
 		$request->functionArguments = [ 'options={"nodes": {"shape": "box"}}' ];
 
 		$presenter = new SpyNetworkPresenter();
-		( new NetworkUseCase( $presenter, [] ) )->run( $request );
+		( new NetworkUseCase( $presenter, [], $this->newNoOpIconResolver() ) )->run( $request );
 
 		$this->assertSame(
 			[
@@ -232,7 +240,7 @@ class NetworkUseCaseTest extends TestCase {
 		$request->functionArguments = [ 'options={"nodes": {"shape": "box", "color": "red"}}' ];
 
 		$presenter = new SpyNetworkPresenter();
-		( new NetworkUseCase( $presenter, $setting ) )->run( $request );
+		( new NetworkUseCase( $presenter, $setting, $this->newNoOpIconResolver() ) )->run( $request );
 
 		$this->assertEquals(
 			[

@@ -8,7 +8,8 @@ class NetworkUseCase {
 
 	public function __construct(
 		private readonly NetworkPresenter $presenter,
-		private readonly array $visJsOptions
+		private readonly array $visJsOptions,
+		private readonly IconResolver $iconResolver
 	) {
 	}
 
@@ -65,7 +66,7 @@ class NetworkUseCase {
 			$this->visJsOptions,
 			json_decode( $arguments['options'] ?? '{}', true ) ?? []
 		);
-		return $visJsOptions;
+		return $this->iconResolver->resolve( $visJsOptions );
 	}
 
 	/**

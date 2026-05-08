@@ -8,3 +8,11 @@ parameters:
 		- ../../vendor
 	bootstrapFiles:
 		- ../../includes/AutoLoader.php
+	ignoreErrors:
+		# MW_INSTALL_PATH is defined by MediaWiki's entry-point bootstrap
+		# (index.php, api.php, maintenance scripts), not by AutoLoader.php.
+		# MW core itself uses this constant directly (see CodexModule.php);
+		# there is no equivalent on the Config service in MW 1.44+.
+		-
+			message: '#Constant MW_INSTALL_PATH not found\.#'
+			path: src/Extension.php
