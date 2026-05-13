@@ -402,6 +402,15 @@ php maintenance/run.php manageForeignResources make-cdx --extension Network
 
 ## Release notes
 
+### Version 4.1.0
+
+Released on May 13th, 2026.
+
+- Upgraded the bundled vis-network library from 8.5.5 to 10.0.3, picking up five years of upstream fixes and tightening tooltip rendering against XSS (#77)
+- Fixed default group images and Title Icon URLs failing to load on pretty article URLs (/wiki/Foo)
+- Tested with MediaWiki 1.45 and PHP 8.5
+- Translation updates (thanks translatewiki.net and its translator community)
+
 ### Version 4.0.1
 
 Released on March 2nd, 2026.
