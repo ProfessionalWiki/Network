@@ -64,7 +64,7 @@ jobs:
           path: ~/.composer/cache
           key: composer-php${{ matrix.php }}
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           path: EarlyCopy
 
@@ -73,7 +73,7 @@ jobs:
         working-directory: ~
         run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} Network
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           path: mediawiki/extensions/Network
 
@@ -123,7 +123,7 @@ jobs:
           path: ~/.composer/cache
           key: composer_static_analysis
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           path: EarlyCopy
 
@@ -132,7 +132,7 @@ jobs:
         working-directory: ~
         run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} Network
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           path: mediawiki/extensions/Network
 
@@ -188,7 +188,7 @@ jobs:
           path: ~/.composer/cache
           key: composer_static_analysis
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           path: EarlyCopy
 
@@ -197,7 +197,7 @@ jobs:
         working-directory: ~
         run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} Network
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           path: mediawiki/extensions/Network
 
