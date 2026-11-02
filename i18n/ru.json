@@ -11,6 +11,7 @@
 	"pagenetwork-exclude-field-label": "Исключить страницы",
 	"pagenetwork-excludedNamespaces-field-label": "Исключить пространства имён",
 	"pagenetwork-class-field-label": "Классы CSS",
+	"pagenetwork-options-field-label": "Параметры графа",
 	"pagenetwork-enableDisplayTitle-field-label": "Включить отображаемый заголовок",
 	"pagenetwork-basic-tab-label": "Основные настройки",
 	"pagenetwork-advanced-tab-label": "Расширенные настройки"
